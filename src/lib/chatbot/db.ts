@@ -367,11 +367,15 @@ export async function initializeSchema(): Promise<void> {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     `);
 
-        // Migration: Add customer_name if it doesn't exist
-        try {
-            await connection.execute('ALTER TABLE conversations ADD COLUMN IF NOT EXISTS customer_name VARCHAR(255) AFTER phone');
-        } catch (e) {
-            // Ignore if column exists or IF NOT EXISTS not supported
+        // Migration: Add customer_name if it doesn't exist (Robust way for all MySQL versions)
+        const [columns]: any = await connection.execute(
+            "SHOW COLUMNS FROM conversations LIKE 'customer_name'"
+        );
+        if (columns.length === 0) {
+            console.log('[Migration] Adding "customer_name" column to conversations table...');
+            await connection.execute(
+                'ALTER TABLE conversations ADD COLUMN customer_name VARCHAR(255) AFTER phone'
+            );
         }
 
         await connection.execute(`

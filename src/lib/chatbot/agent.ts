@@ -192,7 +192,7 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         try {
             await sendTextMessage(
                 phone,
-                'Disculpe, estoy experimentando dificultades técnicas. Por favor, intente nuevamente en unos minutos o comuníquice directamente al WhatsApp +593 99 022 7203. 🙏'
+                'Disculpe, estoy experimentando dificultades técnicas. Por favor, intente nuevamente en unos minutos o comuníquese directamente al WhatsApp +593 99 022 7203. 🙏'
             );
         } catch (sendError) {
             console.error('[Agent] Failed to send error message:', sendError);
