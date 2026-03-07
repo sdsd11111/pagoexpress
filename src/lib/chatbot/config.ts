@@ -1,8 +1,10 @@
-// ═══════════════════════════════════════════════════════════════
-// PagoExpress Elite Chatbot — Configuration
-// ═══════════════════════════════════════════════════════════════
-
 import { z } from 'zod';
+import * as dotenv from 'dotenv';
+import path from 'path';
+
+// Load environment variables from .env.local using an absolute path relative to the workspace root
+const envPath = path.resolve('d:/Abel paginas/PagoExpress/Pagina web/pagoexpress-web', '.env.local');
+dotenv.config({ path: envPath });
 
 const envSchema = z.object({
     // LLM Providers
@@ -51,8 +53,8 @@ function loadConfig() {
                 password: process.env.DB_PASS || '',
                 database: process.env.DB_NAME || '',
             },
-            strictKnowledge: true,
-            maxIterations: 5,
+            strictKnowledge: process.env.STRICT_KNOWLEDGE === 'true',
+            maxIterations: parseInt(process.env.MAX_ITERATIONS || '5'),
             adminPhone: process.env.ADMIN_PHONE || '593990227203',
             webhookSecret: process.env.CHATBOT_WEBHOOK_SECRET || '',
         };
@@ -82,5 +84,20 @@ function loadConfig() {
     };
 }
 
-export const config = loadConfig();
+let memoizedConfig: ReturnType<typeof loadConfig> | null = null;
+
+function getConfigInternal(): ReturnType<typeof loadConfig> {
+    if (!memoizedConfig || (!memoizedConfig.groq.apiKey && process.env.GROQ_API_KEY)) {
+        memoizedConfig = loadConfig();
+    }
+    return memoizedConfig;
+}
+
+// Export a Proxy that lazily initializes the config on first access
+export const config = new Proxy({} as ReturnType<typeof loadConfig>, {
+    get: (_target, prop) => {
+        return (getConfigInternal() as any)[prop];
+    }
+});
+
 export type ChatbotConfig = ReturnType<typeof loadConfig>;

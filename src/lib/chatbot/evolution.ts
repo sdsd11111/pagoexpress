@@ -15,12 +15,23 @@ interface EvolutionResponse {
 }
 
 /**
+ * Mocking support for tests
+ */
+let mockHandler: ((phone: string, text: string) => Promise<any>) | null = null;
+export function setMockHandler(handler: typeof mockHandler) {
+    mockHandler = handler;
+}
+
+/**
  * Send a text message via WhatsApp (Evolution API).
  */
 export async function sendTextMessage(
     phone: string,
     text: string
 ): Promise<EvolutionResponse> {
+    if (mockHandler) {
+        return mockHandler(phone, text);
+    }
     // Ensure phone is in correct format (no @s.whatsapp.net suffix)
     const cleanPhone = phone.replace('@s.whatsapp.net', '');
 

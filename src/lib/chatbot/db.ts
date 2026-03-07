@@ -61,11 +61,24 @@ async function query<T = unknown>(sql: string, params?: any[]): Promise<T[]> {
     return rows as T[];
 }
 
-async function execute(sql: string, params?: any[]): Promise<mysql.ResultSetHeader> {
+export async function execute(sql: string, params?: any[]): Promise<mysql.ResultSetHeader> {
     await ensureInitialised();
     const db = getPool();
     const [result] = await db.execute(sql, params);
     return result as mysql.ResultSetHeader;
+}
+
+/**
+ * Completely remove a conversation and its history.
+ */
+export async function deleteConversationByPhone(phone: string): Promise<void> {
+    const rows = await query<Record<string, unknown>>('SELECT id FROM conversations WHERE phone = ?', [phone]);
+    if (rows.length === 0) return;
+    const conversationId = rows[0].id;
+
+    await execute('DELETE FROM messages WHERE conversation_id = ?', [conversationId]);
+    await execute('DELETE FROM transactions WHERE phone = ?', [phone]);
+    await execute('DELETE FROM conversations WHERE id = ?', [conversationId]);
 }
 
 // ═══════════════════════════════════════════════════════════════
