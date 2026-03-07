@@ -11,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pagoexpress.vercel.app"),
   title: "PagoExpress | Servicios Financieros en Loja, Ecuador",
   description:
     "Más de 15 años ofreciendo remesas internacionales, depósitos bancarios, pagos de servicios, recargas y courier en Loja, Ecuador. Aliado de Western Union y MoneyGram.",
@@ -33,25 +34,26 @@ export const metadata: Metadata = {
     title: "PagoExpress | Servicios Financieros en Loja",
     description:
       "Toda la banca de Ecuador y remesas mundiales en el corazón de Loja. Más de 15 años de confianza.",
-    url: "https://pagoexpress.vercel.app",
+    url: "/",
     siteName: "PagoExpress",
     images: [
       {
-        url: "https://pagoexpress.vercel.app/logo.jpg",
-        width: 1200,
-        height: 630,
+        url: "/logo.jpg?v=2",
+        width: 534,
+        height: 534,
         alt: "PagoExpress Logo",
+        type: "image/jpeg",
       },
     ],
     locale: "es_EC",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "PagoExpress | Servicios Financieros en Loja",
     description:
       "Toda la banca de Ecuador y remesas mundiales en el corazón de Loja. Más de 15 años de confianza.",
-    images: ["https://pagoexpress.vercel.app/logo.jpg"],
+    images: ["/logo.jpg?v=2"],
   },
 };
 
