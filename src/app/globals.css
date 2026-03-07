@@ -1,26 +1,232 @@
 @import "tailwindcss";
 
+/* Hide scrollbar globally for elements that need it */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ═══════════════════════════════════════════════
+   PagoExpress Design System
+   Colors derived from Logo: Yellow + Black
+   ═══════════════════════════════════════════════ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors (Validated) */
+  --pe-yellow: #F7EF4D;
+  --pe-yellow-light: #F9F37D;
+  --pe-yellow-dark: #D4CC2E;
+  --pe-black: #1A1A1A;
+  --pe-black-pure: #000000;
+  --pe-dark-accent: #243328;
+  /* Professional depth */
+
+  /* Neutrals */
+  --pe-white: #FFFFFF;
+  --pe-beige: #EBEADF;
+  --pe-gray-50: #F8F9FA;
+  --pe-gray-100: #E9ECEF;
+  --pe-gray-200: #DEE2E6;
+  --pe-gray-300: #CED4DA;
+  --pe-gray-400: #ADB5BD;
+  --pe-gray-500: #6C757D;
+  --pe-gray-600: #495057;
+  --pe-gray-700: #343A40;
+
+  /* Functional */
+  --pe-success: #2E994D;
+  --pe-error: #EB5757;
+
+  --background: var(--pe-white);
+  --foreground: var(--pe-black);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Brand */
+  --color-pe-yellow: var(--pe-yellow);
+  --color-pe-yellow-light: var(--pe-yellow-light);
+  --color-pe-yellow-dark: var(--pe-yellow-dark);
+  --color-pe-black: var(--pe-black);
+  --color-pe-black-pure: var(--pe-black-pure);
+  --color-pe-dark-accent: var(--pe-dark-accent);
+
+  /* Neutrals */
+  --color-pe-white: var(--pe-white);
+  --color-pe-beige: var(--pe-beige);
+  --color-pe-gray-50: var(--pe-gray-50);
+  --color-pe-gray-100: var(--pe-gray-100);
+  --color-pe-gray-200: var(--pe-gray-200);
+  --color-pe-gray-300: var(--pe-gray-300);
+  --color-pe-gray-400: var(--pe-gray-400);
+  --color-pe-gray-500: var(--pe-gray-500);
+  --color-pe-gray-600: var(--pe-gray-600);
+  --color-pe-gray-700: var(--pe-gray-700);
+
+  /* Functional */
+  --color-pe-success: var(--pe-success);
+  --color-pe-error: var(--pe-error);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ═══════════════════════════════════════════════
+   Smooth scrolling & Global Typography
+   ═══════════════════════════════════════════════ */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════════════════
+   Animations
+   ═══════════════════════════════════════════════ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes pulse-slow {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Infinite Scroll Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-100% - 3rem));
+  }
+
+  /* Adjust based on gap */
+}
+
+.animate-infinite-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-infinite-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Delay utilities */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(26, 26, 26, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
