@@ -151,6 +151,7 @@ export async function getOrCreateConversation(phone: string): Promise<Conversati
         status: 'active',
         current_step: null,
         context_data: null,
+        last_manual_interaction: null,
         created_at: new Date(),
         updated_at: new Date(),
     };
@@ -194,6 +195,7 @@ function parseConversationRow(row: Record<string, unknown>): Conversation {
         status: row.status as Conversation['status'],
         current_step: row.current_step as string | null,
         context_data: safeParseJSON(row.context_data as string, null),
+        last_manual_interaction: row.last_manual_interaction ? new Date(row.last_manual_interaction as string) : null,
         created_at: new Date(row.created_at as string),
         updated_at: new Date(row.updated_at as string),
     };
@@ -273,6 +275,17 @@ export async function saveTransaction(tx: Omit<Transaction, 'id' | 'created_at'>
     return result.insertId;
 }
 
+/**
+ * Marks a conversation as having manual human interaction.
+ * This pauses the bot for 24 hours.
+ */
+export async function updateLastManualInteraction(phone: string): Promise<void> {
+    await execute(
+        'UPDATE conversations SET last_manual_interaction = CURRENT_TIMESTAMP WHERE phone = ?',
+        [phone]
+    );
+}
+
 // ═══════════════════════════════════════════════════════════════
 // SCHEMA INITIALIZATION
 // ═══════════════════════════════════════════════════════════════
@@ -321,6 +334,7 @@ export async function initializeSchema(): Promise<void> {
         status ENUM('active','escalated','closed') DEFAULT 'active',
         current_step VARCHAR(100),
         context_data JSON,
+        last_manual_interaction TIMESTAMP NULL DEFAULT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         UNIQUE KEY uk_phone (phone)

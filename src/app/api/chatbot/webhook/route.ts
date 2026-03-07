@@ -25,9 +25,19 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
             return NextResponse.json({ status: 'ignored', reason: 'no data' });
         }
 
-        // ─── Filter: Ignore our own messages ───
+        // ─── Filter: Handle outgoing messages ───
         if (data.key.fromMe) {
-            return NextResponse.json({ status: 'ignored', reason: 'own message' });
+            // If the message is outgoing, it could be the bot or a human on WhatsApp Web.
+            // For now, we update last_manual_interaction to be safe.
+            // Ideally we should distinguish bot messages (e.g. by checking a cache of sent messages).
+            const remoteJid = data.key.remoteJid || '';
+            const phone = remoteJid.replace('@s.whatsapp.net', '');
+            if (phone) {
+                const { updateLastManualInteraction } = await import('@/lib/chatbot/db');
+                await updateLastManualInteraction(phone).catch(console.error);
+                console.log(`[Webhook] Manual interaction (fromMe) detected for ${phone}. Bot will pause.`);
+            }
+            return NextResponse.json({ status: 'ignored', reason: 'own message / manual interaction updated' });
         }
 
         // ─── Filter: Ignore group messages ───
@@ -42,9 +52,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
             return NextResponse.json({ status: 'ignored', reason: 'no phone number' });
         }
 
-        // ─── Filter: ONLY ALLOW TESTING NUMBER ───
-        // TODO: Remove this before full production rollout
-        if (phone !== '593963410409') {
+        // ─── Filter: ONLY ALLOW TESTING NUMBERS ───
+        const allowedNumbers = ['593963410409', '593990227203', '593967491847'];
+        if (!allowedNumbers.includes(phone)) {
             console.log(`[Webhook] Ignoring message from non-test number: ${phone}`);
             return NextResponse.json({ status: 'ignored', reason: 'not test number' });
         }

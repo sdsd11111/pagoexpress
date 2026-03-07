@@ -45,6 +45,18 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
             return;
         }
 
+        // ─── 1.1 Check for Manual Pause (1h) ───
+        if (conversation.last_manual_interaction) {
+            const lastInteraction = new Date(conversation.last_manual_interaction).getTime();
+            const now = Date.now();
+            const hoursSinceLastInteraction = (now - lastInteraction) / (1000 * 60 * 60);
+
+            if (hoursSinceLastInteraction < 1) {
+                console.log(`[Agent] Manual interaction detected ${hoursSinceLastInteraction.toFixed(1)}h ago. Bot is paused for 1h.`);
+                return;
+            }
+        }
+
         // ─── 2. Build User Content ───
         let userContent = content;
 

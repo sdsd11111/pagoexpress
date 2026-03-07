@@ -38,6 +38,7 @@ export interface Conversation {
     status: ConversationStatus;
     current_step: string | null;
     context_data: Record<string, unknown> | null;
+    last_manual_interaction: Date | null;
     created_at: Date;
     updated_at: Date;
 }
