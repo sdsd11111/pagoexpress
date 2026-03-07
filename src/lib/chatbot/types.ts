@@ -53,6 +53,8 @@ export interface Message {
     role: MessageRole;
     content: string;
     tool_name?: string | null;
+    tool_id?: string | null; // tool_call_id for tool messages
+    tool_calls?: ToolCall[] | null; // for assistant messages
     tool_result?: Record<string, unknown> | null;
     media_url?: string | null;
     created_at?: Date;

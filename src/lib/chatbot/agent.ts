@@ -123,6 +123,9 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
                     tool_calls: llmResponse.tool_calls,
                 });
 
+                // Persist the assistant's decision to call tools
+                await saveAssistantMessage(conversation.id, llmResponse.content || '', llmResponse.tool_calls);
+
                 // Execute each tool call
                 for (const toolCall of llmResponse.tool_calls) {
                     console.log(`[Agent] Executing tool: ${toolCall.name}(${JSON.stringify(toolCall.arguments)})`);
@@ -136,8 +139,8 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
 
                     state.tools_used.push(toolCall.name);
 
-                    // Save tool result to DB
-                    await saveToolMessage(conversation.id, toolCall.name, result.result);
+                    // Save tool result to DB with the correct ID link
+                    await saveToolMessage(conversation.id, toolCall.name, toolCall.id, result.result);
 
                     // Add tool result to LLM message history
                     state.messages.push({

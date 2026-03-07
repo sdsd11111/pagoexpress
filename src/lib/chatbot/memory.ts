@@ -69,7 +69,9 @@ async function loadHistory(
         .map((m): LLMMessage => ({
             role: m.role as LLMMessage['role'],
             content: m.content,
-            tool_call_id: m.tool_name ? m.tool_name : undefined, // Simplified
+            tool_calls: m.tool_calls || undefined,
+            tool_call_id: m.tool_id || undefined,
+            name: m.role === 'tool' ? m.tool_name || undefined : undefined,
         }));
 }
 
@@ -94,12 +96,14 @@ export async function saveUserMessage(
  */
 export async function saveAssistantMessage(
     conversationId: string,
-    content: string
+    content: string,
+    toolCalls?: any[]
 ): Promise<void> {
     await saveMessage({
         conversation_id: conversationId,
         role: 'assistant',
         content,
+        tool_calls: toolCalls,
     });
 }
 
@@ -109,6 +113,7 @@ export async function saveAssistantMessage(
 export async function saveToolMessage(
     conversationId: string,
     toolName: string,
+    toolId: string,
     result: string
 ): Promise<void> {
     await saveMessage({
@@ -116,6 +121,7 @@ export async function saveToolMessage(
         role: 'tool',
         content: result,
         tool_name: toolName,
+        tool_id: toolId,
     });
 }
 

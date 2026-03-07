@@ -243,13 +243,15 @@ function parseConversationRow(row: Record<string, unknown>): Conversation {
  */
 export async function saveMessage(message: Omit<Message, 'id' | 'created_at'>): Promise<void> {
     await execute(
-        `INSERT INTO messages (conversation_id, role, content, tool_name, tool_result, media_url)
-     VALUES (?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO messages (conversation_id, role, content, tool_name, tool_call_id, tool_calls, tool_result, media_url)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [
             message.conversation_id,
             message.role,
             message.content,
             message.tool_name || null,
+            message.tool_id || null,
+            message.tool_calls ? JSON.stringify(message.tool_calls) : null,
             message.tool_result ? JSON.stringify(message.tool_result) : null,
             message.media_url || null,
         ]
@@ -277,6 +279,8 @@ export async function getConversationHistory(
         role: row.role as Message['role'],
         content: row.content as string,
         tool_name: row.tool_name as string | null,
+        tool_id: row.tool_call_id as string | null,
+        tool_calls: safeParseJSON(row.tool_calls as string, null),
         tool_result: safeParseJSON(row.tool_result as string, null),
         media_url: row.media_url as string | null,
         created_at: new Date(row.created_at as string),
@@ -426,6 +430,8 @@ export async function initializeSchema(): Promise<void> {
         role ENUM('user','assistant','tool','system') NOT NULL,
         content TEXT NOT NULL,
         tool_name VARCHAR(50),
+        tool_call_id VARCHAR(100),
+        tool_calls JSON,
         tool_result JSON,
         media_url VARCHAR(500),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -433,6 +439,16 @@ export async function initializeSchema(): Promise<void> {
         INDEX idx_created (created_at)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     `);
+
+        // Migration: Add tool_call_id and tool_calls to messages
+        const [msgCols]: any = await connection.execute("SHOW COLUMNS FROM messages");
+        const existingMsgCols = msgCols.map((c: any) => c.Field);
+        if (!existingMsgCols.includes('tool_call_id')) {
+            await connection.execute('ALTER TABLE messages ADD COLUMN tool_call_id VARCHAR(100) AFTER tool_name');
+        }
+        if (!existingMsgCols.includes('tool_calls')) {
+            await connection.execute('ALTER TABLE messages ADD COLUMN tool_calls JSON AFTER tool_call_id');
+        }
 
         await connection.execute(`
       CREATE TABLE IF NOT EXISTS transactions (
