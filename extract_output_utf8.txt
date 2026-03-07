@@ -1,0 +1,203 @@
+﻿
+=== SHEET: Hoja 1 ===
+{"SERVICIOS":"Impresion a Color","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Enviar Documentos a imprimir"}
+{"SERVICIOS":"Impresion Blanco y Negro","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Enviar Documentos a imprimir"}
+{"SERVICIOS":"Copias a Color","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Enviar Documentos"}
+{"SERVICIOS":"Copias Blanco y Negro","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Enviar Documentos"}
+{"SERVICIOS":"Grabacion Cd Dvd","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Enviar Documentos"}
+{"SERVICIOS":"Escaneo de documentos","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Enviar Documentos"}
+{"SERVICIOS":"Consejo de la Judicatura Pension Alimenticia SUPA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"C├│digo de Tarjeta-N├║mero de Cuotas a pagar"}
+{"SERVICIOS":"LUZ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de contrato o cedula"}
+{"SERVICIOS":"AGUA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de identificacion - numero de servicio"}
+{"SERVICIOS":"IESS AFILIADO VOLUNTARIO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"IECE CREDITO ESTUDIANTIL SENECYT","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"SENECYT ORDEN DE PAGO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"SENECYT PAGO DE CREDITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"IESS EMPLEADOR","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n-Sucursal-6 ├Ültimos digitos del comprobante"}
+{"SERVICIOS":"IESS PRESTAMOS QUIROGRAFARIOS O HIPOTECARIOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"COOPMEGO DEPOSITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"IESS VARIOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n-Imagen del Comprobante"}
+{"SERVICIOS":"BANCO DEL PACIFICO DEPOSITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"BANCO DEL PACIFICO RETIROS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Servicio Disponible en nuestros Locales Fisicos"}
+{"SERVICIOS":"BANCO DEL PACIFICO PAGO DE  TARJETA DE CR├ëDITO PACIFICARD","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Tarjeta-Identificaci├│n-Valor"}
+{"SERVICIOS":"BANCO BOLIVARIANO DEPOSITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"BANCO BOLIVARIANO RETIROS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Servicio Disponible en nuestros Locales Fisicos"}
+{"SERVICIOS":"BANCO BOLIVARIANO PAGO DE  TARJETA DE CR├ëDITO BANKARD","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Tarjeta-Identificaci├│n-Valor"}
+{"SERVICIOS":"SECURITY DATA FIRMA ELECTRONICA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de identificaci├│n - correo electronico  - direccion  - Celular"}
+{"SERVICIOS":"FACTURERO MOVIL - FACTURACION PREPAGO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de identificaci├│n - correo electronico  - direccion  - Celular"}
+{"SERVICIOS":"BANCO INTERNACIONAL DEPOSITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"BANCO INTERNACIONAL PAGO DE  TARJETA DE CR├ëDITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Tarjeta-Identificaci├│n-Valor"}
+{"SERVICIOS":"COOPERATIVA JULIAN LORENTE DEPOSITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"JARDIN AZUAYO DEPOSITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"JARDIN AZUAYO RETIROS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Servicio Disponible en nuestros Locales Fisicos"}
+{"SERVICIOS":"BANCO DEL AUSTRO DEPOSITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"BANCO DEL AUSTRO PAGO DE  TARJETA DE CR├ëDITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Tarjeta-Identificaci├│n-Valor"}
+{"SERVICIOS":"BANCO PICHINCHA DEPOSITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"BANCO PICHINCHA RETIROS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Servicio Disponible en nuestros Locales Fisicos"}
+{"SERVICIOS":"BANCO PICHINCHA PAGO DE  TARJETA DE CR├ëDITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Tarjeta-Identificaci├│n-Valor"}
+{"SERVICIOS":"BANCO PICHINCHA PAGO DE CR├ëDITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Identificaci├│n"}
+{"SERVICIOS":"BANCO PICHINCHA RECAUDACIONES","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Instituci├│n o c├│digo de empresa-Identificaci├│n o Contrapartida"}
+{"SERVICIOS":"BANCO PICHINCHA GIROS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Numero de Referencia - n├║mero de identificaci├│n-Codigo Dactilar de la C├®dula-Fecha de Emsion de la C├®dula"}
+{"SERVICIOS":"BANCO DE GUAYAQUIL DEPOSITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"BANCO DE GUAYAQUIL RETIROS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Clave Recibida 1-Clave Recibida 2-N├║mer C├®lular"}
+{"SERVICIOS":"BANCO DE GUAYAQUIL PAGO DE  TARJETA DE CR├ëDITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Tarjeta-Identificaci├│n-Valor"}
+{"SERVICIOS":"BANCO DE GUAYAQUIL PAGO DE CR├ëDITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Identificaci├│n "}
+{"SERVICIOS":"BANCO DE GUAYAQUIL RECAUDACIONES","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Instituci├│n o c├│digo de empresa-Identificaci├│n o Contrapartida"}
+{"SERVICIOS":"BANCO DE GUAYAQUIL ENVIO DE GIROS BANCO DEL BARRIO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de c├®dula de la persona que env├¡a - N├║mero de celular de la persona que env├¡a - N├║mero de c├®dula de la persona que recibe - N├║mero de celular de la persona que recibe - Valor a enviar"}
+{"SERVICIOS":"BANCO DE GUAYAQUIL COBRO DE GIROS BANCO DEL BARRIO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo recibido- numero de identificaci├│n-Codigo Dactilar de la cedula, Fecha de Emision de la Cedula"}
+{"SERVICIOS":"EQUIFAX BUR├ô CREDITICIO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":" numero de identificaci├│n - correo electronico "}
+{"SERVICIOS":"Monnet Pagos","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"C├│digo"}
+{"SERVICIOS":"Monnet Cobro de Ordenes de Pago","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"orden de pago - clave"}
+{"SERVICIOS":"Payjoy","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":" numero de identificaci├│n"}
+{"SERVICIOS":"PAGO SEGURO - PAGO EFECTIVO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"C├│digo"}
+{"SERVICIOS":"PAYVALIDA PAY VALIDA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"C├│digo"}
+{"SERVICIOS":"MEER - EEQ EN LINEA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"contrato"}
+{"SERVICIOS":"PLAN MOVISTAR POSPAGO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero celular"}
+{"SERVICIOS":"PLAN  CLARO POSPAGO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero celular"}
+{"SERVICIOS":"COBRO DE GIRO WESTERN UNION","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo MTCN - numero de identificaci├│n"}
+{"SERVICIOS":"ENVIO DE GIRO WESTERN UNION","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Pais de destino - numero de identificaci├│n - valor a enviar - Nombres Completos del Beneficiario"}
+{"SERVICIOS":"ENVIO DE GIRO WESTERN UNION CON CODIGO GENERADO EN LA APP","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo temporal (6 digitos)"}
+{"SERVICIOS":"ENVIO DE GIRO MONEY GRAM","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Pais de destino - numero de identificaci├│n - valor a enviar - Nombres Completos del Beneficiario"}
+{"SERVICIOS":"COBRO DE GIRO MONEY GRAM","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Numero de Referencia - numero de identificaci├│n"}
+{"SERVICIOS":"RECARGA  CELULAR","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"nombre de operadora -  tipo de recarga normal o ilimitada - numero de celular- valor de la recarga"}
+{"SERVICIOS":"ECUABET RECARGA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de identificaci├│n o codigo - valor a recargar"}
+{"SERVICIOS":"NETFLIX","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"correo electronico - numero de celular - valor a recargar : ($5, $10, 15.50)"}
+{"SERVICIOS":"ECUABET RETIRO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Numero de retiro - clave de retiro - numero de identificaci├│n del titular "}
+{"SERVICIOS":"BET 593 LOTERIA NACIONAL","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de identificaci├│n- valor a recargar"}
+{"SERVICIOS":"BETCRIS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de identificaci├│n o codigo - valor a recargar"}
+{"SERVICIOS":"DORADOBET RECARGAS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo - identificacion"}
+{"SERVICIOS":"DORADOBET RETIRO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Numero de retiro - clave de retiro - numero de identificaci├│n del titular "}
+{"SERVICIOS":"RECAUDACION EPMAPS EN LINEA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo"}
+{"SERVICIOS":"CNT O TELEFONO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de servicio"}
+{"SERVICIOS":"REGISTRO CIVIL CEDULA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula"}
+{"SERVICIOS":"REGISTRO CIVIL PASAPORTE","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-Renovaci├│n o Primera Vez"}
+{"SERVICIOS":"MUNICIPIO METROPOLITANO DE QUITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"BANCO DE LOJA DEPOSITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"BANCO DE LOJA RETIRO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-Valor"}
+{"SERVICIOS":"BANCO DE LOJA PAGO DE CR├ëDITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificacion"}
+{"SERVICIOS":"BANCO DE LOJA PAGO TARJETA DE CR├ëDITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Tarjeta-Identificaci├│n-Valor"}
+{"SERVICIOS":"BANCO DE LOJA RECAUDACIONES ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Instituci├│n-Identificaci├│n o Codigo"}
+{"SERVICIOS":"SRI O IMPUESTOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero CEP Comprobante Electronico de Pago"}
+{"SERVICIOS":"MATRICULACION VEHICULAR","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de placa"}
+{"SERVICIOS":"MUNICIPIO DE DURAN","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"PACIFICARD","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"c├®dula-N├║mero Completo de la Tarjeta"}
+{"SERVICIOS":"CREDITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Entidad Bancaria a pagar -  numero de identificaci├│n o numero de operaci├│n - valor a pagar"}
+{"SERVICIOS":"ANT ORDEN DE PAGO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de orden"}
+{"SERVICIOS":"ANT CITACIONES","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Idenificaci├│n o placa"}
+{"SERVICIOS":"LICENCIA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de orden"}
+{"SERVICIOS":"NETLIFE","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Idenificaci├│n "}
+{"SERVICIOS":"PAGO TARJETAS DE CR├ëDITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Entidad Bancaria a pagar-numero de tarjeta - numero de cedula del titular - valor a pagar"}
+{"SERVICIOS":"GAD PICHINCHA FONDO MEJORAMIENTO VIAL","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"TV CABLE XTRIM","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"identificaci├│n o contrato"}
+{"SERVICIOS":"NETPLUS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Idenificaci├│n "}
+{"SERVICIOS":"PUNTONET Celerity","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Idenificaci├│n "}
+{"SERVICIOS":"COOPERATIVA COOPROGRESO ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-N├║mero de Cuenta u Operaci├│n - Valor"}
+{"SERVICIOS":"BANCO GENERAL RUMI├æAHUI BGR","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"BGR TARJETA DE CR├ëDITO VISA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Tarjeta-Identificaci├│n-Valor"}
+{"SERVICIOS":"CLARO FIJO ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de identificaci├│n "}
+{"SERVICIOS":"NESTLE ECUADOR S.A.","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"PRODUCTOS YANBAL","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula o codigo"}
+{"SERVICIOS":"EMPRESA EL├ëCTRICA AMBATO EEASA ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo"}
+{"SERVICIOS":"BELCORP Lbel","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula o codigo"}
+{"SERVICIOS":"PUNTONET EN LINEA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"DE PRATI LINEA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula o numero de tarjeta"}
+{"SERVICIOS":"EPMAPA-SD STO DOMINGO ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula o codigo"}
+{"SERVICIOS":"MUTUALISTA PICHINCHA DEPOSITOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-Identificaci├│n-Valor"}
+{"SERVICIOS":"MUTUALISTA PICHINCHA RETIROS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-N├║mero de Libreta-Identificaci├│n-Valor"}
+{"SERVICIOS":"TRANSFERENCIA DE DOMINIO VEHICULAR","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Placa"}
+{"SERVICIOS":"RECARGA DIRECTV ECUADOR C.LTDA PREPAGO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de smartcard - valor a recargar (Mayor de $5)"}
+{"SERVICIOS":"TARJETA DE CR├ëDITO PRODUBANCO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Tarjeta-Identificaci├│n-Valor"}
+{"SERVICIOS":"COOPERATIVA ALIANZA DEL VALLE","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"MEER - CENTRO SUR ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"contrato"}
+{"SERVICIOS":"MEER - ELECTRICA LOJA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"contrato"}
+{"SERVICIOS":"FUNDACION FACES","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificacion-Valor"}
+{"SERVICIOS":"BANCO PROCREDIT S.A. ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"MUNICIPIO DE RUMI├æAHUI","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula o codigo"}
+{"SERVICIOS":"YIGA5","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula o codigo"}
+{"SERVICIOS":"ETAPA CUENCA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo"}
+{"SERVICIOS":"COOPERATIVA ANDALUCIA ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"PYCCA LINEA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"DEPOSITO ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Entidad Bancaria a depositar -n├║mero de cuenta -numero de c├®dula del depositante - valor a depositar"}
+{"SERVICIOS":"CTE CITACIONES","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula o placa"}
+{"SERVICIOS":"SERVICIO MOVIL POSTPAGO CNT EP","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero celular"}
+{"SERVICIOS":"HERBALIFE ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo"}
+{"SERVICIOS":"MUNICIPIO DE GUAYAQUIL CEP","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo"}
+{"SERVICIOS":"COBRANZA ETAFASHION","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"TUNEL GUAYASAMIN POSTPAGO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-placa"}
+{"SERVICIOS":"LILE - LEONISA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula o codigo"}
+{"SERVICIOS":"DIRECTV ECUADOR C.LTDA POSTPAGO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de identificacion o contrato"}
+{"SERVICIOS":"BANCO D MIRO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"EMAPA AMBATO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo"}
+{"SERVICIOS":"AZZORTI","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"MULTAS DE CHEQUES PROTESTOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de identificacion"}
+{"SERVICIOS":"COOPERATIVA TULCAN ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"EMPRESA PUBLICA-EMAPAD EP","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"codigo"}
+{"SERVICIOS":"VELOCITY KLIX-LOJASYSTEM","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"COOPERATIVA OSCUS ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"COBRANZA R M","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"MULTAS  DE TRANSITO ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"numero de identificacion o placa"}
+{"SERVICIOS":"GESTIONA GTX","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"COBRANZA HEY IN PLANET SA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"celular"}
+{"SERVICIOS":"MEER - ELECTRICA RIOBAMBA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"contrato"}
+{"SERVICIOS":"COBRANZA HUGHESNET","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"COBRA FACIL RECOVER","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"MARCIMEX EN LINEA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"COOPERATIVA ATUNTAQUI PAW","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"MUNICIPIO DE GUAYAQUIL PREDIOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"CABLE FAMILIA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cliente-contrato"}
+{"SERVICIOS":"UNIVERSIDAD CENTRAL DEL ECUADOR","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"matricula-cedula"}
+{"SERVICIOS":"TRANSVIAL DE BABAHOYO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"ARTEFACTA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"OMNILIFE EN LINEA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"C├│digo"}
+{"SERVICIOS":"BANCO SOLIDARIO DEPOSITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Cuenta-Identificacion-Valor"}
+{"SERVICIOS":"BANCO SOLIDARIO TARJETA DE CR├ëDITO ALIA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"N├║mero de Tarjeta-Identificaci├│n-Valor"}
+{"SERVICIOS":"UNIVERSIDAD DE LOS ANDES (UNIANDES)","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"INTERNET","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"provedor - numero de identificacion"}
+{"SERVICIOS":"ARCSA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Orden de Pago"}
+{"SERVICIOS":"UNIVERSIDAD TECNICA PARTICULAR DE LOJA UTPL","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"SUPERINTENDENCIA EC. POPULAR Y SOLIDARIA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"UNIVERSIDAD TECNOLOGICA INDOAMERICA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"matricula-cedula"}
+{"SERVICIOS":"COBRANZA NOVACREDIT SA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n-Valor a Pagar"}
+{"SERVICIOS":"MUTUALISTA IMBABURA EN LINEA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"TODOHOGAR","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"MUNICIPIO DE CUENCA LINEA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"ORIGINARSA S. A.","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"CLARO MOVIL TV","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"EMPRESA ELECTRICA GALAPAGOS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"MUNICIPIO DE MANTA LINEA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"REGISTRO MERCANTIL GUAYAQUIL","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"COBRANZA AFP GENESIS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"CONSORCIO DEL PICHINCHA ","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n-Valor a Pagar"}
+{"SERVICIOS":"EPMAPAQ QUEVEDO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"MUNICIPIO DE IBARRA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"UASB SIN BDD","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n-Concepto"}
+{"SERVICIOS":"SENAE-SERVICIO NACIONAL DE ADUANA DEL EC","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Orden de Pago"}
+{"SERVICIOS":"JARDINES DE GUAYAQUIL S.A.","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"MUNICIPIO DE SUCRE","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"EMAPA OTAVALO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"FIBER STORE","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"COBRANZA COOP SAN FRANCISCO DE ASIS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"REGISTRO MERCANTIL QUITO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"MUNICIPIO DE CHONE","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"PEPSICO ALIMENTOS ECUADOR CIA. LTDA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"EPMAPSE ESMERALDAS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"PAGO LIQUIDACIONES EFECTIVO SALUD","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"COBRANZA CTT DE LOS ANDES","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"COBRANZA QUITOFIBRANET","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"UNIVERSIDAD METROPOLITANA UMET","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"matricula-cedula"}
+{"SERVICIOS":"SPEEDYCOM","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"MUNICIPIO DE MILAGRO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"UE VIGOTSKY RIOBAMBA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"BANCO AMIBANK PAW","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"COOPERATIVA SAN FRANCISCO LTDA PAW","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"COBRANZA ECUANET","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"COBRANZA COAC MANANTIAL DE ORO LTDA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"ATM CENTRO GUAYAS","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"CONSORCIO MOBILITY DURAN","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"MOVILIDAD DE CHONE","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"CVIALCO PEAJE VIA A LA COSTA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"MOVILIDAD DE FLAVIO ALFARO","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"cedula-codigo"}
+{"SERVICIOS":"ORIFLAME","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Codigo"}
+{"SERVICIOS":"REGISTRO PROPIEDAD DE MACHALA","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"NATURA & AVON","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Identificaci├│n"}
+{"SERVICIOS":"Micropagos Ya Ganaste Full Carga","REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)":"Valor a Pagar (Envie la Transferencia, se acredita inmediato)"}
