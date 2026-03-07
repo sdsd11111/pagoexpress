@@ -43,6 +43,55 @@ async function seed() {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     `);
 
+        // Add FULLTEXT index if not exists (wrapped in try/catch for safety)
+        try {
+            await db.execute('ALTER TABLE services ADD FULLTEXT INDEX ft_services_search (name, description)');
+        } catch (e) { /* already exists */ }
+
+        await db.execute(`
+      CREATE TABLE IF NOT EXISTS conversations (
+        id VARCHAR(36) PRIMARY KEY,
+        phone VARCHAR(20) NOT NULL,
+        status ENUM('active','escalated','closed') DEFAULT 'active',
+        current_step VARCHAR(100),
+        context_data JSON,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        UNIQUE KEY uk_phone (phone)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    `);
+
+        await db.execute(`
+      CREATE TABLE IF NOT EXISTS messages (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        conversation_id VARCHAR(36) NOT NULL,
+        role ENUM('user','assistant','tool','system') NOT NULL,
+        content TEXT NOT NULL,
+        tool_name VARCHAR(50),
+        tool_result JSON,
+        media_url VARCHAR(500),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_conv_id (conversation_id),
+        INDEX idx_created (created_at)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    `);
+
+        await db.execute(`
+      CREATE TABLE IF NOT EXISTS transactions (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        conversation_id VARCHAR(36),
+        service_id INT,
+        phone VARCHAR(20) NOT NULL,
+        amount DECIMAL(10,2),
+        receipt_data JSON,
+        status ENUM('pending','confirmed','completed','cancelled') DEFAULT 'pending',
+        notes TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_phone (phone),
+        INDEX idx_status (status)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    `);
+
         // Clear existing services if we are reseeding. Be careful in production!
         // For this initial setup, we assume it's safe to clear.
         await db.execute('DELETE FROM services');
