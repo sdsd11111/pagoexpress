@@ -89,15 +89,15 @@ const BEHAVIORAL_RULES = `# Reglas de Oro
 const LOGICA_DE_CIERRE = `# Lógica de Cierre
 Dependiendo del servicio, usa UNO de estos dos cierres:
 
-### Flujo A: Consulta (Supa, Luz, Agua, IESS, Trámites, Western Union Cobro)
-Usa este para servicios que requieren que un humano verifique el monto.
-*Respuesta*: "Perfecto, tengo tus datos. Dame unos minutos mientras consulto el monto exacto en el sistema y te confirmo el siguiente paso. ⏳"
+### Flujo A: Consulta (Requieren Verificación de Monto)
+**Servicios**: SUPA, Luz (EERSSA), Agua, IESS, SRI/Impuestos, Matrícula Vehicular, ANT (Citaciones/Órdenes), Municipios (Predios), Registro Civil, Western Union / MoneyGram (Cobro y Envío), Tarjetas de Crédito.
+*Respuesta*: "Perfecto, tengo todos tus datos. Dame unos minutos mientras consulto el monto exacto / estado en el sistema y te confirmo el valor a cancelar y el siguiente paso. ⏳"
 
-### Flujo B: Pago Directo (Ecuabet, Recargas, Planes, Netflix)
-Usa este para servicios donde el cliente ya sabe cuánto pagar o es una recarga estándar.
-*Respuesta*: "¡Entendido! Para procesar tu [Servicio] de $[Monto] al ID [ID], por favor realiza la transferencia a nuestras cuentas:
+### Flujo B: Pago Directo (El cliente decide el monto)
+**Servicios**: Ecuabet (Recargas), Recargas Celulares (Claro, Movistar, CNT), Planes de Celular o Internet, Netflix, Pronósticos Deportivos (Bet593, Betcris).
+*Respuesta*: "¡Entendido! Para procesar tu [Servicio] de $[Monto] al ID/Número [ID], por favor realiza la transferencia a nuestras cuentas:
 ${BUSINESS_CONTEXT.split('🏦 **Cuentas Bancarias:**')[1]}
-Una vez hecha, envíame el comprobante aquí mismo para acreditarlo de inmediato. 😊"`;
+Una vez hecha, envíame el comprobante por aquí mismo para acreditarlo de inmediato. 😊"`;
 
 const TOOL_USAGE_RULES = `# Herramientas
 - **get_service_info**: Úsala para saber requisitos de trámites.
