@@ -367,15 +367,29 @@ export async function initializeSchema(): Promise<void> {
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     `);
 
-        // Migration: Add customer_name if it doesn't exist (Robust way for all MySQL versions)
-        const [columns]: any = await connection.execute(
-            "SHOW COLUMNS FROM conversations LIKE 'customer_name'"
-        );
-        if (columns.length === 0) {
-            console.log('[Migration] Adding "customer_name" column to conversations table...');
-            await connection.execute(
-                'ALTER TABLE conversations ADD COLUMN customer_name VARCHAR(255) AFTER phone'
-            );
+        // Migration: Add columns if they don't exist (Robust way for all MySQL versions)
+        const [cols]: any = await connection.execute("SHOW COLUMNS FROM conversations");
+        const existingCols = cols.map((c: any) => c.Field);
+
+        if (!existingCols.includes('customer_name')) {
+            console.log('[Migration] Adding "customer_name" column...');
+            await connection.execute('ALTER TABLE conversations ADD COLUMN customer_name VARCHAR(255) AFTER phone');
+        }
+        if (!existingCols.includes('status')) {
+            console.log('[Migration] Adding "status" column...');
+            await connection.execute("ALTER TABLE conversations ADD COLUMN status ENUM('active','escalated','closed') DEFAULT 'active' AFTER customer_name");
+        }
+        if (!existingCols.includes('current_step')) {
+            console.log('[Migration] Adding "current_step" column...');
+            await connection.execute('ALTER TABLE conversations ADD COLUMN current_step VARCHAR(100) AFTER status');
+        }
+        if (!existingCols.includes('context_data')) {
+            console.log('[Migration] Adding "context_data" column...');
+            await connection.execute('ALTER TABLE conversations ADD COLUMN context_data JSON AFTER current_step');
+        }
+        if (!existingCols.includes('last_manual_interaction')) {
+            console.log('[Migration] Adding "last_manual_interaction" column...');
+            await connection.execute('ALTER TABLE conversations ADD COLUMN last_manual_interaction TIMESTAMP NULL DEFAULT NULL AFTER context_data');
         }
 
         await connection.execute(`
