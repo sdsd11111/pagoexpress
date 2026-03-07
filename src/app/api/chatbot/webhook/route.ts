@@ -57,14 +57,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
         const incoming: IncomingMessage = parseIncomingMessage(phone, data);
 
-        // ─── Respond 200 immediately (non-blocking) ───
-        // Process the message asynchronously to avoid webhook timeout
-        processMessage(incoming).catch((error) => {
+        // ─── Process Message ───
+        // In Vercel serverless functions, we must await the promise so the worker isn't killed prematurely
+        try {
+            await processMessage(incoming);
+        } catch (error) {
             console.error('[Webhook] Async processing error:', error);
-        });
+        }
 
         return NextResponse.json({
-            status: 'processing',
+            status: 'processed',
             phone,
             type: incoming.type,
         });
