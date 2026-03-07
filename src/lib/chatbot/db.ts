@@ -28,14 +28,41 @@ function getPool(): mysql.Pool {
     return pool;
 }
 
+let isInitialising = false;
+let isInitialised = false;
+
+/**
+ * Ensures the database schema is up to date before any operation.
+ */
+async function ensureInitialised(): Promise<void> {
+    if (isInitialised) return;
+    if (isInitialising) {
+        // Wait for the ongoing initialization to finish
+        while (isInitialising) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        return;
+    }
+
+    isInitialising = true;
+    try {
+        await initializeSchema();
+        isInitialised = true;
+    } finally {
+        isInitialising = false;
+    }
+}
+
 // ─── Generic query helper ───
 async function query<T = unknown>(sql: string, params?: any[]): Promise<T[]> {
+    await ensureInitialised();
     const db = getPool();
     const [rows] = await db.execute(sql, params);
     return rows as T[];
 }
 
 async function execute(sql: string, params?: any[]): Promise<mysql.ResultSetHeader> {
+    await ensureInitialised();
     const db = getPool();
     const [result] = await db.execute(sql, params);
     return result as mysql.ResultSetHeader;
