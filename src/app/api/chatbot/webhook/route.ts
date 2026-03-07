@@ -57,16 +57,27 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
         const incoming: IncomingMessage = parseIncomingMessage(phone, data);
 
-        // ─── Process Message ───
-        // In Vercel serverless functions, we must await the promise so the worker isn't killed prematurely
+        // ─── Trigger Inngest Event ───
+        // En lugar de procesar aquí (que daría timeout en Vercel),
+        // enviamos un evento a Inngest para que lo procese en background con un debounce de 20s.
         try {
-            await processMessage(incoming);
+            const { inngest } = await import('@/inngest/client');
+            await inngest.send({
+                name: 'chatbot/message.received',
+                data: {
+                    phone,
+                    incoming
+                }
+            });
         } catch (error) {
-            console.error('[Webhook] Async processing error:', error);
+            console.error('[Webhook] Error sending to Inngest:', error);
+            // Fallback: Si Inngest falla, intentamos procesar directo para no perder el mensaje
+            // (Aunque esto podría dar timeout, es mejor que nada)
+            await processMessage(incoming).catch(e => console.error('[Webhook] Fallback error:', e));
         }
 
         return NextResponse.json({
-            status: 'processed',
+            status: 'queued',
             phone,
             type: incoming.type,
         });
