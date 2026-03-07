@@ -1,17 +1,6 @@
 // ═══════════════════════════════════════════════════════════════
 // PagoExpress Elite Chatbot — Agentic Loop Controller
 // ═══════════════════════════════════════════════════════════════
-//
-// This is the BRAIN of the chatbot. It orchestrates:
-//   1. Loading conversation context
-//   2. Building the prompt with system instructions + history
-//   3. Calling the LLM through the waterfall router
-//   4. Executing tool calls when the LLM requests them
-//   5. Iterating until a final response is produced
-//   6. Sending the response via WhatsApp
-//   7. Persisting everything to MySQL
-//
-// ═══════════════════════════════════════════════════════════════
 
 import { chat } from './llm/router';
 import { analyzeImage } from './llm/gemini';
@@ -22,6 +11,8 @@ import {
     saveUserMessage,
     saveAssistantMessage,
     saveToolMessage,
+    updateStep,
+    updateCustomerName,
 } from './memory';
 import { sendTextMessage } from './evolution';
 import { config } from './config';
@@ -55,6 +46,13 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
                 console.log(`[Agent] Manual interaction detected ${hoursSinceLastInteraction.toFixed(1)}h ago. Bot is paused for 1h.`);
                 return;
             }
+        }
+
+        // ─── 1.2 Persist Customer Name ───
+        if (pushName && !conversation.customer_name) {
+            console.log(`[Agent] Saving customer name for ${phone}: ${pushName}`);
+            await updateCustomerName(conversation.id, pushName);
+            conversation.customer_name = pushName; // Update local reference
         }
 
         // ─── 2. Build User Content ───
@@ -160,7 +158,10 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
             }
 
             // ─── No Tool Calls → Final Response ───
-            state.final_response = llmResponse.content || 'Lo siento, no pude procesar tu consulta. ¿Podrías intentar de nuevo?';
+            state.final_response = sanitizeResponse(llmResponse.content || '');
+            if (!state.final_response && !llmResponse.tool_calls) {
+                state.final_response = 'Lo siento, no pude procesar tu consulta. ¿Podrías intentar de nuevo?';
+            }
             break;
         }
 
@@ -171,7 +172,6 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         }
 
         // ─── 6. Send Response via WhatsApp ───
-        // Split long messages (WhatsApp limit ~4096 chars)
         const chunks = splitMessage(state.final_response, 4000);
         for (const chunk of chunks) {
             await sendTextMessage(phone, chunk);
@@ -192,7 +192,7 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         try {
             await sendTextMessage(
                 phone,
-                'Disculpe, estoy experimentando dificultades técnicas. Por favor, intente nuevamente en unos minutos o comuníquese directamente al WhatsApp +593 99 022 7203. 🙏'
+                'Disculpe, estoy experimentando dificultades técnicas. Por favor, intente nuevamente en unos minutos o comuníquice directamente al WhatsApp +593 99 022 7203. 🙏'
             );
         } catch (sendError) {
             console.error('[Agent] Failed to send error message:', sendError);
@@ -232,4 +232,17 @@ function splitMessage(text: string, maxLength: number): string[] {
     }
 
     return chunks;
+}
+
+/**
+ * Removes internal LLM codes or function tags from the response.
+ */
+function sanitizeResponse(content: string): string {
+    if (!content) return '';
+    // Remove <function=name>args</function> or similar tags
+    // Also remove any "Tool Call:" headers that some models might output
+    return content
+        .replace(/<function=[\s\S]*?>[\s\S]*?<\/function>/g, '')
+        .replace(/Tool Call:[\s\S]*?\n/g, '')
+        .trim();
 }

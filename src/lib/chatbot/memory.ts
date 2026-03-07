@@ -120,6 +120,24 @@ export async function saveToolMessage(
 }
 
 /**
+ * Update the customer name in the DB and cache.
+ */
+export async function updateCustomerName(
+    conversationId: string,
+    name: string
+): Promise<void> {
+    await updateConversation(conversationId, { customer_name: name });
+
+    // Update cache
+    for (const [, entry] of cache.entries()) {
+        if (entry.conversation.id === conversationId) {
+            entry.conversation.customer_name = name;
+            break;
+        }
+    }
+}
+
+/**
  * Update conversation step/status.
  */
 export async function updateStep(

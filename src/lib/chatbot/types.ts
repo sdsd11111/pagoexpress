@@ -35,6 +35,7 @@ export type ServiceCategory =
 export interface Conversation {
     id: string;
     phone: string;
+    customer_name: string | null;
     status: ConversationStatus;
     current_step: string | null;
     context_data: Record<string, unknown> | null;

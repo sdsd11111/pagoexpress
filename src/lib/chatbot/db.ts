@@ -148,6 +148,7 @@ export async function getOrCreateConversation(phone: string): Promise<Conversati
     return {
         id,
         phone,
+        customer_name: null,
         status: 'active',
         current_step: null,
         context_data: null,
@@ -162,7 +163,7 @@ export async function getOrCreateConversation(phone: string): Promise<Conversati
  */
 export async function updateConversation(
     id: string,
-    updates: Partial<Pick<Conversation, 'status' | 'current_step' | 'context_data'>>
+    updates: Partial<Pick<Conversation, 'status' | 'current_step' | 'context_data' | 'customer_name'>>
 ): Promise<void> {
     const sets: string[] = [];
     const params: unknown[] = [];
@@ -179,6 +180,10 @@ export async function updateConversation(
         sets.push('context_data = ?');
         params.push(JSON.stringify(updates.context_data));
     }
+    if (updates.customer_name !== undefined) {
+        sets.push('customer_name = ?');
+        params.push(updates.customer_name);
+    }
 
     if (sets.length === 0) return;
 
@@ -192,6 +197,7 @@ function parseConversationRow(row: Record<string, unknown>): Conversation {
     return {
         id: row.id as string,
         phone: row.phone as string,
+        customer_name: row.customer_name as string | null,
         status: row.status as Conversation['status'],
         current_step: row.current_step as string | null,
         context_data: safeParseJSON(row.context_data as string, null),
@@ -248,6 +254,25 @@ export async function getConversationHistory(
         media_url: row.media_url as string | null,
         created_at: new Date(row.created_at as string),
     }));
+}
+
+// ═══════════════════════════════════════════════════════════════
+// MAINTENANCE QUERIES
+// ═══════════════════════════════════════════════════════════════
+
+/**
+ * Deletes messages older than the specified number of days.
+ */
+export async function cleanupOldMessages(days: number): Promise<number> {
+    const dateLimit = new Date();
+    dateLimit.setDate(dateLimit.getDate() - days);
+
+    const result = await execute(
+        'DELETE FROM messages WHERE created_at < ?',
+        [dateLimit]
+    );
+
+    return result.affectedRows;
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -331,6 +356,7 @@ export async function initializeSchema(): Promise<void> {
       CREATE TABLE IF NOT EXISTS conversations (
         id VARCHAR(36) PRIMARY KEY,
         phone VARCHAR(20) NOT NULL,
+        customer_name VARCHAR(255),
         status ENUM('active','escalated','closed') DEFAULT 'active',
         current_step VARCHAR(100),
         context_data JSON,
@@ -340,6 +366,13 @@ export async function initializeSchema(): Promise<void> {
         UNIQUE KEY uk_phone (phone)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     `);
+
+        // Migration: Add customer_name if it doesn't exist
+        try {
+            await connection.execute('ALTER TABLE conversations ADD COLUMN IF NOT EXISTS customer_name VARCHAR(255) AFTER phone');
+        } catch (e) {
+            // Ignore if column exists or IF NOT EXISTS not supported
+        }
 
         await connection.execute(`
       CREATE TABLE IF NOT EXISTS messages (
@@ -383,13 +416,14 @@ export async function initializeSchema(): Promise<void> {
  */
 export async function testConnection(): Promise<boolean> {
     try {
+        await initializeSchema();
         const db = getPool();
         const connection = await db.getConnection();
         await connection.ping();
         connection.release();
         return true;
     } catch (error) {
-        console.error('❌ Database connection failed:', error);
+        console.error('❌ Database connection/init failed:', error);
         return false;
     }
 }

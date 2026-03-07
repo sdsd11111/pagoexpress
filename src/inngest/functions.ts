@@ -29,3 +29,25 @@ export const processWhatsAppMessage = inngest.createFunction(
         return { status: "success", phone: incoming.phone };
     }
 );
+
+/**
+ * Tarea programada para limpiar mensajes antiguos de la base de datos.
+ * Se ejecuta todos los lunes a las 00:00 (Cron: 0 0 * * 1)
+ */
+export const scheduledDbCleanup = inngest.createFunction(
+    { id: "scheduled-db-cleanup" },
+    { cron: "0 0 * * 1" }, // Cada lunes a medianoche
+    async ({ step }) => {
+        const { cleanupOldMessages } = await import("../lib/chatbot/db");
+
+        const deletedCount = await step.run("cleanup-old-messages", async () => {
+            // Mantener solo los últimos 60 días de historial
+            return await cleanupOldMessages(60);
+        });
+
+        return {
+            status: "success",
+            message: `Cleanup completed. Deleted ${deletedCount} messages older than 60 days.`
+        };
+    }
+);
