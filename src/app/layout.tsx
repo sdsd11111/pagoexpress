@@ -33,11 +33,11 @@ export const metadata: Metadata = {
     title: "PagoExpress | Servicios Financieros en Loja",
     description:
       "Toda la banca de Ecuador y remesas mundiales en el corazón de Loja. Más de 15 años de confianza.",
-    url: "https://pagoexpressec.com",
+    url: "https://pagoexpress.vercel.app",
     siteName: "PagoExpress",
     images: [
       {
-        url: "/logo.jpg",
+        url: "https://pagoexpress.vercel.app/logo.jpg",
         width: 1200,
         height: 630,
         alt: "PagoExpress Logo",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: "PagoExpress | Servicios Financieros en Loja",
     description:
       "Toda la banca de Ecuador y remesas mundiales en el corazón de Loja. Más de 15 años de confianza.",
-    images: ["/logo.jpg"],
+    images: ["https://pagoexpress.vercel.app/logo.jpg"],
   },
 };
 
@@ -61,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" prefix="og: https://ogp.me/ns#">
       <body
         className={`${inter.variable} antialiased font-sans bg-pe-black`}
       >
