@@ -36,9 +36,9 @@ const staggerContainer: Variants = {
 
 const timelineEvents = [
     {
-        year: "2010",
+        year: "2007",
         title: "El Inicio",
-        description: "Inicio de operaciones en el corazón de Loja con nuestra primera matriz en la calle Miguel Riofrío.",
+        description: "Inicio de operaciones con nuestra primera matriz simplificando trámites financieros en el país.",
         icon: Building2
     },
     {
@@ -107,8 +107,8 @@ export default function NosotrosPage() {
                 {/* Background Image from Home with Overlay */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/home/hero-main-bg.webp"
-                        alt="PagoExpress Loja - Trayectoria"
+                        src="/pagoexpress_hero_main_background_1772635866721.png"
+                        alt="PagoExpress Ecuador - Trayectoria"
                         fill
                         className="object-cover opacity-50 scale-105"
                         priority
@@ -122,7 +122,7 @@ export default function NosotrosPage() {
                         <h1
                             className="text-3xl sm:text-5xl md:text-6xl lg:text-[5rem] font-black mb-6 leading-[1.2] lg:leading-[1.1] px-2"
                         >
-                            15 años uniendo a <span className="text-pe-yellow">Loja</span> con el mundo
+                            19 años uniendo a <span className="text-pe-yellow">Ecuador</span> con el mundo
                         </h1>
 
                         {/* Subtitle */}
@@ -158,7 +158,7 @@ export default function NosotrosPage() {
                                 Nuestra Trayectoria
                             </h2>
                             <p className="text-base lg:text-lg text-pe-gray-500 mb-10 lg:mb-8 leading-relaxed px-2 lg:px-0">
-                                Desde 2010, hemos crecido junto a Loja, evolucionando de un local de recaudación al multiservicios más completo de la ciudad. Nuestra historia es de compromiso, innovación y cercanía con cada lojano.
+                                Desde 2007, hemos crecido junto a nuestros clientes, evolucionando de un local de recaudación al multiservicios más completo del país. Nuestra historia es de compromiso, innovación y cercanía con cada ciudadano.
                             </p>
 
                             <div className="space-y-10 border-l-2 border-pe-yellow pl-8 py-4">
@@ -207,7 +207,7 @@ export default function NosotrosPage() {
                                 </div>
                                 <h3 className="text-3xl sm:text-4xl font-black mb-6 leading-tight">Soluciones financieras ágiles y seguras</h3>
                                 <p className="text-lg text-white/70 leading-relaxed">
-                                    Brindar soluciones financieras y digitales ágiles, seguras y cercanas, facilitando la vida de los lojanos a través de tecnología y calidez humana.
+                                    Brindar soluciones financieras y digitales ágiles, seguras y cercanas, facilitando la vida de los ciudadanos a través de tecnología y calidez humana.
                                 </p>
                             </div>
                         </motion.div>
@@ -239,7 +239,7 @@ export default function NosotrosPage() {
                                     { name: "Confianza", desc: "Seguridad en cada transacción." },
                                     { name: "Agilidad", desc: "Procesos rápidos y sin esperas." },
                                     { name: "Transparencia", desc: "Comunicación clara y honesta." },
-                                    { name: "Compromiso Local", desc: "Orgullosamente 100% lojanos." }
+                                    { name: "Compromiso Nacional", desc: "Orgullosamente 100% ecuatorianos." }
                                 ].map((val) => (
                                     <div key={val.name} className="text-center sm:text-left">
                                         <div className="flex items-center justify-center sm:justify-start gap-2 mb-3 lg:mb-4">
@@ -301,7 +301,7 @@ export default function NosotrosPage() {
                     <div className="text-center mb-20">
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6">¿Por qué elegir PagoExpress?</h2>
                         <p className="text-white/60 max-w-2xl mx-auto text-lg leading-relaxed">
-                            Más que servicios, entregamos tranquilidad y tiempo a los lojanos.
+                            Más que servicios, entregamos tranquilidad y tiempo a los ciudadanos.
                         </p>
                     </div>
 
@@ -340,10 +340,10 @@ export default function NosotrosPage() {
                         <Heart className="w-16 h-16 mx-auto mb-8 text-pe-black" />
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-8">Compromiso con Nuestra Gente</h2>
                         <p className="text-xl sm:text-2xl font-medium leading-relaxed mb-10">
-                            "Somos una empresa <span className="font-black">100% lojana</span>. Creemos en nuestra gente y en el desarrollo económico de nuestra ciudad. Cada transacción que realizas con nosotros apoya al crecimiento de nuestra comunidad."
+                            "Somos una empresa <span className="font-black">100% ecuatoriana</span>. Creemos en nuestra gente y en el desarrollo económico del país. Cada transacción que realizas con nosotros apoya al crecimiento de nuestra comunidad."
                         </p>
                         <div className="w-20 h-1 bg-pe-black mx-auto mb-10" />
-                        <p className="text-sm font-black uppercase tracking-[0.3em]">PagoExpress Loja · Fundada en 2010</p>
+                        <p className="text-sm font-black uppercase tracking-[0.3em]">PagoExpress Ecuador · Fundada en 2007</p>
                     </motion.div>
                 </div>
             </section>

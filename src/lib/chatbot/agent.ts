@@ -48,7 +48,17 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
             }
         }
 
-        // ─── 1.2 Persist Customer Name ───
+        // ─── 1.2 Detect 12h "New Session" for Greetings ───
+        const now = Date.now();
+        const lastUpdate = new Date(conversation.updated_at).getTime();
+        const hoursSinceLastMessage = (now - lastUpdate) / (1000 * 60 * 60);
+        const isNewSubSession = hoursSinceLastMessage > 12;
+
+        if (isNewSubSession) {
+            console.log(`[Agent] >12h since last message (${hoursSinceLastMessage.toFixed(1)}h). Marking as new sub-session.`);
+        }
+
+        // ─── 1.3 Persist Customer Name ───
         if (pushName && !conversation.customer_name) {
             console.log(`[Agent] Saving customer name for ${phone}: ${pushName}`);
             await updateCustomerName(conversation.id, pushName);
@@ -58,23 +68,34 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         // ─── 2. Build User Content ───
         let userContent = content;
 
-        // If the user sent an image, analyze it and add context
+        // If the user sent an image, analyze it only if it's a receipt
         if (type === 'image' && mediaUrl) {
             try {
-                const analysis = await analyzeImage(
-                    mediaUrl,
-                    'Describe this image briefly. If it appears to be a payment receipt or bank voucher, extract the key financial details.'
-                );
-                userContent = `[El cliente envió una imagen]\n\nAnálisis de la imagen: ${analysis}\n\n${content ? `Mensaje del cliente: ${content}` : 'El cliente no incluyó texto con la imagen.'}`;
+                const { analyzeReceipt } = await import('./llm/gemini');
+                const analysis = await analyzeReceipt(mediaUrl);
+
+                if (analysis.includes('error') || analysis.includes('no parece ser un comprobante')) {
+                    userContent = `[El cliente envió una imagen (No parece un comprobante)]\n\n${content || ''}`;
+                } else {
+                    userContent = `[El cliente envió un comprobante de pago]\n\nAnálisis: ${analysis}\n\n${content ? `Mensaje del cliente: ${content}` : ''}`;
+                }
             } catch (error) {
                 console.error('[Agent] Image analysis failed:', error);
-                userContent = `[El cliente envió una imagen que no se pudo analizar]\n\n${content || 'Sin texto adicional.'}`;
+                userContent = `[El cliente envió una imagen]\n\n${content || ''}`;
             }
         }
 
-        // If audio, note it (audio transcription could be added later)
-        if (type === 'audio') {
-            userContent = `[El cliente envió un audio] Nota: La transcripción de audios no está disponible aún. Pide al cliente que escriba su consulta.\n\n${content || ''}`;
+        // If audio, transcribe it via Gemini
+        if (type === 'audio' && mediaUrl) {
+            try {
+                const { analyzeAudio } = await import('./llm/gemini');
+                console.log(`[Agent] Transcribing audio from ${phone}...`);
+                const transcription = await analyzeAudio(mediaUrl);
+                userContent = `[Audio Transcrito]: ${transcription}\n\n${content || ''}`;
+            } catch (error) {
+                console.error('[Agent] Audio transcription failed:', error);
+                userContent = `[El cliente envió un audio que no se pudo procesar]\n\n${content || ''}`;
+            }
         }
 
         // ─── 3. Save User Message ───
@@ -82,14 +103,20 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
 
         // ─── 4. Build Message Array ───
         const systemPrompt = buildSystemPrompt();
+
+        // If it's a new sub-session (>12h), prepend a hint to the LLM
+        const sessionHint = isNewSubSession
+            ? `[SISTEMA: Han pasado más de 12 horas desde el último contacto. Puedes saludar de nuevo al cliente por su nombre si lo deseas.]\n`
+            : '';
+
         const messages: LLMMessage[] = [
             { role: 'system', content: systemPrompt },
             ...history,
             {
                 role: 'user',
                 content: pushName
-                    ? `[Cliente: ${pushName}]\n${userContent}`
-                    : userContent,
+                    ? `${sessionHint}[Cliente: ${pushName}]\n${userContent}`
+                    : `${sessionHint}${userContent}`,
             },
         ];
 

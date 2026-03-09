@@ -52,37 +52,57 @@ export async function chatWithGemini(
 }
 
 /**
- * Analyze an image using Gemini Vision.
- * Downloads the image from URL and sends as inline data.
+ * Analyze any media file (Image or Audio) using Gemini 1.5 Flash.
  */
-export async function analyzeImage(
-    imageUrl: string,
-    prompt: string
+async function analyzeMedia(
+    mediaUrl: string,
+    prompt: string,
+    defaultMimeType: string = 'image/jpeg'
 ): Promise<string> {
     const ai = getClient();
     const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-    // Download the image
-    const imageResponse = await fetch(imageUrl);
-    if (!imageResponse.ok) {
-        throw new Error(`Failed to download image: ${imageResponse.status}`);
+    // Download the media
+    const mediaResponse = await fetch(mediaUrl);
+    if (!mediaResponse.ok) {
+        throw new Error(`Failed to download media: ${mediaResponse.status}`);
     }
 
-    const imageBuffer = await imageResponse.arrayBuffer();
-    const base64Image = Buffer.from(imageBuffer).toString('base64');
-    const mimeType = imageResponse.headers.get('content-type') || 'image/jpeg';
+    const mediaBuffer = await mediaResponse.arrayBuffer();
+    const base64Media = Buffer.from(mediaBuffer).toString('base64');
+    const mimeType = mediaResponse.headers.get('content-type') || defaultMimeType;
 
     const result = await model.generateContent([
         {
             inlineData: {
                 mimeType,
-                data: base64Image,
+                data: base64Media,
             },
         },
         { text: prompt },
     ]);
 
     return result.response.text();
+}
+
+/**
+ * Analyze an image using Gemini Vision.
+ */
+export async function analyzeImage(
+    imageUrl: string,
+    prompt: string
+): Promise<string> {
+    return analyzeMedia(imageUrl, prompt, 'image/jpeg');
+}
+
+/**
+ * Analyze an audio file using Gemini.
+ */
+export async function analyzeAudio(
+    audioUrl: string,
+    prompt: string = 'Transcribe and summarize this audio message in Spanish.'
+): Promise<string> {
+    return analyzeMedia(audioUrl, prompt, 'audio/ogg');
 }
 
 /**

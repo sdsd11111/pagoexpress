@@ -203,10 +203,7 @@ export default function ServicesSection() {
                     variants={fadeUp}
                     className="text-center max-w-2xl mx-auto mb-16"
                 >
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-pe-black mb-6 flex flex-col items-center gap-4">
-                        <div className="w-20 h-1 bg-pe-yellow rounded-full" />
-                        <span>Soluciones <span className="text-pe-yellow-dark">Integrales</span></span>
-                    </h2>
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-pe-black leading-[1.1] mb-6">TODO LO QUE <br /> NECESITAS <span className="text-pe-black/20 italic">EN ECUADOR</span></h2>
                     <p className="text-lg text-pe-gray-600">
                         Descubre nuestro catálogo de servicios. Desliza para conocer a nuestros aliados estratégicos y servicios directos.
                     </p>

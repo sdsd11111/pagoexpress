@@ -12,28 +12,28 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pagoexpress.vercel.app"),
-  title: "PagoExpress | Servicios Financieros en Loja, Ecuador",
+  title: "PagoExpress | Servicios Financieros en Ecuador",
   description:
-    "Más de 15 años ofreciendo remesas internacionales, depósitos bancarios, pagos de servicios, recargas y courier en Loja, Ecuador. Aliado de Western Union y MoneyGram.",
+    "Más de 19 años ofreciendo remesas internacionales, depósitos bancarios, pagos de servicios, recargas y courier en todo el Ecuador. Aliado de Western Union y MoneyGram.",
   keywords: [
     "PagoExpress",
-    "servicios financieros Loja",
+    "servicios financieros Ecuador",
     "remesas Ecuador",
-    "Western Union Loja",
-    "MoneyGram Loja",
-    "pagos de servicios Loja",
-    "depósitos bancarios Loja",
-    "courier Loja",
-    "Servientrega Loja",
+    "Western Union Ecuador",
+    "MoneyGram Ecuador",
+    "pagos de servicios Ecuador",
+    "depósitos bancarios Ecuador",
+    "courier Ecuador",
+    "Servientrega Ecuador",
   ],
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",
   },
   openGraph: {
-    title: "PagoExpress | Servicios Financieros en Loja",
+    title: "PagoExpress | Servicios Financieros en Ecuador",
     description:
-      "Toda la banca de Ecuador y remesas mundiales en el corazón de Loja. Más de 15 años de confianza.",
+      "Toda la banca de Ecuador y remesas mundiales en un solo lugar. Más de 19 años de confianza.",
     url: "/",
     siteName: "PagoExpress",
     images: [
@@ -50,9 +50,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "PagoExpress | Servicios Financieros en Loja",
+    title: "PagoExpress | Servicios Financieros en Ecuador",
     description:
-      "Toda la banca de Ecuador y remesas mundiales en el corazón de Loja. Más de 15 años de confianza.",
+      "Toda la banca de Ecuador y remesas mundiales en un solo lugar. Más de 19 años de confianza.",
     images: ["/logo.jpg?v=2"],
   },
 };

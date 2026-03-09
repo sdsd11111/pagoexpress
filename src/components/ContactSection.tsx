@@ -7,19 +7,35 @@ import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageSquare } from "l
 const locations = [
     {
         name: "Agencia Matriz",
-        address: "Miguel Riofrío y Olmedo (Esquina)",
+        address: "Miguel Riofrío 160-62 y Olmedo",
         city: "Loja, Ecuador",
-        phone: "07-2571234",
-        hours: "Lun - Sáb: 08h00 - 19h00 | Dom: 09h00 - 14h00",
+        phone: "07-2583120",
+        hours: "L-V: 06:30 - 19:30 | Sáb: 08:00 - 16:00",
         mapsUrl: "https://maps.app.goo.gl/zeNg6ZCSPHosJvZw6"
     },
     {
-        name: "Sucursal La Castellana",
-        address: "Av. Salvador Bustamante Celi",
+        name: "Agencia Parque Bolívar",
+        address: "Colón 6838 y Av. Manuel Agustín Aguirre",
         city: "Loja, Ecuador",
-        phone: "07-2581234",
-        hours: "Lun - Vie: 08h30 - 18h30 | Sáb: 09h00 - 16h00",
+        phone: "07-2583120",
+        hours: "L-V: 09:00 - 19:00 | Sáb: 09:00 - 14:00",
         mapsUrl: "https://maps.app.goo.gl/zeNg6ZCSPHosJvZw6"
+    },
+    {
+        name: "Agencia Época",
+        address: "Jamaica 390B-196 y Brasil",
+        city: "Loja, Ecuador",
+        phone: "07-2583120",
+        hours: "L-V: 15:00 - 19:00 | Sáb: 09:00 - 13:00",
+        mapsUrl: "https://maps.app.goo.gl/zeNg6ZCSPHosJvZw6"
+    },
+    {
+        name: "WhatsApp Digital",
+        address: "Atención Móvil y Nacional",
+        city: "Todo el País",
+        phone: "099 022 7203",
+        hours: "L-V: 08:00 - 19:00 | Sáb: 08:00 - 16:00",
+        mapsUrl: "https://wa.me/593990227203"
     }
 ];
 

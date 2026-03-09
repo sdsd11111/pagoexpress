@@ -103,10 +103,10 @@ export default function RecargasPage() {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-2xl text-center lg:text-left">
                             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.2] lg:leading-[1.05] tracking-tight mb-6 px-2 lg:px-0">
-                                Recargas y Pagos de Servicios <span className="text-pe-yellow">en Loja</span>
+                                Recargas y Pagos de Servicios <span className="text-pe-yellow">en Ecuador</span>
                             </h1>
                             <p className="text-base sm:text-xl text-white/60 mb-10 leading-relaxed font-medium px-4 lg:px-0">
-                                Recarga tus plataformas favoritas y telefonía al instante en PagoExpress Loja. Activamos tu diversión sin necesidad de tarjetas internacionales.
+                                Recarga tus plataformas favoritas y telefonía al instante en PagoExpress Ecuador. Activamos tu diversión sin necesidad de tarjetas internacionales.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start px-4 lg:px-0">
                                 <Link
@@ -205,7 +205,7 @@ export default function RecargasPage() {
                             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=2069&auto=format&fit=crop')] bg-cover bg-center opacity-40 group-hover:scale-110 transition-transform duration-700" />
                             <div className="relative z-10 text-center">
                                 <h3 className="text-6xl font-black text-[#E50914] drop-shadow-2xl">NETFLIX</h3>
-                                <p className="text-white font-bold tracking-[0.3em] mt-2">LOJA • PAGOEXPRESS</p>
+                                <p className="text-white font-bold tracking-[0.3em] mt-2">ECUADOR • PAGOEXPRESS</p>
                             </div>
                         </div>
                     </motion.div>
@@ -257,7 +257,7 @@ export default function RecargasPage() {
                         Gaming & <span className="text-[#00AEEF]">Diamantes</span>
                     </h2>
                     <p className="text-lg text-white/50 max-w-2xl mx-auto">
-                        Recarga tus juegos favoritos al instante. Somos tu punto oficial para Free Fire, PlayStation y más en Loja.
+                        Recarga tus juegos favoritos al instante. Somos tu punto oficial para Free Fire, PlayStation y más en todo el país.
                     </p>
                 </div>
 
@@ -452,7 +452,7 @@ export default function RecargasPage() {
                         {[
                             { title: "Sin Tarjetas", icon: CreditCard, desc: "Ideal para quienes no desean vincular sus datos bancarios a internet." },
                             { title: "Control de Gasto", icon: Wallet, desc: "Pagas solo lo que consumes, sin renovaciones automáticas sorpresa." },
-                            { title: "Disponibilidad 365", icon: Clock, desc: "Recargas disponibles todos los días del año en nuestras sucursales de Loja." }
+                            { title: "Disponibilidad 365", icon: Clock, desc: "Recargas disponibles todos los días del año en nuestras sucursales físicas." }
                         ].map((van, i) => (
                             <motion.div
                                 key={i}
@@ -510,7 +510,7 @@ export default function RecargasPage() {
             <div id="mapa" className="bg-black py-24 relative overflow-hidden">
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-black mb-4 tracking-tighter">Puntos de Recarga en Loja</h2>
+                        <h2 className="text-3xl font-black mb-4 tracking-tighter">Puntos de Recarga en Ecuador</h2>
                         <p className="text-white/40">Visítanos y activa tu diversión hoy mismo.</p>
                     </div>
                     <div className="border border-white/10 p-2 bg-white/5 rounded-[40px] shadow-3xl overflow-hidden">

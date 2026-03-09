@@ -62,8 +62,8 @@ export default function AboutUs() {
 
     const values = [
         {
-            title: "Seguridad Institucional",
-            description: "Operamos bajo estricto cumplimiento normativo (Superintendencia de Bancos), garantizando que cada centavo llegue a su destino.",
+            title: "Confianza Institucional",
+            description: "Somos la red con más aliados comerciales y sistemas financieros del país. Operamos bajo el estricto cumplimiento de los lineamientos del sistema financiero nacional.",
             icon: ShieldCheck,
             color: "text-pe-success",
             bg: "bg-pe-success/10",
@@ -76,8 +76,8 @@ export default function AboutUs() {
             bg: "bg-pe-black/5",
         },
         {
-            title: "Omnicanalidad",
-            description: "Empieza tu trámite en el celular y termínalo en nuestra ventanilla, o viceversa. El ecosistema físico y digital a tu favor.",
+            title: "Gestión 100% Digital",
+            description: "Todo lo hacemos vía digital. El cliente puede resolver todo su trámite de principio a fin desde su celular, con total comodidad y rapidez.",
             icon: Smartphone,
             color: "text-pe-yellow-dark",
             bg: "bg-pe-yellow/20",
@@ -88,13 +88,13 @@ export default function AboutUs() {
         {
             badge: "Nuestra Misión",
             title: "Puente hacia la economía digital",
-            text: "Ser el ecosistema digital seguro que actúe como puente entre la economía de efectivo tradicional y los pagos inmediatos del 2026, simplificando la vida de nuestros clientes en cada iteración.",
+            text: "Ser el ecosistema digital seguro que actúe como puente entre la economía de efectivo tradicional y los pagos inmediatos del 2026, simplificando la vida de nuestros clientes en todo el país en cada iteración.",
             dark: true,
         },
         {
             badge: "Nuestra Visión",
-            title: "Tu Punto de Pagos en Loja",
-            text: 'Convertirnos en el ecosistema financiero más completo y ágil de Loja, devolviendo el tiempo a los ciudadanos a través de la eficiencia.',
+            title: "Tu Punto de Pagos en Ecuador",
+            text: 'Convertirnos en la red de servicios líder del Ecuador. Nacidos en Loja, ofrecemos el ecosistema financiero más completo y ágil, devolviendo el tiempo a los ciudadanos a través de la eficiencia.',
             dark: false,
         },
     ];
@@ -123,21 +123,21 @@ export default function AboutUs() {
                         </motion.div>
 
                         <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black text-pe-black leading-[1.1] mb-6">
-                            Más que transacciones, construimos <span className="text-pe-black relative whitespace-nowrap">
-                                conexiones en Loja
+                            Más que transacciones, construimos <span className="text-pe-black relative inline-block">
+                                conexiones en todo el Ecuador
                                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.0003 5.49887C49.9079 1.15423 125.867 -1.68822 198.001 5.49887" stroke="#F7EF4D" strokeWidth="4" strokeLinecap="round" /></svg>
                             </span>
                         </motion.h2>
 
                         {/* First paragraph - always visible */}
                         <motion.p variants={fadeUp} className="text-base lg:text-lg text-pe-gray-600 leading-relaxed mb-4 lg:mb-6">
-                            Hace más de 15 años, PagoExpress nació con una vocación clara: simplificar la vida financiera de nuestros vecinos lojanos. Desde nuestros inicios, hemos entendido que detrás de cada depósito, giro o pago de luz, hay una familia, un sueño y un esfuerzo.
+                            Desde 2007, PagoExpress nació con una vocación clara: simplificar la vida financiera de nuestros clientes en todo el Ecuador. Desde nuestros inicios, hemos entendido que detrás de cada depósito, giro o pago de luz, hay una familia, un sueño y un esfuerzo.
                         </motion.p>
 
                         {/* Second paragraph - desktop always, mobile toggle */}
                         <motion.div variants={fadeUp}>
                             <p className={`text-base lg:text-lg text-pe-gray-600 leading-relaxed mb-4 lg:mb-8 transition-all duration-300 ${showFullText ? "block" : "hidden lg:block"}`}>
-                                Hoy, desde nuestras agencias en <strong>Miguel Riofrío</strong> y <strong>La Castellana</strong>, hemos evolucionado de un punto de recaudación a la <strong>Red de Servicios Financieros líder</strong>, respaldados por la confianza de toda una ciudad.
+                                Hoy, desde nuestras <strong>3 agencias físicas</strong> y nuestro <strong>Canal Digital</strong>, hemos evolucionado a una <strong>Red de Servicios Financieros en todo el Ecuador</strong>, respaldados por la confianza de todo un país.
                             </p>
                             <button
                                 onClick={() => setShowFullText(!showFullText)}
@@ -159,13 +159,13 @@ export default function AboutUs() {
                         <div className="relative rounded-[2rem] bg-gradient-to-tr from-pe-gray-200 to-white shadow-2xl aspect-video overflow-hidden border border-white group">
                             <img
                                 src="/images/home/about-matriz-evolucion.webp"
-                                alt="Evolución PagoExpress Loja"
+                                alt="Evolución PagoExpress Ecuador"
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-pe-black/40 to-transparent pointer-events-none" />
                             <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-4 py-2 rounded-xl border border-white shadow-sm flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-pe-success animate-pulse" />
-                                <span className="text-xs font-bold text-pe-black">Operando en Loja</span>
+                                <span className="text-xs font-bold text-pe-black">Operando en Ecuador</span>
                             </div>
                         </div>
                         <div className="absolute -bottom-10 -right-6 w-48 h-48 rounded-3xl overflow-hidden border-4 border-white shadow-2xl z-20 hidden lg:block transform rotate-3 hover:rotate-0 transition-transform duration-500">
@@ -190,7 +190,7 @@ export default function AboutUs() {
                             <Calendar className="w-6 h-6 text-pe-yellow-dark" />
                         </div>
                         <h3 className="text-3xl sm:text-4xl font-black text-pe-black mb-2">
-                            <Counter to={15} text="+" />
+                            <Counter to={19} text="+" />
                         </h3>
                         <p className="text-sm font-semibold text-pe-gray-500">Años de Experiencia</p>
                     </motion.div>
@@ -200,9 +200,9 @@ export default function AboutUs() {
                             <Building2 className="w-6 h-6 text-pe-yellow-dark" />
                         </div>
                         <h3 className="text-3xl sm:text-4xl font-black text-pe-black mb-2">
-                            <Counter to={2} />
+                            <Counter to={4} />
                         </h3>
-                        <p className="text-sm font-semibold text-pe-gray-500">Sucursales Estratégicas</p>
+                        <p className="text-sm font-semibold text-pe-gray-500">Puntos de Atención</p>
                     </motion.div>
 
                     <motion.div variants={fadeUp} className="glass bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-pe-gray-100/50 text-center group hover:-translate-y-1 transition-transform">
@@ -222,7 +222,7 @@ export default function AboutUs() {
                         <h3 className="text-3xl sm:text-4xl font-black text-pe-black mb-2">
                             <Counter to={150} text="k+" duration={2.5} />
                         </h3>
-                        <p className="text-sm font-semibold text-pe-gray-500">Lojanos Atendidos</p>
+                        <p className="text-sm font-semibold text-pe-gray-500">Clientes Satisfechos</p>
                     </motion.div>
                 </motion.div>
 
@@ -243,7 +243,7 @@ export default function AboutUs() {
                             </div>
                             <h3 className="text-2xl sm:text-3xl font-black mb-4 leading-tight">Puente hacia la economía digital</h3>
                             <p className="text-white/70 text-lg leading-relaxed">
-                                Ser el ecosistema digital seguro que actúe como puente entre la economía de efectivo tradicional y los pagos inmediatos del 2026, simplificando la vida de nuestros clientes en cada iteración.
+                                Ser el ecosistema digital seguro que actúe como puente entre la economía de efectivo tradicional y los pagos inmediatos del 2026, simplificando la vida de nuestros clientes en todo el país en cada iteración.
                             </p>
                         </div>
                     </motion.div>
@@ -260,9 +260,9 @@ export default function AboutUs() {
                             <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-pe-gray-100 border border-pe-gray-200 mb-6">
                                 <span className="text-xs font-bold tracking-widest uppercase text-pe-gray-600">Nuestra Visión</span>
                             </div>
-                            <h3 className="text-2xl sm:text-3xl font-black mb-4 leading-tight">Tu Punto de Pagos en Loja</h3>
+                            <h3 className="text-2xl sm:text-3xl font-black mb-4 leading-tight">Tu Punto de Pagos en Ecuador</h3>
                             <p className="text-pe-gray-600 text-lg leading-relaxed">
-                                Convertirnos en la <strong className="text-pe-yellow-dark">red de servicios líder</strong> de Loja, siendo el ecosistema financiero más completo y ágil, devolviendo el tiempo a los ciudadanos a través de la eficiencia.
+                                Convertirnos en la <strong className="text-pe-yellow-dark">red de servicios líder</strong> del país. Ofrecemos el ecosistema financiero más completo y ágil de Ecuador, devolviendo el tiempo a los ciudadanos a través de la eficiencia.
                             </p>
                         </div>
                     </motion.div>

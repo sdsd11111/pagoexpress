@@ -102,11 +102,11 @@ export default function SupaPage() {
         },
         {
             q: "¿Puedo pagar pensiones atrasadas?",
-            a: "Totalmente. El sistema nos permite visualizar tanto la cuota del mes en curso como cualquier valor pendiente o atrasado para que puedas ponerte al día en Pago SUPA Loja."
+            a: "Totalmente. El sistema nos permite visualizar tanto la cuota del mes en curso como cualquier valor pendiente o atrasado para que puedas ponerte al día en Pago SUPA Ecuador."
         },
         {
             q: "¿Puedo pagar con tarjeta de crédito?",
-            a: "En nuestros locales de PagoExpress Loja priorizamos el pago en efectivo o transferencia directa para evitar recargos adicionales y agilizar el depósito en el sistema oficial del Consejo."
+            a: "En nuestros locales de PagoExpress priorizamos el pago en efectivo o transferencia directa para evitar recargos adicionales y agilizar el depósito en el sistema oficial del Consejo."
         },
         {
             q: "¿Qué pasa si el sistema del SUPA está caído?",
@@ -122,7 +122,7 @@ export default function SupaPage() {
         <main className="min-h-screen bg-[#EBEBEB] text-[#334155] selection:bg-[#2DABE3] selection:text-white">
 
             {/* ═══ SECCIÓN 1: Hero de Cumplimiento Legal ═══ */}
-            <section className="relative overflow-hidden min-h-[calc(100dvh-64px)] lg:h-[70vh] lg:min-h-[550px] flex flex-col justify-start lg:justify-center bg-[#EBEBEB] pt-4 pb-12 lg:pt-28 lg:pb-0">
+            <section className="relative overflow-hidden min-h-[calc(10dvh-64px)] lg:h-[70vh] lg:min-h-[550px] flex flex-col justify-start lg:justify-center bg-[#EBEBEB] pt-4 pb-12 lg:pt-28 lg:pb-0">
                 {/* Background Decorators */}
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `linear-gradient(${SUPA_DARK_BLUE} 1px, transparent 1px), linear-gradient(90deg, ${SUPA_DARK_BLUE} 1px, transparent 1px)`, backgroundSize: "60px 60px" }} />
@@ -135,11 +135,11 @@ export default function SupaPage() {
                         <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-2xl">
                             <div className="inline-flex items-center gap-3 px-6 py-2 rounded-sm bg-white border border-slate-200 shadow-sm mb-8">
                                 <Scale className="w-5 h-5 text-[#123453]" />
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#123453]">Punto de Recaudación Autorizado en Loja</span>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#123453]">Punto de Recaudación Autorizado</span>
                             </div>
 
                             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight mb-4 lg:mb-6 text-[#123453]" style={{ fontFamily: 'var(--font-montserrat, Montserrat, sans-serif)' }}>
-                                Pago del <span className="text-[#2DABE3]">SUPA en Loja</span>: Pensiones Alimenticias
+                                Pago del <span className="text-[#2DABE3]">SUPA en Ecuador</span>: Pensiones Alimenticias
                                 <span className="block text-[#123453]/80 mt-2 italic font-normal text-2xl sm:text-3xl lg:text-4xl border-b-4 border-[#2DABE3] inline-block pb-1 lg:pb-2">Garantía y Rapidez Oficial</span>
                             </h1>
 
@@ -192,7 +192,7 @@ export default function SupaPage() {
 
                                 <h3 className="text-xl lg:text-2xl font-bold text-[#123453] mb-4" style={{ fontFamily: 'var(--font-montserrat, Montserrat, sans-serif)' }}>Garantía Legal</h3>
                                 <p className="text-slate-600 font-medium text-xs lg:text-sm leading-relaxed">
-                                    Aportamos a la tranquilidad y bienestar familiar. "Pensiones alimenticias Loja" con acreditación directa, evitando contratiempos con la administración de justicia.
+                                    Aportamos a la tranquilidad y bienestar familiar. "Pensiones alimenticias Ecuador" con acreditación directa, evitando contratiempos con la administración de justicia.
                                 </p>
                             </div>
                         </motion.div>

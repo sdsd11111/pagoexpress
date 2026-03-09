@@ -43,7 +43,7 @@ export default function VideoSpotlight() {
         },
         {
             icon: MapPin,
-            text: "En el corazón de Loja: Miguel Riofrío y La Castellana",
+            text: "En el corazón de Loja: Miguel Riofrío 160-62 y Olmedo",
         },
     ];
 
@@ -73,7 +73,7 @@ export default function VideoSpotlight() {
 
                         {/* Title */}
                         <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-black text-pe-black leading-[1.15] mb-6">
-                            Tu tiempo vale, nosotros lo <span className="text-pe-yellow-dark">cuidamos</span>
+                            La mejor experiencia multiservicio de <span className="text-pe-yellow">Ecuador</span>
                         </motion.h2>
 
                         {/* Description */}

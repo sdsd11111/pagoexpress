@@ -94,10 +94,10 @@ export default function ServiciosBasicosPage() {
                                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60">Centro de Pagos Autorizado</span>
                             </div>
                             <h1 className="text-3xl sm:text-5xl lg:text-5xl font-black leading-[1.1] tracking-tight mb-4 lg:mb-6 text-white uppercase italic">
-                                Pago de <span className="text-[#4DB0DC]">Servicios Básicos</span> en Loja: Luz, Agua y Más
+                                Pago de <span className="text-[#4DB0DC]">Servicios Básicos</span> en Ecuador: Luz, Agua y Más
                             </h1>
                             <p className="text-base sm:text-lg text-white/70 mb-8 lg:mb-10 leading-relaxed font-medium">
-                                En PagoExpress Loja facilitamos el pago de tus planillas de luz, agua, telefonía e impuestos municipales con acreditación inmediata.
+                                En PagoExpress facilitamos el pago de tus planillas de luz, agua, telefonía e impuestos municipales con acreditación inmediata.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                                 <Link
@@ -151,7 +151,7 @@ export default function ServiciosBasicosPage() {
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-black text-black mb-4 tracking-tight">Servicios a tu alcance</h2>
-                        <p className="text-black/40 font-medium">Categorías de pago habilitadas en Loja.</p>
+                        <p className="text-black/40 font-medium">Categorías de pago habilitadas en el país.</p>
                     </div>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {categories.map((cat, i) => (
@@ -398,7 +398,7 @@ export default function ServiciosBasicosPage() {
             <div id="mapa" className="bg-[#001A33] py-24 relative overflow-hidden text-center">
                 <div className="max-w-6xl mx-auto px-4">
                     <h2 className="text-3xl font-black mb-4">Ubicaciones Estratégicas</h2>
-                    <p className="text-white/40 mb-12">Encuentra tu punto PagoExpress más cercano en la ciudad de Loja.</p>
+                    <p className="text-white/40 mb-12">Encuentra tu punto PagoExpress más cercano en Ecuador.</p>
                     <div className="border border-white/10 p-2 bg-white/5 rounded-[48px] shadow-3xl overflow-hidden">
                         <MapSection />
                     </div>

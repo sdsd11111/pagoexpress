@@ -135,7 +135,7 @@ export default function WesternUnionPage() {
                         </h1>
 
                         <p className="text-base sm:text-xl text-black/60 max-w-2xl mx-auto mb-10 lg:mb-12 leading-relaxed font-medium px-4">
-                            Más de 15 años siendo el punto oficial <span className="text-black font-black underline decoration-2 underline-offset-4">Red Activa Western Union</span> en Loja. <span className="hidden lg:inline">Seguridad, rapidez y soporte personalizado para tus remesas.</span>
+                            Más de 15 años siendo el punto oficial <span className="text-black font-black underline decoration-2 underline-offset-4">Red Activa Western Union</span> en Ecuador. <span className="hidden lg:inline">Seguridad, rapidez y soporte personalizado para tus remesas.</span>
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-5 justify-center px-4">
@@ -151,7 +151,7 @@ export default function WesternUnionPage() {
                                 href="#sucursales"
                                 className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-5 bg-transparent border-2 border-black text-black font-black rounded-full hover:bg-black/5 transition-all uppercase tracking-widest text-sm"
                             >
-                                Ubicaciones en Loja
+                                Puntos de Atención en Ecuador
                                 <ArrowRight className="w-4 h-4" />
                             </Link>
                         </div>
@@ -179,7 +179,7 @@ export default function WesternUnionPage() {
                                 <Globe className="w-12 h-12 text-black mb-8" />
                                 <h3 className="text-3xl font-black text-black mb-6 uppercase tracking-tight leading-tight">Cobro de Transferencias <br /><span className="text-black/30">Internacionales</span></h3>
                                 <p className="text-pe-gray-500 font-medium text-lg max-w-md leading-relaxed">
-                                    Recibe remesas de EE.UU., España, Italia y cualquier parte del mundo directamente en efectivo en nuestras ventanillas de Loja.
+                                    Recibe remesas de EE.UU., España, Italia y cualquier parte del mundo directamente en efectivo en nuestras ventanillas a nivel nacional.
                                 </p>
                             </div>
                         </motion.div>
@@ -269,7 +269,7 @@ export default function WesternUnionPage() {
                                 {[
                                     { title: "Sin Filas Bancarias", desc: "Atención ágil pensada en tu tiempo, sin esperas innecesarias.", icon: Clock },
                                     { title: "Horarios Extendidos", desc: "Atendemos cuando otros cierran, incluyendo fines de semana.", icon: RefreshCcw },
-                                    { title: "Ubicaciones Estratégicas", desc: "En el centro y norte de Loja, cerca de donde te encuentras.", icon: MapPin }
+                                    { title: "Ubicaciones Estratégicas", desc: "En puntos estratégicos de la ciudad, cerca de donde te encuentras.", icon: MapPin }
                                 ].map((item, i) => (
                                     <motion.div
                                         key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
@@ -290,8 +290,8 @@ export default function WesternUnionPage() {
                             <Image src="/images/header logo/western-union.webp" alt="Western Union Official Agent" fill className="object-contain p-20 grayscale group-hover:grayscale-0 transition-all duration-700 opacity-20" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                             <div className="absolute bottom-12 left-12 right-12 text-center">
-                                <div className="text-5xl font-black text-[#FFDD00] mb-2 uppercase italic tracking-tighter">15+ Años</div>
-                                <div className="text-xs font-black uppercase tracking-[0.3em] text-white/50">Sirviendo a la comunidad lojana</div>
+                                <div className="text-5xl font-black text-[#FFDD00] mb-2 uppercase italic tracking-tighter">19+ Años</div>
+                                <div className="text-xs font-black uppercase tracking-[0.3em] text-white/50">Sirviendo a la comunidad ecuatoriana</div>
                             </div>
                         </div>
                     </div>
@@ -444,7 +444,7 @@ export default function WesternUnionPage() {
                         {/* Info Side */}
                         <div className="order-1 lg:order-2 space-y-8">
                             <div>
-                                <h3 className="text-black font-black text-xs uppercase tracking-[0.3em] mb-4 bg-[#FFDD00]/20 inline-block px-3 py-1 rounded-md">Atención en Loja</h3>
+                                <h3 className="text-black font-black text-xs uppercase tracking-[0.3em] mb-4 bg-[#FFDD00]/20 inline-block px-3 py-1 rounded-md">Atención en Ecuador</h3>
                                 <h2 className="text-4xl sm:text-5xl font-black text-black uppercase italic tracking-tighter leading-tight">
                                     PUNTO OFICIAL <br /> <span className="opacity-30">RED ACTIVA</span>
                                 </h2>

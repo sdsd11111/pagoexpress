@@ -97,13 +97,13 @@ export default function Testimonials() {
                             className="text-3xl sm:text-4xl md:text-5xl font-black text-pe-black mb-6 leading-tight"
                         >
                             Lo que dicen nuestros <br />
-                            <span className="text-pe-yellow-dark">vecinos en Loja</span>
+                            clientes en <span className="text-pe-yellow-dark">Ecuador</span>
                         </motion.h2>
                         <motion.p
                             variants={fadeUp}
                             className="text-lg text-pe-gray-600"
                         >
-                            Más de 15 años brindando seguridad y rapidez. La confianza de nuestra ciudad es nuestro mayor respaldo diario.
+                            Más de 19 años brindando seguridad y rapidez. La confianza de todo el país es nuestro mayor respaldo diario.
                         </motion.p>
                     </motion.div>
 

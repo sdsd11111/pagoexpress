@@ -12,7 +12,7 @@ interface FAQItem {
 const faqs: FAQItem[] = [
     {
         question: "¿Dónde puedo pagar mi planilla de luz (EERSSA) y agua en Loja?",
-        answer: "Puedes pagarlas en nuestra Matriz (Miguel Riofrío y Olmedo) o Sucursal (La Castellana). Aceptamos pagos de EERSSA, Agua Potable, CNT y Municipio de Loja con acreditación inmediata."
+        answer: "Puedes pagarlas en nuestra Matriz (Miguel Riofrío 160-62 y Olmedo) o cualquiera de nuestras agencias en Loja y el país. Aceptamos pagos de EERSSA, Agua Potable, CNT y Municipio de Loja con acreditación inmediata."
     },
     {
         question: "¿Qué documentos necesito para cobrar un giro de Western Union o MoneyGram?",
@@ -75,9 +75,7 @@ export default function FAQSection() {
                         <HelpCircle className="w-4 h-4 text-pe-black" />
                         <span className="text-xs font-bold text-pe-black uppercase tracking-widest">Resolviendo Dudas</span>
                     </div>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-pe-black mb-6">
-                        Centro de Ayuda y <span className="text-pe-yellow-dark">Preguntas Frecuentes</span>
-                    </h2>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-pe-black mb-6">Resolvemos tus <span className="text-pe-yellow-dark italic font-normal">Dudas en Ecuador</span></h2>
                     <p className="text-lg text-pe-gray-600">
                         Todo lo que necesitas saber para tus trámites bancarios y pagos en la ciudad de Loja.
                     </p>

@@ -209,10 +209,10 @@ export default function BancosPage() {
                             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-pe-black/60">Corresponsal No Bancario Autorizado</span>
                         </div>
                         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight mb-6 lg:mb-8 uppercase italic" style={{ fontFamily: 'var(--font-lexend-deca, "Lexend Deca", sans-serif)' }}>
-                            Corresponsal Bancario en Loja: <span className="text-pe-yellow-dark">Toda la Banca</span> en un Solo Lugar.
+                            Corresponsal Bancario en Ecuador: <span className="text-pe-yellow-dark">Toda la Banca</span> en un Solo Lugar.
                         </h1>
                         <p className="text-base sm:text-xl text-pe-gray-500 mb-10 lg:mb-12 leading-relaxed font-medium">
-                            Realiza depósitos y retiros de Banco Pichincha, Guayaquil, Pacífico, Produbanco y cooperativas. Sin filas, con seguridad total y atención en Loja.
+                            Realiza depósitos y retiros de Banco Pichincha, Guayaquil, Pacífico, Produbanco y cooperativas. Sin filas, con seguridad total y atención nacional.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link href="#directorio" className="px-12 py-5 bg-pe-black text-white font-bold rounded-2xl hover:bg-pe-black-pure transition-all shadow-xl uppercase tracking-widest text-xs">
@@ -460,7 +460,7 @@ export default function BancosPage() {
 
                         {/* COLUMNA 3: Agencias (White) */}
                         <div className="lg:w-1/3 bg-white p-10 lg:p-16 flex flex-col justify-center">
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-pe-black/40 mb-2">Ubicados en Loja</span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-pe-black/40 mb-2">Canales de Atención</span>
                             <h3 className="text-3xl font-black mb-10 text-pe-black uppercase leading-none" style={{ fontFamily: 'var(--font-lexend-deca)' }}>
                                 Visítanos <br /> en <span className="text-pe-black/30">nuestras agencias</span>
                             </h3>
@@ -502,7 +502,7 @@ export default function BancosPage() {
 
             {/* Final CTA */}
             <section className="py-24 text-center">
-                <p className="text-xs font-bold text-pe-gray-400 uppercase tracking-[0.3em] mb-8">PagoExpress Loja · Agente Multibanco</p>
+                <p className="text-xs font-bold text-pe-gray-400 uppercase tracking-[0.3em] mb-8">PagoExpress Ecuador · Agente Multibanco</p>
                 <div className="flex justify-center gap-4">
                     <Link href="https://wa.me/593" className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 transition-transform">
                         <MessageCircle className="w-6 h-6" />

@@ -73,13 +73,13 @@ export default function Footer() {
                             />
                         </div>
                         <p className="text-sm text-pe-gray-400 leading-relaxed mb-5">
-                            Con más de <span className="text-white font-semibold">15 años</span> de
-                            experiencia en Loja, somos tu aliado financiero de confianza. Toda la banca
+                            Con más de <span className="text-white font-semibold">19 años</span> de
+                            experiencia en Ecuador, somos tu aliado financiero de confianza. Toda la banca
                             y remesas mundiales en un solo lugar.
                         </p>
                         <div className="flex items-center gap-3 justify-center lg:justify-start">
                             <a
-                                href="https://www.instagram.com/pagoexpressloja/"
+                                href="https://www.instagram.com/pagoexpressec/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center
@@ -89,7 +89,7 @@ export default function Footer() {
                                 <Instagram className="w-4 h-4" />
                             </a>
                             <a
-                                href="https://www.facebook.com/pagoexpressloja1"
+                                href="https://www.facebook.com/pagoexpressec"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center
@@ -112,7 +112,7 @@ export default function Footer() {
                                     <Link
                                         href={link.href}
                                         className="text-sm text-pe-gray-400 hover:text-white hover:translate-x-1
-                               inline-flex items-center gap-1 transition-all duration-200"
+                                inline-flex items-center gap-1 transition-all duration-200"
                                     >
                                         {link.label}
                                         <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100" />
@@ -125,32 +125,32 @@ export default function Footer() {
                     {/* Col 3: Locations */}
                     <div className="text-center lg:text-left">
                         <h3 className="text-sm font-bold uppercase tracking-wider text-pe-yellow mb-5">
-                            Ubicaciones
+                            Puntos de Atención
                         </h3>
                         {/* Matriz */}
                         <div className="mb-5">
                             <p className="text-sm font-semibold text-white mb-1.5 flex items-center gap-1.5 justify-center lg:justify-start">
                                 <MapPin className="w-3.5 h-3.5 text-pe-yellow" />
-                                Matriz
+                                Agencia Matriz
                             </p>
-                            <p className="text-sm text-pe-gray-400">Miguel Riofrío 1203 y Olmedo</p>
-                            <p className="text-sm text-pe-gray-400">Loja, Ecuador</p>
+                            <p className="text-sm text-pe-gray-400">Miguel Riofrío 160-62 y Olmedo</p>
+                            <p className="text-sm text-pe-gray-400">Ecuador</p>
                         </div>
-                        {/* Sucursal */}
+                        {/* Sucursal Parque Bolívar */}
                         <div className="mb-5">
                             <p className="text-sm font-semibold text-white mb-1.5 flex items-center gap-1.5 justify-center lg:justify-start">
                                 <MapPin className="w-3.5 h-3.5 text-pe-yellow" />
-                                Sucursal Castellana
+                                Agencia Parque Bolívar
                             </p>
-                            <p className="text-sm text-pe-gray-400">Colón y Av. Manuel Agustín Aguirre</p>
-                            <p className="text-sm text-pe-gray-400">Sector La Castellana, Loja</p>
+                            <p className="text-sm text-pe-gray-400">Colón 6838 y Av. Manuel Agustín Aguirre</p>
+                            <p className="text-sm text-pe-gray-400">Ecuador</p>
                         </div>
                         {/* Hours */}
                         <div className="flex items-start gap-1.5 justify-center lg:justify-start">
                             <Clock className="w-3.5 h-3.5 text-pe-yellow mt-0.5" />
-                            <div>
-                                <p className="text-sm text-pe-gray-400">L-V: 8:00 - 18:00</p>
-                                <p className="text-sm text-pe-gray-400">Sáb: 8:00 - 14:00</p>
+                            <div className="text-sm text-pe-gray-400">
+                                <p>L-V: 06:30 - 19:30</p>
+                                <p>Sáb: 08:00 - 16:00</p>
                             </div>
                         </div>
                     </div>
@@ -158,16 +158,25 @@ export default function Footer() {
                     {/* Col 4: Contact + Trust */}
                     <div className="text-center lg:text-left">
                         <h3 className="text-sm font-bold uppercase tracking-wider text-pe-yellow mb-5">
-                            Contacto
+                            Contacto Directo
                         </h3>
                         <ul className="space-y-3 mb-6">
                             <li>
+                                <div className="flex items-center gap-2 text-sm text-pe-gray-400 justify-center lg:justify-start">
+                                    <Phone className="w-4 h-4 text-pe-yellow" />
+                                    <span>07 258 3120</span>
+                                </div>
+                            </li>
+                            <li>
                                 <a
-                                    href="tel:+593000000000"
+                                    href="https://wa.me/593990227203"
+                                    target="_blank"
                                     className="flex items-center gap-2 text-sm text-pe-gray-400 hover:text-white transition-colors justify-center lg:justify-start"
                                 >
-                                    <Phone className="w-4 h-4 text-pe-yellow" />
-                                    <span>(07) 000-0000</span>
+                                    <div className="w-4 h-4 text-pe-yellow flex items-center justify-center">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.412.001 12.049a11.823 11.823 0 001.592 5.918L0 24l6.135-1.61a11.825 11.825 0 005.91 1.586h.005c6.637 0 12.048-5.412 12.052-12.05a11.829 11.829 0 00-3.41-8.515z" /></svg>
+                                    </div>
+                                    <span>099 022 7203</span>
                                 </a>
                             </li>
                             <li>
