@@ -35,6 +35,33 @@ export default function Hero() {
         setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
     }, []);
 
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+    // Minimum swipe distance (in pixels)
+    const minSwipeDistance = 50;
+
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+        if (isLeftSwipe) {
+            nextSlide();
+        } else if (isRightSwipe) {
+            prevSlide();
+        }
+    };
+
     useEffect(() => {
         const timer = setInterval(nextSlide, 4000);
         return () => clearInterval(timer);
@@ -70,7 +97,12 @@ export default function Hero() {
                         <div className="absolute -inset-4 bg-pe-yellow/10 rounded-3xl blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
 
                         {/* Slider Container — Centered Rectangular 16:7 */}
-                        <div className="relative w-full sm:w-auto sm:h-[42vh] lg:h-[48vh] aspect-[16/7] mx-auto bg-pe-dark-accent/5 rounded-2xl lg:rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                        <div
+                            className="relative w-full sm:w-auto sm:h-[42vh] lg:h-[48vh] aspect-[16/7] mx-auto bg-pe-dark-accent/5 rounded-2xl lg:rounded-2xl overflow-hidden border border-white/10 shadow-2xl touch-pan-y"
+                            onTouchStart={onTouchStart}
+                            onTouchMove={onTouchMove}
+                            onTouchEnd={onTouchEnd}
+                        >
                             <div
                                 className="flex h-full transition-transform duration-700 ease-in-out"
                                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -103,10 +135,18 @@ export default function Hero() {
                         </div>
 
                         {/* Arrows */}
-                        <button onClick={prevSlide} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 lg:w-11 lg:h-11 rounded-full bg-black/80 backdrop-blur-sm border border-white/10 text-white hidden lg:flex items-center justify-center hover:bg-pe-yellow hover:text-pe-black transition-all z-20 shadow-xl">
+                        <button
+                            onClick={prevSlide}
+                            className="absolute -left-2 lg:left-0 top-1/2 -translate-y-1/2 lg:-translate-x-1/2 w-9 h-9 lg:w-11 lg:h-11 rounded-full bg-black/80 backdrop-blur-sm border border-white/10 text-white flex items-center justify-center hover:bg-pe-yellow hover:text-pe-black transition-all z-20 shadow-xl"
+                            aria-label="Anterior slide"
+                        >
                             <ChevronLeft className="w-5 h-5" />
                         </button>
-                        <button onClick={nextSlide} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-9 h-9 lg:w-11 lg:h-11 rounded-full bg-black/80 backdrop-blur-sm border border-white/10 text-white hidden lg:flex items-center justify-center hover:bg-pe-yellow hover:text-pe-black transition-all z-20 shadow-xl">
+                        <button
+                            onClick={nextSlide}
+                            className="absolute -right-2 lg:right-0 top-1/2 -translate-y-1/2 lg:translate-x-1/2 w-9 h-9 lg:w-11 lg:h-11 rounded-full bg-black/80 backdrop-blur-sm border border-white/10 text-white flex items-center justify-center hover:bg-pe-yellow hover:text-pe-black transition-all z-20 shadow-xl"
+                            aria-label="Siguiente slide"
+                        >
                             <ChevronRight className="w-5 h-5" />
                         </button>
                     </div>
