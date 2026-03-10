@@ -4,7 +4,9 @@ import { buildSystemPrompt } from '../src/lib/chatbot/prompt';
 import { toolDefinitions } from '../src/lib/chatbot/tools/index';
 import * as fs from 'fs';
 
-const servicesFlowA = [
+interface TestService { name: string; req: string; type?: string; }
+
+const servicesFlowA: TestService[] = [
     { name: 'SUPA', req: '1101-555 y 2 cuotas' },
     { name: 'LUZ EERSSA', req: 'Contrato 123456' },
     { name: 'AGUA', req: 'ID 1103677546 y servicio 555' },
@@ -57,7 +59,7 @@ const servicesFlowA = [
     { name: 'Impuesto predial', req: 'predio 99, cedula 1105' }
 ];
 
-const servicesFlowB = [
+const servicesFlowB: TestService[] = [
     { name: 'Ecuabet Recarga', req: 'ID 2421412 y monto $10' },
     { name: 'Ecuabet Retiro', req: 'retiro 123, clave 456, cedula 1103', type: 'A' },
     { name: 'Bet593', req: 'ID 12345 y monto $20' },
