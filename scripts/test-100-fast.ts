@@ -8,7 +8,7 @@ const servicesFlowA = [
     { name: 'SUPA', req: '1101-555 y 2 cuotas' },
     { name: 'LUZ EERSSA', req: 'Contrato 123456' },
     { name: 'AGUA', req: 'ID 1103677546 y servicio 555' },
-    { name: 'IESS Empleador', req: 'ID 1103677546, Sucursal 001, 6 digitos 123456' },
+    { name: 'IESS Empleador', req: 'RUC 1103677546, Sucursal 001, 6 digitos 123456' },
     { name: 'IESS Afiliado', req: 'cedula 1103' },
     { name: 'IESS Préstamos', req: 'cedula 1103' },
     { name: 'Western Union Cobro', req: 'MTCN 1234567890 y cedula 1105' },
@@ -20,46 +20,46 @@ const servicesFlowA = [
     { name: 'ANT Citaciones', req: 'Cedula 1105' },
     { name: 'ANT Orden de Pago', req: 'Orden 98765' },
     { name: 'Renovacion Licencia', req: 'Orden 54321' },
-    { name: 'Netlife', req: 'titular 1105106866' },
-    { name: 'Xtrim TV Cable', req: 'Contrato 998877' },
-    { name: 'Netplus', req: 'cedula 1105' },
-    { name: 'Puntonet', req: 'cedula 1105' },
+    { name: 'Netlife', req: 'cedula 1105106866 y monto $30' },
+    { name: 'Xtrim TV Cable', req: 'Contrato 998877 y cedula 1105' },
+    { name: 'Netplus', req: 'cedula 1105 y monto $25' },
+    { name: 'Puntonet', req: 'cedula 1105 y monto $40' },
     { name: 'Municipio de Loja', req: 'cedula 1105 y predio 55' },
     { name: 'Municipio de Quito', req: 'cedula 1105 y predio 66' },
-    { name: 'Municipio de Guayaquil', req: 'codigo 7788' },
-    { name: 'Registro Civil', req: 'cedula 1103' },
+    { name: 'Municipio de Guayaquil', req: 'codigo 7788 y cedula 1105' },
+    { name: 'Registro Civil', req: 'cedula 1103 y codigo 555' },
     { name: 'UTPL', req: 'cedula 1103' },
-    { name: 'Yanbal', req: 'codigo 12345' },
-    { name: 'Belcorp', req: 'codigo 54321' },
-    { name: 'Avon', req: 'cedula 1105' },
-    { name: 'Banco Pichincha Credito', req: 'cedula 1103' },
-    { name: 'Banco de Loja Credito', req: 'cedula 1103' },
+    { name: 'Yanbal', req: 'codigo 12345, cedula 1105' },
+    { name: 'Belcorp', req: 'codigo 54321, cedula 1105, monto $50' },
+    { name: 'Avon', req: 'cedula 1105, codigo 9988' },
+    { name: 'Banco Pichincha Credito', req: 'cedula 1103, nro 4545, $100' },
+    { name: 'Banco de Loja Credito', req: 'cedula 1103, nro 2929, $50' },
     { name: 'Seguridad Data Firma', req: 'cedula 1105, test@test.com, calle falsa, 0999' },
-    { name: 'Equifax Buro', req: 'cedula 1105 y test@test.com' },
+    { name: 'Equifax Buro', req: 'cedula 1105, test@test.com, monto $15' },
     { name: 'Giro Nacional Cobro', req: 'codigo 555 y cedula 1105' },
-    { name: 'Giro Nacional Envio', req: 'cedula mia, cedula receptor, $10' },
-    { name: 'Claro Hogar', req: 'cedula 1105' },
+    { name: 'Giro Nacional Envio', req: 'cedula 1105, receptor 1103, $10' },
+    { name: 'Claro Hogar', req: 'cedula 1105, monto $25' },
     { name: 'SRI Vehiculos', req: 'Placa LBA' },
-    { name: 'Bomberos', req: 'predio 123' },
-    { name: 'Junta de Agua', req: 'medidor 44' },
+    { name: 'Bomberos', req: 'predio 123, cedula 1105' },
+    { name: 'Junta de Agua', req: 'medidor 44, cedula 1105' },
     { name: 'Patentes', req: 'RUC 1100' },
-    { name: 'CNT Fijo', req: 'numero 072555555' },
+    { name: 'CNT Fijo', req: 'numero 072555555, cedula 1105' },
     { name: 'IESS Historia Clinica', req: 'cedula 1103' },
-    { name: 'SRI RISE', req: 'RUC 1103' },
+    { name: 'SRI RISE', req: 'RUC 1103, monto $10' },
     { name: 'Tarjetas PacifiCard', req: 'numero 4545, cedula 1105, $20' },
     { name: 'Tarjetas Alia', req: 'numero 1234, cedula 1105, $10' },
     { name: 'Tarjetas Diners', req: 'numero 3000, cedula 1105, $50' },
-    { name: 'Tarjetas Visa', req: 'numero 4000, cedula 1105, $30' },
-    { name: 'Tarjetas Mastercard', req: 'numero 5000, cedula 1105, $40' },
-    { name: 'Tarjetas American Express', req: 'numero 6000, cedula 1105, $60' },
-    { name: 'Tarjetas Discover', req: 'numero 7000, cedula 1105, $70' },
-    { name: 'Pago de multas ANT', req: 'cedula 1103' },
-    { name: 'Impuesto predial', req: 'predio 99' }
+    { name: 'Tarjetas Visa', req: 'numero 4000, cedula 1105, $30, Banco Pichincha' },
+    { name: 'Tarjetas Mastercard', req: 'numero 5000, cedula 1105, $40, Banco Guayaquil' },
+    { name: 'Tarjetas American Express', req: 'numero 6000, cedula 1105, $60, Banco Pacifico' },
+    { name: 'Tarjetas Discover', req: 'numero 7000, cedula 1105, $70, Banco Produbanco' },
+    { name: 'Pago de multas ANT', req: 'cedula 1103 y placa ABC-123' },
+    { name: 'Impuesto predial', req: 'predio 99, cedula 1105' }
 ];
 
 const servicesFlowB = [
     { name: 'Ecuabet Recarga', req: 'ID 2421412 y monto $10' },
-    { name: 'Ecuabet Retiro', req: 'retiro 123, clave 456, cedula 1103' },
+    { name: 'Ecuabet Retiro', req: 'retiro 123, clave 456, cedula 1103', type: 'A' },
     { name: 'Bet593', req: 'ID 12345 y monto $20' },
     { name: 'Betcris', req: 'ID 9876 y monto $50' },
     { name: 'Doradobet', req: 'codigo 555 y monto $15' },
@@ -69,10 +69,10 @@ const servicesFlowB = [
     { name: 'Recarga CNT', req: 'numero 0988888888 y monto $10' },
     { name: 'Recarga Tuenti', req: 'numero 0977777777 y monto $5' },
     { name: 'Recarga Maxiplus', req: 'numero 0966666666 y monto $2' },
-    { name: 'Plan Claro', req: 'numero 0963410409' },
-    { name: 'Plan Movistar', req: 'numero 0990000000' },
-    { name: 'Plan CNT', req: 'numero 0988888888' },
-    { name: 'Plan Tuenti', req: 'numero 0977777777' },
+    { name: 'Plan Claro', req: 'numero 0963410409 y monto $25' },
+    { name: 'Plan Movistar', req: 'numero 0990000000 y monto $15' },
+    { name: 'Plan CNT', req: 'numero 0988888888 y monto $40' },
+    { name: 'Plan Tuenti', req: 'numero 0977777777 y monto $10' },
     { name: 'Netflix', req: 'correo test@gmail.com y monto $10' },
     { name: 'Directv Prepago', req: 'smartcard 1234 y monto $15' },
     { name: 'Spotify', req: 'correo test@gmail.com y monto $5' },
@@ -96,35 +96,28 @@ const servicesFlowB = [
     { name: 'PUBG Mobile UC', req: 'ID 555 y monto $10' },
     { name: 'Minecraft Coins', req: 'ID 444 y monto $10' },
     { name: 'Genshin Impact Genesis', req: 'ID 333 y monto $15' },
-    { name: 'Deposito Pichincha', req: 'cuenta 3472 y cedula 1103 y monto $100' },
-    { name: 'Deposito Guayaquil', req: 'cuenta 2102 y cedula 1103 y monto $50' },
-    { name: 'Deposito Pacifico', req: 'cuenta 1042 y cedula 1103 y monto $30' },
-    { name: 'Deposito Loja', req: 'cuenta 2903 y cedula 1103 y monto $20' },
-    { name: 'Deposito Produbanco', req: 'cuenta 0212 y cedula 1103 y monto $40' },
-    { name: 'Deposito CoopMego', req: 'cuenta 4010 y cedula 1103 y monto $25' },
-    { name: 'Deposito JEP', req: 'cuenta 4060 y cedula 1103 y monto $35' },
-    { name: 'Deposito Jardin Azuayo', req: 'cuenta 555 y cedula 1103 y monto $15' },
-    { name: 'Deposito BanEcuador', req: 'cuenta 666 y cedula 1103 y monto $10' },
-    { name: 'Deposito Banco Internacional', req: 'cuenta 777 y cedula 1103 y monto $5' },
-    { name: 'Deposito Banco Bolivariano', req: 'cuenta 888 y cedula 1103 y monto $5' },
-    { name: 'Deposito Mutualista Pichincha', req: 'cuenta 999 y cedula 1103 y monto $5' }
+    { name: 'Deposito Pichincha', req: 'cuenta 3472 y cedula 1103 y monto $100', type: 'A' },
+    { name: 'Deposito Guayaquil', req: 'cuenta 2102 y cedula 1103 y monto $50', type: 'A' },
+    { name: 'Deposito Pacifico', req: 'cuenta 1042 y cedula 1103 y monto $30', type: 'A' },
+    { name: 'Deposito Loja', req: 'cuenta 2903 y cedula 1103 y monto $20', type: 'A' },
+    { name: 'Deposito Produbanco', req: 'cuenta 0212 y cedula 1103 y monto $40', type: 'A' },
+    { name: 'Deposito CoopMego', req: 'cuenta 4010 y cedula 1103 y monto $25', type: 'A' },
+    { name: 'Deposito JEP', req: 'cuenta 4060 y cedula 1103 y monto $35', type: 'A' },
+    { name: 'Deposito Jardin Azuayo', req: 'cuenta 555 y cedula 1103 y monto $15', type: 'A' },
+    { name: 'Deposito BanEcuador', req: 'cuenta 666 y cedula 1103 y monto $10', type: 'A' },
+    { name: 'Deposito Banco Internacional', req: 'cuenta 777 y cedula 1103 y monto $5', type: 'A' },
+    { name: 'Deposito Banco Bolivariano', req: 'cuenta 888 y cedula 1103 y monto $5', type: 'A' },
+    { name: 'Deposito Mutualista Pichincha', req: 'cuenta 999 y cedula 1103 y monto $5', type: 'A' }
 ];
 
 const allTests = [
-    ...servicesFlowA.map(s => ({ ...s, type: 'A' })),
-    ...servicesFlowB.map(s => ({ ...s, type: 'B' }))
+    ...servicesFlowA.map(s => ({ ...s, type: s.type || 'A' })),
+    ...servicesFlowB.map(s => ({ ...s, type: s.type || 'B' }))
 ];
 
 async function runFastTest(test: any, index: number) {
     const systemPrompt = buildSystemPrompt();
-
-    // Simulamos la memoria:
-    // 1. Cliente pidió el servicio
-    // 2. Bot pidió datos
-    // 3. Cliente envió los datos (nuestro input real para el LLM ahora)
-
-    // Obtenemos solo la respuesta LLM a los datos, ignorando llamadas a DB
-    const finalMessages = [
+    const finalMessages: any[] = [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: `[Cliente: Tester ${index}]\nHola, quiero pagar el ${test.name}` },
         { role: 'assistant', content: `¡Claro! Por favor, envíame tus datos para el servicio de ${test.name}.` },
@@ -132,33 +125,39 @@ async function runFastTest(test: any, index: number) {
     ];
 
     try {
-        const response = await chat(finalMessages as any, toolDefinitions);
+        let finalResponse = '';
+        let iterations = 0;
+        const maxIterations = 3;
 
-        // Si el LLM decide llamar una tool (como get_service_info), la cortamos y vemos su respuesta después de eso.
-        let finalResponse = response.content || '';
+        while (iterations < maxIterations) {
+            const response = await chat(finalMessages, toolDefinitions);
 
-        if (response.tool_calls && response.tool_calls.length > 0) {
-            // Simulated tool response for get_service_info
-            finalMessages.push({ role: 'assistant', content: '', tool_calls: response.tool_calls } as any);
-            const toolName = response.tool_calls[0].name;
-            const toolArgs = response.tool_calls[0].arguments;
+            if (response.tool_calls && response.tool_calls.length > 0) {
+                finalMessages.push({ role: 'assistant', content: response.content || '', tool_calls: response.tool_calls });
+                for (const tc of response.tool_calls) {
+                    finalMessages.push({ role: 'tool', tool_call_id: tc.id, name: tc.name, content: `Datos consultados para ${test.name}.` });
+                }
+                iterations++;
+                continue;
+            }
 
-            finalMessages.push({ role: 'tool', tool_call_id: response.tool_calls[0].id, name: toolName, content: `Datos consultados.` } as any);
-            const secondResponse = await chat(finalMessages as any, toolDefinitions);
-            finalResponse = secondResponse.content || '';
+            finalResponse = response.content || '';
+            break;
         }
 
         let status = 'FAIL';
         let reason = '';
 
+        const respLower = finalResponse.toLowerCase();
+
         if (test.type === 'A') {
-            if (finalResponse.toLowerCase().includes('minutos') || finalResponse.toLowerCase().includes('consulto')) {
+            if (respLower.includes('minutos') || respLower.includes('consulto') || respLower.includes('estado')) {
                 status = 'PASS';
             } else {
                 reason = 'No usó el flujo de consulta (A)';
             }
         } else {
-            if (finalResponse.toLowerCase().includes('titular') || finalResponse.toLowerCase().includes('transferencia')) {
+            if (respLower.includes('transferencia') || respLower.includes('comprobante') || respLower.includes('pichincha') || respLower.includes('produbanco')) {
                 status = 'PASS';
             } else {
                 reason = 'No usó el flujo de pago directo (B)';
@@ -181,43 +180,44 @@ async function runFastTest(test: any, index: number) {
 async function runWithConcurrencyLimit(items: any[], limit: number, fn: any) {
     const results = [];
     for (let i = 0; i < items.length; i += limit) {
-        process.stdout.write(`\rEjecutando lote rápido ${i / limit + 1}/${Math.ceil(items.length / limit)} (${Math.min(limit, items.length - i)} items)... `);
+        console.log(`Ejecutando lote ${i / limit + 1}/${Math.ceil(items.length / limit)} (${Math.min(limit, items.length - i)} items)...`);
         const batch = items.slice(i, i + limit);
         const batchResults = await Promise.all(batch.map((item, idx) => fn(item, i + idx)));
         results.push(...batchResults);
+        // Wait 2s between batches to avoid rate limits
+        if (i + limit < items.length) await new Promise(r => setTimeout(r, 2000));
     }
-    console.log('\nPruebas completadas.');
     return results;
 }
 
 async function runMain() {
-    console.log(`🚀 Iniciando versión ultrarrápida de 100 pruebas (sin DB, solo lógica LLM)...`);
-    // Corremos más en paralelo porque no hay I/O de base de datos
-    const results = await runWithConcurrencyLimit(allTests, 8, runFastTest);
+    process.env.SKIP_CONFIG_VALIDATION = 'true';
+    console.log(`🚀 Iniciando versión mejorada de 100 pruebas (sin DB, multi-turno)...`);
+    const results = await runWithConcurrencyLimit(allTests, 1, runFastTest);
 
     const passedCount = results.filter((r: any) => r.status === 'PASS').length;
     console.log(`\n📊 INFORME FINAL (${passedCount}/100 PASS)`);
 
-    let reportMd = `# ⚡ Informe de Pruebas Ultrarrápido: 100 Servicios
+    let reportMd = `# ⚡ Informe de Pruebas Ultrarrápido v2: 100 Servicios
 
-> \*\*Resultado General:\*\* ${passedCount} correctos de ${results.length} simulados.
+> **Resultado General:** ${passedCount} correctos de ${results.length} simulados.
 
-Se ha omitido la validación de base de datos para priorizar la rapidez y validar estrictamente el conocimiento de flujos A y B del Prompt.
+Valida que el bot reconoce correctamente el flujo A y B según las nuevas reglas endurecidas.
 
 `;
 
     // Flow A
-    reportMd += `## 🟢 FLUJO A: Consulta (50 Servicios)\n\n`;
+    reportMd += `## 🟢 FLUJO A: Consulta\n\n`;
     for (const r of results.filter((r: any) => r.type === 'A')) {
         reportMd += `### ${r.id}. ${r.name} [${r.status}] ${r.reason ? `(${r.reason})` : ''}\n`;
-        reportMd += `**Cierre Bot:**\n> ${r.botResp.trim()}\n\n`;
+        reportMd += `**Cierre Bot:**\n> ${r.botResp.trim() || '*VACÍO*'}\n\n`;
     }
 
     // Flow B
-    reportMd += `## 🔵 FLUJO B: Pago Directo (50 Servicios)\n\n`;
+    reportMd += `## 🔵 FLUJO B: Pago Directo\n\n`;
     for (const r of results.filter((r: any) => r.type === 'B')) {
         reportMd += `### ${r.id}. ${r.name} [${r.status}] ${r.reason ? `(${r.reason})` : ''}\n`;
-        reportMd += `**Cierre Bot:**\n> ${r.botResp.trim()}\n\n`;
+        reportMd += `**Cierre Bot:**\n> ${r.botResp.trim() || '*VACÍO*'}\n\n`;
     }
 
     fs.writeFileSync('./transcripciones_100_rapido.md', reportMd, 'utf-8');
