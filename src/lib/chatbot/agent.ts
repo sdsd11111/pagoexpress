@@ -30,10 +30,21 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         // ─── 1. Load Context ───
         const { conversation, history } = await getContext(phone);
 
-        // If conversation is escalated, don't process (human is handling it)
+        // ─── 1.1 Check for Temporary Escalation (1h) ───
         if (conversation.status === 'escalated') {
-            console.log(`[Agent] Conversation ${conversation.id} is escalated, skipping.`);
-            return;
+            const lastUpdate = new Date(conversation.updated_at).getTime();
+            const now = Date.now();
+            const hoursSinceEscalation = (now - lastUpdate) / (1000 * 60 * 60);
+
+            if (hoursSinceEscalation > 1) {
+                console.log(`[Agent] Escalation for ${phone} expired (${hoursSinceEscalation.toFixed(1)}h). Resetting to active.`);
+                const { updateConversation } = await import('./db');
+                await updateConversation(conversation.id, { status: 'active' });
+                conversation.status = 'active'; // Resume processing locally
+            } else {
+                console.log(`[Agent] Conversation ${conversation.id} is escalated (${hoursSinceEscalation.toFixed(1)}h ago), skipping.`);
+                return;
+            }
         }
 
         // ─── 1.1 Check for Manual Pause (1h) ───
