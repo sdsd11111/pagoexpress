@@ -24,7 +24,7 @@ export async function chatWithGemini(
     _tools?: ToolDefinition[]
 ): Promise<LLMResponse> {
     const ai = getClient();
-    const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = ai.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     // Convert our message format to Gemini format
     const systemInstruction = messages.find((m) => m.role === 'system')?.content || '';
@@ -47,7 +47,7 @@ export async function chatWithGemini(
         content: result.response.text(),
         tool_calls: null, // Gemini text mode doesn't handle our tool format
         provider_used: 'gemini',
-        model_used: 'gemini-1.5-flash',
+        model_used: 'gemini-2.0-flash',
     };
 }
 
@@ -60,7 +60,7 @@ async function analyzeMediaBase64(
     prompt: string
 ): Promise<string> {
     const ai = getClient();
-    const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = ai.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     // Clean base64 if it has data-uri prefix
     const cleanBase64 = base64Media.includes(';base64,') 
@@ -148,7 +148,7 @@ async function analyzeMediaFromUrl(
     mimeType: string = 'image/jpeg'
 ): Promise<string> {
     const ai = getClient();
-    const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const model = ai.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
     // naively download (fails for protected Evolution URLs, but works for public ones)
     const mediaResponse = await fetch(mediaUrl);
