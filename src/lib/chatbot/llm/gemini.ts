@@ -67,17 +67,26 @@ async function analyzeMediaBase64(
         ? base64Media.split(';base64,').pop() || ''
         : base64Media;
 
-    const result = await model.generateContent([
-        {
-            inlineData: {
-                mimeType,
-                data: cleanBase64,
-            },
-        },
-        { text: prompt },
-    ]);
+    console.log(`[Gemini] Sending media to API. Mime: ${mimeType}, Base64 Length: ${cleanBase64.length}`);
 
-    return result.response.text();
+    try {
+        const result = await model.generateContent([
+            {
+                inlineData: {
+                    mimeType,
+                    data: cleanBase64,
+                },
+            },
+            { text: prompt },
+        ]);
+
+        const text = result.response.text();
+        console.log(`[Gemini] API Response Success. Text length: ${text.length}`);
+        return text;
+    } catch (error) {
+        console.error('[Gemini] API Error during media analysis:', (error as Error).message);
+        throw error;
+    }
 }
 
 /**

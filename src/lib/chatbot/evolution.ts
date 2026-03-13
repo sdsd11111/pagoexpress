@@ -93,9 +93,11 @@ export async function sendMediaMessage(
 
     if (!response.ok) {
         const errorText = await response.text().catch(() => 'Unknown error');
+        console.error(`[Evolution] Failed to send media message. Status: ${response.status}, Error: ${errorText}`);
         throw new Error(`Evolution API media error ${response.status}: ${errorText}`);
     }
 
+    console.log(`[Evolution] Media message sent successfully to ${cleanPhone}. Status: ${response.status}`);
     return response.json();
 }
 
@@ -107,6 +109,7 @@ export async function getMediaBase64(messageId: string): Promise<{
     base64: string;
     mimetype: string;
 }> {
+    console.log(`[Evolution] Downloading media for message ${messageId} from ${BASE_URL}...`);
     const response = await fetch(
         `${BASE_URL}/chat/getBase64FromMediaMessage/${INSTANCE}`,
         {
@@ -123,10 +126,14 @@ export async function getMediaBase64(messageId: string): Promise<{
     );
 
     if (!response.ok) {
-        throw new Error(`Evolution API media download error: ${response.status}`);
+        const errText = await response.text().catch(() => 'No error body');
+        console.error(`[Evolution] Failed to download media. Status: ${response.status}, Body: ${errText}`);
+        throw new Error(`Evolution API media download error: ${response.status} - ${errText}`);
     }
 
-    return response.json();
+    const data = await response.json();
+    console.log(`[Evolution] Media downloaded successfully. Mimetype: ${data.mimetype}`);
+    return data;
 }
 
 /**

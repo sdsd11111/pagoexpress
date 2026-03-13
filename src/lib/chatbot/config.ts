@@ -2,9 +2,11 @@ import { z } from 'zod';
 import * as dotenv from 'dotenv';
 import path from 'path';
 
-// Load environment variables from .env.local using an absolute path relative to the workspace root
-const envPath = path.resolve('d:/Abel paginas/PagoExpress/Pagina web/pagoexpress-web', '.env.local');
-dotenv.config({ path: envPath });
+// Load environment variables from .env.local only in development or if the file exists
+if (process.env.NODE_ENV !== 'production') {
+    const envPath = path.resolve(process.cwd(), '.env.local');
+    dotenv.config({ path: envPath });
+}
 
 const envSchema = z.object({
     // LLM Providers
