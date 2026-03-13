@@ -76,8 +76,9 @@ async function analyzeMediaBase64(
 }
 
 /**
- * Analyze an image using Gemini Vision.
+ * ─── Exported Functions (Base64) ───
  */
+
 export async function analyzeImageBase64(
     base64Media: string,
     mimeType: string,
@@ -86,9 +87,6 @@ export async function analyzeImageBase64(
     return analyzeMediaBase64(base64Media, mimeType, prompt);
 }
 
-/**
- * Analyze an audio file using Gemini.
- */
 export async function analyzeAudioBase64(
     base64Media: string,
     mimeType: string,
@@ -97,9 +95,6 @@ export async function analyzeAudioBase64(
     return analyzeMediaBase64(base64Media, mimeType, prompt);
 }
 
-/**
- * Analyze a receipt/voucher image — structured extraction.
- */
 export async function analyzeReceiptBase64(
     base64Media: string,
     mimeType: string
@@ -126,4 +121,63 @@ Si la imagen no es un comprobante de pago, responde con:
 IMPORTANTE: Responde SOLO con el JSON, sin texto adicional.`;
 
     return analyzeImageBase64(base64Media, mimeType, prompt);
+}
+
+/**
+ * ─── Compatibility Wrappers (URL-based) ───
+ * These are for tools or logic that only have a URL.
+ */
+
+async function analyzeMediaFromUrl(
+    mediaUrl: string,
+    prompt: string,
+    mimeType: string = 'image/jpeg'
+): Promise<string> {
+    const ai = getClient();
+    const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
+
+    // naively download (fails for protected Evolution URLs, but works for public ones)
+    const mediaResponse = await fetch(mediaUrl);
+    if (!mediaResponse.ok) {
+        throw new Error(`Failed to download media: ${mediaResponse.status}`);
+    }
+
+    const mediaBuffer = await mediaResponse.arrayBuffer();
+    const base64Media = Buffer.from(mediaBuffer).toString('base64');
+    const finalMimeType = mediaResponse.headers.get('content-type') || mimeType;
+    
+    return analyzeMediaBase64(base64Media, finalMimeType, prompt);
+}
+
+export async function analyzeImage(imageUrl: string, prompt: string): Promise<string> {
+    return analyzeMediaFromUrl(imageUrl, prompt, 'image/jpeg');
+}
+
+export async function analyzeAudio(audioUrl: string, prompt: string): Promise<string> {
+    return analyzeMediaFromUrl(audioUrl, prompt, 'audio/ogg');
+}
+
+export async function analyzeReceipt(imageUrl: string): Promise<string> {
+    const prompt = `Eres un experto analizando comprobantes de pago y vouchers bancarios de Ecuador.
+Analiza esta imagen y extrae la siguiente información en formato JSON:
+
+{
+  "tipo": "transferencia | depósito | pago | recarga | otro",
+  "monto": "valor en dólares (ej: 25.50)",
+  "fecha": "fecha de la transacción",
+  "banco_origen": "nombre del banco o entidad",
+  "referencia": "número de referencia o comprobante",
+  "nombre_pagador": "nombre de quien realizó el pago (si es visible)",
+  "cuenta_destino": "número de cuenta destino (si es visible)",
+  "estado": "aprobado | pendiente | rechazado",
+  "notas": "cualquier información adicional relevante"
+}
+
+Si no puedes leer algún campo, coloca "no_visible". 
+Si la imagen no es un comprobante de pago, responde con:
+{"error": "La imagen proporcionada no parece ser un comprobante de pago"}
+
+IMPORTANTE: Responde SOLO con el JSON, sin texto adicional.`;
+
+    return analyzeImage(imageUrl, prompt);
 }
