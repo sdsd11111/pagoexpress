@@ -52,25 +52,15 @@ export async function chatWithGemini(
 }
 
 /**
- * Analyze any media file (Image or Audio) using Gemini 1.5 Flash.
+ * Analyze any media file (Image or Audio) using Gemini 1.5 Flash via Base64.
  */
-async function analyzeMedia(
-    mediaUrl: string,
-    prompt: string,
-    defaultMimeType: string = 'image/jpeg'
+async function analyzeMediaBase64(
+    base64Media: string,
+    mimeType: string,
+    prompt: string
 ): Promise<string> {
     const ai = getClient();
     const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
-    // Download the media
-    const mediaResponse = await fetch(mediaUrl);
-    if (!mediaResponse.ok) {
-        throw new Error(`Failed to download media: ${mediaResponse.status}`);
-    }
-
-    const mediaBuffer = await mediaResponse.arrayBuffer();
-    const base64Media = Buffer.from(mediaBuffer).toString('base64');
-    const mimeType = mediaResponse.headers.get('content-type') || defaultMimeType;
 
     const result = await model.generateContent([
         {
@@ -88,27 +78,32 @@ async function analyzeMedia(
 /**
  * Analyze an image using Gemini Vision.
  */
-export async function analyzeImage(
-    imageUrl: string,
+export async function analyzeImageBase64(
+    base64Media: string,
+    mimeType: string,
     prompt: string
 ): Promise<string> {
-    return analyzeMedia(imageUrl, prompt, 'image/jpeg');
+    return analyzeMediaBase64(base64Media, mimeType, prompt);
 }
 
 /**
  * Analyze an audio file using Gemini.
  */
-export async function analyzeAudio(
-    audioUrl: string,
+export async function analyzeAudioBase64(
+    base64Media: string,
+    mimeType: string,
     prompt: string = 'Transcribe and summarize this audio message in Spanish.'
 ): Promise<string> {
-    return analyzeMedia(audioUrl, prompt, 'audio/ogg');
+    return analyzeMediaBase64(base64Media, mimeType, prompt);
 }
 
 /**
  * Analyze a receipt/voucher image — structured extraction.
  */
-export async function analyzeReceipt(imageUrl: string): Promise<string> {
+export async function analyzeReceiptBase64(
+    base64Media: string,
+    mimeType: string
+): Promise<string> {
     const prompt = `Eres un experto analizando comprobantes de pago y vouchers bancarios de Ecuador.
 Analiza esta imagen y extrae la siguiente información en formato JSON:
 
@@ -130,5 +125,5 @@ Si la imagen no es un comprobante de pago, responde con:
 
 IMPORTANTE: Responde SOLO con el JSON, sin texto adicional.`;
 
-    return analyzeImage(imageUrl, prompt);
+    return analyzeImageBase64(base64Media, mimeType, prompt);
 }

@@ -3,7 +3,6 @@
 // ═══════════════════════════════════════════════════════════════
 
 import { chat } from './llm/router';
-import { analyzeImage } from './llm/gemini';
 import { buildSystemPrompt } from './prompt';
 import { toolDefinitions, executeTool } from './tools/index';
 import {
@@ -80,10 +79,13 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         let userContent = content;
 
         // If the user sent an image, analyze it only if it's a receipt
-        if (type === 'image' && mediaUrl) {
+        if (type === 'image' && incoming.messageId) {
             try {
-                const { analyzeReceipt } = await import('./llm/gemini');
-                const analysis = await analyzeReceipt(mediaUrl);
+                const { getMediaBase64 } = await import('./evolution');
+                const { base64, mimetype } = await getMediaBase64(incoming.messageId);
+
+                const { analyzeReceiptBase64 } = await import('./llm/gemini');
+                const analysis = await analyzeReceiptBase64(base64, mimetype);
 
                 if (analysis.includes('error') || analysis.includes('no parece ser un comprobante')) {
                     userContent = `[El cliente envió una imagen (No parece un comprobante)]\n\n${content || ''}`;
@@ -97,11 +99,14 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         }
 
         // If audio, transcribe it via Gemini
-        if (type === 'audio' && mediaUrl) {
+        if (type === 'audio' && incoming.messageId) {
             try {
-                const { analyzeAudio } = await import('./llm/gemini');
+                const { getMediaBase64 } = await import('./evolution');
+                const { base64, mimetype } = await getMediaBase64(incoming.messageId);
+
+                const { analyzeAudioBase64 } = await import('./llm/gemini');
                 console.log(`[Agent] Transcribing audio from ${phone}...`);
-                const transcription = await analyzeAudio(mediaUrl);
+                const transcription = await analyzeAudioBase64(base64, mimetype);
                 userContent = `[Audio Transcrito]: ${transcription}\n\n${content || ''}`;
             } catch (error) {
                 console.error('[Agent] Audio transcription failed:', error);
