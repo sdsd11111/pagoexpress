@@ -102,14 +102,22 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         if (type === 'audio' && incoming.messageId) {
             try {
                 const { getMediaBase64 } = await import('./evolution');
-                const { base64, mimetype } = await getMediaBase64(incoming.messageId);
+                console.log(`[Agent] Fetching audio base64 for message ${incoming.messageId}...`);
+                const mediaData = await getMediaBase64(incoming.messageId);
+                
+                if (!mediaData || !mediaData.base64) {
+                    throw new Error('No base64 data returned from Evolution API');
+                }
+
+                console.log(`[Agent] Audio fetched. Mime: ${mediaData.mimetype}, Size: ${mediaData.base64.length} chars`);
 
                 const { analyzeAudioBase64 } = await import('./llm/gemini');
-                console.log(`[Agent] Transcribing audio from ${phone}...`);
-                const transcription = await analyzeAudioBase64(base64, mimetype);
+                console.log(`[Agent] Sending to Gemini for transcription...`);
+                const transcription = await analyzeAudioBase64(mediaData.base64, mediaData.mimetype);
+                console.log(`[Agent] Transcription success: "${transcription.substring(0, 30)}..."`);
                 userContent = `[Audio Transcrito]: ${transcription}\n\n${content || ''}`;
             } catch (error) {
-                console.error('[Agent] Audio transcription failed:', error);
+                console.error('[Agent] Audio transcription failed:', (error as Error).message);
                 userContent = `[El cliente envió un audio que no se pudo procesar]\n\n${content || ''}`;
             }
         }

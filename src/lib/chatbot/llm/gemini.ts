@@ -62,11 +62,16 @@ async function analyzeMediaBase64(
     const ai = getClient();
     const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
+    // Clean base64 if it has data-uri prefix
+    const cleanBase64 = base64Media.includes(';base64,') 
+        ? base64Media.split(';base64,').pop() || ''
+        : base64Media;
+
     const result = await model.generateContent([
         {
             inlineData: {
                 mimeType,
-                data: base64Media,
+                data: cleanBase64,
             },
         },
         { text: prompt },
