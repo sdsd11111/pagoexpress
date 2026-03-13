@@ -125,27 +125,30 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
 
         // ─── 3. Save User Message ───
         await saveUserMessage(conversation.id, userContent, mediaUrl);
-
-        // ─── 4. Build Message Array ───
-        const systemPrompt = buildSystemPrompt();
-
         // If it's a new sub-session (>12h), prepend a hint to the LLM
         const sessionHint = isNewSubSession
             ? `[SISTEMA: Han pasado más de 12 horas desde el último contacto. Puedes saludar de nuevo al cliente por su nombre si lo deseas.]\n`
             : '';
 
+        // Prepend customer name if available
+        userContent = pushName
+            ? `${sessionHint}[Cliente: ${pushName}]\n${userContent}`
+            : `${sessionHint}${userContent}`;
+
+        // ─── 3. Save User Message ───
+        await saveUserMessage(conversation.id, userContent, mediaUrl);
+
+        // ─── 4. Build LLM Messages ───
+        const systemPrompt = buildSystemPrompt();
         const messages: LLMMessage[] = [
             { role: 'system', content: systemPrompt },
             ...history,
-            {
-                role: 'user',
-                content: pushName
-                    ? `${sessionHint}[Cliente: ${pushName}]\n${userContent}`
-                    : `${sessionHint}${userContent}`,
-            },
+            { role: 'user', content: userContent },
         ];
 
-        // ─── 5. Agentic Loop ───
+        console.log(`[Agent] Sending ${messages.length} messages to LLM Router. User Content: "${userContent.replace(/\n/g, ' ')}"`);
+
+        // ─── 5. Process with LLM (LLM Waterfall) ───
         const state: AgentState = {
             conversation_id: conversation.id,
             phone,

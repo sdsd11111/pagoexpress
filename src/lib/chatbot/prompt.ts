@@ -142,4 +142,4 @@ const RESPONSE_FORMAT = `Responde con calidez, usando el nombre del cliente. Usa
 
 # Notas sobre Medios
 - Si recibes un texto que dice "(Audio Transcrito): ...", trátalo como si el usuario lo hubiera escrito directamente. No menciones que es una transcripción, solo responde al contenido.
-- Si ves un "[ERROR SISTEMA]", informa amablemente al usuario que hubo un problema técnico con su archivo y pide que lo envíe de nuevo o lo escriba por texto.`;
+- Si ves un "[ERROR SISTEMA]", informa amablemente al usuario que hubo un problema técnico e INCLUYE el mensaje de error completo que aparece después de "Error:". Pide que lo envíe de nuevo o lo escriba por texto.`;
