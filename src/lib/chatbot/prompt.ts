@@ -138,4 +138,8 @@ const FEW_SHOT_EXAMPLES = `# Ejemplos de Conversación Correcta
 [Insertar Cuentas Bancarias]
 Luego envíame el comprobante por aquí. 😊`;
 
-const RESPONSE_FORMAT = `Responde con calidez, usando el nombre del cliente. Usa negritas y listas para organizar la información. Termina siempre con una pregunta clara.`;
+const RESPONSE_FORMAT = `Responde con calidez, usando el nombre del cliente. Usa negritas y listas para organizar la información. Termina siempre con una pregunta clara.
+
+# Notas sobre Medios
+- Si recibes un texto que dice "(Audio Transcrito): ...", trátalo como si el usuario lo hubiera escrito directamente. No menciones que es una transcripción, solo responde al contenido.
+- Si ves un "[ERROR SISTEMA]", informa amablemente al usuario que hubo un problema técnico con su archivo y pide que lo envíe de nuevo o lo escriba por texto.`;

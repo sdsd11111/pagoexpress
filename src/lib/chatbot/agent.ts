@@ -115,10 +115,11 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
                 console.log(`[Agent] Sending to Gemini for transcription...`);
                 const transcription = await analyzeAudioBase64(mediaData.base64, mediaData.mimetype);
                 console.log(`[Agent] Transcription success: "${transcription.substring(0, 30)}..."`);
-                userContent = `[Audio Transcrito]: ${transcription}\n\n${content || ''}`;
+                userContent = `(Audio Transcrito): ${transcription}\n\n${content || ''}`;
             } catch (error) {
-                console.error('[Agent] Audio transcription failed:', (error as Error).message);
-                userContent = `[El cliente envió un audio que no se pudo procesar]\n\n${content || ''}`;
+                const errMsg = (error as Error).message;
+                console.error('[Agent] Audio transcription failed:', errMsg);
+                userContent = `[ERROR SISTEMA: El audio enviado no se pudo procesar. Error: ${errMsg}]\n\n${content || ''}`;
             }
         }
 
@@ -222,7 +223,7 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         // Safety: if loop exhausted without response
         if (!state.final_response) {
             state.final_response =
-                'Disculpe, estoy procesando mucha información. ¿Podría ser más específico con lo que necesita? También puede comunicarse directamente al +593 99 022 7203.';
+                'Disculpe, estoy procesando mucha información. ¿Podrías ser más específico con lo que necesita? También puede comunicarse directamente al +593 99 022 7203.';
         }
 
         // ─── 6. Send Response via WhatsApp ───
