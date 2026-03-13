@@ -86,3 +86,51 @@ export async function chatWithGroq(
         model_used: 'llama-3.3-70b-versatile',
     };
 }
+
+/**
+ * Transcribe audio using Groq Whisper.
+ * Accepts base64 audio and returns the transcription text.
+ */
+export async function transcribeAudioWithGroq(
+    base64Audio: string,
+    mimeType: string
+): Promise<string> {
+    const groq = getClient();
+
+    // Clean base64 if it has data-uri prefix
+    const cleanBase64 = base64Audio.includes(';base64,')
+        ? base64Audio.split(';base64,').pop() || ''
+        : base64Audio;
+
+    // Convert base64 to a File-like object for the Groq API
+    const audioBuffer = Buffer.from(cleanBase64, 'base64');
+
+    // Determine file extension from mime type
+    const extMap: Record<string, string> = {
+        'audio/ogg': 'ogg',
+        'audio/opus': 'ogg',
+        'audio/mpeg': 'mp3',
+        'audio/mp3': 'mp3',
+        'audio/wav': 'wav',
+        'audio/webm': 'webm',
+        'audio/mp4': 'mp4',
+        'audio/ogg; codecs=opus': 'ogg',
+    };
+    const ext = extMap[mimeType] || 'ogg';
+
+    // Create a File object from the buffer
+    const file = new File([audioBuffer], `audio.${ext}`, { type: mimeType });
+
+    console.log(`[Groq Whisper] Transcribing audio. Size: ${audioBuffer.length} bytes, Mime: ${mimeType}`);
+
+    const transcription = await groq.audio.transcriptions.create({
+        file: file,
+        model: 'whisper-large-v3',
+        language: 'es',
+        response_format: 'text',
+    });
+
+    const text = typeof transcription === 'string' ? transcription : (transcription as any).text || '';
+    console.log(`[Groq Whisper] Transcription result: "${text.substring(0, 50)}..."`);
+    return text;
+}

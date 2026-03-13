@@ -98,7 +98,7 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
             }
         }
 
-        // If audio, transcribe it via Gemini
+        // If audio, transcribe it via Groq Whisper
         if (type === 'audio' && incoming.messageId) {
             try {
                 const { getMediaBase64 } = await import('./evolution');
@@ -111,10 +111,10 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
 
                 console.log(`[Agent] Audio fetched. Mime: ${mediaData.mimetype}, Size: ${mediaData.base64.length} chars`);
 
-                const { analyzeAudioBase64 } = await import('./llm/gemini');
-                console.log(`[Agent] Sending to Gemini for transcription...`);
-                const transcription = await analyzeAudioBase64(mediaData.base64, mediaData.mimetype);
-                console.log(`[Agent] Transcription success: "${transcription.substring(0, 30)}..."`);
+                const { transcribeAudioWithGroq } = await import('./llm/groq');
+                console.log(`[Agent] Sending to Groq Whisper for transcription...`);
+                const transcription = await transcribeAudioWithGroq(mediaData.base64, mediaData.mimetype);
+                console.log(`[Agent] Transcription success: "${transcription.substring(0, 50)}..."`);
                 userContent = `(Audio Transcrito): ${transcription}\n\n${content || ''}`;
             } catch (error) {
                 const errMsg = (error as Error).message;
