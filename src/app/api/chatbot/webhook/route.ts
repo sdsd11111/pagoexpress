@@ -52,13 +52,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
             return NextResponse.json({ status: 'ignored', reason: 'no phone number' });
         }
 
-        // ─── Filter: ONLY ALLOW TESTING NUMBERS ───
-        const allowedNumbers = ['593983237491', '593983850966', '593963410409'];
-        if (!allowedNumbers.includes(phone)) {
-            console.log(`[Webhook] Ignoring message from non-test number: ${phone}`);
-            return NextResponse.json({ status: 'ignored', reason: 'not test number' });
-        }
-
         // ─── Parse message content ───
         const message = data.message;
         if (!message) {
