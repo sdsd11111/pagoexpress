@@ -15,8 +15,8 @@ export const processWhatsAppMessage = inngest.createFunction(
             key: "event.data.phone",
             period: "20s",
         },
+        triggers: [{ event: "chatbot/message.received" }],
     },
-    { event: "chatbot/message.received" },
     async ({ event, step }) => {
         const { incoming } = event.data;
 
@@ -35,8 +35,10 @@ export const processWhatsAppMessage = inngest.createFunction(
  * Se ejecuta todos los lunes a las 00:00 (Cron: 0 0 * * 1)
  */
 export const scheduledDbCleanup = inngest.createFunction(
-    { id: "scheduled-db-cleanup" },
-    { cron: "0 0 * * 1" }, // Cada lunes a medianoche
+    { 
+        id: "scheduled-db-cleanup",
+        triggers: [{ cron: "0 0 * * 1" }],
+    },
     async ({ step }) => {
         const { cleanupOldMessages } = await import("../lib/chatbot/db");
 
