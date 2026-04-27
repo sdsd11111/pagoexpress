@@ -12,7 +12,7 @@
     "@google/generative-ai": "^0.24.1",
     "framer-motion": "^12.34.5",
     "groq-sdk": "^0.37.0",
-    "inngest": "^3.52.6",
+    "inngest": "^4.2.5",
     "jose": "^6.2.1",
     "lucide-react": "^0.576.0",
     "mysql2": "^3.19.0",
