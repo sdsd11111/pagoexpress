@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import { getSession } from '@/lib/admin-utils';
 import { config } from '@/lib/chatbot/config';
@@ -21,22 +20,9 @@ export async function GET() {
         const stateData = await stateRes.json();
         const state = stateData.instance.state; // 'open', 'close', 'connecting', etc.
 
-        // 2. If not open, get QR
-        let qr = null;
-        if (state !== 'open') {
-            const connectRes = await fetch(`${baseUrl}/instance/connect/${instance}`, {
-                headers: { apikey: apiKey },
-            });
-            if (connectRes.ok) {
-                const connectData = await connectRes.json();
-                qr = connectData.base64 || connectData.code; // Evolution API returns base64 or code
-            }
-        }
-
         return NextResponse.json({
             connected: state === 'open',
             state,
-            qr,
             instance,
         });
     } catch (error) {
