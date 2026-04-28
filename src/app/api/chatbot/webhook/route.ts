@@ -168,6 +168,18 @@ function parseIncomingMessage(
         };
     }
 
+    // ─── Sticker Message ───
+    if ((message as any).stickerMessage) {
+        return {
+            phone,
+            pushName,
+            type: 'unknown',
+            content: '[El cliente envió un sticker]',
+            messageId,
+            timestamp,
+        };
+    }
+
     // ─── Unknown Message Type ───
     return {
         phone,

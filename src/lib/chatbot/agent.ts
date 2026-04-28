@@ -62,7 +62,9 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         const now = Date.now();
         const lastUpdate = new Date(conversation.updated_at).getTime();
         const hoursSinceLastMessage = (now - lastUpdate) / (1000 * 60 * 60);
-        const isNewSubSession = hoursSinceLastMessage > 12;
+        
+        // CRITICAL: If history is empty OR it's been > 12h, it's a new sub-session
+        const isNewSubSession = hoursSinceLastMessage > 12 || history.length === 0;
 
         if (isNewSubSession) {
             console.log(`[Agent] >12h since last message (${hoursSinceLastMessage.toFixed(1)}h). Marking as new sub-session.`);
@@ -125,7 +127,7 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
 
         // ─── 3. Save User Message ───
         await saveUserMessage(conversation.id, userContent, mediaUrl);
-        // If it's a new sub-session (>12h), prepend a hint to the LLM
+        // If it's a new sub-session, prepend a hint to the LLM
         const sessionHint = isNewSubSession
             ? `[SISTEMA: ESTA ES UNA NUEVA CONVERSACIÓN. Saluda al cliente por primera vez. Tu saludo DEBE incluir exactamente la frase: "Gracias por comunicarte con PagoExpress 👋 ¿en qué podemos ayudarte?" (puedes incluir su nombre si está disponible).]\n`
             : `[SISTEMA: Esta es la continuación de una conversación existente. NO VUELVAS A SALUDAR (no digas hola de nuevo), ve directo al grano y atiende el requerimiento.]\n`;
