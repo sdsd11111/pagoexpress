@@ -244,6 +244,24 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         // ─── 7. Save Assistant Response ───
         await saveAssistantMessage(conversation.id, state.final_response);
 
+        // ─── 8. Notify Admin for Handoff / Flujo A ───
+        const handoffPhrases = [
+            'Dame unos minutos mientras consulto',
+            'monto exacto / estado en el sistema',
+            'confirmarte el valor a cancelar'
+        ];
+        
+        const isHandoff = handoffPhrases.some(phrase => state.final_response?.includes(phrase)) || state.should_escalate;
+
+        if (isHandoff) {
+            const adminPhone = '593967491847';
+            const customerName = conversation.customer_name || pushName || phone;
+            const notificationText = `⚠️ *AVISO BOT PAGOEXPRESS*\n\nEl cliente *${customerName}* (${phone}) requiere atención humana.\n\n*Última respuesta del bot*:\n"${state.final_response?.substring(0, 150)}..."\n\nPor favor, ingresa al sistema para continuar el trámite. ✅`;
+            
+            console.log(`[Agent] Notifying admin (${adminPhone}) about handoff for ${phone}`);
+            await sendTextMessage(adminPhone, notificationText).catch(e => console.error('[Agent] Admin notification failed:', e));
+        }
+
         console.log(`[Agent] ✅ Responded to ${phone} (${state.iteration_count} iterations, tools: ${state.tools_used.join(', ') || 'none'})`);
     } catch (error) {
         console.error(`[Agent] ❌ Error processing message from ${phone}:`, error);
