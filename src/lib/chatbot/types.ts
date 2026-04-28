@@ -117,7 +117,7 @@ export interface LLMMessage {
 export interface LLMResponse {
     content: string | null;
     tool_calls: ToolCall[] | null;
-    provider_used: 'groq' | 'gemini' | 'openrouter';
+    provider_used: 'groq' | 'gemini' | 'openrouter' | 'deepseek';
     model_used: string;
 }
 
