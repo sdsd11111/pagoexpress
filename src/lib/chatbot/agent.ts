@@ -127,8 +127,8 @@ export async function processMessage(incoming: IncomingMessage): Promise<void> {
         await saveUserMessage(conversation.id, userContent, mediaUrl);
         // If it's a new sub-session (>12h), prepend a hint to the LLM
         const sessionHint = isNewSubSession
-            ? `[SISTEMA: Han pasado más de 12 horas desde el último contacto. Puedes saludar de nuevo al cliente por su nombre si lo deseas.]\n`
-            : '';
+            ? `[SISTEMA: ESTA ES UNA NUEVA CONVERSACIÓN. Saluda al cliente por primera vez. Tu saludo DEBE incluir exactamente la frase: "Gracias por comunicarte con PagoExpress 👋 ¿en qué podemos ayudarte?" (puedes incluir su nombre si está disponible).]\n`
+            : `[SISTEMA: Esta es la continuación de una conversación existente. NO VUELVAS A SALUDAR (no digas hola de nuevo), ve directo al grano y atiende el requerimiento.]\n`;
 
         // Prepend customer name if available
         userContent = pushName

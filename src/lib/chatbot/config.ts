@@ -10,6 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const envSchema = z.object({
     // LLM Providers
+    DEEPSEEK_API_KEY: z.string().optional(),
     GROQ_API_KEY: z.string().min(1, 'GROQ_API_KEY is required'),
     GEMINI_API_KEY: z.string().min(1, 'GEMINI_API_KEY is required'),
     OPENROUTER_API_KEY: z.string().min(1, 'OPENROUTER_API_KEY is required'),
@@ -40,6 +41,7 @@ function loadConfig() {
         console.error('❌ Chatbot configuration error:', parsed.error.flatten().fieldErrors);
         // In development, return defaults to avoid crashing the entire Next.js app
         return {
+            deepseek: { apiKey: process.env.DEEPSEEK_API_KEY || '' },
             groq: { apiKey: process.env.GROQ_API_KEY || '' },
             gemini: { apiKey: process.env.GEMINI_API_KEY || '' },
             openrouter: { apiKey: process.env.OPENROUTER_API_KEY || '' },
@@ -64,6 +66,7 @@ function loadConfig() {
 
     const env = parsed.data;
     return {
+        deepseek: { apiKey: env.DEEPSEEK_API_KEY || '' },
         groq: { apiKey: env.GROQ_API_KEY },
         gemini: { apiKey: env.GEMINI_API_KEY },
         openrouter: { apiKey: env.OPENROUTER_API_KEY },
