@@ -19,8 +19,8 @@ const faqs: FAQItem[] = [
         answer: "Solo necesitas tu cédula de identidad original y vigente, junto con el código de transferencia (MTCN) proporcionado por quien envía el dinero."
     },
     {
-        question: "¿Qué bancos y cooperativas están disponibles para depósitos y retiros?",
-        answer: "Operamos con Banco del Pacífico, Bolivariano, Pichincha y cooperativas líderes como CoopMego y Jardín Azuayo, funcionando como corresponsal oficial."
+        question: "¿Qué bancos y cooperativas están disponibles para depósitos y pagos?",
+        answer: "Operamos con Banco del Pacífico, Guayaquil, Pichincha, Produbanco y cooperativas líderes como CoopMego y Jardín Azuayo, funcionando como corresponsal oficial para tus depósitos y pagos de servicios."
     },
     {
         question: "¿Atienden los fines de semana y feriados en Loja?",

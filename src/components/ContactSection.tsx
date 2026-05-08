@@ -191,12 +191,12 @@ export default function ContactSection() {
                                         <label className="text-xs font-black text-pe-black uppercase tracking-widest ml-1 opacity-70">Servicio de Interés</label>
                                         <select className="w-full h-14 bg-pe-gray-50 border border-pe-gray-100 rounded-2xl px-5 focus:ring-4 focus:ring-pe-yellow/5 focus:border-pe-yellow outline-none font-bold cursor-pointer">
                                             <option>Giros y Remesas (Western Union)</option>
-                                            <option>Recargas y Retiros Ecuabet</option>
+                                            <option>Recargas Ecuabet Autorizado</option>
                                             <option>Pensiones Alimenticias (SUPA)</option>
                                             <option>Consulta Equifax (Buró de Crédito)</option>
                                             <option>Firma Electrónica (Security Data)</option>
                                             <option>Pagos de Servicios (EERSSA, Agua, SRI)</option>
-                                            <option>Depósitos y Retiros Bancarios</option>
+                                            <option>Depósitos y Pagos Bancarios</option>
                                             <option>Consultas Generales</option>
                                         </select>
                                     </div>

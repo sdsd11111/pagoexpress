@@ -49,13 +49,13 @@ export default function ServicesSection() {
     const services = [
         {
             id: "ecuabet",
-            title: "Recargas y Retiros Ecuabet",
-            subtitle: "Agente Autorizado Ecuabet",
-            description: "Tu punto de confianza en Loja para realizar recargas inmediatas a tu cuenta Ecuabet o retirar tus ganancias en efectivo sin complicaciones, todo en un solo lugar seguro.",
+            title: "Recargas Ecuabet Autorizado",
+            subtitle: "Agente Oficial Ecuabet",
+            description: "Tu punto de confianza en Loja para realizar recargas inmediatas a tu cuenta Ecuabet, todo en un solo lugar seguro y con acreditación garantizada.",
             icon: Gamepad2,
             colorHex: "#003087",
             bgGradient: "from-[#003087] to-blue-900",
-            features: ["Recargas al instante en efectivo", "Retiro de ganancias sin demoras", "Atención rápida y personalizada", "Seguridad en tus transacciones"],
+            features: ["Recargas al instante en efectivo", "Acreditación de premios garantizada", "Atención rápida y personalizada", "Seguridad en tus transacciones"],
             image: "/images/home/service-ecuabet.webp",
             href: "/ecuabet"
         },
@@ -135,7 +135,7 @@ export default function ServicesSection() {
             id: "bancos",
             title: "Red de Corresponsales",
             subtitle: "Tu banco del barrio aqui",
-            description: "Sáltate las filas en ventanillas bancarias convencionales. Aqui podrás realizar tu depósito, transferencia, retiro de remesas pagadas desde exterior a cuentas especificas a nivel del todo el país.",
+            description: "Sáltate las filas en ventanillas bancarias convencionales. Aquí podrás realizar tu depósito, pago de créditos, pago de tarjetas y recaudaciones a nivel de todo el país.",
             icon: Landmark,
             colorHex: "#1A1A1A",
             bgGradient: "from-pe-black to-pe-dark-accent",

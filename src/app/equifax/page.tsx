@@ -5,32 +5,27 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import {
-    Activity,
     ArrowRight,
     Calendar,
     ChevronDown,
-    CreditCard,
-    Eye,
     FileText,
     Lock,
     MapPin,
     ShieldCheck,
-    Wallet,
+    ShieldAlert,
     CheckCircle2,
     MonitorSmartphone,
-    TrendingUp,
-    ShieldAlert,
-    Home,
     Briefcase,
-    GraduationCap,
-    Car,
     ChevronLeft,
-    ChevronRight
+    ChevronRight,
+    Smartphone,
+    X,
+    User
 } from "lucide-react";
 import MapSection from "@/components/MapSection";
 
 const EFX_RED = "#E31837";
-const EFX_NAVY = "#002855";
+const EFX_NAVY = "#006F8E";
 
 const fadeUp: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -41,73 +36,41 @@ const fadeUp: Variants = {
     }
 };
 
-const ScoreMeter = () => {
-    return (
-        <div className="relative w-full max-w-[320px] mx-auto mt-12 mb-8">
-            <svg viewBox="0 0 200 120" className="w-full h-full drop-shadow-2xl">
-                {/* Background Arc */}
-                <path
-                    d="M 10 100 A 90 90 0 0 1 190 100"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.1)"
-                    strokeWidth="16"
-                    strokeLinecap="round"
-                />
-                {/* Color Zones (Poor, Fair, Good, Excellent) */}
-                <path d="M 10 100 A 90 90 0 0 1 50 25" fill="none" stroke="#ef4444" strokeWidth="16" strokeLinecap="round" strokeDasharray="140" strokeDashoffset="0" className="opacity-50" />
-                <path d="M 50 25 A 90 90 0 0 1 100 10" fill="none" stroke="#f59e0b" strokeWidth="16" strokeLinecap="round" strokeDasharray="140" strokeDashoffset="0" className="opacity-50" />
-                <path d="M 100 10 A 90 90 0 0 1 150 25" fill="none" stroke="#84cc16" strokeWidth="16" strokeLinecap="round" strokeDasharray="140" strokeDashoffset="0" className="opacity-50" />
-                <path d="M 150 25 A 90 90 0 0 1 190 100" fill="none" stroke="#22c55e" strokeWidth="16" strokeLinecap="round" strokeDasharray="140" strokeDashoffset="0" className="opacity-50" />
-
-                {/* Animated Foreground Arc (Score) */}
-                <motion.path
-                    d="M 10 100 A 90 90 0 0 1 190 100"
-                    fill="none"
-                    stroke={EFX_RED}
-                    strokeWidth="16"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 0.78 }} // 780 score approx 78%
-                    transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
-                />
-
-                {/* Center Pivot */}
-                <circle cx="100" cy="100" r="12" fill={EFX_RED} />
-                <circle cx="100" cy="100" r="6" fill="#002855" />
-
-                {/* Animated Needle */}
-                <motion.path
-                    d="M 96 100 L 100 20 L 104 100 Z"
-                    fill={EFX_RED}
-                    initial={{ rotate: -90, originX: "100px", originY: "100px" }}
-                    animate={{ rotate: 50, originX: "100px", originY: "100px" }} // 78% of 180 = 140deg. -90 + 140 = 50deg
-                    transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
-                />
-            </svg>
-
-            <motion.div
-                className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center w-full"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 2 }}
-            >
-                <div className="flex items-center justify-center gap-2 mb-1">
-                    <span className="text-5xl font-black text-white tracking-tighter">780</span>
-                    <TrendingUp className="w-6 h-6 text-[#22c55e]" />
-                </div>
-                <span className="inline-block px-3 py-1 bg-white/10 text-white text-xs font-black uppercase tracking-widest rounded-full backdrop-blur-sm border border-white/20">
-                    Excelente Perfil
-                </span>
-            </motion.div>
-        </div>
-    );
-};
-
 export default function EquifaxPage() {
     const [activeFaq, setActiveFaq] = useState<number | null>(null);
     const [momentIndex, setMomentIndex] = useState(0);
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
+
+    // Modal & Form State
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPlan, setSelectedPlan] = useState<{ name: string; price: string; color?: string } | null>(null);
+    const [formData, setFormData] = useState({
+        cedula: "",
+        email: "",
+        direccion: "",
+        celular: ""
+    });
+
+    const openModal = (plan: { name: string; price: string }) => {
+        setSelectedPlan(plan);
+        setIsModalOpen(true);
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!selectedPlan) return;
+
+        const message = `Hola PagoExpress, deseo obtener mi Reporte Equifax: ${selectedPlan.name} ($${selectedPlan.price}).%0A%0A` +
+                        `*Mis Datos:*%0A` +
+                        `- Cédula: ${formData.cedula}%0A` +
+                        `- Correo: ${formData.email}%0A` +
+                        `- Dirección: ${formData.direccion}%0A` +
+                        `- Celular: ${formData.celular}`;
+        
+        window.open(`https://wa.me/593990227203?text=${message}`, "_blank");
+        setIsModalOpen(false);
+    };
 
     const handleTouchStart = (e: React.TouchEvent) => setTouchStart(e.targetTouches[0].clientX);
     const handleTouchMove = (e: React.TouchEvent) => setTouchEnd(e.targetTouches[0].clientX);
@@ -127,54 +90,6 @@ export default function EquifaxPage() {
         setTouchEnd(0);
     };
 
-    const educationalCards = [
-        {
-            title: "Tu Score",
-            desc: "El puntaje que ven los bancos para decidir si te prestan dinero (varía de 1 a 999).",
-            icon: Activity,
-            color: "text-red-500",
-            bg: "bg-red-50"
-        },
-        {
-            title: "Historial de Pagos",
-            desc: "El registro mensual de tus tarjetas de crédito, préstamos y servicios básicos.",
-            icon: Calendar,
-            color: "text-blue-500",
-            bg: "bg-blue-50"
-        },
-        {
-            title: "Deudas Actuales",
-            desc: "Detalle completo de tus saldos pendientes en el sistema financiero y comercial.",
-            icon: Wallet,
-            color: "text-emerald-500",
-            bg: "bg-emerald-50"
-        },
-        {
-            title: "Consultas",
-            desc: "Registro de qué empresas o bancos han revisado tu perfil crediticio recientemente.",
-            icon: Eye,
-            color: "text-purple-500",
-            bg: "bg-purple-50"
-        }
-    ];
-
-    const benefits = [
-        {
-            title: "Prepárate para un crédito",
-            desc: "Revisa si estás apto antes de ir al banco o cooperativa, aumentando tus probabilidades de aprobación.",
-            icon: CheckCircle2
-        },
-        {
-            title: "Detecta errores o fraudes",
-            desc: "Asegúrate de que no haya deudas reportadas que no te corresponden o suplantación de identidad.",
-            icon: ShieldAlert
-        },
-        {
-            title: "Mejora tu perfil",
-            desc: "Entiende qué factores bajan tu puntaje y toma medidas estratégicas para subirlos mes a mes.",
-            icon: TrendingUp
-        }
-    ];
 
     const faqs = [
         {
@@ -221,98 +136,195 @@ export default function EquifaxPage() {
     return (
         <main className="min-h-screen bg-white text-slate-900 selection:bg-[#E31837] selection:text-white font-sans">
 
-            {/* ═══ Section 1: Hero (Empoderamiento Financiero) ═══ */}
-            <section className="relative overflow-hidden min-h-[calc(100dvh-64px)] lg:h-[70vh] lg:min-h-[550px] flex flex-col justify-start lg:justify-center bg-[#002855] text-white pt-2 pb-8 lg:pt-28 lg:pb-0">
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `radial-gradient(white 1px, transparent 1px)`, backgroundSize: "30px 30px" }} />
-                    <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#E31837]/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
-                    <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-[#002855] rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4" />
-                </div>
+            {/* ═══ Section 1: Hero (Oficial Equifax) ═══ */}
+            <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-white">
+                {/* Decorative Accents */}
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50 skew-x-[-15deg] translate-x-24 -z-0" />
+                <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#E31837]/5 rounded-full blur-3xl" />
+                <div className="absolute -top-24 right-1/4 w-64 h-64 bg-[#006F8E]/5 rounded-full blur-3xl" />
 
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 w-full flex-grow flex flex-col justify-start lg:justify-center">
-                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                        <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-2xl text-center lg:text-left mt-0 lg:mt-0">
-                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 lg:mb-8 backdrop-blur-md">
-                                <Image src="/images/header logo/equifax.webp" alt="Equifax" width={80} height={20} className="w-[60px] lg:w-[80px] h-auto opacity-90" />
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        {/* Text Content */}
+                        <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+                            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 mb-8">
+                                <Image src="/images/header logo/equifax.webp" alt="Equifax" width={80} height={20} className="w-[80px] h-auto" />
                                 <span className="w-1 h-1 rounded-full bg-[#E31837]" />
-                                <span className="text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.2em] text-white/80">
-                                    Punto Autorizado
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                                    Punto Autorizado Loja
                                 </span>
                             </div>
 
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight mb-4 lg:mb-6">
-                                Buró de Crédito <span className="text-[#E31837]">Equifax</span> en Loja
+                            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-[1.05] tracking-tighter mb-8 text-[#006F8E]">
+                                Tu Reporte de Crédito <br />
+                                <span className="text-[#E31837] relative">
+                                    Oficial Equifax
+                                    <svg className="absolute -bottom-2 left-0 w-full h-3 text-[#006F8E]/20" viewBox="0 0 100 10" preserveAspectRatio="none">
+                                        <path d="M0 5 Q 25 0 50 5 T 100 5" fill="none" stroke="currentColor" strokeWidth="4" />
+                                    </svg>
+                                </span>
                             </h1>
 
-                            <p className="text-base lg:text-xl text-white/70 mb-8 leading-relaxed font-medium">
-                                Obtén tu reporte de crédito oficial en segundos en nuestras agencias. Toma el control de tus finanzas y abre las puertas de tu próximo préstamo.
-                            </p>
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <Link
-                                    href="https://wa.me/593990227203?text=Hola%20PagoExpress,%20quiero%20obtener%20mi%20reporte%20Equifax."
-                                    target="_blank"
-                                    className="group inline-flex items-center justify-center gap-3 px-6 lg:px-8 py-4 bg-[#E31837] text-white font-bold rounded-lg transition-all hover:bg-[#c1142e] active:scale-95 shadow-xl shadow-[#E31837]/20"
+                                    href="#planes"
+                                    className="inline-flex items-center justify-center gap-3 px-12 py-5 bg-[#006F8E] hover:bg-[#005a74] text-white text-xl font-black rounded-2xl transition-all shadow-2xl shadow-[#006F8E]/30 hover:scale-105 active:scale-95"
                                 >
-                                    <FileText className="w-5 h-5" />
-                                    Obtener mi Reporte Ahora
-                                </Link>
-                                <Link
-                                    href="#educacion"
-                                    className="inline-flex items-center justify-center gap-2 px-6 lg:px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-lg hover:bg-white/10 transition-all backdrop-blur-sm"
-                                >
-                                    ¿Qué incluye el reporte?
-                                    <ArrowRight className="w-4 h-4" />
+                                    Ver Productos
+                                    <ArrowRight className="w-6 h-6" />
                                 </Link>
                             </div>
                         </motion.div>
 
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="relative lg:h-[400px] w-full flex items-center justify-center mt-2 lg:mt-0"
+                        {/* Image Slider */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="relative"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl border border-white/10 backdrop-blur-sm shadow-2xl flex flex-col items-center justify-center p-6 lg:p-8">
-                                <div className="text-center mb-4">
-                                    <h3 className="text-white font-bold text-xl uppercase tracking-widest">Score Meter</h3>
-                                    <p className="text-white/50 text-xs font-medium mt-1">Simulación de Puntaje Equifax</p>
+                            <div className="relative aspect-square w-full max-w-lg mx-auto">
+                                {/* Decorative elements behind images */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-[#E31837]/10 to-transparent rounded-[3rem] rotate-6" />
+                                <div className="absolute inset-0 bg-white border border-slate-100 rounded-[3rem] shadow-2xl overflow-hidden">
+                                    <motion.div
+                                        animate={{
+                                            x: ["0%", "-100%", "0%"]
+                                        }}
+                                        transition={{
+                                            duration: 12,
+                                            repeat: Infinity,
+                                            ease: "easeInOut"
+                                        }}
+                                        className="flex h-full"
+                                    >
+                                        <div className="min-w-full h-full relative p-8 flex items-center justify-center">
+                                            <Image 
+                                                src="/images/equifax/hero-1.png" 
+                                                alt="Equifax Report" 
+                                                width={500} height={500} 
+                                                className="w-full h-full object-contain rounded-2xl"
+                                            />
+                                        </div>
+                                        <div className="min-w-full h-full relative p-8 flex items-center justify-center">
+                                            <Image 
+                                                src="/images/equifax/hero-2.png" 
+                                                alt="Equifax Office" 
+                                                width={500} height={500} 
+                                                className="w-full h-full object-contain rounded-2xl"
+                                            />
+                                        </div>
+                                    </motion.div>
                                 </div>
-                                <ScoreMeter />
-                                <div className="mt-12 text-center text-white/40 text-xs italic max-w-xs leading-relaxed">
-                                    "Un score alto demuestra buen comportamiento de pago y te abre las puertas del sistema financiero."
-                                </div>
+
+                                {/* Floating Badge */}
+                                <motion.div
+                                    animate={{ y: [0, -10, 0] }}
+                                    transition={{ duration: 4, repeat: Infinity }}
+                                    className="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-slate-50 flex items-center gap-4"
+                                >
+                                    <div className="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center">
+                                        <CheckCircle2 className="w-6 h-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Entrega</p>
+                                        <p className="text-lg font-black text-[#006F8E]">Inmediata</p>
+                                    </div>
+                                </motion.div>
                             </div>
                         </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* ═══ Section 2: ¿Qué es el Reporte de Crédito? ═══ */}
-            <section id="educacion" className="py-24 bg-slate-50 relative border-b border-slate-200">
+            {/* ═══ Section 2: Productos Oficiales ═══ */}
+            <section id="planes" className="py-24 bg-[#F5F7F8] relative">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                    <div className="text-center mb-16 max-w-3xl mx-auto">
-                        <span className="text-[#E31837] font-bold uppercase tracking-widest text-sm mb-4 block">Educación Financiera</span>
-                        <h2 className="text-3xl sm:text-4xl font-black text-[#002855] tracking-tight mb-6">
-                            ¿Qué incluye tu Reporte de Crédito?
-                        </h2>
-                        <p className="text-lg text-slate-600 font-medium">
-                            El Buró de Crédito es tu carta de presentación ante los bancos. Conoce exactamente qué variables evalúan para otorgarte financiamiento.
-                        </p>
+                    <div className="text-center mb-16">
+                        <span className="text-[#E31837] font-black uppercase tracking-[0.3em] text-xs mb-3 block">Agente Autorizado</span>
+                        <h2 className="text-3xl sm:text-5xl font-black text-[#006F8E] tracking-tight mb-4 uppercase italic">Productos y Soluciones</h2>
+                        <p className="text-lg text-slate-500 font-medium italic">Precios oficiales actualizados con IVA.</p>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {educationalCards.map((card, i) => (
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {[
+                            { 
+                                name: "Informe de Crédito", 
+                                priceBase: "9.61",
+                                priceTotal: "11.05", 
+                                desc: "Conoce tu situación financiera, detalle de tus deudas, score crediticio y más.", 
+                                icon: FileText, 
+                                tag: "Más Vendido", 
+                                accent: "#E31837" 
+                            },
+                            { 
+                                name: "Informe de Crédito Histórico", 
+                                priceBase: "5.40",
+                                priceTotal: "6.21", 
+                                desc: "Detalle de tus créditos históricos de los últimos 24 meses.", 
+                                icon: Calendar, 
+                                accent: "#64748b" 
+                            },
+                            { 
+                                name: "Informe de Crédito Ilimitado", 
+                                priceBase: "19.99",
+                                priceTotal: "22.99", 
+                                desc: "Accede a tu informe de crédito de forma ilimitada por 6 meses.", 
+                                icon: MonitorSmartphone, 
+                                accent: "#006F8E" 
+                            },
+                            { 
+                                name: "Kit Financiero", 
+                                priceBase: "12.52",
+                                priceTotal: "14.40", 
+                                desc: "Informe de crédito + kit para conocer, administrar y mejorar tus finanzas.", 
+                                icon: Briefcase, 
+                                accent: "#006F8E" 
+                            },
+                            { 
+                                name: "Alertas Crediticias", 
+                                priceBase: "16.10",
+                                priceTotal: "18.52", 
+                                desc: "Recibe alertas por 12 meses ante cualquier cambio en tu información.", 
+                                icon: ShieldAlert, 
+                                accent: "#E31837" 
+                            },
+                        ].map((plan, i) => (
                             <motion.div
                                 key={i}
                                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                                className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow group"
+                                className="bg-white rounded-3xl p-8 border border-slate-100 flex flex-col hover:shadow-2xl transition-all group relative overflow-hidden"
                             >
-                                <div className={`w-14 h-14 rounded-xl ${card.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                                    <card.icon className={`w-7 h-7 ${card.color}`} />
+                                {plan.tag && (
+                                    <div className="absolute top-4 right-4 px-3 py-1 bg-[#E31837] text-white text-[9px] font-black uppercase tracking-widest rounded-full z-10">
+                                        {plan.tag}
+                                    </div>
+                                )}
+                                <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform group-hover:scale-110" style={{ backgroundColor: `${plan.accent}10` }}>
+                                    <plan.icon className="w-7 h-7" style={{ color: plan.accent }} />
                                 </div>
-                                <h3 className="text-xl font-bold text-[#002855] mb-3">{card.title}</h3>
-                                <p className="text-slate-500 font-medium leading-relaxed text-sm">{card.desc}</p>
+                                <h3 className="text-xl font-black text-[#006F8E] uppercase tracking-tight mb-2">{plan.name}</h3>
+                                <p className="text-slate-500 text-sm mb-8 font-medium leading-relaxed h-12 line-clamp-2">{plan.desc}</p>
+                                
+                                <div className="mt-auto pt-6 border-t border-slate-50 flex items-end justify-between">
+                                    <div className="flex flex-col">
+                                        <div className="flex items-start gap-0.5">
+                                            <span className="text-lg font-bold text-[#006F8E] mt-1">$</span>
+                                            <span className="text-4xl font-black text-[#006F8E] tracking-tighter">{plan.priceBase}</span>
+                                            <span className="text-xs font-bold text-slate-400 mt-4 ml-1">+ IVA</span>
+                                        </div>
+                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                                            ${plan.priceTotal} Incl. IVA
+                                        </p>
+                                    </div>
+                                    <button
+                                        onClick={() => openModal({ name: plan.name, price: plan.priceTotal })}
+                                        className="px-6 py-3 bg-[#006F8E] hover:bg-[#005a74] text-white font-black uppercase tracking-widest text-[10px] rounded-xl transition-all shadow-lg shadow-[#006F8E]/20 active:scale-95"
+                                    >
+                                        Comprar
+                                    </button>
+                                </div>
                             </motion.div>
                         ))}
                     </div>
@@ -323,7 +335,7 @@ export default function EquifaxPage() {
             <section className="py-24 bg-white">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl font-black text-[#002855] tracking-tight">
+                        <h2 className="text-3xl sm:text-4xl font-black text-[#006F8E] tracking-tight">
                             Proceso de Entrega Inmediata
                         </h2>
                         <p className="text-slate-500 mt-4 font-medium">Obtén tu historial oficial en 3 simples pasos en Loja.</p>
@@ -334,9 +346,9 @@ export default function EquifaxPage() {
                         <div className="hidden md:block absolute top-[45px] left-[15%] right-[15%] h-0.5 bg-slate-100 -z-10" />
 
                         <div className="text-center relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                            <div className="w-16 h-16 rounded-full bg-[#002855] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#002855]/20">1</div>
+                            <div className="w-16 h-16 rounded-full bg-[#006F8E] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#006F8E]/20">1</div>
                             <MapPin className="w-8 h-8 text-[#E31837] mx-auto mb-4" />
-                            <h3 className="text-xl font-bold text-[#002855] mb-3">Identificación</h3>
+                            <h3 className="text-xl font-bold text-[#006F8E] mb-3">Identificación</h3>
                             <p className="text-slate-500 font-medium text-sm leading-relaxed">
                                 Acércate a nuestra Matriz o sucursal La Castellana con tu **cédula original**.
                             </p>
@@ -344,17 +356,17 @@ export default function EquifaxPage() {
 
                         <div className="text-center relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
                             <div className="w-16 h-16 rounded-full bg-[#E31837] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#E31837]/20">2</div>
-                            <ShieldCheck className="w-8 h-8 text-[#002855] mx-auto mb-4" />
-                            <h3 className="text-xl font-bold text-[#002855] mb-3">Validación</h3>
+                            <ShieldCheck className="w-8 h-8 text-[#006F8E] mx-auto mb-4" />
+                            <h3 className="text-xl font-bold text-[#006F8E] mb-3">Validación</h3>
                             <p className="text-slate-500 font-medium text-sm leading-relaxed">
                                 Confirmamos tu identidad por seguridad y protección estricta de tus datos financieros.
                             </p>
                         </div>
 
                         <div className="text-center relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                            <div className="w-16 h-16 rounded-full bg-[#002855] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#002855]/20">3</div>
+                            <div className="w-16 h-16 rounded-full bg-[#006F8E] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#006F8E]/20">3</div>
                             <MonitorSmartphone className="w-8 h-8 text-[#E31837] mx-auto mb-4" />
-                            <h3 className="text-xl font-bold text-[#002855] mb-3">Impresión/Envío</h3>
+                            <h3 className="text-xl font-bold text-[#006F8E] mb-3">Impresión/Envío</h3>
                             <p className="text-slate-500 font-medium text-sm leading-relaxed">
                                 Recibe tu reporte oficial Equifax **impreso** o en tu **correo electrónico** al instante.
                             </p>
@@ -363,71 +375,12 @@ export default function EquifaxPage() {
                 </div>
             </section>
 
-            {/* ═══ Section 4: Beneficios ═══ */}
-            <section className="py-24 bg-[#002855] text-white overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none">
-                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full">
-                        <path d="M0,100 L100,0 L100,100 Z" fill="currentColor" />
-                    </svg>
-                </div>
-
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <h2 className="text-3xl sm:text-5xl font-black mb-8 leading-tight">
-                                Beneficios de conocer <br />tu <span className="text-[#E31837]">Buró de Crédito</span>
-                            </h2>
-                            <p className="text-lg text-white/70 mb-10 font-medium leading-relaxed">
-                                La información es poder. Un perfil de crédito sano te ahorra miles de dólares en intereses a lo largo de tu vida.
-                            </p>
-
-                            <div className="space-y-8">
-                                {benefits.map((benefit, i) => (
-                                    <div key={i} className="flex gap-5">
-                                        <div className="w-12 h-12 rounded-full bg-[#E31837]/20 flex items-center justify-center shrink-0">
-                                            <benefit.icon className="w-6 h-6 text-[#E31837]" />
-                                        </div>
-                                        <div>
-                                            <h4 className="text-xl font-bold text-white mb-2">{benefit.title}</h4>
-                                            <p className="text-white/60 font-medium leading-relaxed text-sm">{benefit.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="relative h-[500px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#002855] via-[#0a3d6b] to-[#002855]" />
-                            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `radial-gradient(white 1px, transparent 1px)`, backgroundSize: '20px 20px' }} />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#002855] via-[#002855]/60 to-transparent" />
-
-                            {/* Section 5 Overlay: Privacidad */}
-                            <div className="absolute bottom-0 left-0 w-full p-8">
-                                <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl">
-                                    <div className="flex items-center gap-4 mb-4">
-                                        <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                                            <Lock className="w-5 h-5 text-[#002855]" />
-                                        </div>
-                                        <h3 className="text-lg font-bold text-white">Privacidad y Seguridad</h3>
-                                    </div>
-                                    <p className="text-white/80 text-sm font-medium leading-relaxed mb-4">
-                                        "Tus datos están protegidos. La entrega del reporte es **estrictamente personal** y cumple con la Ley de Protección de Datos Personales del Ecuador."
-                                    </p>
-                                    <div className="flex items-center gap-2 text-xs font-bold text-[#E31837] uppercase tracking-widest">
-                                        <CheckCircle2 className="w-4 h-4" />
-                                        Consulta Segura Validada
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* ═══ Section 5: Momentos que Impulsan tu Futuro ═══ */}
             <section className="py-32 bg-white relative overflow-hidden">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-20">
-                        <h2 className="text-4xl sm:text-6xl font-black text-[#002855] uppercase italic tracking-tighter mb-6 leading-tight">
+                        <h2 className="text-4xl sm:text-6xl font-black text-[#006F8E] uppercase italic tracking-tighter mb-6 leading-tight">
                             MOMENTOS QUE <br /><span className="text-slate-200">IMPULSAN TU FUTURO</span>
                         </h2>
                         <p className="text-lg text-slate-500 font-medium max-w-2xl mx-auto italic">
@@ -460,7 +413,7 @@ export default function EquifaxPage() {
                                                 />
                                             </div>
                                             <div className="inline-flex items-center w-fit px-3 py-1 rounded-full bg-white border border-slate-100 text-[9px] font-black uppercase tracking-wider text-[#E31837] mb-4">{moment.tag}</div>
-                                            <h3 className="text-2xl font-black text-[#002855] mb-4 uppercase tracking-tighter leading-tight">{moment.title}</h3>
+                                            <h3 className="text-2xl font-black text-[#006F8E] mb-4 uppercase tracking-tighter leading-tight">{moment.title}</h3>
                                             <p className="text-slate-600 font-medium leading-relaxed text-sm">{moment.desc}</p>
                                         </div>
                                     </div>
@@ -473,7 +426,7 @@ export default function EquifaxPage() {
                             <button
                                 onClick={() => setMomentIndex(prev => Math.max(0, prev - 1))}
                                 disabled={momentIndex === 0}
-                                className="w-10 h-10 rounded-full bg-[#002855] text-white flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
+                                className="w-10 h-10 rounded-full bg-[#006F8E] text-white flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
                             >
                                 <ChevronLeft className="w-6 h-6" />
                             </button>
@@ -490,7 +443,7 @@ export default function EquifaxPage() {
                             <button
                                 onClick={() => setMomentIndex(prev => Math.min(futureMoments.length - 1, prev + 1))}
                                 disabled={momentIndex === futureMoments.length - 1}
-                                className="w-10 h-10 rounded-full bg-[#002855] text-white flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
+                                className="w-10 h-10 rounded-full bg-[#006F8E] text-white flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed transition-opacity"
                             >
                                 <ChevronRight className="w-6 h-6" />
                             </button>
@@ -516,25 +469,24 @@ export default function EquifaxPage() {
                                         fill
                                         className="object-cover group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-100"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#002855]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#006F8E]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
 
-                                <div className="inline-flex items-center w-fit px-3 py-1 rounded-full bg-white border border-slate-100 text-[9px] font-black uppercase tracking-wider text-[#002855]/40 mb-4 group-hover:bg-[#E31837]/10 group-hover:text-[#E31837] transition-all">{moment.tag}</div>
-                                <h3 className="text-2xl font-black text-[#002855] mb-4 uppercase tracking-tighter leading-tight relative z-10">{moment.title}</h3>
+                                <div className="inline-flex items-center w-fit px-3 py-1 rounded-full bg-white border border-slate-100 text-[9px] font-black uppercase tracking-wider text-[#006F8E]/40 mb-4 group-hover:bg-[#E31837]/10 group-hover:text-[#E31837] transition-all">{moment.tag}</div>
+                                <h3 className="text-2xl font-black text-[#006F8E] mb-4 uppercase tracking-tighter leading-tight relative z-10">{moment.title}</h3>
                                 <p className="text-slate-600 font-medium leading-relaxed relative z-10 text-sm">{moment.desc}</p>
                             </motion.div>
                         ))}
                     </div>
 
-                    <div className="mt-20 bg-[#002855] rounded-[3rem] p-12 text-center relative overflow-hidden">
+                    <div className="mt-20 bg-[#006F8E] rounded-[3rem] p-12 text-center relative overflow-hidden">
                         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#E31837_1px,transparent_1px)] [background-size:30px_30px]" />
                         <h4 className="text-white text-2xl font-black mb-6 uppercase italic relative z-10">¿Buscas financiamiento en Loja?</h4>
                         <Link
-                            href="https://wa.me/593990227203?text=Hola%20PagoExpress,%20necesito%20mi%20reporte%20Equifax%20para%20un%20crédito."
-                            target="_blank"
+                            href="#planes"
                             className="inline-flex items-center gap-4 px-12 py-5 bg-[#E31837] text-white font-black uppercase tracking-widest rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-[#E31837]/40 relative z-10"
                         >
-                            <ShieldCheck className="w-6 h-6" />
+                            <FileText className="w-6 h-6" />
                             Obtener Reporte Oficial
                         </Link>
                     </div>
@@ -545,7 +497,7 @@ export default function EquifaxPage() {
             <section className="py-24 bg-[#F8FAFC]">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-black text-[#002855]">Preguntas sobre el Score</h2>
+                        <h2 className="text-3xl font-black text-[#006F8E]">Preguntas sobre el Score</h2>
                     </div>
 
                     <div className="space-y-4">
@@ -555,7 +507,7 @@ export default function EquifaxPage() {
                                     onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                                     className="w-full flex justify-between items-center p-6 text-left transition-colors hover:bg-slate-50"
                                 >
-                                    <span className="font-bold text-[#002855] pr-8">{faq.q}</span>
+                                    <span className="font-bold text-[#006F8E] pr-8">{faq.q}</span>
                                     <ChevronDown className={`w-5 h-5 text-[#E31837] shrink-0 transition-transform duration-300 ${activeFaq === i ? "rotate-180" : ""}`} />
                                 </button>
                                 <AnimatePresence>
@@ -581,18 +533,130 @@ export default function EquifaxPage() {
             <MapSection />
 
             {/* ═══ Footer ═══ */}
-            <footer className="py-12 bg-[#001E2B] border-t border-white/5">
+            <footer className="py-12 bg-white border-t border-slate-100">
                 <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
                     <div className="flex items-center gap-6">
                         <Image src="/images/header logo/equifax.webp" alt="Equifax" width={120} height={35} className="opacity-70 hover:opacity-100 transition-opacity" />
-                        <div className="w-px h-6 bg-white/20" />
+                        <div className="w-px h-6 bg-slate-200" />
                         <Image src="/logo.jpg" alt="PagoExpress" width={100} height={30} className="opacity-70 hover:opacity-100 transition-opacity rounded" />
                     </div>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-white/50 text-center md:text-right max-w-sm">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 text-center md:text-right max-w-sm">
                         Agente Autorizado de Equifax en Loja. <br />Entrega de informes físicos y digitales oficiales.
                     </p>
                 </div>
             </footer>
+
+            {/* ═══ MODAL FORM ═══ */}
+            <AnimatePresence>
+                {isModalOpen && selectedPlan && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsModalOpen(false)}
+                            className="absolute inset-0 bg-[#006F8E]/80 backdrop-blur-sm"
+                        />
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden z-10"
+                        >
+                            {/* Modal Header */}
+                            <div className="bg-[#E31837] p-6 text-white relative">
+                                <button 
+                                    onClick={() => setIsModalOpen(false)}
+                                    className="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full transition-colors"
+                                >
+                                    <X className="w-5 h-5" />
+                                </button>
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-md">
+                                        <FileText className="w-6 h-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-bold italic uppercase tracking-tight">Solicitud de Reporte</h3>
+                                        <p className="text-white/60 text-xs font-bold uppercase tracking-widest">{selectedPlan.name} - ${selectedPlan.price}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Modal Body */}
+                            <form onSubmit={handleSubmit} className="p-8 space-y-5">
+                                <div className="space-y-4">
+                                    <div className="relative group">
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-1 block group-focus-within:text-[#E31837] transition-colors">Número de Cédula</label>
+                                        <div className="relative">
+                                            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 group-focus-within:text-[#E31837] transition-colors" />
+                                            <input 
+                                                required
+                                                type="text" 
+                                                placeholder="0000000000"
+                                                className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#E31837]/20 focus:border-[#E31837] transition-all font-bold text-[#006F8E]"
+                                                onChange={(e) => setFormData({...formData, cedula: e.target.value})}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="relative group">
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-1 block group-focus-within:text-[#E31837] transition-colors">Correo Electrónico</label>
+                                        <div className="relative">
+                                            <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 group-focus-within:text-[#E31837] transition-colors" />
+                                            <input 
+                                                required
+                                                type="email" 
+                                                placeholder="tu@email.com"
+                                                className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#E31837]/20 focus:border-[#E31837] transition-all font-bold text-[#006F8E]"
+                                                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="relative group">
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-1 block group-focus-within:text-[#E31837] transition-colors">Dirección de Domicilio</label>
+                                        <div className="relative">
+                                            <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 group-focus-within:text-[#E31837] transition-colors" />
+                                            <input 
+                                                required
+                                                type="text" 
+                                                placeholder="Calle Principal y Secundaria"
+                                                className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#E31837]/20 focus:border-[#E31837] transition-all font-bold text-[#006F8E]"
+                                                onChange={(e) => setFormData({...formData, direccion: e.target.value})}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="relative group">
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 mb-1 block group-focus-within:text-[#E31837] transition-colors">Celular / WhatsApp</label>
+                                        <div className="relative">
+                                            <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 group-focus-within:text-[#E31837] transition-colors" />
+                                            <input 
+                                                required
+                                                type="tel" 
+                                                placeholder="0999999999"
+                                                className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#E31837]/20 focus:border-[#E31837] transition-all font-bold text-[#006F8E]"
+                                                onChange={(e) => setFormData({...formData, celular: e.target.value})}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button 
+                                    type="submit"
+                                    className="w-full py-5 bg-[#E31837] hover:bg-[#c1142e] text-white font-black uppercase tracking-[0.2em] rounded-2xl transition-all shadow-xl shadow-[#E31837]/30 hover:scale-[1.02] active:scale-[0.98] mt-4"
+                                >
+                                    Confirmar y Solicitar
+                                </button>
+
+                                <p className="text-[10px] text-slate-400 text-center font-bold uppercase tracking-tighter">
+                                    Al solicitar, un agente se contactará contigo para la validación de identidad.
+                                </p>
+                            </form>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </main>
     );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
     Search,
@@ -99,14 +99,14 @@ const featuredBanks = [
 ];
 
 const allEntities = [
-    { name: "Banco del Pacífico", type: "Nacional", color: "bg-[#0054A6]/10", border: "border-[#0054A6]/20", text: "text-[#0054A6]", services: ["Depósitos", "Retiros", "Préstamos"] },
-    { name: "Banco Pichincha", type: "Nacional", color: "bg-[#FFDD00]/10", border: "border-[#FFDD00]/30", text: "text-[#B89B00]", services: ["Depósitos", "Retiros", "Recaudaciones"] },
-    { name: "Banco Bolivariano", type: "Nacional", color: "bg-[#2C62A7]/10", border: "border-[#2C62A7]/20", text: "text-[#2C62A7]", services: ["Depósitos", "Retiros"] },
-    { name: "Banco Guayaquil", type: "Nacional", color: "bg-[#E63946]/10", border: "border-[#E63946]/20", text: "text-[#E63946]", services: ["Depósitos", "Retiros", "Transferencias"] },
-    { name: "CoopMego", type: "Cooperativa", color: "bg-[#2D6A4F]/10", border: "border-[#2D6A4F]/20", text: "text-[#2D6A4F]", services: ["Ahorros", "Retiros", "Cuotas"] },
+    { name: "Banco del Pacífico", type: "Nacional", color: "bg-[#0054A6]/10", border: "border-[#0054A6]/20", text: "text-[#0054A6]", services: ["Depósitos", "Préstamos"] },
+    { name: "Banco Pichincha", type: "Nacional", color: "bg-[#FFDD00]/10", border: "border-[#FFDD00]/30", text: "text-[#B89B00]", services: ["Depósitos", "Recaudaciones"] },
+    { name: "Banco Bolivariano", type: "Nacional", color: "bg-[#2C62A7]/10", border: "border-[#2C62A7]/20", text: "text-[#2C62A7]", services: ["Depósitos"] },
+    { name: "Banco Guayaquil", type: "Nacional", color: "bg-[#E63946]/10", border: "border-[#E63946]/20", text: "text-[#E63946]", services: ["Depósitos", "Transferencias"] },
+    { name: "CoopMego", type: "Cooperativa", color: "bg-[#2D6A4F]/10", border: "border-[#2D6A4F]/20", text: "text-[#2D6A4F]", services: ["Ahorros", "Cuotas"] },
     { name: "Jardín Azuayo", type: "Cooperativa", color: "bg-[#F3CF1D]/10", border: "border-[#F3CF1D]/30", text: "text-[#9B8400]", services: ["Ahorros", "Cuotas"] },
-    { name: "Coop. JEP", type: "Cooperativa", color: "bg-[#004A99]/10", border: "border-[#004A99]/20", text: "text-[#004A99]", services: ["Depósitos", "Retiros"] },
-    { name: "Coop. Loja", type: "Cooperativa", color: "bg-[#00A859]/10", border: "border-[#00A859]/20", text: "text-[#00A859]", services: ["Depósitos", "Retiros"] },
+    { name: "Coop. JEP", type: "Cooperativa", color: "bg-[#004A99]/10", border: "border-[#004A99]/20", text: "text-[#004A99]", services: ["Depósitos"] },
+    { name: "Banco de Loja", type: "Nacional", color: "bg-[#00A859]/10", border: "border-[#00A859]/20", text: "text-[#00A859]", services: ["Depósitos"] },
     { name: "Visa", type: "Crédito", color: "bg-blue-500/10", border: "border-blue-500/20", text: "text-blue-600", services: ["Pagos de Cuota"] },
     { name: "Mastercard", type: "Crédito", color: "bg-red-500/10", border: "border-red-500/20", text: "text-red-600", services: ["Pagos de Cuota"] },
     { name: "American Express", type: "Crédito", color: "bg-slate-500/10", border: "border-slate-500/20", text: "text-slate-600", services: ["Pagos de Cuota"] },
@@ -115,10 +115,28 @@ const allEntities = [
 
 const fadeUp: Variants = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
 
+const heroSlides = [
+    { image: "/images/bancos/hero-1.png", label: "Depósitos Seguros" },
+    { image: "/images/bancos/hero-2.png", label: "Pago de Créditos" },
+    { image: "/images/bancos/hero-1.png", label: "Pago de Tarjetas" },
+    { image: "/images/bancos/hero-2.png", label: "Préstamos y Créditos" },
+];
+
 export default function BancosPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedBank, setSelectedBank] = useState<typeof featuredBanks[0] | null>(null);
     const [copied, setCopied] = useState(false);
+    const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+    const [selectedEntity, setSelectedEntity] = useState<typeof allEntities[0] | null>(null);
+    const [selectedService, setSelectedService] = useState<string | null>(null);
+    const [entityForm, setEntityForm] = useState({ cuenta: "", cedula: "", valor: "", tarjeta: "", operacion: "" });
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
+        }, 4000);
+        return () => clearInterval(timer);
+    }, []);
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);
@@ -129,6 +147,32 @@ export default function BancosPage() {
     const filteredEntities = allEntities.filter(entity =>
         entity.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
+    const handleEntityWhatsApp = () => {
+        if (!selectedEntity || !selectedService) return;
+        const f = entityForm;
+        
+        // Validación de monto mínimo
+        if (!f.valor || parseFloat(f.valor) < 1) {
+            alert("⚠️ El valor mínimo por transacción es de $1.00");
+            return;
+        }
+
+        let msg = `🏦 *Solicitud Bancaria - PagoExpress*\n\n*Banco:* ${selectedEntity.name}\n*Servicio:* ${selectedService}\n`;
+        if (selectedService === "Depósitos") {
+            msg += `*Nº Cuenta:* ${f.cuenta}\n*Cédula:* ${f.cedula}\n*Valor:* $${f.valor}`;
+        } else if (selectedService === "Pago de Tarjetas de Crédito") {
+            msg += `*Nº Tarjeta:* ${f.tarjeta}\n*Cédula:* ${f.cedula}\n*Valor:* $${f.valor}`;
+        } else {
+            msg += `*Cédula:* ${f.cedula}\n*Nº Operación:* ${f.operacion}\n*Valor:* $${f.valor}`;
+        }
+        window.open(`https://wa.me/593990227203?text=${encodeURIComponent(msg)}`, "_blank");
+    };
+
+    const closeEntityModal = () => {
+        setSelectedEntity(null);
+        setSelectedService(null);
+        setEntityForm({ cuenta: "", cedula: "", valor: "", tarjeta: "", operacion: "" });
+    };
 
     return (
         <main className="min-h-screen bg-white text-pe-black selection:bg-pe-yellow/30" style={{ fontFamily: 'var(--font-inter, "Inter", sans-serif)' }}>
@@ -195,34 +239,267 @@ export default function BancosPage() {
                 )}
             </AnimatePresence>
 
-            {/* ═══ SECCIÓN 1: Hero de Conveniencia Bancaria ═══ */}
-            <section className="relative min-h-[calc(100dvh-64px)] lg:h-[70vh] lg:min-h-[600px] flex flex-col justify-center overflow-hidden bg-white pt-20 lg:pt-0">
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(247,239,77,0.1),transparent)]" />
-                    <div className="absolute -top-24 -right-24 w-96 h-96 bg-pe-yellow/5 rounded-full blur-[100px]" />
-                </div>
+            {/* Modal: Entity Service Selector + Form */}
+            <AnimatePresence>
+                {selectedEntity && (
+                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeEntityModal} className="absolute inset-0 bg-pe-black/80 backdrop-blur-md" />
+                        <motion.div initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }} className="relative w-full max-w-lg bg-white rounded-[2.5rem] overflow-hidden shadow-2xl overflow-y-auto max-h-[90vh]">
+                            {/* Header */}
+                            <div className="p-6 bg-pe-black text-white flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-xl bg-pe-yellow flex items-center justify-center"><Landmark className="w-5 h-5 text-pe-black" /></div>
+                                    <div>
+                                        <h3 className="text-lg font-black">{selectedEntity.name}</h3>
+                                        <p className="text-[10px] text-pe-yellow font-bold uppercase tracking-widest">{selectedEntity.type}</p>
+                                    </div>
+                                </div>
+                                <button onClick={closeEntityModal} className="p-2 rounded-full bg-white/10 hover:bg-white/20"><X className="w-5 h-5" /></button>
+                            </div>
+                            <div className="p-6">
+                                {!selectedService ? (
+                                    /* Step 1: Choose service type */
+                                    <div>
+                                        <p className="text-sm font-bold text-pe-black/50 mb-4">¿Qué deseas realizar?</p>
+                                        <div className="space-y-3">
+                                            {[
+                                                { key: "Depósitos", icon: Wallet, desc: "Realiza depósitos inmediatos" },
+                                                { key: "Pago de Tarjetas de Crédito", icon: CreditCard, desc: "Pagar cuota de tarjeta" },
+                                                { key: "Pago de Préstamos y Créditos", icon: FileText, desc: "Pagar cuota de crédito" }
+                                            ].map((opt) => (
+                                                <button key={opt.key} onClick={() => setSelectedService(opt.key)} className="w-full p-4 rounded-2xl border border-pe-gray-200 hover:border-pe-yellow hover:bg-pe-yellow/5 transition-all flex items-center gap-4 text-left group">
+                                                    <div className="w-10 h-10 rounded-xl bg-pe-gray-50 group-hover:bg-pe-yellow/20 flex items-center justify-center transition-colors"><opt.icon className="w-5 h-5 text-pe-black/60" /></div>
+                                                    <div>
+                                                        <p className="font-black text-sm text-pe-black">{opt.key}</p>
+                                                        <p className="text-xs text-pe-gray-400">{opt.desc}</p>
+                                                    </div>
+                                                    <ArrowRight className="w-4 h-4 ml-auto text-pe-gray-300 group-hover:text-pe-yellow-dark group-hover:translate-x-1 transition-all" />
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    /* Step 2: Form */
+                                    <div>
+                                        <button onClick={() => setSelectedService(null)} className="text-xs font-bold text-pe-black/40 hover:text-pe-black mb-4 flex items-center gap-1">← Cambiar servicio</button>
+                                        <p className="text-sm font-black text-pe-black mb-4">{selectedService}</p>
+                                        <div className="space-y-3">
+                                            {selectedService === "Depósitos" && (
+                                                <>
+                                                    <div className="flex items-center gap-2 mb-1 px-1"><div className="w-1.5 h-1.5 rounded-full bg-pe-yellow" /><p className="text-[10px] font-black uppercase text-pe-black/40">Requisito: Nº de Cuenta</p></div>
+                                                    <input placeholder="Número de Cuenta" value={entityForm.cuenta} onChange={(e) => setEntityForm({...entityForm, cuenta: e.target.value})} className="w-full p-3 rounded-xl border border-pe-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pe-yellow/50" />
+                                                    <input placeholder="Cédula de Identidad" value={entityForm.cedula} onChange={(e) => setEntityForm({...entityForm, cedula: e.target.value})} className="w-full p-3 rounded-xl border border-pe-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pe-yellow/50" />
+                                                    <div className="relative">
+                                                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-pe-black/40 font-bold text-sm">$</span>
+                                                        <input placeholder="Valor (Mín. $1)" type="number" step="0.01" min="1" value={entityForm.valor} onChange={(e) => setEntityForm({...entityForm, valor: e.target.value})} className="w-full pl-7 pr-3 py-3 rounded-xl border border-pe-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pe-yellow/50" />
+                                                    </div>
+                                                </>
+                                            )}
+                                            {selectedService === "Pago de Tarjetas de Crédito" && (
+                                                <>
+                                                    <div className="flex items-center gap-2 mb-1 px-1"><div className="w-1.5 h-1.5 rounded-full bg-pe-yellow" /><p className="text-[10px] font-black uppercase text-pe-black/40">Requisito: Nº de Tarjeta</p></div>
+                                                    <input placeholder="Número de Tarjeta" value={entityForm.tarjeta} onChange={(e) => setEntityForm({...entityForm, tarjeta: e.target.value})} className="w-full p-3 rounded-xl border border-pe-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pe-yellow/50" />
+                                                    <input placeholder="Cédula de Identidad" value={entityForm.cedula} onChange={(e) => setEntityForm({...entityForm, cedula: e.target.value})} className="w-full p-3 rounded-xl border border-pe-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pe-yellow/50" />
+                                                    <div className="relative">
+                                                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-pe-black/40 font-bold text-sm">$</span>
+                                                        <input placeholder="Valor (Mín. $1)" type="number" step="0.01" min="1" value={entityForm.valor} onChange={(e) => setEntityForm({...entityForm, valor: e.target.value})} className="w-full pl-7 pr-3 py-3 rounded-xl border border-pe-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pe-yellow/50" />
+                                                    </div>
+                                                </>
+                                            )}
+                                            {selectedService === "Pago de Préstamos y Créditos" && (
+                                                <>
+                                                    <input placeholder="Cédula de Identidad" value={entityForm.cedula} onChange={(e) => setEntityForm({...entityForm, cedula: e.target.value})} className="w-full p-3 rounded-xl border border-pe-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pe-yellow/50" />
+                                                    <input placeholder="Número de Operación" value={entityForm.operacion} onChange={(e) => setEntityForm({...entityForm, operacion: e.target.value})} className="w-full p-3 rounded-xl border border-pe-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pe-yellow/50" />
+                                                    <div className="relative">
+                                                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-pe-black/40 font-bold text-sm">$</span>
+                                                        <input placeholder="Valor (Mín. $1)" type="number" step="0.01" min="1" value={entityForm.valor} onChange={(e) => setEntityForm({...entityForm, valor: e.target.value})} className="w-full pl-7 pr-3 py-3 rounded-xl border border-pe-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pe-yellow/50" />
+                                                    </div>
+                                                </>
+                                            )}
+                                        </div>
+                                        <button onClick={handleEntityWhatsApp} className="w-full mt-6 py-4 bg-green-500 hover:bg-green-600 text-white font-black rounded-2xl flex items-center justify-center gap-2 transition-colors">
+                                            <MessageCircle className="w-5 h-5" /> Enviar por WhatsApp
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
 
-                <div className="max-w-7xl mx-auto px-4 relative z-10 text-center flex-grow flex flex-col justify-start lg:justify-center mt-2 lg:mt-0">
-                    <motion.div initial="hidden" animate="visible" variants={fadeUp} className="max-w-3xl mx-auto">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pe-black/5 border border-pe-black/10 mb-6">
-                            <ShieldCheck className="w-4 h-4 text-pe-yellow-dark" />
-                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-pe-black/60">Corresponsal No Bancario Autorizado</span>
+            {/* ═══ SECCIÓN 1: Hero de Conveniencia Bancaria (Rediseño Split) ═══ */}
+            <section className="relative h-auto lg:h-[70vh] lg:min-h-0 flex flex-col justify-center bg-pe-black overflow-hidden">
+                <div className="max-w-[1600px] mx-auto px-4 lg:px-12 w-full h-full">
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center h-full py-12 lg:py-0">
+                        
+                        {/* COLUMNA IZQUIERDA: Contenido */}
+                        <motion.div 
+                            initial="hidden" 
+                            animate="visible" 
+                            variants={fadeUp} 
+                            className="relative z-10 text-left order-2 lg:order-1"
+                        >
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pe-yellow/10 border border-pe-yellow/20 mb-8 backdrop-blur-sm">
+                                <ShieldCheck className="w-4 h-4 text-pe-yellow" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-pe-yellow">Corresponsal No Bancario Autorizado</span>
+                            </div>
+                            
+                            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-[1.05] tracking-tight mb-8 uppercase italic text-white" style={{ fontFamily: 'var(--font-lexend-deca, "Lexend Deca", sans-serif)' }}>
+                                Depositos, pago de credito, <span className="text-pe-yellow">tarjeta y recaudaciones</span> <br />
+                                <span className="text-white/40 italic font-black">de</span> <br />
+                                Empresas.
+                            </h1>
+                            
+                            
+
+                            
+                            <div className="flex flex-col sm:flex-row items-center gap-4 mb-16">
+                                <Link href="#directorio" className="w-full sm:w-auto px-10 py-5 bg-pe-yellow text-pe-black font-black rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-[0_20px_50px_rgba(255,221,0,0.15)] uppercase tracking-widest text-[11px]">
+                                    Directorio Bancario
+                                </Link>
+                                <Link href="#servicios-bancarios" className="w-full sm:w-auto px-10 py-5 border border-white/10 text-white font-black rounded-2xl hover:bg-white/5 transition-all uppercase tracking-widest text-[11px] flex items-center justify-center gap-2 backdrop-blur-sm group">
+                                    Servicios <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </div>
+
+                            {/* Slide indicators bottom left desktop */}
+                            <div className="flex items-center gap-3">
+                                {heroSlides.map((slide, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => setCurrentHeroSlide(i)}
+                                        className={`transition-all duration-700 rounded-full ${currentHeroSlide === i ? "w-12 h-1.5 bg-pe-yellow" : "w-3 h-1.5 bg-white/10 hover:bg-white/20"}`}
+                                        aria-label={slide.label}
+                                    />
+                                ))}
+                            </div>
+                        </motion.div>
+
+                        {/* COLUMNA DERECHA: Slider Swipe */}
+                        <div className="relative h-[400px] sm:h-[500px] lg:h-[700px] order-1 lg:order-2">
+                            <div className="absolute inset-0 bg-pe-yellow/5 rounded-[4rem] -rotate-3 scale-95 opacity-50 border border-pe-yellow/10" />
+                            <div className="absolute inset-0 bg-pe-black rounded-[4rem] rotate-2 scale-95 border border-white/5 shadow-2xl" />
+                            
+                            <div className="relative w-full h-full rounded-[4rem] overflow-hidden border border-white/10 shadow-3xl group">
+                                <AnimatePresence initial={false} mode="wait">
+                                    <motion.div
+                                        key={currentHeroSlide}
+                                        initial={{ x: 300, opacity: 0 }}
+                                        animate={{ x: 0, opacity: 1 }}
+                                        exit={{ x: -300, opacity: 0 }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                        className="absolute inset-0"
+                                    >
+                                        <Image 
+                                            src={heroSlides[currentHeroSlide].image} 
+                                            alt={heroSlides[currentHeroSlide].label} 
+                                            fill 
+                                            className="object-cover transition-transform duration-1000 group-hover:scale-110" 
+                                            priority 
+                                        />
+                                        
+                                        {/* Info Badge on Image */}
+                                        <div className="absolute bottom-10 left-10 right-10 p-8 bg-pe-black/40 backdrop-blur-xl border border-white/10 rounded-3xl text-left transform translate-y-0 group-hover:-translate-y-2 transition-transform duration-500">
+                                            <p className="text-[10px] font-black text-pe-yellow uppercase tracking-[0.3em] mb-2">Destacado</p>
+                                            <h3 className="text-2xl font-black text-white uppercase italic leading-none">{heroSlides[currentHeroSlide].label}</h3>
+                                        </div>
+                                    </motion.div>
+                                </AnimatePresence>
+
+                                {/* Navigation Arrows */}
+                                <div className="absolute top-1/2 -translate-y-1/2 left-6 right-6 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button 
+                                        onClick={() => setCurrentHeroSlide(prev => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
+                                        className="w-12 h-12 rounded-full bg-pe-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-pe-yellow hover:text-pe-black transition-all"
+                                    >
+                                        <ArrowRight className="w-5 h-5 rotate-180" />
+                                    </button>
+                                    <button 
+                                        onClick={() => setCurrentHeroSlide(prev => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
+                                        className="w-12 h-12 rounded-full bg-pe-black/50 backdrop-blur-md border border-white/10 flex items-center justify-center text-white hover:bg-pe-yellow hover:text-pe-black transition-all"
+                                    >
+                                        <ArrowRight className="w-5 h-5" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Floating decorative elements */}
+                            <motion.div 
+                                animate={{ y: [0, -20, 0] }} 
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                className="absolute -top-10 -right-10 w-40 h-40 bg-pe-yellow/20 rounded-full blur-[80px] -z-10" 
+                            />
+                            <motion.div 
+                                animate={{ y: [0, 20, 0] }} 
+                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                                className="absolute -bottom-10 -left-10 w-60 h-60 bg-blue-500/10 rounded-full blur-[100px] -z-10" 
+                            />
                         </div>
-                        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight mb-6 lg:mb-8 uppercase italic" style={{ fontFamily: 'var(--font-lexend-deca, "Lexend Deca", sans-serif)' }}>
-                            Corresponsal Bancario en Ecuador: <span className="text-pe-yellow-dark">Toda la Banca</span> en un Solo Lugar.
-                        </h1>
-                        <p className="text-base sm:text-xl text-pe-gray-500 mb-10 lg:mb-12 leading-relaxed font-medium">
-                            Realiza depósitos y retiros de Banco Pichincha, Guayaquil, Pacífico, Produbanco y cooperativas. Sin filas, con seguridad total y atención nacional.
-                        </p>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <Link href="#directorio" className="px-12 py-5 bg-pe-black text-white font-bold rounded-2xl hover:bg-pe-black-pure transition-all shadow-xl uppercase tracking-widest text-xs">
-                                Consultar Bancos Disponibles
-                            </Link>
-                            <Link href="#guia" className="px-12 py-5 border border-pe-black/10 text-pe-black font-bold rounded-2xl hover:bg-pe-gray-50 transition-all uppercase tracking-widest text-xs flex items-center justify-center gap-2">
-                                Límites de Retiro <ArrowRight className="w-4 h-4" />
-                            </Link>
-                        </div>
-                    </motion.div>
+
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══ SECCIÓN 1.5: Servicios Bancarios Unificados (Plan Maestro) ═══ */}
+            <section id="servicios-bancarios" className="py-24 bg-white border-b border-pe-gray-100">
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-pe-yellow-dark mb-2 block">Transparencia Total</span>
+                        <h2 className="text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: 'var(--font-lexend-deca)' }}>Servicios Bancarios <span className="text-pe-yellow-dark">Unificados</span></h2>
+                        <p className="text-pe-gray-500 max-w-2xl mx-auto font-medium">Depósitos, pagos de tarjeta y préstamos con comisiones claras. Sin sorpresas.</p>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {[
+                            {
+                                icon: Wallet, title: "Depósitos",
+                                desc: "Efectiviza tu dinero o ahorra al instante en cualquier banco o cooperativa del país.",
+                                comision: "$0.39 - $1.00",
+                                bancos: ["Pichincha", "Guayaquil", "Pacífico", "Loja", "Produbanco"],
+                                requisitos: "Número de Cuenta · Cédula · Valor",
+                                limite: "Hasta $2,000 por transacción"
+                            },
+                            {
+                                icon: CreditCard, title: "Pago de Tarjetas de Crédito",
+                                desc: "Cancela tus cuotas de tarjetas Visa, Mastercard, Diners y más, de cualquier banco.",
+                                comision: "$0.50 - $1.50",
+                                bancos: ["Pacificard", "Visa", "Mastercard", "Diners Club", "Bankard"],
+                                requisitos: "Número de Tarjeta · Cédula · Valor",
+                                limite: "Sin límite de monto"
+                            },
+                            {
+                                icon: FileText, title: "Pago de Préstamos y Créditos",
+                                desc: "Paga las cuotas de tus créditos quirografarios, hipotecarios o de consumo.",
+                                comision: "$0.50 - $1.00",
+                                bancos: ["Pichincha", "Guayaquil", "Solidario", "Cooperativas"],
+                                requisitos: "Cédula · Número de Operación · Valor",
+                                limite: "Hasta $5,000 por transacción"
+                            }
+                        ].map((serv, i) => (
+                            <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+                                className="p-8 rounded-[3rem] bg-pe-gray-50 border border-pe-gray-200 hover:border-pe-yellow/30 transition-all group hover:shadow-xl"
+                            >
+                                <serv.icon className="w-10 h-10 text-pe-yellow-dark mb-6 group-hover:scale-110 transition-transform" />
+                                <h4 className="text-xl font-black mb-3">{serv.title}</h4>
+                                <p className="text-sm text-pe-gray-500 font-medium leading-relaxed mb-6">{serv.desc}</p>
+
+
+                                <div className="mb-4">
+                                    <p className="text-[9px] font-black uppercase tracking-widest text-pe-black/40 mb-2">Bancos Disponibles</p>
+                                    <div className="flex flex-wrap gap-1.5">
+                                        {serv.bancos.map((b, idx) => (
+                                            <span key={idx} className="px-2.5 py-1 bg-white rounded-lg text-[10px] font-bold text-pe-black/60 border border-pe-gray-100">{b}</span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2 text-xs text-pe-black/50">
+                                    <div className="flex items-start gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-0.5" /><span>{serv.requisitos}</span></div>
+                                    <div className="flex items-start gap-2"><ShieldCheck className="w-3.5 h-3.5 text-blue-500 shrink-0 mt-0.5" /><span>{serv.limite}</span></div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </section>
 
@@ -250,7 +527,8 @@ export default function BancosPage() {
                             <motion.div
                                 key={i}
                                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                                className={`group p-8 rounded-[2.5rem] bg-white border ${entity.border} transition-all hover:scale-[1.03] shadow-sm hover:shadow-xl`}
+                                onClick={() => setSelectedEntity(entity)}
+                                className={`group p-8 rounded-[2.5rem] bg-white border ${entity.border} transition-all hover:scale-[1.03] shadow-sm hover:shadow-xl cursor-pointer`}
                             >
                                 <div className={`w-12 h-12 rounded-xl ${entity.color} ${entity.text} flex items-center justify-center mb-6`}>
                                     <Landmark className="w-6 h-6" />
@@ -278,7 +556,8 @@ export default function BancosPage() {
                                     {filteredEntities.slice(slideIndex * 3, slideIndex * 3 + 3).map((entity, i) => (
                                         <div
                                             key={i}
-                                            className={`p-6 rounded-[2rem] bg-white border ${entity.border} shadow-sm`}
+                                            onClick={() => setSelectedEntity(entity)}
+                                            className={`p-6 rounded-[2rem] bg-white border ${entity.border} shadow-sm cursor-pointer active:scale-[0.98] transition-transform`}
                                         >
                                             <div className="flex items-center gap-4 mb-4">
                                                 <div className={`w-10 h-10 rounded-xl ${entity.color} ${entity.text} flex items-center justify-center`}>
@@ -337,89 +616,10 @@ export default function BancosPage() {
                 </div>
             </section>
 
-            {/* ═══ SECCIÓN 3: Servicios Financieros Específicos ═══ */}
-            <section className="py-24 bg-white border-b border-pe-gray-100">
-                <div className="max-w-7xl mx-auto px-4">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-black mb-4" style={{ fontFamily: 'var(--font-lexend-deca)' }}>Servicios Financieros Especializados</h2>
-                        <p className="text-pe-gray-500 max-w-2xl mx-auto">Más que corresponsalía, somos tu aliado para trámites bancarios complejos.</p>
-                    </div>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {[
-                            { t: "Depósitos y Retiros", d: "Efectiviza tu dinero o ahorra al instante sin filas.", icon: Wallet },
-                            { t: "Pago de Tarjetas", d: "Cancela tus cuotas de cualquier banco nacional.", icon: CreditCard },
-                            { t: "Recaudaciones", d: "IESS, ANT, Multas de Tránsito y Municipales.", icon: FileText },
-                            { t: "Consulta de Saldos", d: "Verifica tu estado de cuenta antes de retirar.", icon: GanttChartSquare }
-                        ].map((serv, i) => (
-                            <div key={i} className="p-10 rounded-[3rem] bg-pe-gray-50 hover:bg-pe-yellow/5 transition-colors border border-transparent hover:border-pe-yellow/20 group">
-                                <serv.icon className="w-10 h-10 text-pe-yellow-dark mb-6 group-hover:scale-110 transition-transform" />
-                                <h4 className="text-xl font-black mb-3">{serv.t}</h4>
-                                <p className="text-sm text-pe-gray-500 font-medium leading-relaxed">{serv.d}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
-            {/* ═══ SECCIÓN 4: Seguridad y Cumplimiento ═══ */}
-            <section className="py-32 relative overflow-hidden bg-pe-black text-white">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pe-yellow via-white to-pe-yellow opacity-20" />
-                <div className="max-w-5xl mx-auto px-4 text-center">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-                        <div className="w-20 h-20 rounded-3xl bg-pe-yellow/20 flex items-center justify-center mx-auto mb-10 border border-pe-yellow/30">
-                            <ShieldCheck className="w-10 h-10 text-pe-yellow" />
-                        </div>
-                        <h2 className="text-3xl md:text-5xl font-black mb-8" style={{ fontFamily: 'var(--font-lexend-deca)' }}>Seguridad y Cumplimiento</h2>
-                        <p className="text-xl text-pe-gray-300 font-medium mb-12 leading-relaxed">
-                            "Operamos bajo la normativa de la <span className="text-white font-black">Superintendencia de Bancos</span> y la <span className="text-white font-black">SEPS</span>. Todas tus transacciones emiten un comprobante físico legal".
-                        </p>
-                        <div className="grid sm:grid-cols-3 gap-8">
-                            <div className="flex flex-col items-center gap-3">
-                                <Lock className="w-6 h-6 text-pe-yellow" />
-                                <p className="text-[10px] font-black tracking-widest uppercase">Encriptación SSL</p>
-                            </div>
-                            <div className="flex flex-col items-center gap-3">
-                                <ShieldCheck className="w-6 h-6 text-pe-yellow" />
-                                <p className="text-[10px] font-black tracking-widest uppercase">Certificados SEPS</p>
-                            </div>
-                            <div className="flex flex-col items-center gap-3">
-                                <UserCheck className="w-6 h-6 text-pe-yellow" />
-                                <p className="text-[10px] font-black tracking-widest uppercase">Protección de Datos</p>
-                            </div>
-                        </div>
-                        <p className="mt-16 text-xs text-white/30 font-bold uppercase tracking-[0.2em] italic">Tus datos bancarios son confidenciales y están protegidos por leyes de seguridad financiera.</p>
-                    </motion.div>
-                </div>
-            </section>
 
-            {/* ═══ SECCIÓN 5: Guía para el Usuario (Requisitos) ═══ */}
-            <section id="guia" className="py-24 bg-white">
-                <div className="max-w-7xl mx-auto px-4 text-center mb-16">
-                    <h2 className="text-4xl font-black mb-6" style={{ fontFamily: 'var(--font-lexend-deca)' }}>Guía de Requisitos</h2>
-                    <p className="text-pe-gray-500 font-medium max-w-xl mx-auto">Revisa lo que necesitas antes de acercarte a cualquiera de nuestros puntos.</p>
-                </div>
-                <div className="max-w-7xl mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                        {[
-                            { t: "Para Retiros", i: ["Cédula de Identidad original", "Teléfono para código OTP (si aplica)", "Tarjeta de débito (si el banco requiere)"] },
-                            { t: "Para Depósitos", i: ["Número de cuenta de destino", "Nombre completo del beneficiario", "Cédula del depositante"] },
-                            { t: "Para Pagos", i: ["Código de operación o contrato", "Monto exacto de la cuota", "Número de cédula del titular"] }
-                        ].map((req, i) => (
-                            <div key={i} className="p-10 rounded-[3rem] bg-pe-gray-50 border border-pe-gray-200">
-                                <h3 className="text-xl font-black mb-6 flex items-center gap-3 underline decoration-pe-yellow decoration-4 underline-offset-4">{req.t}</h3>
-                                <ul className="space-y-4">
-                                    {req.i.map((item, idx) => (
-                                        <li key={idx} className="flex items-start gap-3 text-sm font-bold text-pe-black/60">
-                                            <div className="w-5 h-5 rounded-full bg-pe-yellow flex items-center justify-center shrink-0 mt-0.5"><Check className="w-3 h-3 text-pe-black" /></div>
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+
+
 
             {/* ═══ SECCIÓN 6: Ubicaciones y Horarios (Rediseño 3 Columnas) ═══ */}
             <section className="py-24 bg-pe-gray-50 overflow-hidden">

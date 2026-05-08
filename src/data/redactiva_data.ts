@@ -1,0 +1,3368 @@
+export const REDACTIVA_DATA = {
+  "AF": {
+    "pais": "Afganistán",
+    "iso": "AF",
+    "moneda": "AFN",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AL": {
+    "pais": "Albania",
+    "iso": "AL",
+    "moneda": "ALL",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "DE": {
+    "pais": "Alemania",
+    "iso": "DE",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AD": {
+    "pais": "Andorra",
+    "iso": "AD",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AO": {
+    "pais": "Angola",
+    "iso": "AO",
+    "moneda": "AOA",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AI": {
+    "pais": "Anguila",
+    "iso": "AI",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AG": {
+    "pais": "Antigua y Barbuda",
+    "iso": "AG",
+    "moneda": "XCD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SA": {
+    "pais": "Arabia Saudi",
+    "iso": "SA",
+    "moneda": "SAR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AR": {
+    "pais": "Argentina",
+    "iso": "AR",
+    "moneda": "ARS",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AW": {
+    "pais": "Aruba",
+    "iso": "AW",
+    "moneda": "AWG",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AU": {
+    "pais": "Australia",
+    "iso": "AU",
+    "moneda": "AUD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AT": {
+    "pais": "Austria",
+    "iso": "AT",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PS": {
+    "pais": "Autoridad Palestina",
+    "iso": "PS",
+    "moneda": "ILS",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AZ": {
+    "pais": "Azerbaiyán",
+    "iso": "AZ",
+    "moneda": "AZN",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BS": {
+    "pais": "Bahamas",
+    "iso": "BS",
+    "moneda": "BSD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BD": {
+    "pais": "Bangladesh",
+    "iso": "BD",
+    "moneda": "BDT",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BB": {
+    "pais": "Barbados",
+    "iso": "BB",
+    "moneda": "BBD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BH": {
+    "pais": "Baréin",
+    "iso": "BH",
+    "moneda": "BHD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BE": {
+    "pais": "Bélgica",
+    "iso": "BE",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "QQ": {
+    "pais": "Bélgica Base Militar US",
+    "iso": "QQ",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BZ": {
+    "pais": "Bélice",
+    "iso": "BZ",
+    "moneda": "BZD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BJ": {
+    "pais": "Benin",
+    "iso": "BJ",
+    "moneda": "XOF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BO": {
+    "pais": "Bolivia",
+    "iso": "BO",
+    "moneda": "BOB",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "B1": {
+    "pais": "Bonaire",
+    "iso": "B1",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BA": {
+    "pais": "Bosnia-Herzegovina",
+    "iso": "BA",
+    "moneda": "BAD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BW": {
+    "pais": "Botsuana",
+    "iso": "BW",
+    "moneda": "BWP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BR": {
+    "pais": "Brasil",
+    "iso": "BR",
+    "moneda": "BRL",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BN": {
+    "pais": "Brunei Darussalam",
+    "iso": "BN",
+    "moneda": "BND",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BG": {
+    "pais": "Bulgaria",
+    "iso": "BG",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BF": {
+    "pais": "Burkina Faso",
+    "iso": "BF",
+    "moneda": "XOF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BI": {
+    "pais": "Burundi",
+    "iso": "BI",
+    "moneda": "BIF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BT": {
+    "pais": "Bután",
+    "iso": "BT",
+    "moneda": "BTN",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CV": {
+    "pais": "Cabo Verde",
+    "iso": "CV",
+    "moneda": "CVE",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "KH": {
+    "pais": "Camboya",
+    "iso": "KH",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CM": {
+    "pais": "Camerún",
+    "iso": "CM",
+    "moneda": "XAF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CA": {
+    "pais": "Canadá",
+    "iso": "CA",
+    "moneda": "CAD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "TD": {
+    "pais": "Chad",
+    "iso": "TD",
+    "moneda": "XAF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CL": {
+    "pais": "Chile",
+    "iso": "CL",
+    "moneda": "CLP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CN": {
+    "pais": "China",
+    "iso": "CN",
+    "moneda": "CNY",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CY": {
+    "pais": "Chipre",
+    "iso": "CY",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CO": {
+    "pais": "Colombia",
+    "iso": "CO",
+    "moneda": "COP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "250",
+        "taxes": {
+          "tax": "038",
+          "countryTax": "000"
+        },
+        "totalAmount": "10288"
+      }
+    }
+  },
+  "KM": {
+    "pais": "Comoras",
+    "iso": "KM",
+    "moneda": "KMF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CD": {
+    "pais": "Congo, Republica Democrática",
+    "iso": "CD",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CG": {
+    "pais": "Congo-Brazzaville",
+    "iso": "CG",
+    "moneda": "XAF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CI": {
+    "pais": "Costa de Marfil",
+    "iso": "CI",
+    "moneda": "XOF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CR": {
+    "pais": "Costa Rica",
+    "iso": "CR",
+    "moneda": "CRC",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "HR": {
+    "pais": "Croacia",
+    "iso": "HR",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AN": {
+    "pais": "Curacao",
+    "iso": "AN",
+    "moneda": "ANG",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "DK": {
+    "pais": "Dinamarca",
+    "iso": "DK",
+    "moneda": "DKK",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "DM": {
+    "pais": "Dominica",
+    "iso": "DM",
+    "moneda": "XCD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "EC": {
+    "pais": "Ecuador",
+    "iso": "EC",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "EG": {
+    "pais": "Egipto",
+    "iso": "EG",
+    "moneda": "EGP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SV": {
+    "pais": "El Salvador",
+    "iso": "SV",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AE": {
+    "pais": "Emiratos Árabes Unidos",
+    "iso": "AE",
+    "moneda": "AED",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "ER": {
+    "pais": "Eritrea",
+    "iso": "ER",
+    "moneda": "ERN",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "XS": {
+    "pais": "Escocia",
+    "iso": "XS",
+    "moneda": "GBP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SK": {
+    "pais": "Eslovaquia",
+    "iso": "SK",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SI": {
+    "pais": "Eslovenia",
+    "iso": "SI",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "ES": {
+    "pais": "España",
+    "iso": "ES",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "US": {
+    "pais": "Estados Unidos",
+    "iso": "US",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "EE": {
+    "pais": "Estonia",
+    "iso": "EE",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "FJ": {
+    "pais": "Fiji",
+    "iso": "FJ",
+    "moneda": "FJD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PH": {
+    "pais": "Filipinas",
+    "iso": "PH",
+    "moneda": "PHP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "FI": {
+    "pais": "Finlandia",
+    "iso": "FI",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "FR": {
+    "pais": "Francia",
+    "iso": "FR",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GA": {
+    "pais": "Gabón",
+    "iso": "GA",
+    "moneda": "XAF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "XR": {
+    "pais": "Gales",
+    "iso": "XR",
+    "moneda": "GBP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GM": {
+    "pais": "Gambia",
+    "iso": "GM",
+    "moneda": "GMD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GE": {
+    "pais": "Georgia",
+    "iso": "GE",
+    "moneda": "GEL",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GH": {
+    "pais": "Ghana",
+    "iso": "GH",
+    "moneda": "GHS",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GD": {
+    "pais": "Granada",
+    "iso": "GD",
+    "moneda": "XCD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GR": {
+    "pais": "Grecia",
+    "iso": "GR",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GT": {
+    "pais": "Guatemala",
+    "iso": "GT",
+    "moneda": "GTQ",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GF": {
+    "pais": "Guayana Francesa",
+    "iso": "GF",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GN": {
+    "pais": "Guinea",
+    "iso": "GN",
+    "moneda": "GNF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GQ": {
+    "pais": "Guinea Ecuatorial",
+    "iso": "GQ",
+    "moneda": "XAF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GW": {
+    "pais": "Guinea-Bissau",
+    "iso": "GW",
+    "moneda": "XOF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GY": {
+    "pais": "Guyana",
+    "iso": "GY",
+    "moneda": "GYD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "HT": {
+    "pais": "Haití",
+    "iso": "HT",
+    "moneda": "HTG",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "HN": {
+    "pais": "Honduras",
+    "iso": "HN",
+    "moneda": "HNL",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "HK": {
+    "pais": "Hong Kong",
+    "iso": "HK",
+    "moneda": "HKD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "HU": {
+    "pais": "Hungría",
+    "iso": "HU",
+    "moneda": "HUF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "IN": {
+    "pais": "India",
+    "iso": "IN",
+    "moneda": "INR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "ID": {
+    "pais": "Indonesia",
+    "iso": "ID",
+    "moneda": "IDR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "XQ": {
+    "pais": "Inglaterra",
+    "iso": "XQ",
+    "moneda": "GBP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "IQ": {
+    "pais": "Irak",
+    "iso": "IQ",
+    "moneda": "IQD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "IE": {
+    "pais": "Irlanda",
+    "iso": "IE",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "XZ": {
+    "pais": "Irlanda del Norte",
+    "iso": "XZ",
+    "moneda": "GBP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "RE": {
+    "pais": "Isla Reunión",
+    "iso": "RE",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "IS": {
+    "pais": "Islandia",
+    "iso": "IS",
+    "moneda": "ISK",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "KY": {
+    "pais": "Islas Caimán",
+    "iso": "KY",
+    "moneda": "KYD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CK": {
+    "pais": "Islas Cook",
+    "iso": "CK",
+    "moneda": "NZD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "FK": {
+    "pais": "Islas Malvinas",
+    "iso": "FK",
+    "moneda": "FKP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MH": {
+    "pais": "Islas Marshall",
+    "iso": "MH",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SB": {
+    "pais": "Islas Salomón",
+    "iso": "SB",
+    "moneda": "SBD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "TC": {
+    "pais": "Islas Turcas y Caicos",
+    "iso": "TC",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "VG": {
+    "pais": "Islas Vírgenes (Brit",
+    "iso": "VG",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "VI": {
+    "pais": "Islas Vírgenes (EE.UU.)",
+    "iso": "VI",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "IL": {
+    "pais": "Israel",
+    "iso": "IL",
+    "moneda": "ILS",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "IT": {
+    "pais": "Italia",
+    "iso": "IT",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "JM": {
+    "pais": "Jamaica",
+    "iso": "JM",
+    "moneda": "JMD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "JP": {
+    "pais": "Japón",
+    "iso": "JP",
+    "moneda": "JPY",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "JO": {
+    "pais": "Jordania",
+    "iso": "JO",
+    "moneda": "JOD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "KZ": {
+    "pais": "Kazajstán",
+    "iso": "KZ",
+    "moneda": "KZT",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "KE": {
+    "pais": "Kenia",
+    "iso": "KE",
+    "moneda": "KES",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "K1": {
+    "pais": "Kosovo",
+    "iso": "K1",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "XF": {
+    "pais": "Kosovo Base Militar US",
+    "iso": "XF",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "KW": {
+    "pais": "Kuwait",
+    "iso": "KW",
+    "moneda": "KWD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LA": {
+    "pais": "Laos",
+    "iso": "LA",
+    "moneda": "LAK",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LS": {
+    "pais": "Lesotho",
+    "iso": "LS",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LV": {
+    "pais": "Letonia",
+    "iso": "LV",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LB": {
+    "pais": "Líbano",
+    "iso": "LB",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LR": {
+    "pais": "Liberia",
+    "iso": "LR",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LY": {
+    "pais": "Libia",
+    "iso": "LY",
+    "moneda": "LYD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LI": {
+    "pais": "Liechtenstein",
+    "iso": "LI",
+    "moneda": "CHF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LT": {
+    "pais": "Lituania",
+    "iso": "LT",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LU": {
+    "pais": "Luxemburgo",
+    "iso": "LU",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MO": {
+    "pais": "Macao",
+    "iso": "MO",
+    "moneda": "MOP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MG": {
+    "pais": "Madagascar",
+    "iso": "MG",
+    "moneda": "MGA",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MY": {
+    "pais": "Malasia",
+    "iso": "MY",
+    "moneda": "MYR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MW": {
+    "pais": "Malawi",
+    "iso": "MW",
+    "moneda": "MWK",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MV": {
+    "pais": "Maldivas",
+    "iso": "MV",
+    "moneda": "MVR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "ML": {
+    "pais": "Mali",
+    "iso": "ML",
+    "moneda": "XOF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MT": {
+    "pais": "Malta",
+    "iso": "MT",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MA": {
+    "pais": "Marruecos",
+    "iso": "MA",
+    "moneda": "MAD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MQ": {
+    "pais": "Martinica",
+    "iso": "MQ",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MU": {
+    "pais": "Mauricio",
+    "iso": "MU",
+    "moneda": "MUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MR": {
+    "pais": "Mauritania",
+    "iso": "MR",
+    "moneda": "MRU",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "YT": {
+    "pais": "Mayotte",
+    "iso": "YT",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MX": {
+    "pais": "México",
+    "iso": "MX",
+    "moneda": "MXN",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "FM": {
+    "pais": "Micronesia",
+    "iso": "FM",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MC": {
+    "pais": "Mónaco",
+    "iso": "MC",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "ME": {
+    "pais": "Montenegro",
+    "iso": "ME",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MS": {
+    "pais": "Montserrat",
+    "iso": "MS",
+    "moneda": "XCD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MZ": {
+    "pais": "Mozambique",
+    "iso": "MZ",
+    "moneda": "MZN",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MM": {
+    "pais": "Myanmar",
+    "iso": "MM",
+    "moneda": "MMK",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "NA": {
+    "pais": "Namibia",
+    "iso": "NA",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "NR": {
+    "pais": "Nauru",
+    "iso": "NR",
+    "moneda": "AUD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "NP": {
+    "pais": "Nepal",
+    "iso": "NP",
+    "moneda": "NPR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "NI": {
+    "pais": "Nicaragua",
+    "iso": "NI",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "NE": {
+    "pais": "Níger",
+    "iso": "NE",
+    "moneda": "XOF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "NG": {
+    "pais": "Nigeria",
+    "iso": "NG",
+    "moneda": "NGN",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "NU": {
+    "pais": "Niue",
+    "iso": "NU",
+    "moneda": "NZD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "NO": {
+    "pais": "Noruega",
+    "iso": "NO",
+    "moneda": "NOK",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "NZ": {
+    "pais": "Nueva Zelanda",
+    "iso": "NZ",
+    "moneda": "NZD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "OM": {
+    "pais": "Omán",
+    "iso": "OM",
+    "moneda": "OMR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "NL": {
+    "pais": "Países Bajos",
+    "iso": "NL",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PK": {
+    "pais": "Pakistán",
+    "iso": "PK",
+    "moneda": "PKR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PW": {
+    "pais": "Palau",
+    "iso": "PW",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PA": {
+    "pais": "Panamá",
+    "iso": "PA",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PG": {
+    "pais": "Papua Nueva Guinea",
+    "iso": "PG",
+    "moneda": "PGK",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PY": {
+    "pais": "Paraguay",
+    "iso": "PY",
+    "moneda": "PYG",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PE": {
+    "pais": "Perú",
+    "iso": "PE",
+    "moneda": "PEN",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PL": {
+    "pais": "Polonia",
+    "iso": "PL",
+    "moneda": "PLN",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PT": {
+    "pais": "Portugal",
+    "iso": "PT",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "PR": {
+    "pais": "Puerto Rico",
+    "iso": "PR",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "QA": {
+    "pais": "Qatar",
+    "iso": "QA",
+    "moneda": "QAR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "GB": {
+    "pais": "Reino Unido",
+    "iso": "GB",
+    "moneda": "GBP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CF": {
+    "pais": "República Centroafricana",
+    "iso": "CF",
+    "moneda": "XAF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CZ": {
+    "pais": "República Checa",
+    "iso": "CZ",
+    "moneda": "CZK",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MD": {
+    "pais": "República de Moldavia",
+    "iso": "MD",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "C2": {
+    "pais": "República del Norte de Chipre",
+    "iso": "C2",
+    "moneda": "GBP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "DO": {
+    "pais": "República Dominicana",
+    "iso": "DO",
+    "moneda": "DOP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "TZ": {
+    "pais": "República Unida de Tanzania",
+    "iso": "TZ",
+    "moneda": "TZS",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "XW": {
+    "pais": "Rota, CIMN",
+    "iso": "XW",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "RW": {
+    "pais": "Ruanda",
+    "iso": "RW",
+    "moneda": "RWF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "RO": {
+    "pais": "Rumania",
+    "iso": "RO",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "XU": {
+    "pais": "Saipan, CIMN",
+    "iso": "XU",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "WS": {
+    "pais": "Samoa",
+    "iso": "WS",
+    "moneda": "WST",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "AS": {
+    "pais": "Samoa Norteamericana",
+    "iso": "AS",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "BL": {
+    "pais": "San Bartolomé",
+    "iso": "BL",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "KN": {
+    "pais": "San Cristóbal y Nieves",
+    "iso": "KN",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "MF": {
+    "pais": "San Martin",
+    "iso": "MF",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "VC": {
+    "pais": "San Vicente y las Granadinas",
+    "iso": "VC",
+    "moneda": "XCD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LC": {
+    "pais": "Santa Lucía",
+    "iso": "LC",
+    "moneda": "XCD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "XD": {
+    "pais": "Santo Tomas",
+    "iso": "XD",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "ST": {
+    "pais": "Santo Tomé y Pr",
+    "iso": "ST",
+    "moneda": "STN",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SN": {
+    "pais": "Senegal",
+    "iso": "SN",
+    "moneda": "XOF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SC": {
+    "pais": "Seychelles",
+    "iso": "SC",
+    "moneda": "SCR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SL": {
+    "pais": "Sierra Leona",
+    "iso": "SL",
+    "moneda": "SLE",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SG": {
+    "pais": "Singapur",
+    "iso": "SG",
+    "moneda": "SGD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SY": {
+    "pais": "Siria",
+    "iso": "SY",
+    "moneda": "SYP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SO": {
+    "pais": "Somalia",
+    "iso": "SO",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "XA": {
+    "pais": "Somalilandia",
+    "iso": "XA",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "LK": {
+    "pais": "Sri Lanka",
+    "iso": "LK",
+    "moneda": "LKR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "ZA": {
+    "pais": "Sudáfrica",
+    "iso": "ZA",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "SD": {
+    "pais": "Sudán",
+    "iso": "SD",
+    "moneda": "SDG",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "CH": {
+    "pais": "Suiza",
+    "iso": "CH",
+    "moneda": "CHF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "TP": {
+    "pais": "Timor-Leste",
+    "iso": "TP",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "XV": {
+    "pais": "Tinian, CIMN",
+    "iso": "XV",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "TG": {
+    "pais": "Togo",
+    "iso": "TG",
+    "moneda": "XOF",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "TO": {
+    "pais": "Tonga",
+    "iso": "TO",
+    "moneda": "TOP",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "TT": {
+    "pais": "Trinidad y Tobago",
+    "iso": "TT",
+    "moneda": "TTD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "TN": {
+    "pais": "Túnez",
+    "iso": "TN",
+    "moneda": "TND",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "TM": {
+    "pais": "Turkmenistan",
+    "iso": "TM",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "TR": {
+    "pais": "Turquía",
+    "iso": "TR",
+    "moneda": "EUR",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "UA": {
+    "pais": "Ucrania",
+    "iso": "UA",
+    "moneda": "UAH",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  },
+  "UY": {
+    "pais": "Uruguay",
+    "iso": "UY",
+    "moneda": "USD",
+    "raw": {
+      "serviceName": "App Red Activa",
+      "costDetails": {
+        "amount": "10000",
+        "charges": "300",
+        "taxes": {
+          "tax": "045",
+          "countryTax": "000"
+        },
+        "totalAmount": "10345"
+      }
+    }
+  }
+};

@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Link from "next/link";
+import { REDACTIVA_DATA } from '@/data/redactiva_data';
+import { REDACTIVA_TARIFAS } from '@/data/redactiva_tarifas';
 import {
     Send,
     ArrowRight,
@@ -20,7 +22,14 @@ import {
     CheckCircle2,
     ChevronDown,
     Calculator,
-    Info
+    Info,
+    Upload,
+    ChevronRight,
+    QrCode,
+    Banknote,
+    FileText,
+    ArrowLeft,
+    Search
 } from "lucide-react";
 import Image from "next/image";
 
@@ -63,7 +72,20 @@ const faqs = [
 ];
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
-const sweepRight: Variants = { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } } };
+const sweepRight: Variants = { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } } };
+const sweepLeft: Variants = { hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } } };
+
+// ═══ Data Helpers ═══
+const COUNTRIES = Object.values(REDACTIVA_DATA)
+    .map(c => c.pais)
+    .sort((a, b) => a.localeCompare(b));
+
+const COUNTRY_MAP = Object.values(REDACTIVA_DATA).reduce((acc, curr) => {
+    acc[curr.pais] = curr;
+    return acc;
+}, {} as Record<string, any>);
+
+const TARIFA_MAP = REDACTIVA_TARIFAS as Record<string, any>;
 
 const AccordionItem = ({ question, answer }: { question: string, answer: string }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -74,7 +96,7 @@ const AccordionItem = ({ question, answer }: { question: string, answer: string 
                 className="w-full py-6 flex items-center justify-between text-left group"
             >
                 <span className="text-lg font-black uppercase tracking-tight text-black group-hover:text-black/60 transition-colors">{question}</span>
-                <ChevronDown className={`w - 5 h - 5 transition - transform duration - 300 ${isOpen ? "rotate-180" : ""} `} />
+                <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
             </button>
             <AnimatePresence>
                 {isOpen && (
@@ -93,69 +115,533 @@ const AccordionItem = ({ question, answer }: { question: string, answer: string 
 };
 
 export default function WesternUnionPage() {
-    const [sendAmount, setSendAmount] = useState("100");
-    const [destination, setDestination] = useState("internacional");
     const [activeFaq, setActiveFaq] = useState<number | null>(null);
+    const [cobroStep, setCobroStep] = useState(1);
+    const [appStep, setAppStep] = useState(1);
+    const [channel, setChannel] = useState<"cobro" | "envio" | "app" | null>(null);
+    const [formData, setFormData] = useState({
+        mtcn: "",
+        appCode: "",
+        amount: "100",
+        beneficiary: "",
+        sender: "",
+        idFront: null as File | null,
+        idBack: null as File | null,
+        receipt: null as File | null,
+        idFrontUrl: "",
+        idBackUrl: "",
+        receiptUrl: ""
+    });
+    const [isUploading, setIsUploading] = useState(false);
+    const [selectedCountryName, setSelectedCountryName] = useState("Estados Unidos");
+    const [result, setResult] = useState<any>(null);
+    const [isCountryListOpen, setIsCountryListOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
 
     // Dynamic Calculation Logic
-    const amount = Number(sendAmount) || 0;
-    const isInternational = destination !== "nacional";
+    const calculateCommission = (amount: number, countryName: string) => {
+        const countryData = COUNTRY_MAP[countryName];
+        const countryIso = countryData?.iso;
+        const baseRateData = TARIFA_MAP[countryIso];
 
-    // Estimación de comisión (Banda simple)
-    const commission = amount > 0 ? Math.max(5, amount * (isInternational ? 0.05 : 0.02)) : 0;
-    const isdTax = isInternational ? (amount * 0.05) : 0;
-    const total = amount + commission + isdTax;
+        // Base commission for $100 from JSON (raw.costDetails.charges is in cents)
+        const jsonChargesCents = parseInt(countryData?.raw?.costDetails?.charges || "500");
+        const baseCommissionFor100 = jsonChargesCents / 100;
+
+        let commission = 0;
+        const scaleFactor = baseCommissionFor100 / 5.00; // Scale relative to our standard $5.00 tier for $100
+
+        // Tiered logic scaled by the country's base rate
+        if (amount <= 50) commission = 3.50 * scaleFactor;
+        else if (amount <= 100) commission = 5.00 * scaleFactor;
+        else if (amount <= 200) commission = 8.00 * scaleFactor;
+        else if (amount <= 300) commission = 12.00 * scaleFactor;
+        else if (amount <= 400) commission = 16.00 * scaleFactor;
+        else if (amount <= 500) commission = 20.00 * scaleFactor;
+        else commission = amount * 0.04;
+
+        // Ensure a reasonable minimum commission
+        commission = Math.max(commission, 1.50);
+
+        // IVA is 15% of the commission in Ecuador
+        const iva = commission * 0.15;
+
+        // ISD is 5% of the amount for international transfers (simplified)
+        // If it's internal (EC), ISD is 0.
+        const isd = (countryIso !== 'EC') ? amount * 0.05 : 0;
+
+        return {
+            commission,
+            iva,
+            isd,
+            total: amount + commission + iva + isd
+        };
+    };
+
+    useEffect(() => {
+        const amt = parseFloat(formData.amount);
+        if (amt >= 1 && selectedCountryName) {
+            const results = calculateCommission(amt, selectedCountryName);
+            setResult(results);
+        } else {
+            setResult(null);
+        }
+    }, [formData.amount, selectedCountryName]);
+
+    const handleFileUpload = async (file: File, type: "idFront" | "idBack" | "receipt") => {
+        setIsUploading(true);
+        const data = new FormData();
+        data.append("file", file);
+
+        try {
+            const res = await fetch("/api/upload", { method: "POST", body: data });
+            const result = await res.json();
+            if (result.url) {
+                setFormData(prev => ({ ...prev, [`${type}Url`]: result.url, [type]: file }));
+            }
+        } catch (error) {
+            console.error("Upload error:", error);
+        } finally {
+            setIsUploading(false);
+        }
+    };
+
+    const handleWhatsAppSubmit = (selectedChannel: "cobro" | "envio" | "app") => {
+        let message = "";
+        if (selectedChannel === "cobro") {
+            message = `*NUEVO COBRO WESTERN UNION*%0A%0A` +
+                `*MTCN:* ${formData.mtcn}%0A` +
+                `*Beneficiario:* ${formData.beneficiary}%0A` +
+                `*Cédula Frontal:* ${formData.idFrontUrl}%0A` +
+                `*Cédula Posterior:* ${formData.idBackUrl}`;
+        } else if (selectedChannel === "app") {
+            message = `*NUEVO ENVÍO POR APP (WESTERN UNION)*%0A%0A` +
+                `*Código App (6 dígitos):* ${formData.appCode}%0A` +
+                `*Monto a Depositar:* $${formData.amount}%0A` +
+                `*Comprobante Transferencia:* ${formData.receiptUrl}`;
+        } else {
+            message = `*SOLICITUD DE ENVÍO WESTERN UNION*%0A%0A` +
+                `*Monto:* $${formData.amount}%0A` +
+                `*País Destino:* ${selectedCountryName}%0A` +
+                `*Tarifa:* $${result?.commission.toFixed(2)}%0A` +
+                `*IVA:* $${result?.iva.toFixed(2)}%0A` +
+                `*ISD:* $${result?.isd.toFixed(2)}%0A` +
+                `*Total Estimado:* $${result?.total.toFixed(2)}`;
+        }
+
+        window.open(`https://wa.me/593990227203?text=${message}`, "_blank");
+    };
+
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const heroSlides = [
+        { url: "/images/header logo/western-union.webp", alt: "Western Union Agente Oficial" },
+        { url: "/paying-wu.png", alt: "Pagando en Western Union" }
+    ];
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [heroSlides.length]);
 
     return (
         <main className="min-h-screen bg-white text-black selection:bg-black selection:text-[#FFDD00] font-sans">
-
-
-
-            {/* ═══ Section 1: Hero (Official WU Style) ═══ */}
-            <section className="relative overflow-hidden min-h-[calc(100vh-80px)] lg:min-h-[70vh] flex items-center bg-[#FFDD00] pt-28 pb-16 lg:pt-20 lg:pb-0">
-                <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `radial-gradient(circle, black 0.5px, transparent 0.5px)`, backgroundSize: "24px 24px" }} />
-
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 w-full">
-                    <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center">
-                        <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-black/10 mb-8 bg-black/5">
-                            <div className="flex items-center gap-2 border-r border-black/20 pr-3">
-                                <span className="w-2 h-2 rounded-full bg-black animate-pulse" />
-                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black/70">Agente Oficial</span>
+            <section className="relative overflow-hidden min-h-[70vh] flex items-center bg-[#FFDD00]">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full py-20">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Left Side: Content */}
+                        <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center lg:text-left order-2 lg:order-1">
+                            <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-black/10 mb-8 bg-black/5 backdrop-blur-sm">
+                                <div className="flex items-center gap-2 border-r border-black/20 pr-3">
+                                    <span className="w-2 h-2 rounded-full bg-black animate-pulse" />
+                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black/70">Agente Oficial</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <Image src="/images/header logo/western-union.webp" alt="Western Union" width={80} height={20} className="h-4 w-auto object-contain" />
+                                    <div className="w-px h-3 bg-black/20" />
+                                    <span className="text-[9px] font-black uppercase tracking-widest text-black/50">Red Activa</span>
+                                </div>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <Image src="/images/header logo/western-union.webp" alt="Western Union" width={80} height={20} className="h-4 w-auto object-contain" />
-                                <div className="w-px h-3 bg-black/20" />
-                                <span className="text-[9px] font-black uppercase tracking-widest text-black/50">Red Activa</span>
+
+                            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black leading-[1] tracking-tighter mb-4 uppercase text-black italic">
+                                WESTERN UNION<br />
+                                <span className="opacity-40 text-3xl sm:text-4xl lg:text-5xl block mt-2">EN TODO EL ECUADOR</span>
+                            </h1>
+                            <p className="text-xl sm:text-2xl font-medium text-black/70 mb-10">
+                                Mejores tarifas, envío y recepción.
+                            </p>
+
+                            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                                <button
+                                    onClick={() => {
+                                        setChannel("cobro");
+                                        setCobroStep(1);
+                                        document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                    className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-black text-[#FFDD00] font-black uppercase tracking-widest rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-black/20"
+                                >
+                                    <Zap className="w-5 h-5 group-hover:scale-110 transition-transform fill-[#FFDD00]" />
+                                    Cobrar Giro
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setChannel("envio");
+                                        document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-black text-black font-black rounded-full hover:bg-black/5 transition-all uppercase tracking-widest text-sm"
+                                >
+                                    Enviar Dinero
+                                    <Send className="w-4 h-4" />
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setChannel("app");
+                                        setAppStep(1);
+                                        document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
+                                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-transparent text-black font-black rounded-full hover:shadow-xl hover:scale-105 transition-all uppercase tracking-widest text-sm shadow-md"
+                                >
+                                    <Smartphone className="w-4 h-4" />
+                                    Pago por App
+                                </button>
+                            </div>
+                        </motion.div>
+
+                        {/* Right Side: Slider */}
+                        <div className="relative h-[350px] sm:h-[450px] lg:h-[550px] order-1 lg:order-2">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={currentSlide}
+                                    initial={{ opacity: 0, x: 50, scale: 0.95 }}
+                                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                                    exit={{ opacity: 0, x: -50, scale: 0.95 }}
+                                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                    className="absolute inset-0 flex items-center justify-center"
+                                >
+                                    <div className="relative w-full h-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
+                                        <Image
+                                            src={heroSlides[currentSlide].url}
+                                            alt={heroSlides[currentSlide].alt}
+                                            fill
+                                            className="object-contain p-4 lg:p-8"
+                                            priority
+                                        />
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
+                            
+                            {/* Decorative elements behind image */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-black/5 rounded-full blur-3xl -z-10" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══ Section 2: Diferenciadores Locales ═══ */}
+            <section className="py-24 bg-black text-white relative overflow-hidden">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-20 items-center">
+                        <div>
+                            <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase italic tracking-tighter leading-tight">
+                                ¿POR QUÉ <span style={{ color: WU_YELLOW }}>PAGOEXPRESS</span> <br />EN LUGAR DEL BANCO?
+                            </h2>
+                            <div className="space-y-4">
+                                {[
+                                    { title: "Sin Filas Bancarias", desc: "Atención ágil pensada en tu tiempo, sin esperas innecesarias.", icon: Clock },
+                                    { title: "Horarios Extendidos", desc: "Atendemos cuando otros cierran, incluyendo fines de semana.", icon: RefreshCcw },
+                                    { title: "Ubicaciones Estratégicas", desc: "En puntos estratégicos de la ciudad, cerca de donde te encuentras.", icon: MapPin }
+                                ].map((item, i) => (
+                                    <motion.div
+                                        key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                                        className="flex items-start gap-5 p-6 rounded-[2rem] bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
+                                    >
+                                        <div className="w-12 h-12 rounded-2xl bg-[#FFDD00] flex items-center justify-center shrink-0">
+                                            <item.icon className="w-6 h-6 text-black" />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-xl font-black mb-1 uppercase tracking-tight">{item.title}</h4>
+                                            <p className="text-white/40 font-medium leading-relaxed">{item.desc}</p>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/10 group">
+                            <Image src="/images/header logo/western-union.webp" alt="Western Union Official Agent" fill className="object-contain p-20 grayscale group-hover:grayscale-0 transition-all duration-700 opacity-20" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                            <div className="absolute bottom-12 left-12 right-12 text-center">
+                                <div className="text-5xl font-black text-[#FFDD00] mb-2 uppercase italic tracking-tighter">19+ Años</div>
+                                <div className="text-xs font-black uppercase tracking-[0.3em] text-white/50">Sirviendo a la comunidad ecuatoriana</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══ Section: Interactive Simulator (The 3 Channels) ═══ */}
+            <section id="simulador" className="py-24 bg-white border-b border-black/5 scroll-mt-20">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl sm:text-5xl font-black text-black uppercase italic tracking-tighter">
+                            ¿QUÉ DESEAS <span className="text-black/30">REALIZAR HOY?</span>
+                        </h2>
+                        <p className="mt-4 text-pe-gray-500 font-medium">Inicia tu trámite digital directamente desde nuestras ventanillas virtuales.</p>
+                    </div>
+
+                    <div className="grid lg:grid-cols-3 gap-8 items-start">
+                        {/* Flow 1: COBRO DE GIRO */}
+                        <div className="bg-pe-gray-50 border border-pe-gray-100 rounded-[3rem] p-8 md:p-10 relative overflow-hidden h-full flex flex-col">
+                            <div className="text-center mb-10">
+                                <div className="inline-block p-4 rounded-3xl bg-black text-[#FFDD00] mb-6">
+                                    <Banknote className="w-8 h-8" />
+                                </div>
+                                <h3 className="text-2xl font-black text-black uppercase italic tracking-tighter leading-tight">COBRO DE<br />TRANSFERENCIA</h3>
+                            </div>
+
+                            <div className="flex-1 space-y-8">
+                                {cobroStep === 1 ? (
+                                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+                                        <div className="space-y-4">
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-black uppercase tracking-widest text-black/40 px-4">Código MTCN (10 dígitos)</label>
+                                                <input
+                                                    type="text"
+                                                    maxLength={10}
+                                                    value={formData.mtcn}
+                                                    onChange={(e) => setFormData(prev => ({ ...prev, mtcn: e.target.value }))}
+                                                    placeholder="000-000-0000"
+                                                    className="w-full bg-white border border-pe-gray-100 rounded-2xl p-6 text-xl font-black focus:outline-none focus:border-[#FFDD00] transition-all"
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-black uppercase tracking-widest text-black/40 px-4">Beneficiario</label>
+                                                <input
+                                                    type="text"
+                                                    value={formData.beneficiary}
+                                                    onChange={(e) => setFormData(prev => ({ ...prev, beneficiary: e.target.value }))}
+                                                    placeholder="Nombres y Apellidos"
+                                                    className="w-full bg-white border border-pe-gray-100 rounded-2xl p-6 text-lg font-bold focus:outline-none focus:border-[#FFDD00] transition-all"
+                                                />
+                                            </div>
+                                        </div>
+                                        <button
+                                            disabled={!formData.mtcn || !formData.beneficiary}
+                                            onClick={() => setCobroStep(2)}
+                                            className="w-full py-6 bg-black text-[#FFDD00] font-black rounded-2xl flex items-center justify-center gap-3 disabled:opacity-30 transition-all uppercase tracking-widest"
+                                        >
+                                            Identidad <ChevronRight className="w-5 h-5" />
+                                        </button>
+                                    </motion.div>
+                                ) : (
+                                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8">
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-black uppercase text-black/40 block text-center">Cédula Frontal</label>
+                                                <div className="relative aspect-[3/2] bg-white border-2 border-dashed border-pe-gray-100 rounded-2xl flex items-center justify-center overflow-hidden">
+                                                    {formData.idFrontUrl ? <Image src={formData.idFrontUrl} alt="ID Front" fill className="object-cover" /> : <Upload className="w-6 h-6 text-black/20" />}
+                                                    <input type="file" accept="image/*" onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0], "idFront")} className="absolute inset-0 opacity-0 cursor-pointer" />
+                                                </div>
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-black uppercase text-black/40 block text-center">Cédula Posterior</label>
+                                                <div className="relative aspect-[3/2] bg-white border-2 border-dashed border-pe-gray-100 rounded-2xl flex items-center justify-center overflow-hidden">
+                                                    {formData.idBackUrl ? <Image src={formData.idBackUrl} alt="ID Back" fill className="object-cover" /> : <Upload className="w-6 h-6 text-black/20" />}
+                                                    <input type="file" accept="image/*" onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0], "idBack")} className="absolute inset-0 opacity-0 cursor-pointer" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <button onClick={() => setCobroStep(1)} className="p-6 bg-black/5 rounded-2xl"><ArrowLeft className="w-5 h-5" /></button>
+                                            <button
+                                                disabled={!formData.idFrontUrl || !formData.idBackUrl || isUploading}
+                                                onClick={() => handleWhatsAppSubmit("cobro")}
+                                                className="flex-1 py-6 bg-[#FFDD00] text-black font-black rounded-2xl uppercase tracking-widest shadow-xl shadow-[#FFDD00]/20"
+                                            >
+                                                Cobrar Ahora
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                )}
                             </div>
                         </div>
 
-                        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black leading-[1.2] lg:leading-[1.05] tracking-tighter mb-8 uppercase text-black italic px-2">
-                            Western Union Loja:<br />
-                            <span className="opacity-70 text-3xl sm:text-5xl lg:text-5xl block mt-2">Envíos y Recepción de Dinero</span>
-                        </h1>
+                        {/* Flow 2: ENVÍO POR APP */}
+                        <div className="bg-pe-gray-50 border border-pe-gray-100 rounded-[3rem] p-8 md:p-10 relative overflow-hidden h-full flex flex-col">
+                            <div className="text-center mb-10">
+                                <div className="inline-block p-4 rounded-3xl bg-black text-[#FFDD00] mb-6">
+                                    <Smartphone className="w-8 h-8" />
+                                </div>
+                                <h3 className="text-2xl font-black text-black uppercase italic tracking-tighter leading-tight">PAGO DE<br />ENVÍO POR APP</h3>
+                            </div>
 
-                        <p className="text-base sm:text-xl text-black/60 max-w-2xl mx-auto mb-10 lg:mb-12 leading-relaxed font-medium px-4">
-                            Más de 15 años siendo el punto oficial <span className="text-black font-black underline decoration-2 underline-offset-4">Red Activa Western Union</span> en Ecuador. <span className="hidden lg:inline">Seguridad, rapidez y soporte personalizado para tus remesas.</span>
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row gap-5 justify-center px-4">
-                            <Link
-                                href="https://wa.me/593990227203"
-                                target="_blank"
-                                className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 bg-black text-[#FFDD00] font-black uppercase tracking-widest rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-black/20"
-                            >
-                                <Zap className="w-5 h-5 group-hover:scale-110 transition-transform fill-[#FFDD00]" />
-                                Consultar Transferencia
-                            </Link>
-                            <Link
-                                href="#sucursales"
-                                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-5 bg-transparent border-2 border-black text-black font-black rounded-full hover:bg-black/5 transition-all uppercase tracking-widest text-sm"
-                            >
-                                Puntos de Atención en Ecuador
-                                <ArrowRight className="w-4 h-4" />
-                            </Link>
+                            <div className="flex-1 space-y-8">
+                                {appStep === 1 ? (
+                                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+                                        <div className="space-y-4">
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-black uppercase tracking-widest text-black/40 px-4">Código App (6 dígitos)</label>
+                                                <input
+                                                    type="text"
+                                                    maxLength={6}
+                                                    value={formData.appCode}
+                                                    onChange={(e) => setFormData(prev => ({ ...prev, appCode: e.target.value }))}
+                                                    placeholder="000 000"
+                                                    className="w-full bg-white border border-pe-gray-100 rounded-2xl p-6 text-xl font-black focus:outline-none focus:border-[#FFDD00] transition-all"
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label className="text-[10px] font-black uppercase tracking-widest text-black/40 px-4">Monto ($)</label>
+                                                <input
+                                                    type="number"
+                                                    value={formData.amount}
+                                                    onChange={(e) => setFormData(prev => ({ ...prev, amount: e.target.value }))}
+                                                    className="w-full bg-white border border-pe-gray-100 rounded-2xl p-6 text-xl font-black focus:outline-none focus:border-[#FFDD00] transition-all"
+                                                />
+                                            </div>
+                                        </div>
+                                        <button
+                                            disabled={!formData.appCode || !formData.amount}
+                                            onClick={() => setAppStep(2)}
+                                            className="w-full py-6 bg-black text-[#FFDD00] font-black rounded-2xl flex items-center justify-center gap-3 disabled:opacity-30 transition-all uppercase tracking-widest"
+                                        >
+                                            Adjuntar Comprobante <ChevronRight className="w-5 h-5" />
+                                        </button>
+                                    </motion.div>
+                                ) : (
+                                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8">
+                                        <div className="relative group aspect-video bg-white border-2 border-dashed border-pe-gray-100 rounded-3xl flex flex-col items-center justify-center overflow-hidden">
+                                            {formData.receiptUrl ? <Image src={formData.receiptUrl} alt="Receipt" fill className="object-contain p-4" /> : <FileText className="w-10 h-10 text-black/10" />}
+                                            <input type="file" accept="image/*" onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0], "receipt")} className="absolute inset-0 opacity-0 cursor-pointer" />
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <button onClick={() => setAppStep(1)} className="p-6 bg-black/5 rounded-2xl"><ArrowLeft className="w-5 h-5" /></button>
+                                            <button
+                                                disabled={!formData.receiptUrl || isUploading}
+                                                onClick={() => handleWhatsAppSubmit("app")}
+                                                className="flex-1 py-6 bg-[#FFDD00] text-black font-black rounded-2xl uppercase tracking-widest shadow-xl shadow-[#FFDD00]/20"
+                                            >
+                                                Pagar Ahora
+                                            </button>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </div>
                         </div>
-                    </motion.div>
+
+                        {/* Flow 3: COTIZADOR / ENVÍO */}
+                        <div className="bg-black rounded-[3rem] p-8 md:p-10 relative overflow-hidden h-full flex flex-col text-white">
+                            <div className="text-center mb-10">
+                                <div className="inline-block p-4 rounded-3xl bg-[#FFDD00] text-black mb-6">
+                                    <Send className="w-8 h-8" />
+                                </div>
+                                <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter leading-tight">COTIZADOR DE<br />ENVÍOS</h3>
+                            </div>
+
+                            <div className="flex-1 space-y-6">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2 relative">
+                                        <label className="text-[10px] font-black uppercase text-white/40 px-4 tracking-widest">País</label>
+                                        <button
+                                            onClick={() => setIsCountryListOpen(!isCountryListOpen)}
+                                            className="w-full bg-white/10 border border-white/10 rounded-2xl p-4 flex items-center justify-between group hover:border-[#FFDD00] transition-all"
+                                        >
+                                            <div className="flex items-center gap-2 overflow-hidden">
+                                                <Globe className="w-4 h-4 text-[#FFDD00] shrink-0" />
+                                                <span className="text-xs font-bold text-white truncate">{selectedCountryName}</span>
+                                            </div>
+                                            <ChevronDown className={`w-4 h-4 text-white/20 group-hover:text-white transition-all ${isCountryListOpen ? "rotate-180" : ""}`} />
+                                        </button>
+                                        
+                                        <AnimatePresence>
+                                            {isCountryListOpen && (
+                                                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="absolute z-50 top-full left-0 right-0 mt-2 bg-white rounded-3xl shadow-2xl overflow-hidden text-black p-2">
+                                                    <div className="relative mb-2">
+                                                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-pe-gray-400" />
+                                                        <input
+                                                            type="text"
+                                                            placeholder="Buscar país..."
+                                                            value={searchTerm}
+                                                            onChange={(e) => setSearchTerm(e.target.value)}
+                                                            className="w-full bg-pe-gray-50 rounded-xl py-3 pl-11 pr-4 text-xs font-bold focus:outline-none focus:ring-1 focus:ring-[#FFDD00]"
+                                                            autoFocus
+                                                        />
+                                                    </div>
+                                                    <div className="max-h-[250px] overflow-y-auto custom-scrollbar">
+                                                        {COUNTRIES.filter(c => c.toLowerCase().includes(searchTerm.toLowerCase())).map((country) => (
+                                                            <button 
+                                                                key={country} 
+                                                                onClick={() => { 
+                                                                    setSelectedCountryName(country); 
+                                                                    setIsCountryListOpen(false);
+                                                                    setSearchTerm("");
+                                                                }} 
+                                                                className="w-full p-4 flex items-center gap-4 hover:bg-pe-gray-50 transition-colors text-left border-b border-pe-gray-50 last:border-0 rounded-xl"
+                                                            >
+                                                                <span className="text-xs font-bold">{country}</span>
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black uppercase text-white/40 px-4 tracking-widest">Monto ($)</label>
+                                        <input
+                                            type="number"
+                                            value={formData.amount}
+                                            onChange={(e) => setFormData(prev => ({ ...prev, amount: e.target.value }))}
+                                            className="w-full bg-white/10 border border-white/10 rounded-2xl p-4 text-lg font-black text-white focus:outline-none focus:border-[#FFDD00] transition-all"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-6 pt-4 border-t border-white/5">
+                                    <div className="flex items-center justify-between">
+                                        <p className="text-[11px] font-bold text-[#FFDD00] uppercase tracking-widest">El mejor precio por App</p>
+                                        <button className="px-4 py-2 bg-[#FFDD00] text-black text-[10px] font-black rounded-lg uppercase tracking-tighter">Calcular</button>
+                                    </div>
+
+                                    <div className="grid grid-cols-3 gap-2">
+                                        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
+                                            <span className="block text-[8px] font-black uppercase text-white/30 mb-1">Tarifa</span>
+                                            <span className="text-sm font-black text-[#FFDD00]">$ {result?.commission.toFixed(2) || "0.00"}</span>
+                                        </div>
+                                        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
+                                            <span className="block text-[8px] font-black uppercase text-white/30 mb-1">ISD</span>
+                                            <span className="text-sm font-black text-[#FFDD00]">$ {result?.isd.toFixed(2) || "0.00"}</span>
+                                        </div>
+                                        <div className="bg-white/5 p-3 rounded-xl border border-white/5">
+                                            <span className="block text-[8px] font-black uppercase text-white/30 mb-1">IVA</span>
+                                            <span className="text-sm font-black text-[#FFDD00]">$ {result?.iva.toFixed(2) || "0.00"}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex justify-between items-center py-6 border-t border-white/10">
+                                        <div className="space-y-1">
+                                            <span className="block text-[10px] font-black uppercase text-white/40 tracking-widest">Total Estimado</span>
+                                            <span className="text-3xl font-black text-white">$ {result?.total.toFixed(2) || "0.00"}</span>
+                                        </div>
+                                        <button
+                                            onClick={() => handleWhatsAppSubmit("envio")}
+                                            className="p-5 bg-[#FFDD00] text-black rounded-2xl hover:scale-105 transition-all shadow-xl shadow-[#FFDD00]/20 group"
+                                        >
+                                            <ArrowRight className="w-8 h-8 group-hover:translate-x-1 transition-transform" />
+                                        </button>
+                                    </div>
+
+                                    <div className="text-center pt-2">
+                                        <p className="text-[9px] font-medium text-white/30 uppercase tracking-widest leading-relaxed">
+                                            * Valores referenciales sujetos a cambios por parte de Western Union. <br/>
+                                            IVA (15%) e ISD incluidos según normativa vigente.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -218,191 +704,51 @@ export default function WesternUnionPage() {
                 </div>
             </section>
 
-            {/* ═══ Section 3: Proceso de Cobro (Animated Steps) ═══ */}
-            <section className="py-24 bg-pe-gray-50 overflow-hidden">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-5xl font-black text-black uppercase italic tracking-tighter">
-                            TU DINERO EN <span className="text-black/30">3 PASOS</span>
-                        </h2>
-                    </div>
 
-                    <div className="grid md:grid-cols-3 gap-12 relative">
-                        {/* Decorative Line */}
-                        <div className="hidden md:block absolute top-[2.5rem] left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-black/10 z-0" />
 
-                        {[
-                            { step: "01", icon: CreditCard, title: "Identificación", desc: "Ten a la mano tu Cédula de Identidad original y vigente." },
-                            { step: "02", icon: Zap, title: "Código MTCN", desc: "Presenta el código de 10 dígitos proporcionado por quien envía." },
-                            { step: "03", icon: Banknote, title: "Retira Efectivo", desc: "¡Listo! Recibe tu dinero rápido, seguro y con comprobante oficial." }
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                initial="hidden" whileInView="visible" viewport={{ once: true }}
-                                variants={{
-                                    hidden: { opacity: 0, scale: 0.8 },
-                                    visible: { opacity: 1, scale: 1, transition: { delay: i * 0.2, duration: 0.5 } }
-                                }}
-                                className="relative z-10 flex flex-col items-center text-center group"
-                            >
-                                <div className="w-24 h-24 rounded-full bg-white border-8 border-pe-gray-100 flex items-center justify-center mb-8 shadow-xl group-hover:border-[#FFDD00]/20 transition-all">
-                                    <item.icon className="w-10 h-10 text-black" />
-                                    <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-black text-[#FFDD00] font-black flex items-center justify-center text-xs shadow-lg">{item.step}</div>
-                                </div>
-                                <h4 className="text-xl font-black text-black uppercase tracking-tight mb-3">{item.title}</h4>
-                                <p className="text-pe-gray-500 font-medium leading-snug max-w-[200px]">{item.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══ Section 4: Diferenciadores Locales ═══ */}
-            <section className="py-24 bg-black text-white relative overflow-hidden">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-20 items-center">
-                        <div>
-                            <h2 className="text-4xl md:text-5xl font-black mb-8 uppercase italic tracking-tighter leading-tight">
-                                ¿POR QUÉ <span style={{ color: WU_YELLOW }}>PAGOEXPRESS</span> <br />EN LUGAR DEL BANCO?
-                            </h2>
-                            <div className="space-y-4">
-                                {[
-                                    { title: "Sin Filas Bancarias", desc: "Atención ágil pensada en tu tiempo, sin esperas innecesarias.", icon: Clock },
-                                    { title: "Horarios Extendidos", desc: "Atendemos cuando otros cierran, incluyendo fines de semana.", icon: RefreshCcw },
-                                    { title: "Ubicaciones Estratégicas", desc: "En puntos estratégicos de la ciudad, cerca de donde te encuentras.", icon: MapPin }
-                                ].map((item, i) => (
-                                    <motion.div
-                                        key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                                        className="flex items-start gap-5 p-6 rounded-[2rem] bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
-                                    >
-                                        <div className="w-12 h-12 rounded-2xl bg-[#FFDD00] flex items-center justify-center shrink-0">
-                                            <item.icon className="w-6 h-6 text-black" />
-                                        </div>
-                                        <div>
-                                            <h4 className="text-xl font-black mb-1 uppercase tracking-tight">{item.title}</h4>
-                                            <p className="text-white/40 font-medium leading-relaxed">{item.desc}</p>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-white/10 group">
-                            <Image src="/images/header logo/western-union.webp" alt="Western Union Official Agent" fill className="object-contain p-20 grayscale group-hover:grayscale-0 transition-all duration-700 opacity-20" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-                            <div className="absolute bottom-12 left-12 right-12 text-center">
-                                <div className="text-5xl font-black text-[#FFDD00] mb-2 uppercase italic tracking-tighter">19+ Años</div>
-                                <div className="text-xs font-black uppercase tracking-[0.3em] text-white/50">Sirviendo a la comunidad ecuatoriana</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══ Section 5: Calculadora/Cotizador Interactiva ═══ */}
+            {/* ═══ Section 5: Banner de Acción (Reemplaza cotizador redundante) ═══ */}
             <section className="py-24 bg-white overflow-hidden">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6">
                     <motion.div
                         initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                        className="bg-pe-gray-50 border border-pe-gray-100 rounded-[3rem] p-10 md:p-16 relative overflow-hidden"
+                        className="bg-black rounded-[4rem] p-12 md:p-20 relative overflow-hidden text-center shadow-2xl"
                     >
-                        <div className="relative z-10 text-center mb-12">
-                            <h2 className="text-3xc font-black text-black mb-4 uppercase italic">COTIZADOR <span className="text-black/30">INTERACTIVO</span></h2>
-                            <p className="text-pe-gray-500 font-medium leading-relaxed">Obtén un estimado de tu envío incluyendo comisiones e impuestos.</p>
+                        {/* Decorative Background */}
+                        <div className="absolute top-0 right-0 -mr-20 -mt-20 opacity-10">
+                            <Send className="w-96 h-96 text-white -rotate-12" />
+                        </div>
+                        <div className="absolute bottom-0 left-0 -ml-20 -mb-20 opacity-5">
+                            <Globe className="w-80 h-80 text-[#FFDD00] rotate-45" />
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-10 items-start relative z-10">
-                            <div className="space-y-6">
-                                <div className="space-y-4">
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] font-black uppercase tracking-[0.3em] text-black/30 px-4">Monto a Enviar ($)</label>
-                                        <div className="relative">
-                                            <div className="absolute left-6 top-1/2 -translate-y-1/2 font-black text-2xl">$</div>
-                                            <input
-                                                type="number"
-                                                value={sendAmount}
-                                                onChange={(e) => setSendAmount(e.target.value)}
-                                                className="w-full bg-white border border-pe-gray-100 rounded-3xl py-6 pl-12 pr-6 text-2xl font-black focus:outline-none focus:border-[#FFDD00] transition-all"
-                                                placeholder="0.00"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] font-black uppercase tracking-[0.3em] text-black/30 px-4">Destino de la Transferencia</label>
-                                        <select
-                                            value={destination}
-                                            onChange={(e) => setDestination(e.target.value)}
-                                            className="w-full bg-white border border-pe-gray-100 rounded-2xl py-4 px-6 font-bold text-sm focus:outline-none focus:border-[#FFDD00] appearance-none cursor-pointer"
-                                        >
-                                            <option value="nacional">Ecuador (Nacional)</option>
-                                            <option value="internacional">Estados Unidos / América</option>
-                                            <option value="europa">Europa / España</option>
-                                            <option value="otros">Resto del Mundo</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="p-6 rounded-3xl bg-black text-white space-y-4 shadow-2xl">
-                                    <div className="flex justify-between items-center text-xs font-bold uppercase tracking-widest text-white/50">
-                                        <span>Desglose Estimado</span>
-                                        <Info className="w-4 h-4" />
-                                    </div>
-
-                                    <div className="space-y-3">
-                                        <div className="flex justify-between items-center text-sm">
-                                            <span className="text-white/60">Comisión Base:</span>
-                                            <span className="font-black">$ {commission.toFixed(2)} *</span>
-                                        </div>
-                                        <div className="flex justify-between items-center text-sm">
-                                            <span className="text-white/60">Impuesto ISD ({isInternational ? "5%" : "0%"}):</span>
-                                            <span className="font-black">$ {isdTax.toFixed(2)}</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="pt-4 border-t border-white/10 flex justify-between items-end">
-                                        <div>
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-[#FFDD00]">Total Estimado</div>
-                                            <div className="text-3xl font-black">$ {total.toFixed(2)}</div>
-                                        </div>
-                                        <div className="text-right text-[9px] font-medium text-white/30 max-w-[100px] leading-tight italic">
-                                            * Tasas variables de Western Union
-                                        </div>
-                                    </div>
-                                </div>
+                        <div className="relative z-10 space-y-10">
+                            <div className="inline-block px-4 py-1.5 rounded-full bg-[#FFDD00]/10 border border-[#FFDD00]/20 text-[#FFDD00] text-[10px] font-black uppercase tracking-[0.3em]">
+                                Envío Seguro e Inmediato
                             </div>
-
-                            <div className="space-y-6">
-                                <div className="bg-white border border-pe-gray-100 p-8 rounded-[2rem] space-y-6 shadow-sm">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-[#FFDD00]/10 flex items-center justify-center shrink-0">
-                                            <Scale className="w-5 h-5 text-black" />
-                                        </div>
-                                        <h4 className="text-sm font-black uppercase tracking-tight">Transparencia ISD</h4>
-                                    </div>
-                                    <p className="text-xs text-pe-gray-500 leading-relaxed">
-                                        En cumplimiento con el SRI, los envíos al exterior aplican el <span className="text-black font-black italic">5% de Impuesto a la Salida de Divisas</span>. En PagoExpress te garantizamos el <span className="text-black font-black">valor oficial</span> sin recargos ocultos.
-                                    </p>
-                                    <div className="pt-4 border-t border-pe-gray-100 flex items-center gap-3">
-                                        <CheckCircle2 className="w-5 h-5 text-[#FFDD00]" />
-                                        <span className="text-[10px] font-black uppercase tracking-widest">Acreditación Garantizada</span>
-                                    </div>
-                                </div>
-
-                                <Link
-                                    href={`https://wa.me/593990227203?text=Hola%20PagoExpress,%20necesito%20una%20cotización%20oficial%20para%20enviar%20$%20${amount}%20a%20${destination === "nacional" ? "Ecuador" : destination.toUpperCase()}.`}
-                                    target="_blank"
-                                    className="w-full py-6 bg-[#FFDD00] text-black font-black rounded-2xl flex items-center justify-center gap-3 hover:bg-black hover:text-[#FFDD00] transition-all shadow-xl group border-2 border-transparent hover:border-[#FFDD00]"
+                            <h2 className="text-4xl sm:text-6xl font-black text-white uppercase italic tracking-tighter leading-[0.9]">
+                                ¿NECESITAS UNA <br /> <span className="text-[#FFDD00]">COTIZACIÓN EXACTA?</span>
+                            </h2>
+                            <p className="text-white/50 text-lg sm:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+                                Usa nuestro simulador oficial al inicio de la página para obtener el desglose detallado de impuestos y comisiones vigentes para tu país de destino.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-5 justify-center items-center pt-4">
+                                <button
+                                    onClick={() => document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' })}
+                                    className="group px-12 py-6 bg-[#FFDD00] text-black font-black rounded-3xl hover:scale-105 transition-all uppercase tracking-widest text-sm shadow-xl shadow-[#FFDD00]/10 flex items-center gap-3"
                                 >
-                                    <MessageCircle className="w-5 h-5 fill-current" />
-                                    SOLICITAR TASA DEL DÍA
-                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    <Calculator className="w-5 h-5" />
+                                    Subir al Simulador
+                                </button>
+                                <Link
+                                    href="https://wa.me/593990227203"
+                                    target="_blank"
+                                    className="px-12 py-6 bg-white/5 text-white font-black rounded-3xl hover:bg-white/10 transition-all uppercase tracking-widest text-sm border border-white/10 backdrop-blur-md flex items-center gap-3"
+                                >
+                                    <MessageCircle className="w-5 h-5" />
+                                    Consultar en WhatsApp
                                 </Link>
-                                <p className="text-[10px] text-center text-pe-gray-400 font-bold uppercase tracking-widest">Recibe el valor exacto en segundos</p>
                             </div>
                         </div>
-
-                        {/* Decorative Calculator Icon */}
-                        <Calculator className="absolute -bottom-10 -left-10 w-48 h-48 opacity-[0.03] -rotate-12" />
                     </motion.div>
                 </div>
             </section>
@@ -507,23 +853,3 @@ export default function WesternUnionPage() {
         </main>
     );
 }
-
-// Subcomponente de icono de billete que faltaba
-const Banknote = (props: any) => (
-    <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <rect width="20" height="12" x="2" y="6" rx="2" />
-        <circle cx="12" cy="12" r="2" />
-        <path d="M6 12h.01M18 12h.01" />
-    </svg>
-)

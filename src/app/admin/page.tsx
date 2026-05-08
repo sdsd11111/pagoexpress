@@ -3,7 +3,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RefreshCcw, LogOut, CheckCircle, XCircle, QrCode, PowerOff } from 'lucide-react';
+import { RefreshCcw, LogOut, CheckCircle, XCircle, QrCode, PowerOff, Layout } from 'lucide-react';
+import Link from 'next/link';
 
 interface BotStatus {
     connected: boolean;
@@ -118,13 +119,22 @@ export default function AdminDashboard() {
                         </h1>
                         <p className="text-white/50 text-sm">Gestiona tu instancia de WhatsApp</p>
                     </div>
-                    <button 
-                        onClick={handleLogout}
-                        className="p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors"
-                        title="Cerrar sesión"
-                    >
-                        <LogOut size={20} className="text-red-400" />
-                    </button>
+                    <div className="flex items-center gap-3">
+                        <Link 
+                            href="/admin/hero"
+                            className="flex items-center gap-2 bg-pe-yellow/10 text-pe-yellow border border-pe-yellow/20 px-4 py-2.5 rounded-xl hover:bg-pe-yellow/20 transition-all font-bold text-sm"
+                        >
+                            <Layout size={18} />
+                            Editar Hero
+                        </Link>
+                        <button 
+                            onClick={handleLogout}
+                            className="p-3 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors"
+                            title="Cerrar sesión"
+                        >
+                            <LogOut size={20} className="text-red-400" />
+                        </button>
+                    </div>
                 </header>
 
                 <main className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -320,6 +320,55 @@ export async function cleanupOldMessages(days: number): Promise<number> {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// HERO CONFIGURATION QUERIES
+// ═══════════════════════════════════════════════════════════════
+
+export async function getHeroConfig(): Promise<{ h1: string; description: string }> {
+    const rows = await query<{ h1: string; description: string }>(
+        'SELECT h1, description FROM hero_config WHERE id = 1'
+    );
+    return rows[0] || { h1: 'Pagos, remesas y recargas para Ecuador', description: 'Simplificamos tus trámites financieros en todo el país con seguridad.' };
+}
+
+export async function updateHeroConfig(h1: string, description: string): Promise<void> {
+    await execute(
+        'UPDATE hero_config SET h1 = ?, description = ? WHERE id = 1',
+        [h1, description]
+    );
+}
+
+export async function getHeroSlides(): Promise<Array<{ id: number; image_url: string; slug: string; display_order: number; is_active: boolean }>> {
+    const rows = await query<any>(
+        'SELECT * FROM hero_slides ORDER BY display_order ASC'
+    );
+    return rows.map((r: any) => ({
+        id: r.id,
+        image_url: r.image_url,
+        slug: r.slug,
+        display_order: r.display_order,
+        is_active: Boolean(r.is_active)
+    }));
+}
+
+export async function updateHeroSlide(id: number, imageUrl: string, slug: string): Promise<void> {
+    await execute(
+        'UPDATE hero_slides SET image_url = ?, slug = ? WHERE id = ?',
+        [imageUrl, slug, id]
+    );
+}
+
+export async function addHeroSlide(imageUrl: string, slug: string, displayOrder: number): Promise<void> {
+    await execute(
+        'INSERT INTO hero_slides (image_url, slug, display_order) VALUES (?, ?, ?)',
+        [imageUrl, slug, displayOrder]
+    );
+}
+
+export async function deleteHeroSlide(id: number): Promise<void> {
+    await execute('DELETE FROM hero_slides WHERE id = ?', [id]);
+}
+
+// ═══════════════════════════════════════════════════════════════
 // TRANSACTION QUERIES
 // ═══════════════════════════════════════════════════════════════
 
@@ -394,6 +443,56 @@ export async function initializeSchema(): Promise<void> {
             );
         } catch {
             // Index already exists, ignore
+        }
+
+        await connection.execute(`
+      CREATE TABLE IF NOT EXISTS hero_config (
+        id INT PRIMARY KEY DEFAULT 1,
+        h1 VARCHAR(255) NOT NULL,
+        description TEXT,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    `);
+
+        await connection.execute(`
+      CREATE TABLE IF NOT EXISTS hero_slides (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        image_url VARCHAR(500) NOT NULL,
+        slug VARCHAR(255) NOT NULL,
+        display_order INT DEFAULT 0,
+        is_active BOOLEAN DEFAULT TRUE,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+    `);
+
+        // Seed default hero_config if not exists
+        const [configRows]: any = await connection.execute('SELECT id FROM hero_config WHERE id = 1');
+        if (configRows.length === 0) {
+            await connection.execute(
+                'INSERT INTO hero_config (id, h1, description) VALUES (1, ?, ?)',
+                ['Pagos, remesas y recargas para Ecuador', 'Simplificamos tus trámites financieros en todo el país con seguridad.']
+            );
+        }
+
+        // Seed default slides if none exist
+        const [slideRows]: any = await connection.execute('SELECT id FROM hero_slides');
+        if (slideRows.length === 0) {
+            const defaultSlides = [
+                ['/images/home/hero-slide-1.webp', 'oficina'],
+                ['/images/home/hero-slide-2.webp', 'sucursal'],
+                ['/images/home/hero-slide-3.webp', 'servicio'],
+                ['/images/home/hero-slide-4.webp', 'pagos'],
+                ['/images/home/hero-slide-5.webp', 'equipo'],
+                ['/images/home/hero-slide-6.webp', 'servicios-basicos'],
+                ['/images/home/hero-slide-7.webp', 'recargas'],
+                ['/images/home/hero-slide-8.webp', 'remesas'],
+            ];
+            for (let i = 0; i < defaultSlides.length; i++) {
+                await connection.execute(
+                    'INSERT INTO hero_slides (image_url, slug, display_order) VALUES (?, ?, ?)',
+                    [defaultSlides[i][0], defaultSlides[i][1], i]
+                );
+            }
         }
 
         await connection.execute(`

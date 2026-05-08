@@ -1,0 +1,1247 @@
+﻿
+> redactiva.html:407:</svg></div><div>Servicios</div></div><nav class="uui-navbar08_dropdown-list 
+w-dropdown-list"><div class="uui-navbar08_dropdown-content"><div 
+id="w-node-_255d01ab-430c-5134-9f5e-b0f0f639e905-f639e8f5" class="uui-navbar08_dropdown-link-list"><a 
+href="/promociones" class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Consulta de puntos</div><div class="uui-text-size-small 
+hide-mobile-landscape">Consulta tus puntos ingresando tu documento de identidad.</div></div></a><a href="/giros" 
+class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Cotizador de Giros</div><div class="uui-text-size-small 
+hide-mobile-landscape">Calcula el costo de tu giro seleccionando país y monto.</div></div></a><a 
+href="https://facturacion.redactiva.biz/VoucherSearchResult" target="_blank" class="uui-navbar08_dropdown-link 
+w-inline-block"><div class="uui-navbar08_item-right"><div class="uui-navbar08_item-heading">Facturación 
+Electrónica</div><div class="uui-text-size-small hide-mobile-landscape">Ingresa el número de comprobante e 
+identificación para consultar.</div></div></a><a href="https://comprobantes.redactiva.biz/" target="_blank" 
+class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Comprobantes Electrónicos</div><div class="uui-text-size-small 
+hide-mobile-landscape">Inserta tu identificación y MTCN para acceder al comprobante.</div></div></a><a 
+href="https://certificados.redactiva.biz/" target="_blank" class="uui-navbar08_dropdown-link w-inline-block"><div 
+class="uui-navbar08_icon-wrapper"><div class="uui-icon-1x1-xsmall w-embed"><svg width="25" height="24" viewBox="0 0 25 
+24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:408:<path d="M4.66699 21L4.66699 4M4.66699 13H12.067C12.627 13 12.9071 13 13.121 12.891C13.3091 
+12.7951 13.4621 12.6422 13.558 12.454C13.667 12.2401 13.667 11.9601 13.667 11.4V4.6C13.667 4.03995 13.667 3.75992 
+13.558 3.54601C13.4621 3.35785 13.3091 3.20487 13.121 3.10899C12.9071 3 12.627 3 12.067 3H6.26699C5.70694 3 5.42691 3 
+5.213 3.10899C5.02484 3.20487 4.87186 3.35785 4.77599 3.54601C4.66699 3.75992 4.66699 4.03995 4.66699 4.6V13ZM13.667 
+5H20.067C20.627 5 20.9071 5 21.121 5.10899C21.3091 5.20487 21.4621 5.35785 21.558 5.54601C21.667 5.75992 21.667 
+6.03995 21.667 6.6V13.4C21.667 13.9601 21.667 14.2401 21.558 14.454C21.4621 14.6422 21.3091 14.7951 21.121 
+14.891C20.9071 15 20.627 15 20.067 15H15.267C14.7069 15 14.4269 15 14.213 14.891C14.0248 14.7951 13.8719 14.6422 
+13.776 14.454C13.667 14.2401 13.667 13.9601 13.667 13.4V5Z" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" stroke-linejoin="round"/>
+  redactiva.html:409:</svg></div></div><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Certificados de Transacciones</div><div class="uui-text-size-small 
+hide-mobile-landscape">Inicia sesión con tu usuario y contraseña para ver los certificados.</div></div></a><a 
+href="https://www.servientrega.com.ec/Tracking/BusquedaMultiplesGuias" target="_blank" 
+class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_icon-wrapper"><div 
+class="uui-icon-1x1-xsmall w-embed"><svg width="25" height="24" viewBox="0 0 25 24" fill="none" 
+xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:410:<path d="M22.667 21V19C22.667 17.1362 21.3922 15.5701 19.667 15.126M16.167 3.29076C17.6329 
+3.88415 18.667 5.32131 18.667 7C18.667 8.67869 17.6329 10.1159 16.167 10.7092M17.667 21C17.667 19.1362 17.667 18.2044 
+17.3625 17.4693C16.9565 16.4892 16.1778 15.7105 15.1977 15.3045C14.4626 15 13.5308 15 11.667 15H8.66699C6.80323 15 
+5.87134 15 5.13626 15.3045C4.15615 15.7105 3.37745 16.4892 2.97147 17.4693C2.66699 18.2044 2.66699 19.1362 2.66699 
+21M14.167 7C14.167 9.20914 12.3761 11 10.167 11C7.95785 11 6.16699 9.20914 6.16699 7C6.16699 4.79086 7.95785 3 10.167 
+3C12.3761 3 14.167 4.79086 14.167 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round"/>
+  redactiva.html:411:</svg></div></div><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Courier Nacional</div><div class="uui-text-size-small hide-mobile-landscape">Rastrea 
+tus paquetes y documentos con Servientrega.</div></div></a><a href="https://www.dhl.com/ec-es/home/rastreo.html" 
+target="_blank" class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_icon-wrapper"><div 
+class="uui-icon-1x1-xsmall w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" 
+xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:412:<path d="M13 7L11.8845 4.76892C11.5634 4.1268 11.4029 3.80573 11.1634 3.57116C10.9516 3.36373 
+10.6963 3.20597 10.4161 3.10931C10.0992 3 9.74021 3 9.02229 3H5.2C4.0799 3 3.51984 3 3.09202 3.21799C2.71569 3.40973 
+2.40973 3.71569 2.21799 4.09202C2 4.51984 2 5.0799 2 6.2V7M2 7H17.2C18.8802 7 19.7202 7 20.362 7.32698C20.9265 7.6146 
+21.3854 8.07354 21.673 8.63803C22 9.27976 22 10.1198 22 11.8V16.2C22 17.8802 22 18.7202 21.673 19.362C21.3854 19.9265 
+20.9265 20.3854 20.362 20.673C19.7202 21 18.8802 21 17.2 21H6.8C5.11984 21 4.27976 21 3.63803 20.673C3.07354 20.3854 
+2.6146 19.9265 2.32698 19.362C2 18.7202 2 17.8802 2 16.2V7Z" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" stroke-linejoin="round"/>
+  redactiva.html:413:</svg></div></div><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Courier Internacional</div><div class="uui-text-size-small 
+hide-mobile-landscape">Rastrea tus paquetes y documentos con DHL.</div></div></a><a href="/franquicias" 
+class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_icon-wrapper"><div 
+class="uui-icon-1x1-xsmall w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" 
+xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:414:<path d="M13 7L11.8845 4.76892C11.5634 4.1268 11.4029 3.80573 11.1634 3.57116C10.9516 3.36373 
+10.6963 3.20597 10.4161 3.10931C10.0992 3 9.74021 3 9.02229 3H5.2C4.0799 3 3.51984 3 3.09202 3.21799C2.71569 3.40973 
+2.40973 3.71569 2.21799 4.09202C2 4.51984 2 5.0799 2 6.2V7M2 7H17.2C18.8802 7 19.7202 7 20.362 7.32698C20.9265 7.6146 
+21.3854 8.07354 21.673 8.63803C22 9.27976 22 10.1198 22 11.8V16.2C22 17.8802 22 18.7202 21.673 19.362C21.3854 19.9265 
+20.9265 20.3854 20.362 20.673C19.7202 21 18.8802 21 17.2 21H6.8C5.11984 21 4.27976 21 3.63803 20.673C3.07354 20.3854 
+2.6146 19.9265 2.32698 19.362C2 18.7202 2 17.8802 2 16.2V7Z" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" stroke-linejoin="round"/>
+  redactiva.html:415:</svg></div></div><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Franquicia Red Activa</div><div class="uui-text-size-small 
+hide-mobile-landscape">Descubre nuestros planes de franquicia.</div></div></a><a href="/concesiones" 
+class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_icon-wrapper"><div 
+class="uui-icon-1x1-xsmall w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" 
+xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:416:<path d="M13 7L11.8845 4.76892C11.5634 4.1268 11.4029 3.80573 11.1634 3.57116C10.9516 3.36373 
+10.6963 3.20597 10.4161 3.10931C10.0992 3 9.74021 3 9.02229 3H5.2C4.0799 3 3.51984 3 3.09202 3.21799C2.71569 3.40973 
+2.40973 3.71569 2.21799 4.09202C2 4.51984 2 5.0799 2 6.2V7M2 7H17.2C18.8802 7 19.7202 7 20.362 7.32698C20.9265 7.6146 
+21.3854 8.07354 21.673 8.63803C22 9.27976 22 10.1198 22 11.8V16.2C22 17.8802 22 18.7202 21.673 19.362C21.3854 19.9265 
+20.9265 20.3854 20.362 20.673C19.7202 21 18.8802 21 17.2 21H6.8C5.11984 21 4.27976 21 3.63803 20.673C3.07354 20.3854 
+2.6146 19.9265 2.32698 19.362C2 18.7202 2 17.8802 2 16.2V7Z" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" stroke-linejoin="round"/>
+> redactiva.html:417:</svg></div></div><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Concesiones</div><div class="uui-text-size-small hide-mobile-landscape">Gestiona tu 
+PuntoRedActiva.</div></div></a></div></div></nav></div><a href="/contactanos" class="uui-navbar08_link 
+w-nav-link">Contáctanos</a></div></nav><div class="uui-navbar08_menu-button w-nav-button"><div 
+class="menu-icon_component"><div class="menu-icon_line-top"></div><div class="menu-icon_line-middle"><div 
+class="menu-icon_line-middle-inner"></div></div><div class="menu-icon_line-bottom"></div></div></div></div></div><div 
+id="div-cookies" class="pop-up-home"><div class="cookies-container"><div class="column-cookie"><div 
+class="header-cookie"><div class="cookie-icon"></div><h4 class="h4">Este sitio utiliza cookies</h4></div><div 
+id="pop-up-Descripcion">Usamos cookies para mejorar tu experiencia. Al continuar, aceptas su uso.</div></div><div 
+class="column-cookie"><a id="Btn-cerrarcookies" data-w-id="e3ee54ee-f35d-99b4-49f9-cdde46a8f861" href="#" 
+class="button-cookie w-button">Cerrar</a></div></div></div><div class="home-container"><section 
+class="hero--sider"><div class="slider"><div data-delay="5000" data-animation="slide" class="slider-2 w-slider" 
+data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" 
+data-nav-spacing="3" data-duration="350" data-infinite="true"><div class="w-slider-mask"><div class="slide-1 
+w-slide"><a href="/giros" class="link--slide w-inline-block"></a></div><div class="slide-4 w-slide"></div><div 
+class="slide-extra w-slide"><a href="/promociones" class="link--slide w-inline-block"></a></div><div class="slide-2 
+w-slide"><a href="/" aria-current="page" class="link--slide w-inline-block w--current"></a></div><div class="slide-3 
+w-slide"><a href="/promociones" class="link--slide w-inline-block"></a></div><div class="slide-3-copy w-slide"><a 
+href="https://monnetpayments.com/red-de-locales/" target="_blank" class="link--slide w-inline-block"></a></div><div 
+class="slide-extra-3 w-slide"></div><div class="slide-5 w-slide"><a href="/nuevos-servicios" class="btn 
+w-inline-block"></a></div></div><div class="left-arrow w-slider-arrow-left"><div 
+class="w-icon-slider-left"></div></div><div class="right-arrow w-slider-arrow-right"><div 
+class="w-icon-slider-right"></div></div><div class="slide-nav w-slider-nav 
+w-round"></div></div></div></section><section class="giross-section"><div class="layout"><div 
+class="w-layout-blockcontainer flex-h cotizador w-container"><div class="auto-width _60"><div 
+class="cotizador-container-mini"><h4 class="h6 white bold">Cotizador</h4><div class="container-mini"><div 
+class="form-container"><div class="form-block-4 w-form"><form id="wf-form-cotizador" name="wf-form-cotizador" 
+data-name="cotizador" method="get" class="form-4" data-wf-page-id="66957d7f6e974299c704d867" 
+data-wf-element-id="d49e2523-145f-3426-e95e-d3f8d4a88b71" data-turnstile-sitekey="0x4AAAAAAAQTptj2So4dx43e"><div 
+class="row cotizador-mini"><div class="_100-width"><label for="countries" class="petite-small white">País</label><div 
+class="input-container"><div class="country-selector"><div class="country-display"><div 
+class="country-name">Seleccionar país</div><div class="dropdown-icon"></div></div><div 
+class="country-list-container"><input class="search-input w-input" maxlength="256" name="field" data-name="Field" 
+placeholder="Buscar país..." type="text" id="search-input"/><div 
+class="country-list"></div></div></div></div></div><div class="_100-width"><label for="amount" class="petite-small 
+white">Monto</label><input class="text-input _2 w-input" maxlength="10" name="Tel-fono" data-name="Teléfono" 
+placeholder="0.00 USD" type="text" id="amount" required=""/></div><input type="submit" data-wait="Cargando" 
+id="calculate" class="boton-primario medium w-button" value="Calcular"/></div></form></div></div></div><p class="small 
+white">El mejor precio por la App de Red Activa</p><div class="results-cotizador"><div class="mobile-inputs-2 _2"><div 
+class="petite-small">Tarifa</div><div id="Tarifa" class="small bold">0.00</div></div><div class="mobile-inputs-2 
+_2"><div class="petite-small">ISD</div><div id="Isd" class="small bold">0.00</div></div><div class="mobile-inputs-2 
+_2"><div class="petite-small">IVA</div><div id="Iva" class="small bold">0.00</div></div><div class="mobile-inputs-2 
+_3"><div class="petite-small">Total</div><div id="Total" class="small bold">0.00</div></div></div><div 
+class="div-block-34"><a href="/giros" class="small yellow">Consulta más resultados</a><div id="error-message" 
+class="div-block-33"></div></div></div></div><div class="auto-width cotizador _40"><div class="content"><h5 
+class="h5">Calcula tu envío y descubre nuestras tarifas</h5><p class="p _0-margin">Compara tarifas y elige la opción 
+que más te convenga: envío inmediato, para el día siguiente, o con descuento usando la app.</p></div><a href="/giros" 
+class="boton-primario right w-button">Envía dinero ya!</a></div></div></div><div class="w-layout-blockcontainer flex-h 
+center margin-top-16 w-container"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/674904083daf84420c019e59_time.svg" loading="lazy" 
+width="40" height="40" alt=""/><div><div class="p bold yellow left">Envía dinero de forma rápida y sencilla con 
+nuestra App</div><div class="small bold left white">Ya disponible en la App Store y Google 
+Play</div></div></div></section><section class="servicios-section"><div class="w-layout-blockcontainer flex-h 
+_0-margin w-container"><div class="auto-width _2"><div class="header-servicios"><h3 class="center">Paga tus 
+servicios</h3><p class="p center">Conoce todos los servicios que puedes pagar en nuestros locales.</p></div><div 
+id="services-container" class="services-container"><div class="service-container"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/67490043d55091acf43ca44a_agua.svg" loading="lazy" 
+alt="" class="service-image"/><p class="small bold">Agua</p></div><div class="service-container"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/674900437829cb73ebf05520_electricidad.svg" 
+loading="lazy" alt="" class="service-image"/><p class="small bold">Luz</p></div><div class="service-container"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/6749004374e14f70bb82c2d3_internet.svg" loading="lazy" 
+alt="" class="service-image"/><p class="small bold">Internet</p></div><div class="service-container"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/67490043783e16c39a99cf93_comunicacion.svg" 
+loading="lazy" alt="" class="service-image"/><p class="small bold">Telefonía</p></div><div 
+class="service-container"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/674900437829cb73ebf0551d_tv.svg" loading="lazy" 
+alt="" class="service-image"/><p class="small bold">TV Pagada</p></div><div class="service-container"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/67490043d55091acf43ca44d_municipios.svg" 
+loading="lazy" alt="" class="service-image"/><p class="small bold">Municipios</p></div><div 
+class="service-container"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/67490043d55091acf43ca44d_municipios.svg" 
+loading="lazy" alt="" class="service-image"/><p class="small bold">Casas Comerciales</p></div><div 
+class="service-container"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/67490043d55091acf43ca44d_municipios.svg" 
+loading="lazy" width="Auto" alt="" class="service-image"/><p class="small bold">Tránsito</p></div></div><a 
+id="Btn-Todos" href="/pago-de-servicios" class="boton-oscuro _300px-width w-button">Conoce otros servicios</a><div 
+data-w-id="255d01ab-430c-5134-9f5e-b0f0f639e8f5" data-animation="default" data-collapse="medium" data-duration="400" 
+data-easing="ease" data-easing2="ease" role="banner" class="uui-navbar08_component w-nav"><div 
+class="uui-navbar08_container"><a href="/" aria-current="page" class="uui-navbar08_logo-link w-nav-brand 
+w--current"><div class="uui-logo_component"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/669c3fdb90df8e6b66669bf3_Vectors-Wrapper.svg" 
+loading="lazy" alt=""/></div></a><nav role="navigation" class="uui-navbar08_menu w-nav-menu"><div 
+class="uui-navbar08_menu-left"><a href="/quienes-somos" class="uui-navbar08_link w-nav-link">Quiénes Somos</a><div 
+data-hover="true" data-delay="500" data-w-id="255d01ab-430c-5134-9f5e-b0f0f639e8fe" class="uui-navbar08_menu-dropdown 
+w-dropdown"><div class="uui-navbar08_dropdown-toggle w-dropdown-toggle"><div class="uui-dropdown-icon w-embed"><svg 
+width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:418:<path d="M5 7.5L10 12.5L15 7.5" stroke="CurrentColor" stroke-width="1.67" stroke-linecap="round" 
+stroke-linejoin="round"/>
+> redactiva.html:419:</svg></div><div>Servicios</div></div><nav class="uui-navbar08_dropdown-list 
+w-dropdown-list"><div class="uui-navbar08_dropdown-content"><div 
+id="w-node-_255d01ab-430c-5134-9f5e-b0f0f639e905-f639e8f5" class="uui-navbar08_dropdown-link-list"><a 
+href="/promociones" class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Consulta de puntos</div><div class="uui-text-size-small 
+hide-mobile-landscape">Consulta tus puntos ingresando tu documento de identidad.</div></div></a><a href="/giros" 
+class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Cotizador de Giros</div><div class="uui-text-size-small 
+hide-mobile-landscape">Calcula el costo de tu giro seleccionando país y monto.</div></div></a><a 
+href="https://facturacion.redactiva.biz/VoucherSearchResult" target="_blank" class="uui-navbar08_dropdown-link 
+w-inline-block"><div class="uui-navbar08_item-right"><div class="uui-navbar08_item-heading">Facturación 
+Electrónica</div><div class="uui-text-size-small hide-mobile-landscape">Ingresa el número de comprobante e 
+identificación para consultar.</div></div></a><a href="https://comprobantes.redactiva.biz/" target="_blank" 
+class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Comprobantes Electrónicos</div><div class="uui-text-size-small 
+hide-mobile-landscape">Inserta tu identificación y MTCN para acceder al comprobante.</div></div></a><a 
+href="https://certificados.redactiva.biz/" target="_blank" class="uui-navbar08_dropdown-link w-inline-block"><div 
+class="uui-navbar08_icon-wrapper"><div class="uui-icon-1x1-xsmall w-embed"><svg width="25" height="24" viewBox="0 0 25 
+24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:420:<path d="M4.66699 21L4.66699 4M4.66699 13H12.067C12.627 13 12.9071 13 13.121 12.891C13.3091 
+12.7951 13.4621 12.6422 13.558 12.454C13.667 12.2401 13.667 11.9601 13.667 11.4V4.6C13.667 4.03995 13.667 3.75992 
+13.558 3.54601C13.4621 3.35785 13.3091 3.20487 13.121 3.10899C12.9071 3 12.627 3 12.067 3H6.26699C5.70694 3 5.42691 3 
+5.213 3.10899C5.02484 3.20487 4.87186 3.35785 4.77599 3.54601C4.66699 3.75992 4.66699 4.03995 4.66699 4.6V13ZM13.667 
+5H20.067C20.627 5 20.9071 5 21.121 5.10899C21.3091 5.20487 21.4621 5.35785 21.558 5.54601C21.667 5.75992 21.667 
+6.03995 21.667 6.6V13.4C21.667 13.9601 21.667 14.2401 21.558 14.454C21.4621 14.6422 21.3091 14.7951 21.121 
+14.891C20.9071 15 20.627 15 20.067 15H15.267C14.7069 15 14.4269 15 14.213 14.891C14.0248 14.7951 13.8719 14.6422 
+13.776 14.454C13.667 14.2401 13.667 13.9601 13.667 13.4V5Z" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" stroke-linejoin="round"/>
+  redactiva.html:421:</svg></div></div><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Certificados de Transacciones</div><div class="uui-text-size-small 
+hide-mobile-landscape">Inicia sesión con tu usuario y contraseña para ver los certificados.</div></div></a><a 
+href="https://www.servientrega.com.ec/Tracking/BusquedaMultiplesGuias" target="_blank" 
+class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_icon-wrapper"><div 
+class="uui-icon-1x1-xsmall w-embed"><svg width="25" height="24" viewBox="0 0 25 24" fill="none" 
+xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:422:<path d="M22.667 21V19C22.667 17.1362 21.3922 15.5701 19.667 15.126M16.167 3.29076C17.6329 
+3.88415 18.667 5.32131 18.667 7C18.667 8.67869 17.6329 10.1159 16.167 10.7092M17.667 21C17.667 19.1362 17.667 18.2044 
+17.3625 17.4693C16.9565 16.4892 16.1778 15.7105 15.1977 15.3045C14.4626 15 13.5308 15 11.667 15H8.66699C6.80323 15 
+5.87134 15 5.13626 15.3045C4.15615 15.7105 3.37745 16.4892 2.97147 17.4693C2.66699 18.2044 2.66699 19.1362 2.66699 
+21M14.167 7C14.167 9.20914 12.3761 11 10.167 11C7.95785 11 6.16699 9.20914 6.16699 7C6.16699 4.79086 7.95785 3 10.167 
+3C12.3761 3 14.167 4.79086 14.167 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round"/>
+  redactiva.html:423:</svg></div></div><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Courier Nacional</div><div class="uui-text-size-small hide-mobile-landscape">Rastrea 
+tus paquetes y documentos con Servientrega.</div></div></a><a href="https://www.dhl.com/ec-es/home/rastreo.html" 
+target="_blank" class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_icon-wrapper"><div 
+class="uui-icon-1x1-xsmall w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" 
+xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:424:<path d="M13 7L11.8845 4.76892C11.5634 4.1268 11.4029 3.80573 11.1634 3.57116C10.9516 3.36373 
+10.6963 3.20597 10.4161 3.10931C10.0992 3 9.74021 3 9.02229 3H5.2C4.0799 3 3.51984 3 3.09202 3.21799C2.71569 3.40973 
+2.40973 3.71569 2.21799 4.09202C2 4.51984 2 5.0799 2 6.2V7M2 7H17.2C18.8802 7 19.7202 7 20.362 7.32698C20.9265 7.6146 
+21.3854 8.07354 21.673 8.63803C22 9.27976 22 10.1198 22 11.8V16.2C22 17.8802 22 18.7202 21.673 19.362C21.3854 19.9265 
+20.9265 20.3854 20.362 20.673C19.7202 21 18.8802 21 17.2 21H6.8C5.11984 21 4.27976 21 3.63803 20.673C3.07354 20.3854 
+2.6146 19.9265 2.32698 19.362C2 18.7202 2 17.8802 2 16.2V7Z" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" stroke-linejoin="round"/>
+  redactiva.html:425:</svg></div></div><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Courier Internacional</div><div class="uui-text-size-small 
+hide-mobile-landscape">Rastrea tus paquetes y documentos con DHL.</div></div></a><a href="/franquicias" 
+class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_icon-wrapper"><div 
+class="uui-icon-1x1-xsmall w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" 
+xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:426:<path d="M13 7L11.8845 4.76892C11.5634 4.1268 11.4029 3.80573 11.1634 3.57116C10.9516 3.36373 
+10.6963 3.20597 10.4161 3.10931C10.0992 3 9.74021 3 9.02229 3H5.2C4.0799 3 3.51984 3 3.09202 3.21799C2.71569 3.40973 
+2.40973 3.71569 2.21799 4.09202C2 4.51984 2 5.0799 2 6.2V7M2 7H17.2C18.8802 7 19.7202 7 20.362 7.32698C20.9265 7.6146 
+21.3854 8.07354 21.673 8.63803C22 9.27976 22 10.1198 22 11.8V16.2C22 17.8802 22 18.7202 21.673 19.362C21.3854 19.9265 
+20.9265 20.3854 20.362 20.673C19.7202 21 18.8802 21 17.2 21H6.8C5.11984 21 4.27976 21 3.63803 20.673C3.07354 20.3854 
+2.6146 19.9265 2.32698 19.362C2 18.7202 2 17.8802 2 16.2V7Z" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" stroke-linejoin="round"/>
+  redactiva.html:427:</svg></div></div><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Franquicia Red Activa</div><div class="uui-text-size-small 
+hide-mobile-landscape">Descubre nuestros planes de franquicia.</div></div></a><a href="/concesiones" 
+class="uui-navbar08_dropdown-link w-inline-block"><div class="uui-navbar08_icon-wrapper"><div 
+class="uui-icon-1x1-xsmall w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" 
+xmlns="http://www.w3.org/2000/svg">
+  redactiva.html:428:<path d="M13 7L11.8845 4.76892C11.5634 4.1268 11.4029 3.80573 11.1634 3.57116C10.9516 3.36373 
+10.6963 3.20597 10.4161 3.10931C10.0992 3 9.74021 3 9.02229 3H5.2C4.0799 3 3.51984 3 3.09202 3.21799C2.71569 3.40973 
+2.40973 3.71569 2.21799 4.09202C2 4.51984 2 5.0799 2 6.2V7M2 7H17.2C18.8802 7 19.7202 7 20.362 7.32698C20.9265 7.6146 
+21.3854 8.07354 21.673 8.63803C22 9.27976 22 10.1198 22 11.8V16.2C22 17.8802 22 18.7202 21.673 19.362C21.3854 19.9265 
+20.9265 20.3854 20.362 20.673C19.7202 21 18.8802 21 17.2 21H6.8C5.11984 21 4.27976 21 3.63803 20.673C3.07354 20.3854 
+2.6146 19.9265 2.32698 19.362C2 18.7202 2 17.8802 2 16.2V7Z" stroke="currentColor" stroke-width="2" 
+stroke-linecap="round" stroke-linejoin="round"/>
+> redactiva.html:429:</svg></div></div><div class="uui-navbar08_item-right"><div 
+class="uui-navbar08_item-heading">Concesiones</div><div class="uui-text-size-small hide-mobile-landscape">Gestiona tu 
+PuntoRedActiva.</div></div></a></div></div></nav></div><a href="/contactanos" class="uui-navbar08_link 
+w-nav-link">Contáctanos</a></div></nav><div class="uui-navbar08_menu-button w-nav-button"><div 
+class="menu-icon_component"><div class="menu-icon_line-top"></div><div class="menu-icon_line-middle"><div 
+class="menu-icon_line-middle-inner"></div></div><div 
+class="menu-icon_line-bottom"></div></div></div></div></div></div></div></section><section 
+class="courier-section"><div class="w-layout-blockcontainer container-courier-content w-container"><div 
+class="img-container courier"></div><div class="card-courier"><div class="top-courier"><div 
+class="courier-servicios"><h4 class="_0-margin">¿Sabías que...?</h4><p class="p bold">Contamos con servicio courier de 
+paquetería.</p></div><div class="row-8 padding-16"><div class="sub-card-courier"><div class="tag-courier"><p 
+class="small bold _0-margin">Canal</p></div><div class="content-tag"><p class="small bold 
+_0-margin">Servientrega</p><p class="small bold _0-margin">DHL</p></div></div><div class="sub-card-courier"><div 
+class="tag-courier"><p class="small bold _0-margin">Peso máximo</p></div><div class="content-tag"><p class="small bold 
+_0-margin">50 KG</p><p class="small bold _0-margin">25 KG</p></div></div><div class="sub-card-courier"><div 
+class="tag-courier"><p class="small bold _0-margin">Envía a los 2</p></div><div class="content-tag"><p class="small 
+bold _0-margin">Paquetes</p><p class="small bold _0-margin">Documentos</p></div></div></div></div><div 
+class="spacing-16"><p class="small bold">Haz clic en el logo de tu empresa de courier para ver el estado de tu 
+envío.</p><div class="row-16 margin-16 center-aligned"><a 
+href="https://www.servientrega.com.ec/Tracking/BusquedaMultiplesGuias" target="_blank" class="link-block-courier 
+w-inline-block"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/670f2dc4c8ad2b1c2edcb9a3_servientrega.png" 
+loading="lazy" alt="" class="image-13"/><p class="petite-small center _0-margin black bold">Courier Nacional</p></a><a 
+href="https://www.dhl.com/ec-es/home/rastreo.html" target="_blank" class="link-block-courier w-inline-block"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/670f2dc5ae436523a98a25a0_DHL.png" loading="lazy" 
+alt="" class="image-14"/><p class="petite-small center _0-margin black bold">Courier 
+Internacional</p></a></div></div></div></div></section><section class="financieros-section"><div 
+class="w-layout-blockcontainer container-financieros-content w-container"><div class="card-financieros"><div 
+class="top-financieros"><h4 class="heading-412">Servicios Financieros</h4></div><ul role="list" class="list-4"><li 
+class="p">Retiros</li><li class="p">Depósitos</li><li class="p">Avances de tarjetas de crédito</li><li class="p">Pagos 
+de tarjetas de crédito</li><li class="p">Pagos de cuotas de préstamos</li></ul><a href="/servicios-financieros" 
+class="boton-primario right w-button">Bancos asociados</a></div><div class="img-container 
+financieros"></div></div></section><section class="ordenes-container"><div class="w-layout-blockcontainer 
+container-ordenes-content w-container"><div class="auto-width _3"><div class="header-ordenes"><h4 
+class="heading-411">Órdenes de Pago</h4><p class="p">Con el servicio de órdenes de pago de Red Activa en Ecuador, 
+gestionas eficientemente:</p></div></div><div class="auto-width _4"><div 
+data-w-id="50a98427-7081-9684-28a1-021de4df63e1" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) 
+rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) 
+rotateY(0deg) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) 
+rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 
+0);transform-style:preserve-3d" class="card-container"><div class="card-ordenes"><div 
+class="illustration-ordenes"></div><p class="small bold center">Planilla de Trabajadores</p></div><div 
+class="card-ordenes back"><p class="small">Realiza pagos de sueldos con rapidez y precisión.</p></div></div><div 
+data-w-id="50a98427-7081-9684-28a1-021de4df63e9" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) 
+rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) 
+rotateY(0deg) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) 
+rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 
+0);transform-style:preserve-3d" class="card-container"><div class="card-ordenes"><div class="illustration-ordenes 
+_1"></div><p class="small bold center">Pago a Proveedores</p></div><div class="card-ordenes back"><p 
+class="small">Saldos puntuales para mantener buenas relaciones comerciales.</p></div></div><div 
+data-w-id="50a98427-7081-9684-28a1-021de4df63f1" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) 
+rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) 
+rotateY(0deg) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) 
+rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 
+0);transform-style:preserve-3d" class="card-container"><div class="card-ordenes"><div class="illustration-ordenes 
+_2"></div><p class="small bold center">Devoluciones</p></div><div class="card-ordenes back"><p class="small">Procesa 
+reintegros de manera simple y segura.</p></div></div><div data-w-id="50a98427-7081-9684-28a1-021de4df63f9" 
+style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 
+0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 
+0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 
+0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 
+0);transform-style:preserve-3d" class="card-container"><div class="card-ordenes"><div class="illustration-ordenes 
+_3"></div><p class="small bold center">Pago a Ganadores</p></div><div class="card-ordenes back"><p 
+class="small">Entrega premios y recompensas de forma ágil.</p></div></div><div 
+data-w-id="50a98427-7081-9684-28a1-021de4df6401" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) 
+rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) 
+rotateY(0deg) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) 
+rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 
+0);transform-style:preserve-3d" class="card-container"><div class="card-ordenes"><div class="illustration-ordenes 
+_4"></div><p class="small bold center">Pago de Comisiones</p></div><div class="card-ordenes back"><p 
+class="small">Facilita el abono de comisiones a tu equipo.</p></div></div><div 
+data-w-id="a0f79031-aae8-81fc-b29d-f00ed211fdc5" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) 
+rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) 
+rotateY(0deg) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) 
+rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0deg) rotateZ(0) skew(0, 
+0);transform-style:preserve-3d" class="card-container"><div class="card-ordenes"><div class="illustration-ordenes 
+_5"></div><p class="small bold center">Donaciones</p></div><div class="card-ordenes back"><p class="small">Llega a más 
+beneficiarios de forma eficiente</p></div></div></div><a href="/contactanos" class="boton-primario _300px 
+w-inline-block"><div>Solicita Información</div></a></div></section><section class="ganadores-container"><h4 class="h4 
+yellow">¡Felicidades a los ganadores!</h4><div class="w-layout-blockcontainer container-promociones-content 
+w-container"><div class="auto-width ra"><div class="img-ganador _1"><div class="bottom-bg"><div 
+class="ganador-descrption"><div class="p bold white">LORENA GALARZA</div><div class="small bold 
+yellow">Guayaquil</div></div></div></div></div></div><a href="/red-activa-te-premia" class="boton-primario _300px 
+w-inline-block"><div>¡Participa!</div></a></section><section class="promociones-activas-container"><div 
+class="promociones-header"><h4 class="h4">Promociones Activas</h4><p class="p">Canjea tus puntos por cualquiera de las 
+promociones activas, pregunta sobre tus puntos cumulados en caja.</p></div><div class="w-layout-blockcontainer 
+container-promociones-content w-container"><div class="auto-width ra"><div class="container-promocion"><div 
+class="img-promoci-n _1"></div><div class="p bold">Tablas de Picar</div></div></div></div><a href="/promociones" 
+class="boton-oscuro _300px-width w-button">Conoce más</a></section><section class="canjes-container"><div 
+class="w-layout-blockcontainer container-promociones-content w-container"><div class="container-canjes"><div 
+class="content canjes"><div class="centered-heading canjes"><h3 class="h3 white">Canjea tus puntos y gana</h3><p 
+class="p white">Puedes ganar premios por sumar puntos con nosotros y también con muchas de tus marcas 
+preferidas.</p></div><div class="cta"><a href="/promociones" class="boton-primario w-button">Ver canjes</a><a 
+href="/promociones" class="small yellow">Realiza sorteos con nosotros</a></div></div></div></div></section><section 
+class="nuevos-servicios-section"><div class="div-block-40"><div class="title-image"></div><div 
+class="div-block-41"></div><p class="petite-small center bold">Solicita más información en cualquier caja de Red Activa
+- Western Union a nivel nacional.</p><a href="/nuevos-servicios" class="boton-oscuro _300px-width w-button">Conoce 
+más</a></div></section><div id="lading-page-map-container" class="_2-columns-2"><div class="cards-copy 
+tablet-width-copy"><div class="heading-local"><h3 class="heading-409">Estamos cerca de ti!</h3><p class="p">Conoce 
+donde se encuentran nuestros locales.</p></div><div id="agency-list" ms-code-skeleton="" class="list landing"><div 
+class="card-selected shimmer"><div class="number hidden"><div class="small bold">1</div></div><div 
+class="content"><div class="small bold">MC PLAZA QUIL GYE</div><div class="petite-small">CDLA KENNEDY AV CARLOS LUIS 
+PLAZA DAÑIN SN AV FRANCISCO DE ORELLANA FRENTE AL CENTRO COMERCIAL POLICENTRO</div></div></div><div 
+class="card-default shimmer"><div class="number hidden"><div class="small bold">2</div></div><div class="content"><div 
+class="small bold">SRNP BANCO COMERCIAL MANABI BAQUERIZO MORENO GYE</div><div class="petite-small">BAQUERIZO MORENO 
+1110 Y 9 DE OCTUBRE</div></div></div></div><div class="link"><p class="small bold black _0-margin">¿No está el local 
+que buscas?</p><a href="/red-de-locales" class="boton-primario small bold w-button">Ver locales</a></div></div><div 
+id="map-container" class="maps-bottom"><div id="map-wrapper" ms-code-skeleton="" class="map-wrapper shimmer"><div 
+class="w-embed w-iframe"><iframe id="map-iframe" src="" loading="lazy" style="position:absolute; top:0; left:0; 
+width:100%; height:100%; border:0;"  allowfullscreen 
+referrerpolicy="no-referrer-when-downgrade"></iframe></div></div></div></div><section class="collab-container"><div 
+class="w-layout-blockcontainer container-colab w-container"><div class="auto-width _3"><div 
+class="header-servicios"><h4 class="heading-410">Encuentranos tambien en:</h4></div></div><div class="auto-width _3 
+margin-16"><div class="colaborador _5"></div><div class="colaborador _6"></div><div class="colaborador _3"></div><div 
+class="colaborador _4"></div><div class="colaborador"></div><div class="colaborador _2"></div><div class="colaborador 
+_1"></div><div class="colaborador _8"></div><div class="colaborador _7"></div></div></div></section></div><section 
+id="Footer" class="section-4"><div class="w-layout-blockcontainer container-footer w-container"><h5 class="h5 
+yellow">¿No pudiste encontrar lo que buscas?</h5><div class="row"><div class="row footer _1"><div class="footer-col 
+exception"><div class="small bold yellow margin-16-down">Giros</div><a href="/giros" class="footer-link">Conoce 
+nuestros servicios de Giros</a><a href="/giros-internacionales" class="footer-link">Giros internacionales</a><a 
+href="/recibe-giros" class="footer-link">Giros a cuenta bancaria</a><a href="/envio-cuenta-bancaria-internacional" 
+class="footer-link">Giros a cuenta bancaria internacional</a><a 
+href="https://www.westernunion.com/web/global-service/track-transfer?WUCountry=us&amp;WULanguage=es" target="_blank" 
+class="footer-link">Rastrea tu envío</a><a href="https://www.westernunion.com/global/es/gcr.html" target="_blank" 
+class="footer-link">Desbloqueo de clientes</a></div><div class="footer-col exception"><div class="small bold yellow 
+margin-16-down">Términos y condiciones</div><a href="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/675124
+583abe02f670492a8f_TERMINOS%20Y%20CONDICIONES%20DHL.pdf" target="_blank" class="footer-link">Términos y Condiciones 
+DHL</a><a href="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/6751245840f0882b5d74e8a8_CONDICIONES-GENERA
+LES-SERVIENTREGA.pdf" target="_blank" class="footer-link">Términos y Condiciones Servientrega</a><a href="https://cdn.p
+rod.website-files.com/66957d7f6e974299c704d85e/6751245849d2aac4de88889a_TERMINOS-Y-CONDICIONES-CLIENTE-DIGITAL.pdf" 
+target="_blank" class="footer-link">Términos y Condiciones afiliación cliente digital</a><a href="https://cdn.prod.webs
+ite-files.com/66957d7f6e974299c704d85e/67512458e08008ee97fbf518_T%C3%89RMINOS%20Y%20CONDICIONES%20WESTERN%20UNION.pdf" 
+target="_blank" class="footer-link">Términos y Condiciones Giros Western Union</a><a href="https://cdn.prod.website-fil
+es.com/66957d7f6e974299c704d85e/67512458043d82ac71dea2d4_Terminos-y-condiciones-promocion-Con-tus-puntos-Red-Activa-pag
+a-tus-servicios-basicos-1.pdf" target="_blank" class="footer-link">Términos y Condiciones promoción</a><a href="https:/
+/cdn.prod.website-files.com/66957d7f6e974299c704d85e/69b446ad184d74e1d762c02b_T%C3%A9rminos%20y%20condiciones%20final%2
+0app%20Red%20Activa.pdf" target="_blank" class="footer-link">Términos y Condiciones App Red Activa</a></div></div><div 
+class="row footer"><div class="footer-col grid"><div class="footer-col item-grid"><div class="small bold yellow 
+margin-16-down">Documentos Electrónicos</div><a href="https://facturacion.redactiva.biz/VoucherSearchResult" 
+target="_blank" class="footer-link">Facturación Electrónica</a><a href="https://comprobantes.redactiva.biz/" 
+target="_blank" class="footer-link">Comprobantes Electrónicos</a><a href="https://certificados.redactiva.biz/" 
+target="_blank" class="footer-link">Certificados de Transacciones</a></div><div class="footer-col item-grid"><div 
+class="small bold yellow margin-16-down">Gana con nosotros</div><a href="/red-activa-te-premia" 
+class="footer-link">Red Activa te premia</a><a href="/promociones" class="footer-link">Programa de 
+Fidelización</a></div><div class="footer-col item-grid"><div class="small bold yellow 
+margin-16-down">Servicios</div><a href="/giros" class="footer-link">Cotizador de envíos WU</a><a 
+href="/cliente-digital" class="footer-link">Afiliación de cliente digital</a><a 
+href="https://www.servientrega.com.ec/Tracking/BusquedaMultiplesGuias" target="_blank" class="footer-link">Rastreo de 
+Courier Nacional</a><a href="https://www.dhl.com/ec-es/home/rastreo.html" target="_blank" class="footer-link">Rastreo 
+de Courier Internacional</a><a href="/promociones" class="footer-link">Consulta tus puntos</a></div><div 
+class="footer-col item-grid"><div class="small bold yellow margin-16-down">Red Activa</div><a href="/quienes-somos" 
+class="footer-link">Quiénes Somos</a><a href="/franquicias" class="footer-link">Franquicias</a><a href="/concesiones" 
+class="footer-link">Concesiones</a><a href="/contactanos" class="footer-link">Contáctanos</a><a href="/faqs" 
+class="footer-link">Preguntas Frecuentes</a></div></div></div></div><div class="col"><div class="row footer 
+header"><div class="col _8-spec"><div class="row left"><a href="/" aria-current="page" class="w-inline-block 
+w--current"><img 
+src="https://cdn.prod.website-files.com/669a79d30b75483cc94915fd/66d4c6cdd5e2e873c9749d3c_Vectors-Wrapper.svg" 
+loading="lazy" width="Auto" height="Auto" alt="" class="vectors-wrapper-12"/></a><a id="btn_whatsapp" 
+href="https://wa.me/+593997515902" target="_blank" class="whatsapp-container w-inline-block"><img 
+src="https://cdn.prod.website-files.com/669a79d30b75483cc94915fd/66e8f193a4162c558d2ba031_Vectors-Wrapper.svg" 
+loading="lazy" width="24" height="24" alt="" class="vectors-wrapper-32"/><div class="small 
+white">0997515902</div></a><a href="https://wa.me/43710050" class="petite-small white">PBX 043710050</a></div><div 
+class="petite-small white">Cdla La Garzota Av Guillermo Pareja Rolando 561 y Alejandro Idrovo Edificio de Bronce. 
+Guayaquil Ecuador.</div><div class="footer-link-block-horizontal"><a href="/politicas-de-privacidad" 
+class="footer-link">Política de Privacidad</a><a href="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/6751
+2458e08008ee97fbf518_T%C3%89RMINOS%20Y%20CONDICIONES%20WESTERN%20UNION.pdf" target="_blank" 
+class="footer-link">Términos y Condiciones</a></div></div><div class="footer-col _45-width space-between"><div 
+class="footer-link-block-horizontal right menu-icon_line-bottom"><a href="https://www.facebook.com/redactivaec/" 
+target="_blank" class="w-inline-block"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/67016402ebb485613ab435e4_logo-facebook.svg" 
+loading="lazy" alt=""/></a><a href="https://www.instagram.com/redactivaec/" target="_blank" 
+class="w-inline-block"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/67016402c3c080ee3cfc853e_logo-instagram.svg" 
+loading="lazy" alt=""/></a><a href="https://www.tiktok.com/@redactivaec?is_from_webapp=1&amp;sender_device=pc" 
+target="_blank" class="w-inline-block"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/67eb0894cf30832cc92e95f1_logo-tiktok.svg" 
+loading="lazy" alt=""/></a><a href="https://wa.me/+593997515902" target="_blank" class="w-inline-block"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/67016402bb003974498d67ef_logo-whatsapp.svg" 
+loading="lazy" alt=""/></a><a href="https://www.youtube.com/channel/UCp5SWhWDOuMga72iUZB4ehA" target="_blank" 
+class="w-inline-block"><img 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/670164060a14c67ab2cc5c34_logo-youtube.svg" 
+loading="lazy" alt=""/></a></div><div class="petite-small bold white">Este sitio está protegido por reCAPTCHA y 
+Google</div><div class="footer-link-block-horizontal right"><a href="https://policies.google.com/privacy" 
+target="_blank" class="footer-link">Política de Privacidad</a><a href="https://policies.google.com/terms" 
+target="_blank" class="footer-link">Términos y Condiciones</a></div></div></div></div></div></section><script 
+src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=66957d7f6e974299c704d85e" 
+type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" 
+crossorigin="anonymous"></script><script 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/js/webflow.schunk.cd570b97b0d8deb5.js" 
+type="text/javascript" integrity="sha384-iFot4RbHBoeW485UcDS+BWM6mLcQUqyGzxXliOoZFvMwkNnKdTgEn5ivnxt2S9x9" 
+crossorigin="anonymous"></script><script 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/js/webflow.schunk.472c705aa6aafd9c.js" 
+type="text/javascript" integrity="sha384-gnjaHKQmET0sVKBFH17HIiokRZQSPG0lRVUACq0vQpsSEWd6RhBk9yukt3DV7+7f" 
+crossorigin="anonymous"></script><script 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/js/webflow.schunk.8d3482e319db3f9d.js" 
+type="text/javascript" integrity="sha384-oPoO8EBr74MXQjpmzAwC/vpJTFs820c9FXM5Xn3X6Q2Z6LMkIqjnZY7dxmhJW1rl" 
+crossorigin="anonymous"></script><script 
+src="https://cdn.prod.website-files.com/66957d7f6e974299c704d85e/js/webflow.1456983e.fdd9ab7387b2f9ca.js" 
+type="text/javascript" integrity="sha384-4DsDpaCxNXgJy3UTb3BUkNXLLkvaK9ZYYV1qwaVgDRB/TLMtDTbpgbpEjf7TZtPX" 
+crossorigin="anonymous"></script><script>
+  redactiva.html:430:  window.ENV = "production";
+  redactiva.html:431:  window.R_KEY = "6Le7StUpAAAAAPkO6MDFwhqhNDs1VsdrSkeBqO0V";
+  redactiva.html:432:  
+  redactiva.html:433:  window.BASE_API_URL = window.ENV === "development"
+  redactiva.html:434:    ? "https://api-ra-b0bacqgeeebmave4.brazilsouth-01.azurewebsites.net/api"
+  redactiva.html:435:    : "https://webra-api-pro.azurewebsites.net/api";  
+  redactiva.html:436:  
+  redactiva.html:437:  window.fwSettings={
+  redactiva.html:438:	'widget_id':69000004730
+  redactiva.html:439:	};
+  redactiva.html:440:	!function(){if("function"!=typeof window.FreshworksWidget){var 
+n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}();
+  redactiva.html:441:  
+  redactiva.html:442:</script>
+  redactiva.html:443:<script>
+  redactiva.html:444:const a0_0x3570df = a0_0xbcc8;
+  redactiva.html:445:(function (_0x4ba53d, _0x2a199c) {
+  redactiva.html:446:  const _0xda05d6 = a0_0xbcc8,
+  redactiva.html:447:    _0x31a498 = _0x4ba53d();
+  redactiva.html:448:  while (!![]) {
+  redactiva.html:449:    try {
+  redactiva.html:450:      const _0x4d868e =
+  redactiva.html:451:        (-parseInt(_0xda05d6(0x1e1)) / 0x1) *
+  redactiva.html:452:          (parseInt(_0xda05d6(0x201)) / 0x2) +
+  redactiva.html:453:        -parseInt(_0xda05d6(0x20b)) / 0x3 +
+  redactiva.html:454:        (parseInt(_0xda05d6(0x217)) / 0x4) *
+  redactiva.html:455:          (parseInt(_0xda05d6(0x1f7)) / 0x5) +
+  redactiva.html:456:        -parseInt(_0xda05d6(0x1eb)) / 0x6 +
+  redactiva.html:457:        parseInt(_0xda05d6(0x1fc)) / 0x7 +
+  redactiva.html:458:        (parseInt(_0xda05d6(0x1f6)) / 0x8) *
+  redactiva.html:459:          (parseInt(_0xda05d6(0x202)) / 0x9) +
+  redactiva.html:460:        (parseInt(_0xda05d6(0x1f8)) / 0xa) * (parseInt(_0xda05d6(0x1fe)) / 0xb);
+  redactiva.html:461:      if (_0x4d868e === _0x2a199c) break;
+  redactiva.html:462:      else _0x31a498["push"](_0x31a498["shift"]());
+  redactiva.html:463:    } catch (_0x2db0b6) {
+  redactiva.html:464:      _0x31a498["push"](_0x31a498["shift"]());
+  redactiva.html:465:    }
+  redactiva.html:466:  }
+  redactiva.html:467:})(a0_0x57b7, 0x57642);
+  redactiva.html:468:const AUTH_API_URL = "" + window[a0_0x3570df(0x1f3)],
+  redactiva.html:469:  authChannel = new BroadcastChannel(a0_0x3570df(0x1f0));
+  redactiva.html:470:let isRefreshing = ![],
+  redactiva.html:471:  refreshSubscribers = [],
+  redactiva.html:472:  channelUsed = ![];
+  redactiva.html:473:authChannel[a0_0x3570df(0x1f9)] = (_0x29c194) => {
+  redactiva.html:474:  const _0x2f29e8 = a0_0x3570df;
+  redactiva.html:475:  if (_0x29c194["data"]["type"] === _0x2f29e8(0x1e0))
+  redactiva.html:476:    sessionStorage[_0x2f29e8(0x204)](
+  redactiva.html:477:      _0x2f29e8(0x209),
+  redactiva.html:478:      _0x29c194[_0x2f29e8(0x1ec)][_0x2f29e8(0x218)]
+  redactiva.html:479:    ),
+  redactiva.html:480:      sessionStorage[_0x2f29e8(0x204)](
+  redactiva.html:481:        _0x2f29e8(0x213),
+  redactiva.html:482:        _0x29c194["data"][_0x2f29e8(0x213)] || ""
+  redactiva.html:483:      ),
+  redactiva.html:484:      startRefreshScheduler(_0x29c194[_0x2f29e8(0x1ec)]["token"]),
+  redactiva.html:485:      (channelUsed = !![]);
+  redactiva.html:486:  else
+  redactiva.html:487:    _0x29c194["data"][_0x2f29e8(0x1fb)] === _0x2f29e8(0x1ef) &&
+  redactiva.html:488:      authChannel[_0x2f29e8(0x1e8)]({
+  redactiva.html:489:        type: _0x2f29e8(0x1ea),
+  redactiva.html:490:        origin: window[_0x2f29e8(0x208)][_0x2f29e8(0x212)],
+  redactiva.html:491:      });
+  redactiva.html:492:};
+  redactiva.html:493:let consecutiveRetryCount = 0x0;
+  redactiva.html:494:function a0_0xbcc8(_0x1c44c6, _0x18386d) {
+  redactiva.html:495:  const _0x57b7e8 = a0_0x57b7();
+  redactiva.html:496:  return (
+  redactiva.html:497:    (a0_0xbcc8 = function (_0xbcc85c, _0x3b3d61) {
+  redactiva.html:498:      _0xbcc85c = _0xbcc85c - 0x1de;
+  redactiva.html:499:      let _0xdb077 = _0x57b7e8[_0xbcc85c];
+  redactiva.html:500:      return _0xdb077;
+  redactiva.html:501:    }),
+  redactiva.html:502:    a0_0xbcc8(_0x1c44c6, _0x18386d)
+  redactiva.html:503:  );
+  redactiva.html:504:}
+  redactiva.html:505:const MAX_CONSECUTIVE_RETRIES = 0x5;
+  redactiva.html:506:async function initAuth() {
+  redactiva.html:507:  const _0x1045e9 = a0_0x3570df;
+  redactiva.html:508:  let _0xf0ccd4 = sessionStorage[_0x1045e9(0x1de)](_0x1045e9(0x209));
+  redactiva.html:509:  if (!_0xf0ccd4) {
+  redactiva.html:510:    _0xf0ccd4 = await fetchInitialTokens();
+  redactiva.html:511:    if (!_0xf0ccd4) return logoutUser(), null;
+  redactiva.html:512:  }
+  redactiva.html:513:  return (
+  redactiva.html:514:    (consecutiveRetryCount = 0x0), startRefreshScheduler(_0xf0ccd4), _0xf0ccd4
+  redactiva.html:515:  );
+  redactiva.html:516:}
+  redactiva.html:517:async function fetchInitialTokens() {
+  redactiva.html:518:  const _0x57324d = a0_0x3570df;
+  redactiva.html:519:  authChannel[_0x57324d(0x1e8)]({
+  redactiva.html:520:    type: _0x57324d(0x1ef),
+  redactiva.html:521:    origin: window[_0x57324d(0x208)]["href"],
+  redactiva.html:522:  }),
+  redactiva.html:523:    await new Promise((_0x26b686) => setTimeout(_0x26b686, 0x1f4));
+  redactiva.html:524:  if (channelUsed) return sessionStorage[_0x57324d(0x1de)](_0x57324d(0x209));
+  redactiva.html:525:  try {
+  redactiva.html:526:    const _0x548f86 = await fetch(AUTH_API_URL + _0x57324d(0x214), {
+  redactiva.html:527:        method: "GET",
+  redactiva.html:528:        credentials: _0x57324d(0x216),
+  redactiva.html:529:      }),
+  redactiva.html:530:      _0x4f1b17 = await handleApiResponse(_0x548f86);
+  redactiva.html:531:    if (!_0x4f1b17) return null;
+  redactiva.html:532:    const _0x508a8e = await fetch(AUTH_API_URL + _0x57324d(0x207), {
+  redactiva.html:533:        method: _0x57324d(0x1fa),
+  redactiva.html:534:        credentials: "include",
+  redactiva.html:535:        headers: { "Content-Type": _0x57324d(0x215) },
+  redactiva.html:536:        body: JSON[_0x57324d(0x20a)]({
+  redactiva.html:537:          nonce: _0x4f1b17[_0x57324d(0x1e3)][_0x57324d(0x1e7)],
+  redactiva.html:538:        }),
+  redactiva.html:539:      }),
+  redactiva.html:540:      _0x57fc1c = await handleApiResponse(_0x508a8e);
+  redactiva.html:541:    if (!_0x57fc1c || !_0x57fc1c[_0x57324d(0x1e3)]?.["token"]) return null;
+  redactiva.html:542:    const _0x48f370 = _0x57fc1c["result"]["token"],
+  redactiva.html:543:      _0x526ed5 = _0x57fc1c[_0x57324d(0x1e3)][_0x57324d(0x213)];
+  redactiva.html:544:    return (
+  redactiva.html:545:      sessionStorage[_0x57324d(0x204)](_0x57324d(0x209), _0x48f370),
+  redactiva.html:546:      sessionStorage["setItem"]("refreshToken", _0x526ed5 ?? ""),
+  redactiva.html:547:      _0x48f370
+  redactiva.html:548:    );
+  redactiva.html:549:  } catch (_0x2a00d4) {
+  redactiva.html:550:    return null;
+  redactiva.html:551:  }
+  redactiva.html:552:}
+  redactiva.html:553:function startRefreshScheduler(_0x4ed06d) {
+  redactiva.html:554:  const _0x438adf = a0_0x3570df,
+  redactiva.html:555:    _0x53eb32 = getTokenRemainingTime(_0x4ed06d);
+  redactiva.html:556:  if (_0x53eb32 <= 0x0) {
+  redactiva.html:557:    refreshToken();
+  redactiva.html:558:    return;
+  redactiva.html:559:  }
+  redactiva.html:560:  const _0x114601 = Math[_0x438adf(0x203)](_0x53eb32 - 0x3c, 0x5);
+  redactiva.html:561:  setTimeout(() => {
+  redactiva.html:562:    refreshToken();
+  redactiva.html:563:  }, _0x114601 * 0x3e8);
+  redactiva.html:564:}
+  redactiva.html:565:async function refreshToken(_0x4cd676 = 0x1) {
+  redactiva.html:566:  const _0x38b016 = a0_0x3570df,
+  redactiva.html:567:    _0xcef2d0 = 0x3,
+  redactiva.html:568:    _0x44425f = 0xbb8;
+  redactiva.html:569:  await new Promise((_0x5c1d3a) => setTimeout(_0x5c1d3a, 0x12c));
+  redactiva.html:570:  if (isRefreshing)
+  redactiva.html:571:    return new Promise((_0x30b89b) => {
+  redactiva.html:572:      refreshSubscribers["push"](_0x30b89b);
+  redactiva.html:573:    });
+  redactiva.html:574:  const _0x1dec4e = sessionStorage["getItem"](_0x38b016(0x209));
+  redactiva.html:575:  if (getTokenRemainingTime(_0x1dec4e) > 0x3c) return _0x1dec4e;
+  redactiva.html:576:  if (isRefreshing)
+  redactiva.html:577:    return new Promise((_0x322760) => {
+  redactiva.html:578:      const _0x1f9c4e = _0x38b016;
+  redactiva.html:579:      refreshSubscribers[_0x1f9c4e(0x20f)](_0x322760);
+  redactiva.html:580:    });
+  redactiva.html:581:  isRefreshing = !![];
+  redactiva.html:582:  try {
+  redactiva.html:583:    const _0x41ed38 = sessionStorage[_0x38b016(0x1de)](_0x38b016(0x209));
+  redactiva.html:584:    if (!_0x41ed38) return;
+  redactiva.html:585:    const _0x2926bf = sessionStorage["getItem"](_0x38b016(0x213)) ?? "",
+  redactiva.html:586:      _0x52b1ad = await fetch(AUTH_API_URL + _0x38b016(0x1e5), {
+  redactiva.html:587:        method: _0x38b016(0x1fa),
+  redactiva.html:588:        credentials: _0x38b016(0x216),
+  redactiva.html:589:        headers: { "Content-Type": _0x38b016(0x215) },
+  redactiva.html:590:        body: JSON[_0x38b016(0x20a)]({
+  redactiva.html:591:          expiredAccessToken: _0x41ed38,
+  redactiva.html:592:          refreshToken: _0x2926bf,
+  redactiva.html:593:        }),
+  redactiva.html:594:      }),
+  redactiva.html:595:      _0x5e0011 = await handleApiResponse(_0x52b1ad, !![]);
+  redactiva.html:596:    if (!_0x5e0011) {
+  redactiva.html:597:      _0x4cd676 < _0xcef2d0
+  redactiva.html:598:        ? setTimeout(() => _0x2926bf(_0x4cd676 + 0x1), _0x44425f)
+  redactiva.html:599:        : logoutUser();
+  redactiva.html:600:      return;
+  redactiva.html:601:    }
+  redactiva.html:602:    if (!_0x5e0011["isSuccess"] || !_0x5e0011[_0x38b016(0x1e3)]?.["token"]) {
+  redactiva.html:603:      _0x4cd676 < _0xcef2d0
+  redactiva.html:604:        ? setTimeout(() => _0x2926bf(_0x4cd676 + 0x1), _0x44425f)
+  redactiva.html:605:        : logoutUser();
+  redactiva.html:606:      return;
+  redactiva.html:607:    }
+  redactiva.html:608:    const _0x2e613e = _0x5e0011[_0x38b016(0x1e3)][_0x38b016(0x218)],
+  redactiva.html:609:      _0x3616ee = _0x5e0011["result"]["refreshToken"];
+  redactiva.html:610:    return (
+  redactiva.html:611:      sessionStorage["setItem"]("authToken", _0x2e613e),
+  redactiva.html:612:      _0x3616ee &&
+  redactiva.html:613:        sessionStorage[_0x38b016(0x204)](_0x38b016(0x213), _0x3616ee),
+  redactiva.html:614:      authChannel[_0x38b016(0x1e8)]({
+  redactiva.html:615:        type: _0x38b016(0x1e0),
+  redactiva.html:616:        token: _0x2e613e,
+  redactiva.html:617:        refreshToken: _0x3616ee,
+  redactiva.html:618:        origin:
+  redactiva.html:619:          window[_0x38b016(0x208)][_0x38b016(0x212)] +
+  redactiva.html:620:          _0x38b016(0x206) +
+  redactiva.html:621:          Date[_0x38b016(0x1e6)]() +
+  redactiva.html:622:          ")",
+  redactiva.html:623:      }),
+  redactiva.html:624:      refreshSubscribers[_0x38b016(0x1ee)]((_0x76f9c0) => _0x76f9c0(_0x2e613e)),
+  redactiva.html:625:      (refreshSubscribers = []),
+  redactiva.html:626:      startRefreshScheduler(_0x2e613e),
+  redactiva.html:627:      _0x2e613e
+  redactiva.html:628:    );
+  redactiva.html:629:  } catch (_0x5379df) {
+  redactiva.html:630:    _0x4cd676 < _0xcef2d0
+  redactiva.html:631:      ? setTimeout(() => refreshToken(_0x4cd676 + 0x1), _0x44425f)
+  redactiva.html:632:      : logoutUser();
+  redactiva.html:633:  } finally {
+  redactiva.html:634:    isRefreshing = ![];
+  redactiva.html:635:  }
+  redactiva.html:636:}
+  redactiva.html:637:async function handleApiResponse(_0xf49e82, _0x4d0e7b = ![]) {
+  redactiva.html:638:  const _0x23c62f = a0_0x3570df;
+  redactiva.html:639:  if (!_0xf49e82["ok"]) {
+  redactiva.html:640:    const _0x4ab8c3 = await tryParseJson(_0xf49e82);
+  redactiva.html:641:    if (
+  redactiva.html:642:      _0x4d0e7b &&
+  redactiva.html:643:      _0x4ab8c3?.["result"]?.[_0x23c62f(0x20c)] === "token_still_valid"
+  redactiva.html:644:    )
+  redactiva.html:645:      return _0x4ab8c3;
+  redactiva.html:646:    if (
+  redactiva.html:647:      _0x4ab8c3?.[_0x23c62f(0x1e3)]?.[_0x23c62f(0x20c)] === _0x23c62f(0x1ff)
+  redactiva.html:648:    ) {
+  redactiva.html:649:      await new Promise((_0x13ff14) => setTimeout(_0x13ff14, 0xa));
+  redactiva.html:650:      const _0x29d575 = sessionStorage["getItem"](_0x23c62f(0x209));
+  redactiva.html:651:      if (_0x29d575)
+  redactiva.html:652:        return (
+  redactiva.html:653:          startRefreshScheduler(_0x29d575),
+  redactiva.html:654:          { isSuccess: !![], result: { token: _0x29d575 } }
+  redactiva.html:655:        );
+  redactiva.html:656:    }
+  redactiva.html:657:    const _0x509383 = [
+  redactiva.html:658:      _0x23c62f(0x1fd),
+  redactiva.html:659:      _0x23c62f(0x20d),
+  redactiva.html:660:      _0x23c62f(0x1f1),
+  redactiva.html:661:      _0x23c62f(0x1e2),
+  redactiva.html:662:      _0x23c62f(0x1e4),
+  redactiva.html:663:      _0x23c62f(0x1f2),
+  redactiva.html:664:      _0x23c62f(0x1f4),
+  redactiva.html:665:    ];
+  redactiva.html:666:    if (
+  redactiva.html:667:      _0x4ab8c3?.[_0x23c62f(0x1e3)]?.[_0x23c62f(0x20c)] &&
+  redactiva.html:668:      _0x509383[_0x23c62f(0x1ed)](_0x4ab8c3[_0x23c62f(0x1e3)][_0x23c62f(0x20c)])
+  redactiva.html:669:    )
+  redactiva.html:670:      return logoutUser(), null;
+  redactiva.html:671:    return _0x4ab8c3;
+  redactiva.html:672:  }
+  redactiva.html:673:  try {
+  redactiva.html:674:    return await _0xf49e82[_0x23c62f(0x1f5)]();
+  redactiva.html:675:  } catch (_0x448e5a) {
+  redactiva.html:676:    return null;
+  redactiva.html:677:  }
+  redactiva.html:678:}
+  redactiva.html:679:function getTokenRemainingTime(_0x4da79a) {
+  redactiva.html:680:  const _0x2fb70a = a0_0x3570df;
+  redactiva.html:681:  try {
+  redactiva.html:682:    const _0x42ae9d = _0x4da79a[_0x2fb70a(0x205)](".")[0x1],
+  redactiva.html:683:      _0x36a34d = _0x42ae9d[_0x2fb70a(0x211)](/-/g, "+")[_0x2fb70a(0x211)](
+  redactiva.html:684:        /_/g,
+  redactiva.html:685:        "/"
+  redactiva.html:686:      ),
+  redactiva.html:687:      _0x212a59 = JSON["parse"](atob(_0x36a34d));
+  redactiva.html:688:    if (!_0x212a59[_0x2fb70a(0x200)]) return 0x0;
+  redactiva.html:689:    return (
+  redactiva.html:690:      _0x212a59[_0x2fb70a(0x200)] -
+  redactiva.html:691:      Math[_0x2fb70a(0x1e9)](Date["now"]() / 0x3e8)
+  redactiva.html:692:    );
+  redactiva.html:693:  } catch (_0x21e2a4) {
+  redactiva.html:694:    return 0x0;
+  redactiva.html:695:  }
+  redactiva.html:696:}
+  redactiva.html:697:async function tryParseJson(_0x1e2ab1) {
+  redactiva.html:698:  const _0x110d47 = a0_0x3570df;
+  redactiva.html:699:  try {
+  redactiva.html:700:    return await _0x1e2ab1[_0x110d47(0x1f5)]();
+  redactiva.html:701:  } catch {
+  redactiva.html:702:    return null;
+  redactiva.html:703:  }
+  redactiva.html:704:}
+  redactiva.html:705:async function logoutUser() {
+  redactiva.html:706:  const _0x498ad8 = a0_0x3570df;
+  redactiva.html:707:  sessionStorage[_0x498ad8(0x20e)](_0x498ad8(0x209)),
+  redactiva.html:708:    consecutiveRetryCount++,
+  redactiva.html:709:    consecutiveRetryCount >= MAX_CONSECUTIVE_RETRIES
+  redactiva.html:710:      ? launchRedirectToMaintenanceEvent()
+  redactiva.html:711:      : setTimeout(() => initAuth(), 0xbb8);
+  redactiva.html:712:}
+  redactiva.html:713:async function getToken() {
+  redactiva.html:714:  const _0x4adee5 = a0_0x3570df;
+  redactiva.html:715:  let _0x517628 = sessionStorage["getItem"](_0x4adee5(0x209));
+  redactiva.html:716:  return (
+  redactiva.html:717:    !_0x517628 &&
+  redactiva.html:718:      (!authPromise && (authPromise = initAuth()),
+  redactiva.html:719:      (_0x517628 = await authPromise)),
+  redactiva.html:720:    _0x517628
+  redactiva.html:721:  );
+  redactiva.html:722:}
+  redactiva.html:723:document[a0_0x3570df(0x210)](a0_0x3570df(0x1df), async () => {
+  redactiva.html:724:  (authPromise = initAuth()), await authPromise;
+  redactiva.html:725:});
+  redactiva.html:726:function a0_0x57b7() {
+  redactiva.html:727:  const _0x30590b = [
+  redactiva.html:728:    "2543700QrONgP",
+  redactiva.html:729:    "data",
+  redactiva.html:730:    "includes",
+  redactiva.html:731:    "forEach",
+  redactiva.html:732:    "channel_check",
+  redactiva.html:733:    "auth_channel",
+  redactiva.html:734:    "missing_nonce",
+  redactiva.html:735:    "missing_refresh_token",
+  redactiva.html:736:    "BASE_API_URL",
+  redactiva.html:737:    "missing_access_token",
+  redactiva.html:738:    "json",
+  redactiva.html:739:    "1269712IAFVVG",
+  redactiva.html:740:    "1810UkZwsy",
+  redactiva.html:741:    "10bEahvU",
+  redactiva.html:742:    "onmessage",
+  redactiva.html:743:    "POST",
+  redactiva.html:744:    "type",
+  redactiva.html:745:    "3409868kVIWYw",
+  redactiva.html:746:    "refresh_window_expired",
+  redactiva.html:747:    "4932169ZNUYpu",
+  redactiva.html:748:    "refresh_token_reused_too_soon",
+  redactiva.html:749:    "exp",
+  redactiva.html:750:    "200SLtliS",
+  redactiva.html:751:    "9iypjgo",
+  redactiva.html:752:    "max",
+  redactiva.html:753:    "setItem",
+  redactiva.html:754:    "split",
+  redactiva.html:755:    "\x20(Tab\x20ID:\x20",
+  redactiva.html:756:    "/auth/validate",
+  redactiva.html:757:    "location",
+  redactiva.html:758:    "authToken",
+  redactiva.html:759:    "stringify",
+  redactiva.html:760:    "519663lMeBhw",
+  redactiva.html:761:    "error_code",
+  redactiva.html:762:    "invalid_refresh_token",
+  redactiva.html:763:    "removeItem",
+  redactiva.html:764:    "push",
+  redactiva.html:765:    "addEventListener",
+  redactiva.html:766:    "replace",
+  redactiva.html:767:    "href",
+  redactiva.html:768:    "refreshToken",
+  redactiva.html:769:    "/auth/challenge",
+  redactiva.html:770:    "application/json",
+  redactiva.html:771:    "include",
+  redactiva.html:772:    "2536ouYMlq",
+  redactiva.html:773:    "token",
+  redactiva.html:774:    "getItem",
+  redactiva.html:775:    "DOMContentLoaded",
+  redactiva.html:776:    "token_refreshed",
+  redactiva.html:777:    "3686YARHRt",
+  redactiva.html:778:    "invalid_nonce",
+  redactiva.html:779:    "result",
+  redactiva.html:780:    "expired_nonce",
+  redactiva.html:781:    "/auth/refresh",
+  redactiva.html:782:    "now",
+  redactiva.html:783:    "challenge",
+  redactiva.html:784:    "postMessage",
+  redactiva.html:785:    "floor",
+  redactiva.html:786:    "channel_active",
+  redactiva.html:787:  ];
+  redactiva.html:788:  a0_0x57b7 = function () {
+  redactiva.html:789:    return _0x30590b;
+  redactiva.html:790:  };
+  redactiva.html:791:  return a0_0x57b7();
+  redactiva.html:792:}
+  redactiva.html:793:
+  redactiva.html:794:
+  redactiva.html:795:</script>
+  redactiva.html:796:
+  redactiva.html:797:<script>
+  redactiva.html:798:  const a11_0x594109 = a11_0xf518;
+  redactiva.html:799:(function (_0x3dc804, _0x2dbd2e) {
+  redactiva.html:800:  const _0x10a702 = a11_0xf518,
+  redactiva.html:801:    _0x483c9a = _0x3dc804();
+  redactiva.html:802:  while (!![]) {
+  redactiva.html:803:    try {
+  redactiva.html:804:      const _0x4d85bb =
+  redactiva.html:805:        (parseInt(_0x10a702(0x17c)) / 0x1) *
+  redactiva.html:806:          (parseInt(_0x10a702(0x141)) / 0x2) +
+  redactiva.html:807:        -parseInt(_0x10a702(0x14f)) / 0x3 +
+  redactiva.html:808:        (-parseInt(_0x10a702(0x146)) / 0x4) *
+  redactiva.html:809:          (parseInt(_0x10a702(0x13e)) / 0x5) +
+  redactiva.html:810:        (parseInt(_0x10a702(0x123)) / 0x6) *
+  redactiva.html:811:          (-parseInt(_0x10a702(0x118)) / 0x7) +
+  redactiva.html:812:        parseInt(_0x10a702(0x127)) / 0x8 +
+  redactiva.html:813:        -parseInt(_0x10a702(0x15b)) / 0x9 +
+  redactiva.html:814:        (parseInt(_0x10a702(0x114)) / 0xa) * (parseInt(_0x10a702(0x16e)) / 0xb);
+  redactiva.html:815:      if (_0x4d85bb === _0x2dbd2e) break;
+  redactiva.html:816:      else _0x483c9a["push"](_0x483c9a["shift"]());
+  redactiva.html:817:    } catch (_0x335b45) {
+  redactiva.html:818:      _0x483c9a["push"](_0x483c9a["shift"]());
+  redactiva.html:819:    }
+  redactiva.html:820:  }
+  redactiva.html:821:})(a11_0x1000, 0xf2c12),
+  redactiva.html:822:  (window["GOOGLE_MAPS_EMBED_URL"] =
+  redactiva.html:823:    "https://www.google.com/maps/embed/v1/place"),
+  redactiva.html:824:  (window[a11_0x594109(0x137)] = a11_0x594109(0x159)),
+  redactiva.html:825:  (window[a11_0x594109(0x14c)] = a11_0x594109(0x162)),
+  redactiva.html:826:  (window[a11_0x594109(0x164)] = a11_0x594109(0x15c)),
+  redactiva.html:827:  (window[a11_0x594109(0x16b)] = a11_0x594109(0x12d)),
+  redactiva.html:828:  (window[a11_0x594109(0x177)] = a11_0x594109(0x100)),
+  redactiva.html:829:  (window[a11_0x594109(0x17b)] = a11_0x594109(0x135));
+  redactiva.html:830:const DEFAULT_AGENCIES_PER_PAGE = 0x5,
+  redactiva.html:831:  DEFAULT_AGENCIES_PER_PAGINATION_PAGE_LANDING = 0x8,
+  redactiva.html:832:  MONEY_TRANSFER_DIGIT_LIMIT = 0x6;
+  redactiva.html:833:function getLocalStorageItem(_0x1ce1cd) {
+  redactiva.html:834:  try {
+  redactiva.html:835:    const _0x192b94 = localStorage["getItem"](_0x1ce1cd);
+  redactiva.html:836:    return _0x192b94 ? JSON["parse"](_0x192b94) : null;
+  redactiva.html:837:  } catch (_0x59e55b) {
+  redactiva.html:838:    return null;
+  redactiva.html:839:  }
+  redactiva.html:840:}
+  redactiva.html:841:function a11_0x1000() {
+  redactiva.html:842:  const _0x1dc985 = [
+  redactiva.html:843:    "sqrt",
+  redactiva.html:844:    "querySelector",
+  redactiva.html:845:    "appendChild",
+  redactiva.html:846:    "body",
+  redactiva.html:847:    "items",
+  redactiva.html:848:    "10KIxiWJ",
+  redactiva.html:849:    "/parameters?parameter=",
+  redactiva.html:850:    "cookie",
+  redactiva.html:851:    "10CvfSOc",
+  redactiva.html:852:    "setTime",
+  redactiva.html:853:    "container",
+  redactiva.html:854:    "add",
+  redactiva.html:855:    "Error\x20interno\x20al\x20intentar\x20obtener\x20datos.",
+  redactiva.html:856:    "97496PbmxIh",
+  redactiva.html:857:    "display",
+  redactiva.html:858:    "name",
+  redactiva.html:859:    "data",
+  redactiva.html:860:    "classList",
+  redactiva.html:861:    "getElementById",
+  redactiva.html:862:    "PARAM_GOOGLE_API_TOKEN",
+  redactiva.html:863:    ";\x20path=/;\x20",
+  redactiva.html:864:    "&key=",
+  redactiva.html:865:    "2934891QUFVLw",
+  redactiva.html:866:    "loading_text",
+  redactiva.html:867:    "Bearer\x20",
+  redactiva.html:868:    "next_loading_text",
+  redactiva.html:869:    "static",
+  redactiva.html:870:    "contains",
+  redactiva.html:871:    "Cargando...",
+  redactiva.html:872:    "length",
+  redactiva.html:873:    "Content-Type",
+  redactiva.html:874:    "isSuccess",
+  redactiva.html:875:    "ra.agencies",
+  redactiva.html:876:    "clear",
+  redactiva.html:877:    "10937682DfCQIz",
+  redactiva.html:878:    "default_city",
+  redactiva.html:879:    "expires=",
+  redactiva.html:880:    "find",
+  redactiva.html:881:    "set",
+  redactiva.html:882:    "div",
+  redactiva.html:883:    "href",
+  redactiva.html:884:    "google_api_token",
+  redactiva.html:885:    "4F4F4F",
+  redactiva.html:886:    "PARAM_DEFAULT_CITY",
+  redactiva.html:887:    "Secure",
+  redactiva.html:888:    "error-message",
+  redactiva.html:889:    "ehbc",
+  redactiva.html:890:    "createElement",
+  redactiva.html:891:    "number",
+  redactiva.html:892:    "?q=",
+  redactiva.html:893:    "PARAM_DEFAULT_STATE",
+  redactiva.html:894:    "shimmer",
+  redactiva.html:895:    "replace",
+  redactiva.html:896:    "16687OhXJdM",
+  redactiva.html:897:    ".overlay",
+  redactiva.html:898:    "filter",
+  redactiva.html:899:    "/location-finder",
+  redactiva.html:900:    "relative",
+  redactiva.html:901:    "parameterGroup\x20es\x20obligatorio.",
+  redactiva.html:902:    "next_overlay",
+  redactiva.html:903:    "next_circle_loader",
+  redactiva.html:904:    "getTime",
+  redactiva.html:905:    "PARAM_AGENCIES_ITEMS_PER_PAGINATION_PAGE",
+  redactiva.html:906:    "flex",
+  redactiva.html:907:    "geolocation",
+  redactiva.html:908:    "includes",
+  redactiva.html:909:    "PARAM_AGENCIES_ITEMS_PER_PAGINATION_PAGE_FOR_LANDING_PAGE",
+  redactiva.html:910:    "33193NEIMSg",
+  redactiva.html:911:    "BASE_API_URL",
+  redactiva.html:912:    "El\x20parámetro\x20\x22minutes\x22\x20debe\x20ser\x20un\x20número\x20positivo.",
+  redactiva.html:913:    "agencies_items_per_pagination_page",
+  redactiva.html:914:    "onFetchError",
+  redactiva.html:915:    "location",
+  redactiva.html:916:    "src",
+  redactiva.html:917:    "toString",
+  redactiva.html:918:    "searchParams",
+  redactiva.html:919:    "style",
+  redactiva.html:920:    "El\x20parámetro\x20\x22mode\x22\x20debe\x20ser\x20uno\x20de:\x20",
+  redactiva.html:921:    "landing",
+  redactiva.html:922:    "toFixed",
+  redactiva.html:923:    "agenciesPerPaginationPage",
+  redactiva.html:924:    "map",
+  redactiva.html:925:    "hidden",
+  redactiva.html:926:    "removeItem",
+  redactiva.html:927:    "startsWith",
+  redactiva.html:928:    "headers",
+  redactiva.html:929:    "active",
+> redactiva.html:2174:    ".cotizador-container-mini",
+  redactiva.html:2175:    "cityReference",
+  redactiva.html:2176:    "div",
+  redactiva.html:2177:    "Por\x20favor\x20ingrese\x20un\x20monto\x20válido.",
+  redactiva.html:2178:    "DOMContentLoaded",
+  redactiva.html:2179:    "/pago-de-servicios",
+  redactiva.html:2180:    "find",
+  redactiva.html:2181:    "map-container",
+  redactiva.html:2182:    "createElement",
+  redactiva.html:2183:    "BASE_API_URL",
+  redactiva.html:2184:    "Límite\x20de\x20dígitos\x20superado",
+  redactiva.html:2185:    "payment-services",
+  redactiva.html:2186:    "toString",
+  redactiva.html:2187:    "La\x20solicitud\x20no\x20fue\x20exitosa.",
+  redactiva.html:2188:    "appendChild",
+  redactiva.html:2189:    "27505208dBnJrJ",
+  redactiva.html:2190:    "...",
+  redactiva.html:2191:    "serviceIconImage",
+  redactiva.html:2192:    "classList",
+  redactiva.html:2193:    "14898QPeAjw",
+  redactiva.html:2194:    "471206RWLPOR",
+  redactiva.html:2195:    "countryTax",
+  redactiva.html:2196:    "forEach",
+  redactiva.html:2197:    "map-wrapper",
+  redactiva.html:2198:    "result",
+  redactiva.html:2199:    "costDetails",
+  redactiva.html:2200:    "/moneytransfer/quote",
+  redactiva.html:2201:    "BRANDS",
+  redactiva.html:2202:    "</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20
+class=\x22content\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22agency-name\x20small\x20bold\x22>",
+  redactiva.html:2203:    "isArray",
+  redactiva.html:2204:    "sort",
+  redactiva.html:2205:    "detail",
+  redactiva.html:2206:    "quote",
+  redactiva.html:2207:    "slice",
+  redactiva.html:2208:    "_selected_service",
+  redactiva.html:2209:    ".agency-item",
+  redactiva.html:2210:    "Total",
+  redactiva.html:2211:    "replace",
+  redactiva.html:2212:    "Error\x20en\x20la\x20solicitud.\x20Intente\x20nuevamente.",
+  redactiva.html:2213:    "preventDefault",
+  redactiva.html:2214:    "SERVICES",
+  redactiva.html:2215:    "amount",
+  redactiva.html:2216:    "Iva",
+  redactiva.html:2217:    
+"</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22address\x20petite-small\x22>",
+  redactiva.html:2218:    "calculate",
+  redactiva.html:2219:    "address",
+  redactiva.html:2220:    "service-container",
+  redactiva.html:2221:    "add",
+  redactiva.html:2222:    "\x22\x20loading=\x22lazy\x22\x20alt=\x22",
+  redactiva.html:2223:    "1407VBaBlI",
+  redactiva.html:2224:    "longitude",
+  redactiva.html:2225:    "name",
+  redactiva.html:2226:    "R_KEY",
+  redactiva.html:2227:    "Btn-Todos",
+  redactiva.html:2228:    "agency-list",
+  redactiva.html:2229:    "0.00",
+  redactiva.html:2230:    "USD",
+  redactiva.html:2231:    "Tarifa",
+  redactiva.html:2232:  ];
+  redactiva.html:2233:  a0_0x4885 = function () {
+  redactiva.html:2234:    return _0x399c13;
+  redactiva.html:2235:  };
+  redactiva.html:2236:  return a0_0x4885();
+  redactiva.html:2237:}
+  redactiva.html:2238:function getFilteredServices(_0x38c3e3, _0x4ee6ff) {
+  redactiva.html:2239:  const _0x8aab35 = a0_0x598de5;
+  redactiva.html:2240:  if (!_0x38c3e3 || !Array[_0x8aab35(0x21b)](_0x38c3e3)) return [];
+  redactiva.html:2241:  if (!_0x4ee6ff || !Array[_0x8aab35(0x21b)](_0x4ee6ff)) return [];
+  redactiva.html:2242:  const _0x15b6f3 = _0x38c3e3["filter"]((_0x43ad57) => {
+  redactiva.html:2243:    const _0x2e2060 = _0x8aab35;
+  redactiva.html:2244:    if (!_0x43ad57["isActive"]) return ![];
+  redactiva.html:2245:    const _0x548051 = _0x4ee6ff[_0x2e2060(0x1f6)](
+  redactiva.html:2246:      (_0x3b68b3) =>
+  redactiva.html:2247:        _0x3b68b3[_0x2e2060(0x231)][_0x2e2060(0x243)]() ===
+  redactiva.html:2248:        _0x43ad57[_0x2e2060(0x231)][_0x2e2060(0x243)]()
+  redactiva.html:2249:    );
+  redactiva.html:2250:    return _0x548051[_0x2e2060(0x1f5)](
+  redactiva.html:2251:      (_0x3bea49) => _0x3bea49[_0x2e2060(0x1e6)]
+  redactiva.html:2252:    );
+  redactiva.html:2253:  });
+  redactiva.html:2254:  return _0x15b6f3[_0x8aab35(0x21c)](
+  redactiva.html:2255:    (_0x398e2f, _0x33d3ce) =>
+  redactiva.html:2256:      _0x398e2f[_0x8aab35(0x1eb)] - _0x33d3ce["servicePriority"]
+  redactiva.html:2257:  );
+  redactiva.html:2258:}
+  redactiva.html:2259:function resetValues() {
+  redactiva.html:2260:  const _0x411ac3 = a0_0x598de5;
+  redactiva.html:2261:  (document["getElementById"](_0x411ac3(0x237))[_0x411ac3(0x23f)] =
+  redactiva.html:2262:    zeroDecimalValue),
+  redactiva.html:2263:    (document[_0x411ac3(0x242)](_0x411ac3(0x1ed))[_0x411ac3(0x23f)] =
+  redactiva.html:2264:      zeroDecimalValue),
+  redactiva.html:2265:    (document[_0x411ac3(0x242)](_0x411ac3(0x228))["textContent"] =
+  redactiva.html:2266:      zeroDecimalValue),
+  redactiva.html:2267:    (document[_0x411ac3(0x242)](_0x411ac3(0x222))[_0x411ac3(0x23f)] =
+  redactiva.html:2268:      zeroDecimalValue);
+  redactiva.html:2269:}
+  redactiva.html:2270:function loadingValues() {
+  redactiva.html:2271:  const _0x5c9e34 = a0_0x598de5;
+  redactiva.html:2272:  (document[_0x5c9e34(0x242)](_0x5c9e34(0x237))[_0x5c9e34(0x23f)] =
+  redactiva.html:2273:    loadingValueText),
+  redactiva.html:2274:    (document[_0x5c9e34(0x242)](_0x5c9e34(0x1ed))["textContent"] =
+  redactiva.html:2275:      loadingValueText),
+  redactiva.html:2276:    (document[_0x5c9e34(0x242)](_0x5c9e34(0x228))[_0x5c9e34(0x23f)] =
+  redactiva.html:2277:      loadingValueText),
+  redactiva.html:2278:    (document[_0x5c9e34(0x242)]("Total")[_0x5c9e34(0x23f)] = loadingValueText);
+  redactiva.html:2279:}
+  redactiva.html:2280:async function fetchAgenciesByCity() {
+  redactiva.html:2281:  const _0x359d7e = a0_0x598de5;
+  redactiva.html:2282:  try {
+  redactiva.html:2283:    showLoader(listElement);
+  redactiva.html:2284:    let _0x3cbe63 = null;
+  redactiva.html:2285:    try {
+  redactiva.html:2286:      _0x3cbe63 = await handleGeolocation();
+  redactiva.html:2287:    } catch (_0x1864b5) {}
+  redactiva.html:2288:    if (_0x3cbe63 && _0x3cbe63[_0x359d7e(0x247)]) {
+  redactiva.html:2289:      const { currentCity: _0xf5f45a, cities: _0x6447ec } =
+  redactiva.html:2290:          _0x3cbe63[_0x359d7e(0x216)],
+  redactiva.html:2291:        _0x326a92 = _0x6447ec[_0x359d7e(0x24c)]["find"](
+  redactiva.html:2292:          (_0x561a45) => _0x561a45["cityReference"] === _0xf5f45a
+  redactiva.html:2293:        );
+  redactiva.html:2294:      _0x326a92 &&
+  redactiva.html:2295:        (showCityAgenciesMap(_0x326a92[_0x359d7e(0x1ee)], mapContext),
+  redactiva.html:2296:        showLoader(mapContext["container"])),
+  redactiva.html:2297:        await fetchAgenciesData(_0xf5f45a);
+  redactiva.html:2298:    } else {
+  redactiva.html:2299:      showLoader(mapContext["container"]);
+  redactiva.html:2300:      const _0x576201 = await fetchCitiesByState(defaultState);
+  redactiva.html:2301:      if (_0x576201 && _0x576201["isSuccess"]) {
+  redactiva.html:2302:        const _0x19d308 = _0x576201[_0x359d7e(0x216)]["items"][
+  redactiva.html:2303:          _0x359d7e(0x204)
+  redactiva.html:2304:        ]((_0x5870d1) => _0x5870d1[_0x359d7e(0x1ff)] === defaultCity);
+  redactiva.html:2305:        _0x19d308 &&
+  redactiva.html:2306:          (showCityAgenciesMap(_0x19d308[_0x359d7e(0x1ee)], mapContext),
+  redactiva.html:2307:          await fetchAgenciesData(_0x19d308[_0x359d7e(0x1ff)]));
+  redactiva.html:2308:      }
+  redactiva.html:2309:    }
+  redactiva.html:2310:  } catch (_0x580dcd) {
+  redactiva.html:2311:  } finally {
+  redactiva.html:2312:    hideLoader(listElement), hideLoader(mapContext[_0x359d7e(0x1e8)]);
+  redactiva.html:2313:  }
+  redactiva.html:2314:}
+  redactiva.html:2315:async function fetchAgenciesData(_0x39bf0a) {
+  redactiva.html:2316:  const _0x523b36 = a0_0x598de5;
+  redactiva.html:2317:  try {
+  redactiva.html:2318:    let _0x4a0807 = await syncResource({
+  redactiva.html:2319:      resourceName: _0x523b36(0x240) + _0x39bf0a,
+  redactiva.html:2320:      resourceApiPath: _0x523b36(0x1e4) + _0x39bf0a + _0x523b36(0x24d),
+  redactiva.html:2321:      pageKey: landingPageKeyAgencies,
+  redactiva.html:2322:    });
+  redactiva.html:2323:    if (_0x4a0807)
+  redactiva.html:2324:      return (
+  redactiva.html:2325:        (_0x4a0807 = _0x4a0807[_0x523b36(0x21f)](
+  redactiva.html:2326:          0x0,
+  redactiva.html:2327:          agenciesPerPaginationPageForLandingPage
+  redactiva.html:2328:        )),
+  redactiva.html:2329:        populateAgencyList(listElement, _0x4a0807),
+  redactiva.html:2330:        _0x4a0807
+  redactiva.html:2331:      );
+  redactiva.html:2332:    return null;
+  redactiva.html:2333:  } catch (_0x13dbd8) {
+  redactiva.html:2334:    return null;
+  redactiva.html:2335:  }
+  redactiva.html:2336:}
+  redactiva.html:2337:function populateAgencyList(_0x3a9b4d, _0x58e105, _0x2a4969 = 0x0) {
+  redactiva.html:2338:  const _0x11daae = a0_0x598de5;
+  redactiva.html:2339:  (_0x3a9b4d["innerHTML"] = ""),
+  redactiva.html:2340:    _0x58e105[_0x11daae(0x214)]((_0x5b1cf2, _0x6e4425) => {
+  redactiva.html:2341:      const _0x19741b = _0x11daae,
+  redactiva.html:2342:        _0x18e352 = document[_0x19741b(0x206)](_0x19741b(0x200));
+  redactiva.html:2343:      _0x18e352[_0x19741b(0x210)]["add"]("agency-item"),
+  redactiva.html:2344:        (_0x18e352[_0x19741b(0x1e7)] =
+  redactiva.html:2345:          "\x0a\x20\x20\x20\x20\x20\x20<div\x20class=\x22card-default\x22>\x0a\x20\x20\x20\x20\x2
+0\x20\x20\x20<div\x20class=\x22number\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22small\x20bold\x
+22>" +
+  redactiva.html:2346:          (_0x2a4969 + _0x6e4425 + 0x1) +
+  redactiva.html:2347:          _0x19741b(0x21a) +
+  redactiva.html:2348:          _0x5b1cf2[_0x19741b(0x241)] +
+  redactiva.html:2349:          _0x19741b(0x229) +
+  redactiva.html:2350:          _0x5b1cf2[_0x19741b(0x22b)] +
+  redactiva.html:2351:          _0x19741b(0x238)),
+  redactiva.html:2352:        _0x18e352[_0x19741b(0x1fa)](_0x19741b(0x1f9), () => {
+  redactiva.html:2353:          const _0xe2cc92 = _0x19741b;
+  redactiva.html:2354:          document["querySelectorAll"](_0xe2cc92(0x221))["forEach"](
+  redactiva.html:2355:            (_0x599d8c) => {
+  redactiva.html:2356:              const _0x168865 = _0xe2cc92;
+  redactiva.html:2357:              _0x599d8c[_0x168865(0x210)][_0x168865(0x246)]("card-selected");
+  redactiva.html:2358:            }
+  redactiva.html:2359:          ),
+  redactiva.html:2360:            _0x18e352[_0xe2cc92(0x210)][_0xe2cc92(0x22d)]("card-selected"),
+  redactiva.html:2361:            showAgencyOnMap(
+  redactiva.html:2362:              _0x5b1cf2["latitude"],
+  redactiva.html:2363:              _0x5b1cf2[_0xe2cc92(0x230)],
+  redactiva.html:2364:              apiKey,
+  redactiva.html:2365:              mapContext
+  redactiva.html:2366:            );
+  redactiva.html:2367:        }),
+  redactiva.html:2368:        _0x3a9b4d[_0x19741b(0x20c)](_0x18e352);
+  redactiva.html:2369:    });
+  redactiva.html:2370:}
+  redactiva.html:2371:async function calculateQuote() {
+  redactiva.html:2372:  const _0x299111 = a0_0x598de5;
+  redactiva.html:2373:  resetValues(), loadingValues();
+  redactiva.html:2374:  const _0x3387f0 = parseFloat(amountElement[_0x299111(0x1f1)]) || 0x0;
+  redactiva.html:2375:  if (_0x3387f0 <= 0x0) {
+  redactiva.html:2376:    showTemporaryMessage(_0x299111(0x201)), resetValues();
+  redactiva.html:2377:    return;
+  redactiva.html:2378:  }
+  redactiva.html:2379:  const _0x575e68 = amountElement[_0x299111(0x1f1)][_0x299111(0x223)](
+  redactiva.html:2380:    /\./g,
+  redactiva.html:2381:    ""
+  redactiva.html:2382:  );
+  redactiva.html:2383:  if (!selectedCountry) {
+  redactiva.html:2384:    showTemporaryMessage(_0x299111(0x244)), resetValues();
+  redactiva.html:2385:    return;
+  redactiva.html:2386:  }
+  redactiva.html:2387:  const _0x4e9cc7 = selectedCountry[_0x299111(0x1ec)];
+  redactiva.html:2388:  let _0xc52652 = _0x299111(0x236);
+  redactiva.html:2389:  const _0x5a243e = selectedCountry[_0x299111(0x1f8)][_0x299111(0x204)](
+  redactiva.html:2390:    (_0x5e36c3) => _0x5e36c3["code"] !== _0x299111(0x236)
+  redactiva.html:2391:  );
+  redactiva.html:2392:  _0x5a243e && (_0xc52652 = _0x5a243e["code"]);
+  redactiva.html:2393:  const _0x51e9e6 = await grecaptcha["execute"]("" + window[_0x299111(0x232)], {
+  redactiva.html:2394:      action: _0x299111(0x21e),
+  redactiva.html:2395:    }),
+  redactiva.html:2396:    _0x56dda2 = {
+  redactiva.html:2397:      amount: _0x575e68,
+  redactiva.html:2398:      countryCode: _0x4e9cc7["toString"](),
+  redactiva.html:2399:      currencyCode: _0xc52652[_0x299111(0x20a)](),
+  redactiva.html:2400:      additionalToken: _0x51e9e6,
+  redactiva.html:2401:    };
+  redactiva.html:2402:  try {
+  redactiva.html:2403:    showNextLoader(resultContainer);
+  redactiva.html:2404:    const _0x128081 = await fetchData(
+  redactiva.html:2405:      apiUrl + _0x299111(0x218),
+  redactiva.html:2406:      _0x56dda2,
+  redactiva.html:2407:      _0x299111(0x249)
+  redactiva.html:2408:    );
+  redactiva.html:2409:    if (_0x128081 && _0x128081["isSuccess"]) {
+  redactiva.html:2410:      const _0x220325 = _0x128081[_0x299111(0x216)]["transferFeeDetails"][
+  redactiva.html:2411:        _0x299111(0x204)
+  redactiva.html:2412:      ]((_0x5b47fc) => _0x5b47fc["serviceName"] === "App\x20Red\x20Activa");
+  redactiva.html:2413:      _0x220325
+  redactiva.html:2414:        ? ((document[_0x299111(0x242)]("Tarifa")["textContent"] =
+  redactiva.html:2415:            formatDecimalValue(_0x220325[_0x299111(0x217)][_0x299111(0x23c)])),
+  redactiva.html:2416:          (document[_0x299111(0x242)](_0x299111(0x1ed))["textContent"] =
+  redactiva.html:2417:            formatDecimalValue(
+  redactiva.html:2418:              _0x220325[_0x299111(0x217)][_0x299111(0x1ef)][_0x299111(0x213)]
+  redactiva.html:2419:            )),
+  redactiva.html:2420:          (document[_0x299111(0x242)](_0x299111(0x228))[_0x299111(0x23f)] =
+  redactiva.html:2421:            formatDecimalValue(_0x220325[_0x299111(0x217)]["taxes"]["tax"])),
+  redactiva.html:2422:          (document[_0x299111(0x242)]("Total")[_0x299111(0x23f)] =
+  redactiva.html:2423:            formatDecimalValue(_0x220325["costDetails"][_0x299111(0x1f4)])))
+  redactiva.html:2424:        : showTemporaryMessage(_0x299111(0x23e));
+  redactiva.html:2425:    } else {
+  redactiva.html:2426:      const _0x3ae3d0 = _0x128081[_0x299111(0x1ea)] || _0x299111(0x20b);
+  redactiva.html:2427:      showTemporaryMessage(_0x3ae3d0), resetValues();
+  redactiva.html:2428:    }
+  redactiva.html:2429:  } catch (_0x14a207) {
+  redactiva.html:2430:    showTemporaryMessage(_0x299111(0x224)), resetValues();
+  redactiva.html:2431:  } finally {
+  redactiva.html:2432:    hideNextLoader(resultContainer);
+  redactiva.html:2433:  }
+  redactiva.html:2434:}
+  redactiva.html:2435:amountElement["addEventListener"](a0_0x598de5(0x248), function (_0x151e6f) {
+  redactiva.html:2436:  const _0x28db33 = a0_0x598de5;
+  redactiva.html:2437:  let _0x2fdfc8 = _0x151e6f[_0x28db33(0x23a)][_0x28db33(0x1f1)];
+  redactiva.html:2438:  _0x2fdfc8 = _0x2fdfc8[_0x28db33(0x223)](/[^\d]/g, "");
+  redactiva.html:2439:  _0x2fdfc8[_0x28db33(0x23b)] > MONEY_TRANSFER_DIGIT_LIMIT &&
+  redactiva.html:2440:    ((_0x2fdfc8 = _0x2fdfc8[_0x28db33(0x21f)](0x0, MONEY_TRANSFER_DIGIT_LIMIT)),
+  redactiva.html:2441:    showTemporaryMessage(_0x28db33(0x208)));
+  redactiva.html:2442:  if (_0x2fdfc8 === "" || _0x2fdfc8 === ".") {
+  redactiva.html:2443:    _0x151e6f[_0x28db33(0x23a)][_0x28db33(0x1f1)] = zeroDecimalValue;
+  redactiva.html:2444:    return;
+  redactiva.html:2445:  }
+  redactiva.html:2446:  let _0x2e151f = formatDecimalValue(_0x2fdfc8);
+  redactiva.html:2447:  _0x151e6f[_0x28db33(0x23a)][_0x28db33(0x1f1)] = _0x2e151f;
+  redactiva.html:2448:}),
+  redactiva.html:2449:  calculateButton[a0_0x598de5(0x1fa)](a0_0x598de5(0x1f9), (_0x4d07cc) => {
+  redactiva.html:2450:    const _0x253a02 = a0_0x598de5;
+  redactiva.html:2451:    _0x4d07cc[_0x253a02(0x225)](), calculateQuote();
+  redactiva.html:2452:  }),
+  redactiva.html:2453:  document[a0_0x598de5(0x1fa)]("countryChanged", (_0x56e43d) => {
+  redactiva.html:2454:    const _0x2a8b12 = a0_0x598de5;
+  redactiva.html:2455:    (selectedCountry = _0x56e43d[_0x2a8b12(0x21d)]["selectedCountry"]),
+  redactiva.html:2456:      resetValues();
+  redactiva.html:2457:  });
+  redactiva.html:2458:
+  redactiva.html:2459:</script>
+  redactiva.html:2460:
+  redactiva.html:2461:
+  redactiva.html:2462:</body></html>
+
+

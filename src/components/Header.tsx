@@ -29,8 +29,8 @@ const services = [
   { key: "equifax", label: "Equifax", href: "/equifax", logo: "/images/header logo/equifax.webp", mobileLogo: "/images/header logo/equifax-sq.webp", accent: "#C8102E" },
   { key: "supa", label: "SUPA", href: "/supa", logo: "/images/header logo/supa.webp", mobileLogo: "/images/header logo/supa-sq.webp", accent: "#2D6A4F", scale: 1.35 },
   { key: "western-union", label: "Western Union", href: "/western-union", logo: "/images/header logo/western-union.webp", mobileLogo: "/images/header logo/western-union-sq.webp", accent: "#FFDD00" },
-  { key: "servicios-basicos", label: "Servicios Básicos", href: "/servicios-basicos", logo: "/images/header logo/planillas.webp", mobileLogo: "/images/header logo/planillas-sq.webp", accent: "#002D54", scale: 1.35 },
-  { key: "bancos", label: "Bancos", href: "/bancos", logo: "/images/header logo/bancos.webp", mobileLogo: "/images/header logo/bancos-sq.webp", accent: "#F7EF4D" },
+  { key: "servicios-basicos", label: "Servicios Básicos", href: "/servicios-basicos", logo: "/images/header logo/planillas.webp", mobileLogo: "/images/header logo/planillas-sq.webp", accent: "#002D54", scale: 1.35, Icon: Zap },
+  { key: "bancos", label: "Bancos", href: "/bancos", logo: "/images/header logo/bancos.webp", mobileLogo: "/images/header logo/bancos-sq.webp", accent: "#F7EF4D", Icon: Landmark },
 ];
 
 /* ─── Branch Hours Logic ─── */
@@ -108,23 +108,23 @@ export default function Header() {
                 <div className="flex items-center gap-2.5 text-[11px]">
                   <MapPin className="w-4 h-4 text-pe-yellow" />
                   <div className="flex flex-col -space-y-0.5">
-                    <span className="font-light text-white/50 uppercase tracking-widest text-[9px]">Miguel Riofrío y Olmedo</span>
+                    <span className="font-light text-white/50 uppercase tracking-widest text-[11px]">Miguel Riofrío y Olmedo</span>
                     <div className="flex items-center gap-1.5">
                       <span className={`w-1.5 h-1.5 rounded-full ${branchOpen ? "bg-pe-success animate-pulse-dot shadow-[0_0_8px_#10B981]" : "bg-pe-error"}`} />
-                      <span className={`font-black uppercase tracking-[0.1em] text-[8px] ${branchOpen ? "text-pe-success" : "text-pe-error"}`}>
+                      <span className={`font-black uppercase tracking-[0.1em] text-[10px] ${branchOpen ? "text-pe-success" : "text-pe-error"}`}>
                         {branchOpen ? "Abierto Ahora" : "Cerrado"}
                       </span>
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-white/50 text-[11px]">
-                  <Clock className="w-3.5 h-3.5 text-pe-yellow" />
-                  <span className="font-light">L-V 06:30-19:30 · S 08:00-16:00</span>
+                <div className="flex items-center gap-2 text-white/50 text-[13px]">
+                  <Clock className="w-4 h-4 text-pe-yellow" />
+                  <span className="font-light text-white/70">L-V 06:30-19:30 · S 08:00-16:00</span>
                 </div>
                 <div className="w-px h-4 bg-white/10" />
-                <div className="flex items-center gap-2 text-white/50 text-[11px]">
-                  <Phone className="w-3.5 h-3.5 text-pe-yellow" />
-                  <span className="font-light">07 258 3120</span>
+                <div className="flex items-center gap-2 text-white/50 text-[13px]">
+                  <Phone className="w-4 h-4 text-pe-yellow" />
+                  <span className="font-light text-white/70">07 258 3120</span>
                 </div>
               </div>
 
@@ -201,14 +201,21 @@ export default function Header() {
                       />
 
                       <div className="relative z-10 w-[115px] h-[45px] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-                        <Image
-                          src={s.logo}
-                          alt={s.label}
-                          width={115}
-                          height={45}
-                          className="object-contain transition-all duration-300"
-                          style={s.scale ? { transform: `scale(${s.scale})` } : undefined}
-                        />
+                        {s.Icon ? (
+                          <div className="flex items-center gap-1.5 justify-center w-full">
+                            <s.Icon className="w-5 h-5" style={{ color: s.accent === "#F7EF4D" ? "#002D54" : s.accent }} />
+                            <span className="font-bold text-[10px] sm:text-[11px] text-pe-black leading-tight text-center uppercase tracking-tighter" style={{ color: s.accent === "#F7EF4D" ? "#002D54" : s.accent }}>{s.label}</span>
+                          </div>
+                        ) : (
+                          <Image
+                            src={s.logo}
+                            alt={s.label}
+                            width={115}
+                            height={45}
+                            className="object-contain transition-all duration-300"
+                            style={s.scale ? { transform: `scale(${s.scale})` } : undefined}
+                          />
+                        )}
                       </div>
                     </Link>
                   );
@@ -253,14 +260,18 @@ export default function Header() {
                     className="group relative flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white hover:border-white transition-all duration-300"
                   >
                     <div className="w-16 h-16 rounded-xl bg-white flex items-center justify-center overflow-hidden shrink-0 shadow-sm border border-black/5 group-hover:shadow-lg transition-all">
-                      <Image
-                        src={s.mobileLogo || s.logo}
-                        alt={s.label}
-                        width={64}
-                        height={64}
-                        className="object-contain transition-all duration-300 group-hover:scale-110"
-                        style={s.mobileLogo ? { transform: 'scale(1.2)' } : { transform: `scale(${(s.scale || 1) * 1.2})` }}
-                      />
+                      {s.Icon ? (
+                        <s.Icon className="w-8 h-8" style={{ color: s.accent === "#F7EF4D" ? "#002D54" : s.accent }} />
+                      ) : (
+                        <Image
+                          src={s.mobileLogo || s.logo}
+                          alt={s.label}
+                          width={64}
+                          height={64}
+                          className="object-contain transition-all duration-300 group-hover:scale-110"
+                          style={s.mobileLogo ? { transform: 'scale(1.2)' } : { transform: `scale(${(s.scale || 1) * 1.2})` }}
+                        />
+                      )}
                     </div>
                     <div className="flex-1">
                       <h4 className="text-lg font-black text-white group-hover:text-pe-black transition-colors uppercase tracking-tight">{s.label}</h4>
@@ -342,14 +353,18 @@ export default function Header() {
                     >
                       <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white group-hover:bg-white/90 transition-all overflow-hidden p-1 shadow-sm border border-white/10">
                         <div className="relative w-full h-full flex items-center justify-center">
-                          <Image
-                            src={s.mobileLogo || s.logo}
-                            alt={s.label}
-                            width={60}
-                            height={60}
-                            className="object-contain transition-all group-hover:scale-110"
-                            style={s.mobileLogo ? { transform: 'scale(1.35)' } : { transform: `scale(${(s.scale || 1) * 1.35})` }}
-                          />
+                          {s.Icon ? (
+                             <s.Icon className="w-8 h-8" style={{ color: s.accent === "#F7EF4D" ? "#002D54" : s.accent }} />
+                          ) : (
+                            <Image
+                              src={s.mobileLogo || s.logo}
+                              alt={s.label}
+                              width={60}
+                              height={60}
+                              className="object-contain transition-all group-hover:scale-110"
+                              style={s.mobileLogo ? { transform: 'scale(1.35)' } : { transform: `scale(${(s.scale || 1) * 1.35})` }}
+                            />
+                          )}
                         </div>
                       </div>
                       <span className="text-xl font-bold text-white/90 group-hover:text-white transition-colors tracking-tight">{s.label}</span>

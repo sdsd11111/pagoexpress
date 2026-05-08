@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import {
@@ -8,6 +8,9 @@ import {
     ArrowRight,
     CheckCircle2,
     DollarSign,
+    User,
+    CheckCircle,
+    Upload,
     RefreshCcw,
     MessageCircle,
     ShieldCheck,
@@ -54,18 +57,67 @@ export default function EcuabetPage() {
     const [userId, setUserId] = useState("");
     const [amount, setAmount] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [step, setStep] = useState(1);
+    const [leadName, setLeadName] = useState("");
+    const [leadPhone, setLeadPhone] = useState("");
+    const [receipt, setReceipt] = useState<File | null>(null);
+    const [isUploading, setIsUploading] = useState(false);
 
-    const handleWhatsAppSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n🆔 *ID de Usuario:* ${userId}\n💰 *Monto:* $${amount}\n\nQuedo a la espera de sus instrucciones.`;
+    const handleWhatsAppSubmit = async (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        
+        let receiptUrl = "";
+        if (receipt) {
+            try {
+                setIsUploading(true);
+                const formData = new FormData();
+                formData.append("receipt", receipt);
+                formData.append("userId", userId);
+                formData.append("amount", amount);
+
+                const response = await fetch("/api/upload", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    receiptUrl = data.url;
+                }
+            } catch (error) {
+                console.error("Error uploading receipt:", error);
+            } finally {
+                setIsUploading(false);
+            }
+        }
+
+        console.log("Lead Captured:", { name: leadName, phone: leadPhone, service: "Ecuabet", amount, userId, receiptUrl });
+
+        const message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n🆔 *ID de Usuario:* ${userId}\n💰 *Monto:* $${amount}\n📱 *Teléfono:* ${leadPhone}\n\n${receiptUrl ? `✅ *Comprobante de pago:* ${receiptUrl}` : "⏳ *Adjuntaré el comprobante en un momento.*"}\n\nQuedo a la espera de la acreditación.`;
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/593990227203?text=${encodedMessage}`, "_blank");
     };
 
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const heroImages = [
+        "/ecuabet.webp",
+        "/ecuabet_mockup_betting.png"
+    ];
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const nextStep = () => setStep(prev => prev + 1);
+    const prevStep = () => setStep(prev => prev - 1);
+
     return (
         <main className="min-h-screen bg-black text-white selection:bg-pe-yellow selection:text-black font-sans">
             {/* ═══ Section 1: Hero ═══ */}
-            <section className="relative overflow-hidden min-h-[calc(100vh-80px)] lg:h-[70vh] lg:min-h-[550px] flex items-center bg-black border-b border-white/5 pt-28 pb-16 lg:pt-28 lg:pb-0">
+            <section className="relative overflow-hidden min-h-[90vh] flex items-center bg-black pt-28 pb-16 lg:pt-20 lg:pb-0">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-0 right-0 w-[800px] h-[600px] rounded-full blur-[140px] opacity-20 pointer-events-none" style={{ background: ECUABET_GOLD }} />
                     <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[100px] opacity-5 pointer-events-none" style={{ background: ECUABET_GOLD }} />
@@ -73,45 +125,85 @@ export default function EcuabetPage() {
 
                 <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: `radial-gradient(circle, white 0.5px, transparent 0.5px)`, backgroundSize: "32px 32px" }} />
 
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-                    <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center">
-                        <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border mb-8 bg-white/5 border-white/10">
-                            <div className="flex items-center gap-2 border-r border-white/20 pr-3">
-                                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: ECUABET_GOLD }} />
-                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/70">Punto Autorizado</span>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-left">
+                            <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border mb-8 bg-white/5 border-white/10">
+                                <div className="flex items-center gap-2 border-r border-white/20 pr-3">
+                                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: ECUABET_GOLD }} />
+                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/70">Punto Autorizado</span>
+                                </div>
+                                <Image src="/logo.jpg" alt="PagoExpress" width={70} height={20} className="h-3.5 w-auto brightness-0 invert opacity-60" />
                             </div>
-                            <Image src="/logo.jpg" alt="PagoExpress" width={70} height={20} className="h-3.5 w-auto brightness-0 invert opacity-60" />
-                        </div>
 
-                        <h1 className="text-3xl sm:text-5xl lg:text-[4.5rem] font-black leading-[1.2] lg:leading-[1.1] tracking-tighter mb-6 lg:mb-6 uppercase italic px-2">
-                            Recargas de{" "}
-                            <span style={{ color: ECUABET_GOLD }}>Ecuabet</span>
-                            <br />en Loja
-                        </h1>
+                            <h1 className="text-4xl sm:text-6xl lg:text-[5.5rem] font-black leading-[1.1] tracking-tighter mb-10 uppercase italic px-0">
+                                Recargas de{" "}
+                                <span style={{ color: ECUABET_GOLD }}>Ecuabet</span>
+                                <br />en Ecuador
+                            </h1>
 
-                        <p className="text-sm sm:text-lg lg:text-xl text-white/50 max-w-2xl mx-auto mb-10 lg:mb-10 leading-relaxed font-light px-4">
-                            Olvídate de las tarjetas de crédito. Ven a nuestras agencias en Loja, paga en efectivo y recibe tu saldo de <span className="text-white font-bold">Ecuabet</span> de forma inmediata y 100% segura.
-                        </p>
+                            <div className="flex flex-col sm:flex-row gap-4 lg:gap-5 justify-start px-0">
+                                <Link
+                                    href="#simulador"
+                                    className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 text-black font-black uppercase tracking-widest rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-pe-yellow/20"
+                                    style={{ backgroundColor: ECUABET_GOLD }}
+                                >
+                                    <Zap className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                                    Recargar Ahora
+                                </Link>
+                                <Link
+                                    href="#sucursales"
+                                    className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-5 bg-transparent border-2 text-white font-black rounded-xl hover:bg-white/5 transition-all uppercase tracking-widest text-sm"
+                                    style={{ borderColor: ECUABET_GOLD, color: ECUABET_GOLD }}
+                                >
+                                    Ubicaciones en Loja
+                                    <ArrowRight className="w-4 h-4" />
+                                </Link>
+                            </div>
+                        </motion.div>
 
-                        <div className="flex flex-col sm:flex-row gap-4 lg:gap-5 justify-center px-4">
-                            <Link
-                                href="#accion"
-                                className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 text-black font-black uppercase tracking-widest rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-pe-yellow/20"
-                                style={{ backgroundColor: ECUABET_GOLD }}
-                            >
-                                <Zap className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                                Recargar Ahora
-                            </Link>
-                            <Link
-                                href="#sucursales"
-                                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-5 bg-transparent border-2 text-white font-black rounded-xl hover:bg-white/5 transition-all uppercase tracking-widest text-sm"
-                                style={{ borderColor: ECUABET_GOLD, color: ECUABET_GOLD }}
-                            >
-                                Ubicaciones en Loja
-                                <ArrowRight className="w-4 h-4" />
-                            </Link>
-                        </div>
-                    </motion.div>
+                        {/* Hero Slider */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: 100 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1, ease: "easeOut" }}
+                            className="relative aspect-square lg:aspect-video w-full rounded-[3rem] overflow-hidden border-4 border-white/5 shadow-3xl bg-neutral-900"
+                        >
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={currentSlide}
+                                    initial={{ opacity: 0, scale: 1.1, x: 50 }}
+                                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                                    exit={{ opacity: 0, scale: 0.9, x: -50 }}
+                                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                                    className="absolute inset-0 w-full h-full"
+                                >
+                                    <Image 
+                                        src={heroImages[currentSlide]}
+                                        alt={`Ecuabet Experience ${currentSlide + 1}`}
+                                        fill
+                                        className={`transition-all duration-700 ${currentSlide === 0 ? "object-contain p-8 sm:p-12" : "object-cover"}`}
+                                        priority
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                                </motion.div>
+                            </AnimatePresence>
+
+                            {/* Slider Indicators */}
+                            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+                                {heroImages.map((_, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => setCurrentSlide(i)}
+                                        className={`h-1.5 rounded-full transition-all duration-500 ${
+                                            currentSlide === i ? "w-12 bg-pe-yellow" : "w-3 bg-white/20"
+                                        }`}
+                                        style={{ backgroundColor: currentSlide === i ? ECUABET_GOLD : undefined }}
+                                    />
+                                ))}
+                            </div>
+                        </motion.div>
+                    </div>
                 </div>
             </section>
 
@@ -126,168 +218,294 @@ export default function EcuabetPage() {
 
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Tarjeta Izquierda: Recargas */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={sweepRight}
-                            className="group relative bg-black p-10 rounded-[2.5rem] border border-white/5 hover:border-pe-yellow/30 transition-all overflow-hidden"
-                        >
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-pe-yellow/5 rounded-full blur-[100px] group-hover:bg-pe-yellow/10 transition-all" />
+                        <Link href="#simulador" className="block group">
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                variants={sweepRight}
+                                className="relative bg-black p-10 rounded-[2.5rem] border border-white/5 group-hover:border-pe-yellow/30 transition-all overflow-hidden h-full cursor-pointer active:scale-[0.98]"
+                            >
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-pe-yellow/5 rounded-full blur-[100px] group-hover:bg-pe-yellow/10 transition-all" />
 
-                            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 bg-pe-yellow/10">
-                                <Zap className="w-8 h-8" style={{ color: ECUABET_GOLD }} />
-                            </div>
+                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 bg-pe-yellow/10 group-hover:scale-110 transition-transform">
+                                    <Zap className="w-8 h-8" style={{ color: ECUABET_GOLD }} />
+                                </div>
 
-                            <h3 className="text-4xl font-black text-white mb-6 uppercase italic tracking-tight">Recargas al <br /><span style={{ color: ECUABET_GOLD }}>Instante</span></h3>
+                                <h3 className="text-4xl font-black text-white mb-6 uppercase italic tracking-tight">Recargas al <br /><span style={{ color: ECUABET_GOLD }}>Instante</span></h3>
 
-                            <div className="space-y-6">
-                                <p className="text-white/60 text-lg leading-relaxed">
-                                    Acredita saldo a tu cuenta con pago en efectivo. Sin necesidad de tarjetas ni bancos. Dicta tu ID de usuario en ventanilla y empieza a jugar al instante.
-                                </p>
-                                <div className="flex items-center gap-3 p-4 bg-white/5 rounded-2xl border border-white/5">
-                                    <Smartphone className="w-6 h-6 text-white/40" />
-                                    <div>
-                                        <div className="text-[10px] font-black uppercase tracking-widest text-white/20">Política vigente</div>
-                                        <div className="text-sm font-bold text-white/80">Monto mínimo: $1.00</div>
+                                <div className="space-y-6">
+                                    <p className="text-white/60 text-lg leading-relaxed">
+                                        Acredita saldo a tu cuenta con pago en efectivo. Sin necesidad de tarjetas ni bancos. Dicta tu ID de usuario en ventanilla y empieza a jugar al instante.
+                                    </p>
+                                    <div className="flex items-center gap-3 p-4 bg-white/5 rounded-2xl border border-white/5">
+                                        <Smartphone className="w-6 h-6 text-white/40" />
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-white/20">Política vigente</div>
+                                            <div className="text-sm font-bold text-white/80">Monto mínimo: $1.00</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        </Link>
 
-                        {/* Tarjeta Derecha: Retiros */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={sweepRight}
-                            className="group relative bg-[#0D131A] p-10 rounded-[2.5rem] border border-white/5 hover:border-pe-yellow/30 transition-all overflow-hidden"
-                        >
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-pe-yellow/5 rounded-full blur-[100px] group-hover:bg-pe-yellow/10 transition-all" />
+                        {/* Tarjeta Derecha: Seguridad */}
+                        <div className="block group">
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                variants={sweepRight}
+                                className="relative bg-[#0D131A] p-10 rounded-[2.5rem] border border-white/5 group-hover:border-pe-yellow/30 transition-all overflow-hidden h-full"
+                            >
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-pe-yellow/5 rounded-full blur-[100px]" />
 
-                            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 bg-pe-yellow/10">
-                                <Banknote className="w-8 h-8" style={{ color: ECUABET_GOLD }} />
-                            </div>
+                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 bg-pe-yellow/10">
+                                    <ShieldCheck className="w-8 h-8" style={{ color: ECUABET_GOLD }} />
+                                </div>
 
-                            <h3 className="text-4xl font-black text-white mb-6 uppercase italic tracking-tight">Retiro de <br /><span style={{ color: ECUABET_GOLD }}>Premios</span></h3>
+                                <h3 className="text-4xl font-black text-white mb-6 uppercase italic tracking-tight">Seguridad y <br /><span style={{ color: ECUABET_GOLD }}>Respaldo</span></h3>
 
-                            <div className="space-y-6">
-                                <p className="text-white/60 text-lg leading-relaxed">
-                                    Haz efectivo tus aciertos. Proceso seguro con verificación de identidad en ventanilla.
-                                </p>
-                                <div className="flex items-center gap-3 p-4 bg-pe-yellow/10 rounded-2xl border border-pe-yellow/20">
-                                    <ShieldAlert className="w-6 h-6" style={{ color: ECUABET_GOLD }} />
-                                    <div>
-                                        <div className="text-[10px] font-black uppercase tracking-widest text-pe-yellow/50">Requisito clave</div>
-                                        <div className="text-sm font-bold text-white/80">Cédula + Código de retiro</div>
+                                <div className="space-y-6">
+                                    <p className="text-white/60 text-lg leading-relaxed">
+                                        Operaciones respaldadas por Ecuabet Ecuador. Transacciones 100% seguras con comprobante físico y digital inmediato para tu tranquilidad.
+                                    </p>
+                                    <div className="flex items-center gap-3 p-4 bg-pe-yellow/10 rounded-2xl border border-pe-yellow/20">
+                                        <CheckCircle2 className="w-6 h-6" style={{ color: ECUABET_GOLD }} />
+                                        <div>
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-pe-yellow/50">Garantía PagoExpress</div>
+                                            <div className="text-sm font-bold text-white/80">Punto Oficial Autorizado</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* ═══ Feature: Formulario Dinámico WhatsApp ═══ */}
-            <section className="py-24 bg-black relative overflow-hidden">
+            {/* ═══ Feature: Simulador Dinámico Ecuabet ═══ */}
+            <section id="simulador" className="py-24 bg-black relative overflow-hidden">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={fadeUp}
-                        className="bg-white/5 border border-white/10 rounded-[3rem] p-8 md:p-12 backdrop-blur-xl"
+                        className="bg-white/[0.03] border border-white/10 rounded-[3rem] p-8 md:p-12 backdrop-blur-xl relative overflow-hidden"
                     >
-                        <div className="text-center mb-10">
-                            <h2 className="text-3xl font-black text-white mb-4 uppercase italic">Solicitud de <span style={{ color: ECUABET_GOLD }}>Recarga</span></h2>
-                            <p className="text-white/40">Ingresa tus datos para generar el ticket de WhatsApp</p>
+                        {/* Progress Bar */}
+                        <div className="absolute top-0 left-0 right-0 h-1.5 bg-white/5">
+                            <motion.div 
+                                className="h-full bg-pe-yellow shadow-[0_0_20px_rgba(243,207,29,0.5)]"
+                                initial={{ width: "33%" }}
+                                animate={{ width: `${(step / 3) * 100}%` }}
+                            />
                         </div>
 
-                        <form onSubmit={handleWhatsAppSubmit} className="grid md:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <label className="text-xs font-black uppercase tracking-widest text-white/40 px-2">ID Usuario Ecuabet</label>
-                                <input
-                                    type="text"
-                                    required
-                                    placeholder="Ej: 859302"
-                                    value={userId}
-                                    onChange={(e) => setUserId(e.target.value)}
-                                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold placeholder:text-white/10"
-                                />
-                            </div>
-                            <div className="space-y-2">
-                                <label className="text-xs font-black uppercase tracking-widest text-white/40 px-2">Monto a Recargar ($)</label>
-                                <input
-                                    type="number"
-                                    required
-                                    placeholder="Ej: 20"
-                                    value={amount}
-                                    onChange={(e) => setAmount(e.target.value)}
-                                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold placeholder:text-white/10"
-                                />
-                            </div>
-                            <button
-                                type="submit"
-                                className="md:col-span-2 mt-4 bg-white text-black font-black uppercase tracking-widest py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-pe-yellow hover:scale-[1.02] transition-all active:scale-95"
-                            >
-                                <Send className="w-5 h-5" />
-                                Generar Mensaje de WhatsApp
-                            </button>
-                        </form>
-                    </motion.div>
-                </div>
-            </section>
+                        <div className="text-center mb-10 mt-4">
+                            <h2 className="text-3xl font-black text-white mb-2 uppercase italic">
+                                SOLICITUD DE <span style={{ color: ECUABET_GOLD }}>RECARGA</span>
+                            </h2>
+                            <p className="text-white/40 text-sm font-medium tracking-wide uppercase">Paso {step} de 4</p>
+                        </div>
 
-            {/* ═══ Section 3: Ventajas Ganadoras (Bento Grid) ═══ */}
-            <section className="py-24 bg-black relative overflow-hidden border-b border-white/5">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-5xl font-black text-white uppercase italic tracking-tighter">
-                            VENTAJAS <span style={{ color: ECUABET_GOLD }}>GANADORAS</span>
-                        </h2>
-                        <p className="text-white/40 mt-4 text-lg font-medium">¿Por qué gestionar tu cuenta Ecuabet con PagoExpress?</p>
-                    </div>
+                        <div className="bg-neutral-900 border border-white/5 rounded-[2.5rem] p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                            <div className="flex justify-between items-center mb-10">
+                                {[1, 2, 3, 4].map((s) => (
+                                    <div key={s} className="flex flex-col items-center gap-2">
+                                        <div 
+                                            className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-500 ${
+                                                step >= s ? "scale-110" : "opacity-30 scale-90"
+                                            }`}
+                                            style={{ 
+                                                backgroundColor: step >= s ? ECUABET_GOLD : "transparent",
+                                                color: step >= s ? "black" : "white",
+                                                border: step < s ? "2px solid white" : "none"
+                                            }}
+                                        >
+                                            {step > s ? <CheckCircle className="w-5 h-5" /> : s}
+                                        </div>
+                                        <span className="text-[10px] uppercase tracking-widest font-black opacity-30">
+                                            {s === 1 ? "Datos" : s === 2 ? "Monto" : s === 3 ? "Recibo" : "Final"}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
 
-                    <div className="grid md:grid-cols-3 gap-6">
-                        {[
-                            {
-                                t: "Liquidez Inmediata",
-                                d: "Cobra tus premios al instante en efectivo. Sin esperas bancarias ni procesos complejos.",
-                                i: Banknote
-                            },
-                            {
-                                t: "Privacidad Total",
-                                d: "Gestionamos tus datos con absoluta discreción y el respaldo de un corresponsal autorizado.",
-                                i: ShieldCheck
-                            },
-                            {
-                                t: "Soporte en Persona",
-                                d: "Resuelve dudas cara a cara en nuestras agencias. Sin tickets de espera ni bots.",
-                                i: MessageCircle
-                            }
-                        ].map((benefit, i) => (
-                            <motion.div
-                                key={i}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                                variants={fadeUp}
-                                transition={{ delay: i * 0.1 }}
-                                className="group p-10 rounded-[2.5rem] bg-white/5 border border-white/10 hover:border-pe-yellow/50 transition-all relative overflow-hidden"
-                            >
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-pe-yellow/5 rounded-full blur-[60px] group-hover:bg-pe-yellow/10 transition-all" />
-                                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform">
-                                    <benefit.i className="w-7 h-7" style={{ color: ECUABET_GOLD }} />
-                                </div>
-                                <h3 className="text-xl font-black text-white mb-4 uppercase tracking-tight">{benefit.t}</h3>
-                                <p className="text-white/50 text-sm leading-relaxed font-medium">
-                                    {benefit.d}
-                                </p>
-                            </motion.div>
-                        ))}
+                            <AnimatePresence mode="wait">
+                                {step === 1 && (
+                                    <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
+                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Tus Datos</h3>
+                                    <div className="space-y-4">
+                                        <div className="relative group">
+                                            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
+                                            <input 
+                                                type="text" 
+                                                placeholder="NOMBRE COMPLETO" 
+                                                value={leadName}
+                                                onChange={(e) => setLeadName(e.target.value)}
+                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                            />
+                                        </div>
+                                        <div className="relative group">
+                                            <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
+                                            <input 
+                                                type="tel" 
+                                                placeholder="WHATSAPP (OBLIGATORIO)" 
+                                                value={leadPhone}
+                                                onChange={(e) => setLeadPhone(e.target.value)}
+                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                            />
+                                        </div>
+                                    </div>
+                                    <button 
+                                        onClick={nextStep}
+                                        disabled={!leadName || !leadPhone}
+                                        className="w-full py-5 bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-white/10 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
+                                    >
+                                        Siguiente Paso <ArrowRight className="w-5 h-5" />
+                                    </button>
+                                </motion.div>
+                            )}
+
+                            {step === 2 && (
+                                <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
+                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Monto e ID</h3>
+                                    <div className="space-y-4">
+                                        <div className="relative group">
+                                            <Gamepad2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
+                                            <input 
+                                                type="text" 
+                                                placeholder="TU ID DE USUARIO (ECUABET)" 
+                                                value={userId}
+                                                onChange={(e) => setUserId(e.target.value)}
+                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                            />
+                                        </div>
+                                        
+                                        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                                            {["5", "10", "20", "50", "100"].map((val) => (
+                                                <button 
+                                                    key={val} 
+                                                    onClick={() => setAmount(val)}
+                                                    className={`py-3 rounded-xl border font-bold transition-all ${
+                                                        amount === val ? "bg-pe-yellow/20 border-pe-yellow text-pe-yellow" : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10"
+                                                    }`}
+                                                >
+                                                    ${val}
+                                                </button>
+                                            ))}
+                                        </div>
+
+                                        <div className="relative group">
+                                            <DollarSign className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
+                                            <input 
+                                                type="number" 
+                                                min="1"
+                                                placeholder="OTRO VALOR (MÍN $1)" 
+                                                value={amount}
+                                                onChange={(e) => setAmount(e.target.value)}
+                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
+                                        <button 
+                                            onClick={nextStep}
+                                            disabled={!userId || !amount || Number(amount) < 1}
+                                            className="flex-[2] py-5 bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
+                                        >
+                                            Ver Comprobante <ArrowRight className="w-5 h-5" />
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {step === 3 && (
+                                <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
+                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Comprobante</h3>
+                                    <p className="text-white/40 text-sm">Sube una foto de tu pago para agilizar la recarga.</p>
+                                    
+                                    <div 
+                                        className={`border-2 border-dashed rounded-[2rem] p-12 flex flex-col items-center justify-center gap-4 transition-all cursor-pointer ${
+                                            receipt ? "border-pe-yellow/50 bg-pe-yellow/5" : "border-white/10 hover:border-white/20 bg-white/5"
+                                        }`}
+                                        onClick={() => document.getElementById("receipt-upload")?.click()}
+                                    >
+                                        <div className={`w-16 h-16 rounded-full flex items-center justify-center ${receipt ? "bg-pe-yellow text-black" : "bg-white/10 text-white/30"}`}>
+                                            {receipt ? <CheckCircle className="w-8 h-8" /> : <Upload className="w-8 h-8" />}
+                                        </div>
+                                        <div className="text-center">
+                                            <span className="block font-black uppercase tracking-wider text-sm mb-1">
+                                                {receipt ? "Recibo Cargado" : "Haz clic para subir"}
+                                            </span>
+                                            <span className="text-[10px] text-white/30 uppercase">PNG, JPG o PDF</span>
+                                        </div>
+                                        <input 
+                                            id="receipt-upload"
+                                            type="file" 
+                                            className="hidden" 
+                                            onChange={(e) => setReceipt(e.target.files?.[0] || null)}
+                                        />
+                                    </div>
+
+                                    <div className="flex gap-3">
+                                        <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
+                                        <button 
+                                            onClick={nextStep}
+                                            className="flex-[2] py-5 bg-white/10 hover:bg-white/20 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
+                                        >
+                                            Ver Resumen <ArrowRight className="w-5 h-5" />
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {step === 4 && (
+                                <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
+                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Resumen Final</h3>
+                                    <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-4">
+                                        <div className="flex justify-between items-center pb-4 border-b border-white/5">
+                                            <span className="text-white/40 text-xs uppercase font-bold">Usuario</span>
+                                            <span className="font-black text-pe-yellow uppercase tracking-tight">{userId}</span>
+                                        </div>
+                                        <div className="flex justify-between items-center pb-4 border-b border-white/5">
+                                            <span className="text-white/40 text-xs uppercase font-bold">Monto</span>
+                                            <span className="text-2xl font-black text-white">${amount}</span>
+                                        </div>
+                                        <div className="flex justify-between items-center">
+                                            <span className="text-white/40 text-xs uppercase font-bold">Comprobante</span>
+                                            <span className={`text-[10px] font-black uppercase px-3 py-1 rounded-full ${receipt ? "bg-pe-yellow/20 text-pe-yellow" : "bg-white/10 text-white/30"}`}>
+                                                {receipt ? "Adjunto" : "No Subido"}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <button onClick={prevStep} disabled={isUploading} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all disabled:opacity-50">Atrás</button>
+                                        <button 
+                                            onClick={() => handleWhatsAppSubmit()}
+                                            disabled={isUploading}
+                                            className="flex-[2] py-5 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] shadow-2xl disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
+                                            style={{ backgroundColor: "#25D366" }}
+                                        >
+                                            {isUploading ? (
+                                                <RefreshCcw className="w-6 h-6 animate-spin" />
+                                            ) : (
+                                                <MessageCircle className="w-6 h-6" />
+                                            )}
+                                            {isUploading ? "Subiendo..." : "Finalizar en WhatsApp"}
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
-                </div>
-            </section>
+                </motion.div>
+            </div>
+        </section>
+
 
             {/* ═══ Section 4: Experiencia Ecuabet (Video) ═══ */}
             <section className="py-24 bg-black relative overflow-hidden text-white">
@@ -367,7 +585,7 @@ export default function EcuabetPage() {
                         {[
                             { step: "01", text: "Acércate a nuestra Matriz o sucursal La Castellana.", icon: MapPin },
                             { step: "02", text: "Indica tu ID de usuario de Ecuabet y el monto.", icon: CreditCard },
-                            { step: "03", text: "¡Listo! Saldo acreditado o dinero en mano al instante.", icon: CheckCircle2 },
+                            { step: "03", text: "¡Listo! Saldo acreditado a tu cuenta de forma inmediata.", icon: CheckCircle2 },
                         ].map((item, i) => (
                             <motion.div
                                 key={i}
@@ -482,7 +700,7 @@ export default function EcuabetPage() {
                         <div className="max-w-2xl space-y-6">
                             <h3 className="text-white/20 font-black uppercase tracking-[0.5em] text-xs">Punto de Recaudación Autorizado</h3>
                             <p className="text-white/40 text-sm leading-relaxed font-medium">
-                                PagoExpress es un socio comercial estratégico **oficialmente autorizado** por Ecuabet. Todas las operaciones de recarga y retiro realizadas en nuestras ventanillas cuentan con el respaldo directo de la plataforma.
+                                PagoExpress es un socio comercial estratégico **oficialmente autorizado** por Ecuabet. Todas las operaciones de recarga realizadas en nuestras ventanillas cuentan con el respaldo directo de la plataforma.
                             </p>
                             <p className="text-pe-yellow/30 text-[10px] font-black uppercase tracking-widest pt-4 font-sans">
                                 +18 · Juega con responsabilidad · Ecuabet es una marca registrada.

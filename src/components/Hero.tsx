@@ -2,18 +2,19 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 
-const heroSlides = [
-    { src: "/images/home/hero-slide-1.webp", alt: "PagoExpress - Oficina principal" },
-    { src: "/images/home/hero-slide-2.webp", alt: "PagoExpress - Sucursal" },
-    { src: "/images/home/hero-slide-3.webp", alt: "PagoExpress - Servicio al cliente" },
-    { src: "/images/home/hero-slide-4.webp", alt: "PagoExpress - Pagos digitales" },
-    { src: "/images/home/hero-slide-5.webp", alt: "PagoExpress - Equipo de trabajo" },
-    { src: "/images/home/hero-slide-6.webp", alt: "PagoExpress - Servicios básicos" },
-    { src: "/images/home/hero-slide-7.webp", alt: "PagoExpress - Recargas" },
-    { src: "/images/home/hero-slide-8.webp", alt: "PagoExpress - Remesas" },
-];
+interface Slide {
+    id: number;
+    image_url: string;
+    slug: string;
+}
+
+interface HeroConfig {
+    h1: string;
+    description: string;
+}
 
 const trustLogos = [
     "Western Union",
@@ -26,14 +27,38 @@ const trustLogos = [
 
 export default function Hero() {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [config, setConfig] = useState<HeroConfig | null>(null);
+    const [slides, setSlides] = useState<Slide[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchData = async () => {
+        try {
+            const res = await fetch('/api/admin/hero');
+            if (res.ok) {
+                const data = await res.json();
+                setConfig(data.config);
+                setSlides(data.slides);
+            }
+        } catch (error) {
+            console.error("Error fetching hero data:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const nextSlide = useCallback(() => {
-        setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, []);
+        if (slides.length === 0) return;
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, [slides.length]);
 
     const prevSlide = useCallback(() => {
-        setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
-    }, []);
+        if (slides.length === 0) return;
+        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    }, [slides.length]);
 
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -63,9 +88,28 @@ export default function Hero() {
     };
 
     useEffect(() => {
+        if (slides.length === 0) return;
         const timer = setInterval(nextSlide, 4000);
         return () => clearInterval(timer);
-    }, [nextSlide]);
+    }, [nextSlide, slides.length]);
+
+    if (loading) {
+        return (
+            <div className="h-screen w-full bg-pe-black flex items-center justify-center">
+                <Loader2 className="w-10 h-10 text-pe-yellow animate-spin" />
+            </div>
+        );
+    }
+
+    const currentH1 = config?.h1 || "Pagos, remesas y recargas para Ecuador";
+    const currentDesc = config?.description || "Simplificamos tus trámites financieros en todo el país con seguridad.";
+
+    const getLinkDestination = (slug: string) => {
+        if (!slug) return "#";
+        if (slug.startsWith('http')) return slug;
+        if (slug.startsWith('/')) return slug;
+        return `/${slug}`;
+    };
 
     return (
         <section
@@ -107,23 +151,35 @@ export default function Hero() {
                                 className="flex h-full transition-transform duration-700 ease-in-out"
                                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                             >
-                                {heroSlides.map((slide, index) => (
-                                    <div key={index} className="w-full h-full flex-shrink-0 relative">
-                                        <Image
-                                            src={slide.src}
-                                            alt={slide.alt}
-                                            fill
-                                            className="object-cover"
-                                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 800px, 1200px"
-                                            priority={index === 0}
-                                        />
-                                    </div>
-                                ))}
+                                {slides.map((slide, index) => {
+                                    const destination = getLinkDestination(slide.slug);
+                                    const isExternal = destination.startsWith('http');
+
+                                    return (
+                                        <div key={slide.id} className="w-full h-full flex-shrink-0 relative">
+                                            <Link 
+                                                href={destination} 
+                                                target={isExternal ? "_blank" : undefined}
+                                                rel={isExternal ? "noopener noreferrer" : undefined}
+                                                className="block w-full h-full cursor-pointer relative z-30"
+                                            >
+                                                <Image
+                                                    src={slide.image_url}
+                                                    alt={`Slide ${index + 1}`}
+                                                    fill
+                                                    className="object-cover transition-transform duration-500 hover:scale-105"
+                                                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 800px, 1200px"
+                                                    priority={index === 0}
+                                                />
+                                            </Link>
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             {/* Dot Indicators */}
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
-                                {heroSlides.map((_, index) => (
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-40">
+                                {slides.map((_, index) => (
                                     <button
                                         key={index}
                                         onClick={() => setCurrentSlide(index)}
@@ -137,14 +193,14 @@ export default function Hero() {
                         {/* Arrows */}
                         <button
                             onClick={prevSlide}
-                            className="absolute -left-2 lg:left-0 top-1/2 -translate-y-1/2 lg:-translate-x-1/2 w-9 h-9 lg:w-11 lg:h-11 rounded-full bg-black/80 backdrop-blur-sm border border-white/10 text-white flex items-center justify-center hover:bg-pe-yellow hover:text-pe-black transition-all z-20 shadow-xl"
+                            className="absolute -left-2 lg:left-0 top-1/2 -translate-y-1/2 lg:-translate-x-1/2 w-9 h-9 lg:w-11 lg:h-11 rounded-full bg-black/80 backdrop-blur-sm border border-white/10 text-white flex items-center justify-center hover:bg-pe-yellow hover:text-pe-black transition-all z-40 shadow-xl"
                             aria-label="Anterior slide"
                         >
                             <ChevronLeft className="w-5 h-5" />
                         </button>
                         <button
                             onClick={nextSlide}
-                            className="absolute -right-2 lg:right-0 top-1/2 -translate-y-1/2 lg:translate-x-1/2 w-9 h-9 lg:w-11 lg:h-11 rounded-full bg-black/80 backdrop-blur-sm border border-white/10 text-white flex items-center justify-center hover:bg-pe-yellow hover:text-pe-black transition-all z-20 shadow-xl"
+                            className="absolute -right-2 lg:right-0 top-1/2 -translate-y-1/2 lg:translate-x-1/2 w-9 h-9 lg:w-11 lg:h-11 rounded-full bg-black/80 backdrop-blur-sm border border-white/10 text-white flex items-center justify-center hover:bg-pe-yellow hover:text-pe-black transition-all z-40 shadow-xl"
                             aria-label="Siguiente slide"
                         >
                             <ChevronRight className="w-5 h-5" />
@@ -160,11 +216,16 @@ export default function Hero() {
                     </div>
 
                     <h1 className="text-3xl sm:text-3xl lg:text-4xl xl:text-[2.5rem] font-black text-white leading-[1.1] mb-3 lg:mb-2 max-w-4xl">
-                        Pagos, remesas y recargas para <span className="text-pe-yellow">Ecuador</span>
+                        {currentH1.split('Ecuador').map((part, i, arr) => (
+                            <span key={i}>
+                                {part}
+                                {i < arr.length - 1 && <span className="text-pe-yellow">Ecuador</span>}
+                            </span>
+                        ))}
                     </h1>
 
                     <p className="text-sm lg:text-lg text-white/50 leading-relaxed max-w-xl mx-auto mb-6 lg:mb-5">
-                        Simplificamos tus trámites financieros en todo el país con seguridad.
+                        {currentDesc}
                     </p>
 
                     <a href="#nosotros" className="inline-flex items-center gap-3 px-10 py-4 lg:py-3.5 bg-pe-yellow text-pe-black font-black rounded-2xl text-sm hover:scale-105 transition-all shadow-xl shadow-pe-yellow/10">

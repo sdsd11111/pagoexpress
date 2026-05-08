@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,7 +21,9 @@ import {
     Building2,
     Lightbulb,
     Rss,
-    MonitorPlay
+    MonitorPlay,
+    X,
+    Send
 } from "lucide-react";
 import MapSection from "@/components/MapSection";
 
@@ -30,6 +32,27 @@ const fadeUp: Variants = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1,
 
 export default function ServiciosBasicosPage() {
     const [activeFaq, setActiveFaq] = useState<number | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<any | null>(null);
+    const [activeTab, setActiveTab] = useState(0);
+    const [formData, setFormData] = useState<any>({
+        ciudad: "",
+        cedula: "",
+        codigo: "",
+    });
+
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const heroSlides = [
+        { icon: Lightbulb, title: "Luz", subtitle: "EERSSA, CNEL", color: "#FFDD00", bg: "bg-[#FFDD00]/10" },
+        { icon: Droplets, title: "Agua", subtitle: "UMAPAL, Juntas", color: "#4DB0DC", bg: "bg-[#4DB0DC]/10" },
+        { icon: Smartphone, title: "Telefonía", subtitle: "Claro, Movistar, CNT", color: "#2C62A7", bg: "bg-[#2C62A7]/10" }
+    ];
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+        }, 3000);
+        return () => clearInterval(timer);
+    }, [heroSlides.length]);
 
     const categories = [
         {
@@ -37,30 +60,62 @@ export default function ServiciosBasicosPage() {
             services: "EERSSA, CNEL y empresas nacionales.",
             icon: Zap,
             color: "shadow-[0_0_20px_rgba(0,45,84,0.2)]",
-            accent: "bg-[#002D54]"
+            accent: "bg-[#002D54]",
+            fields: [
+                { id: "empresa", label: "Empresa Eléctrica", placeholder: "Ej: EERSSA, CNEL, EEQ..." }
+            ]
         },
         {
             title: "Agua Potable",
             services: "UMAPAL (Loja), EPMAPAL y juntas.",
             icon: Droplets,
             color: "shadow-[0_0_20px_rgba(70,123,166,0.1)]",
-            accent: "bg-[#467BA6]"
+            accent: "bg-[#467BA6]",
+            fields: [
+                { id: "municipio", label: "Municipio o Junta de Agua", placeholder: "Ej: UMAPAL, Municipio de..." }
+            ]
         },
         {
             title: "Telecomunicaciones",
             services: "TV Cable, Claro, Movistar.",
             icon: Rss,
             color: "shadow-[0_0_20px_rgba(0,26,51,0.2)]",
-            accent: "bg-[#001A33]"
+            accent: "bg-[#001A33]",
+            fields: [
+                { id: "compania", label: "Compañía / Proveedor", placeholder: "Ej: Netlife, CNT, Claro, Xtrim..." }
+            ]
         },
         {
             title: "Impuestos & Tasas",
             services: "Predios, patentes y multas municipales.",
             icon: Home,
             color: "shadow-[0_0_20px_rgba(77,176,220,0.1)]",
-            accent: "bg-[#4DB0DC]"
+            accent: "bg-[#4DB0DC]",
+            placeholder: "Código Predial o Placa",
+            fields: [
+                { id: "impuesto", label: "Tipo de Impuesto / Municipio", placeholder: "Ej: Predio Urbano Loja, Patente..." }
+            ]
         }
     ];
+
+    const handleWhatsApp = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!selectedCategory) return;
+        
+        let extraInfo = "";
+        if (selectedCategory.fields) {
+            selectedCategory.fields.forEach((f: any) => {
+                if (formData[f.id]) {
+                    extraInfo += `\n🔹 *${f.label}:* ${formData[f.id]}`;
+                }
+            });
+        }
+
+        const message = `Hola PagoExpress, deseo pagar mi planilla de *${selectedCategory.title}*.\n\n📍 *Ciudad:* ${formData.ciudad}\n🆔 *Cédula:* ${formData.cedula}\n🔢 *Código/Contrato:* ${formData.codigo}${extraInfo}`;
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/593990227203?text=${encoded}`, '_blank');
+        setSelectedCategory(null);
+    };
 
     const faqs = [
         { q: "¿En cuánto tiempo se refleja mi pago?", a: "Los pagos en PagoExpress se acreditan de forma inmediata en los sistemas de EERSSA y UMAPAL. Recibirás tu comprobante físico al instante." },
@@ -74,14 +129,7 @@ export default function ServiciosBasicosPage() {
             {/* ═══ SECCIÓN 1: Hero Civic-Tech ═══ */}
             <section className="relative min-h-[calc(100dvh-64px)] lg:h-[70vh] lg:min-h-[600px] flex flex-col justify-start lg:justify-center overflow-hidden pt-4 lg:pt-12 bg-[#001A33]">
                 <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/images/servicios-basicos/hero-bg.webp"
-                        alt="Background"
-                        fill
-                        className="object-cover opacity-30 mix-blend-overlay"
-                        priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#001A33]/80 via-[#001A33]/40 to-[#0A0A0A]" />
+                    <div className="absolute inset-0 bg-[#001A33]" />
                     <div className="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[120px]" />
                     <div className="absolute bottom-1/4 -left-1/4 w-[500px] h-[500px] bg-[#4DB0DC]/20 rounded-full blur-[100px]" />
                 </div>
@@ -97,7 +145,7 @@ export default function ServiciosBasicosPage() {
                                 Pago de <span className="text-[#4DB0DC]">Servicios Básicos</span> en Ecuador: Luz, Agua y Más
                             </h1>
                             <p className="text-base sm:text-lg text-white/70 mb-8 lg:mb-10 leading-relaxed font-medium">
-                                En PagoExpress facilitamos el pago de tus planillas de luz, agua, telefonía e impuestos municipales con acreditación inmediata.
+                                En PagoExpress facilitamos el pago de tus planillas de luz, agua, telefonía e impuestos municipales en linea.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                                 <Link
@@ -116,245 +164,306 @@ export default function ServiciosBasicosPage() {
                         </motion.div>
 
                         {/* Visual Composition */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8 }}
-                            className="flex justify-center lg:justify-end mt-8 lg:mt-0"
-                        >
-                            <div className="relative w-full max-w-[320px] lg:w-[400px] h-full flex flex-col gap-4">
-                                <div className="p-6 lg:p-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] lg:rounded-3xl shadow-2xl relative z-20">
-                                    <div className="flex justify-between items-start mb-6 lg:mb-8">
-                                        <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white rounded-2xl flex items-center justify-center overflow-hidden border-2 border-[#4DB0DC] shadow-[0_0_35px_rgba(77,176,220,0.6)] animate-pulse-slow">
-                                            <Image src="/logo.jpg" alt="PagoExpress Logo" width={75} height={75} className="object-contain" />
+                        <div className="relative w-full h-[300px] lg:h-[400px] flex items-center justify-center">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={currentSlide}
+                                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: -30, scale: 0.95 }}
+                                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                    className="absolute inset-0 flex items-center justify-center"
+                                >
+                                    <div className="relative w-full max-w-[360px] lg:w-[480px] h-full flex flex-col gap-4">
+                                        <div className="p-10 lg:p-14 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[3rem] shadow-2xl relative z-20 flex flex-col items-center text-center">
+                                            <div className="flex justify-between items-start w-full mb-10">
+                                                <div className={`w-24 h-24 rounded-[2rem] flex items-center justify-center border-2 border-white/10 ${heroSlides[currentSlide]?.bg || ""}`}>
+                                                    {(() => {
+                                                        const slide = heroSlides[currentSlide];
+                                                        if (!slide) return null;
+                                                        const Icon = slide.icon;
+                                                        return <Icon className="w-12 h-12" style={{ color: slide.color }} />;
+                                                    })()}
+                                                </div>
+                                                <span className="text-xs bg-[#4DB0DC]/20 text-[#4DB0DC] px-5 py-2 rounded-full font-black uppercase tracking-widest shadow-[0_0_15px_rgba(77,176,220,0.3)]">Oficial</span>
+                                            </div>
+                                            <div className="w-full text-left">
+                                                <p className="text-sm font-bold text-white/40 uppercase tracking-[0.2em] mb-3">{heroSlides[currentSlide]?.subtitle}</p>
+                                                <p className="text-4xl lg:text-5xl font-black mb-8">{heroSlides[currentSlide]?.title}</p>
+                                                <div className="h-3 w-full bg-white/5 rounded-full overflow-hidden">
+                                                    <div className="h-full w-full animate-pulse-slow" style={{ backgroundColor: heroSlides[currentSlide]?.color || "#4DB0DC" }} />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <span className="text-[9px] lg:text-[10px] bg-[#4DB0DC]/20 text-[#4DB0DC] px-3 py-1 rounded-full font-black uppercase tracking-widest shadow-[0_0_15px_rgba(77,176,220,0.3)]">Oficial</span>
                                     </div>
-                                    <p className="text-[10px] lg:text-sm font-bold text-white/40 uppercase tracking-widest mb-1">EERSSA</p>
-                                    <p className="text-xl lg:text-2xl font-black mb-4">Empresa Eléctrica</p>
-                                    <div className="h-1.5 lg:h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                                        <div className="h-full w-full bg-[#4DB0DC]" />
-                                    </div>
-                                </div>
-                                <div className="p-6 lg:p-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] lg:rounded-3xl shadow-2xl ml-8 lg:ml-12 relative z-10 -mt-8 opacity-40">
-                                    <p className="text-[10px] lg:text-sm font-bold text-white/40 uppercase tracking-widest mb-1">UMAPAL</p>
-                                    <p className="text-lg lg:text-xl font-black">Servicio de Agua</p>
-                                </div>
-                            </div>
-                        </motion.div>
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* ═══ SECCIÓN 2: Bento Grid de Categorías ═══ */}
-            <section id="grid" className="py-24 bg-white">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            {/* ═══ SECCIÓN 2: Información Detallada (Tabs) ═══ */}
+            <section className="py-24 bg-white border-b border-gray-100 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-1/3 h-full bg-[#2C62A7]/5 blur-[120px]" />
+                
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl font-black text-black mb-4 tracking-tight">Servicios a tu alcance</h2>
-                        <p className="text-black/40 font-medium">Categorías de pago habilitadas en el país.</p>
+                        <h2 className="text-3xl font-black text-black uppercase italic tracking-tighter">
+                            Detalles de <span className="text-[#2C62A7]">Nuestros Servicios</span>
+                        </h2>
+                        <p className="text-black/40 font-medium mt-2">Explora los requisitos y beneficios de cada categoría.</p>
+                    </div>
+
+                    <div className="flex flex-col lg:flex-row gap-12 items-start">
+                        {/* Tab Selectors */}
+                        <div className="w-full lg:w-1/3 flex flex-row lg:flex-col gap-3 overflow-x-auto pb-4 lg:pb-0 no-scrollbar">
+                            {categories.map((cat, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setActiveTab(i)}
+                                    className={`flex items-center gap-4 px-6 py-5 rounded-2xl transition-all text-left whitespace-nowrap lg:whitespace-normal shrink-0 lg:shrink ${
+                                        activeTab === i 
+                                        ? "bg-[#2C62A7]/5 border-l-4 border-[#2C62A7] shadow-sm" 
+                                        : "bg-gray-50 border-l-4 border-transparent hover:bg-gray-100 opacity-60 hover:opacity-100"
+                                    }`}
+                                >
+                                    <div className={`p-3 rounded-xl ${activeTab === i ? "bg-[#2C62A7] text-white" : "bg-gray-200 text-gray-500"}`}>
+                                        <cat.icon className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-black uppercase tracking-widest text-black">{cat.title}</p>
+                                        <p className="text-[10px] text-black/40 font-bold">Información y socios</p>
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Tab Content */}
+                        <div className="w-full lg:w-2/3 min-h-[400px]">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={activeTab}
+                                    initial={{ opacity: 0, x: 20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -20 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="bg-gray-50 border border-gray-100 rounded-[2.5rem] p-8 lg:p-12 flex flex-col md:flex-row gap-12 items-center shadow-inner"
+                                >
+                                    <div className="flex-1 text-center md:text-left">
+                                        <h3 className="text-4xl font-black mb-6 uppercase tracking-tighter italic text-black">
+                                            {categories[activeTab]?.title}
+                                        </h3>
+                                        <p className="text-lg text-black/60 mb-8 leading-relaxed font-medium">
+                                            {activeTab === 0 && "Gestión rápida y segura para el pago de tu consumo eléctrico. Acreditamos tus pagos en línea de forma inmediata para evitar cortes y asegurar la continuidad de tu servicio."}
+                                            {activeTab === 1 && "Pago centralizado de planillas de agua potable. Contamos con conexión directa a los sistemas municipales para garantizar que tu saldo se actualice al instante."}
+                                            {activeTab === 2 && "Mantén tu conectividad al máximo. Recaudamos pagos de internet fibra óptica, telefonía móvil (recargas y planes) y televisión por suscripción con las mejores operadoras."}
+                                            {activeTab === 3 && "Cumple con tus obligaciones tributarias sin complicaciones. Recaudamos impuestos prediales, patentes municipales y tasas administrativas con total respaldo legal."}
+                                        </p>
+                                        
+                                        <div className="space-y-4">
+                                            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#2C62A7]">Compañías de Trabajo</p>
+                                            <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                                                {(activeTab === 0 ? ["EERSSA", "CNEL", "EEQ", "Centro Sur"] :
+                                                  activeTab === 1 ? ["UMAPAL", "EPMAPS", "EMAPA", "Interagua"] :
+                                                  activeTab === 2 ? ["Netlife", "CNT", "Claro", "Movistar", "Xtrim", "DirectTV"] :
+                                                  ["Municipio de Loja", "Municipio de Quito", "ANT", "SRI", "GAD Provincial"])
+                                                  .map((comp, j) => (
+                                                    <span key={j} className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-xs font-bold text-black/70 shadow-sm">
+                                                        {comp}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        <button 
+                                            onClick={() => setSelectedCategory(categories[activeTab])}
+                                            className="mt-10 w-full md:w-auto px-10 py-5 bg-[#002D54] text-white font-black uppercase tracking-[0.2em] text-[10px] rounded-2xl hover:scale-105 transition-all shadow-[0_10px_20px_rgba(0,45,84,0.2)] flex items-center justify-center gap-3 group"
+                                        >
+                                            <span>Ir al Formulario de Pago</span>
+                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                        </button>
+                                    </div>
+                                    
+                                    <div className="shrink-0 w-full md:w-64 h-64 relative bg-gradient-to-br from-[#002D54] to-black rounded-[2rem] border border-white/10 overflow-hidden group shadow-2xl">
+                                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(77,176,220,0.2),transparent)] animate-pulse" />
+                                        <div className="relative z-10 w-full h-full flex items-center justify-center p-8">
+                                            {/* Mockup Representation */}
+                                            {activeTab === 0 && <Zap className="w-24 h-24 text-[#FFDD00] drop-shadow-[0_0_20px_rgba(255,221,0,0.4)]" />}
+                                            {activeTab === 1 && <Droplets className="w-24 h-24 text-[#4DB0DC] drop-shadow-[0_0_20px_rgba(77,176,220,0.4)]" />}
+                                            {activeTab === 2 && <Smartphone className="w-24 h-24 text-[#2C62A7] drop-shadow-[0_0_20px_rgba(44,98,167,0.4)]" />}
+                                            {activeTab === 3 && <Home className="w-24 h-24 text-white opacity-40" />}
+                                            
+                                            {/* Floating Glow */}
+                                            <motion.div 
+                                                animate={{ 
+                                                    scale: [1, 1.2, 1],
+                                                    opacity: [0.3, 0.6, 0.3]
+                                                }}
+                                                transition={{ duration: 3, repeat: Infinity }}
+                                                className="absolute w-32 h-32 bg-[#4DB0DC]/20 rounded-full blur-[40px] z-0"
+                                            />
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══ SECCIÓN 3: Bento Grid de Categorías ═══ */}
+            <section id="grid" className="py-24 bg-[#001A33] relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white to-transparent opacity-5" />
+                
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-black text-white mb-4 tracking-tight uppercase italic">Servicios a tu alcance</h2>
+                        <p className="text-white/40 font-medium uppercase tracking-[0.2em] text-[10px]">Categorías de pago habilitadas en el país.</p>
                     </div>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {categories.map((cat, i) => (
                             <motion.div
                                 key={i}
                                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                                className={`group p-8 rounded-[32px] bg-slate-50 border border-slate-200 transition-all hover:scale-105 ${cat.color} hover:border-[#002D54]/20`}
+                                onClick={() => setSelectedCategory(cat)}
+                                className={`group p-8 rounded-[32px] bg-slate-50 border border-slate-200 transition-all hover:scale-105 ${cat.color} hover:border-[#002D54]/20 cursor-pointer`}
                             >
                                 <div className={`w-14 h-14 ${cat.accent} rounded-2xl flex items-center justify-center mb-6`}>
                                     <cat.icon className="w-7 h-7 text-white" />
                                 </div>
                                 <h3 className="text-xl font-bold mb-2 text-black">{cat.title}</h3>
                                 <p className="text-sm text-black/40 leading-relaxed font-medium">{cat.services}</p>
+                                <div className="mt-6 flex items-center gap-2 text-[#002D54] font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">
+                                    <span>Pagar ahora</span>
+                                    <ArrowRight className="w-4 h-4" />
+                                </div>
                             </motion.div>
                         ))}
                     </div>
                 </div>
-            </section>
 
-            {/* ═══ SECCIÓN 3: Inmersive EERSSA ═══ */}
-            <section id="eerssa" className="relative py-32 bg-[#001A33] overflow-hidden border-y border-white/5">
-                <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#002D54]/40 to-transparent" />
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col lg:flex-row items-center gap-16">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:w-1/2">
-                        <div className="w-16 h-1 bg-white mb-6 opacity-30" />
-                        <h2 className="text-4xl sm:text-5xl font-black mb-6">
-                            Planilla de Luz <span className="text-[#4DB0DC]">EERSSA</span>
-                        </h2>
-                        <p className="text-lg text-white/70 mb-8 leading-relaxed font-medium">
-                            Paga tus facturas de la Empresa Eléctrica Regional del Sur con total seguridad. Solo necesitas tu código de cliente para la acreditación inmediata.
-                        </p>
-                        <div className="space-y-4 mb-10">
-                            {[
-                                { t: "Consulta de Valores", d: "Revisamos tu deuda pendiente al instante." },
-                                { t: "Acreditación Directa", d: "Notificación inmediata al sistema de EERSSA." },
-                                { t: "Cobertura Regional", d: "Loja, Zamora Chinchipe y Morona Santiago." }
-                            ].map((item, i) => (
-                                <div key={i} className="flex gap-4">
-                                    <div className="shrink-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center">
-                                        <CheckCircle2 className="w-4 h-4 text-[#4DB0DC]" />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-white tracking-tight">{item.t}</p>
-                                        <p className="text-sm text-white/40">{item.d}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="lg:w-1/2">
-                        <div className="p-12 bg-gradient-to-br from-[#002D54] to-[#001A33] rounded-[48px] border border-white/10 shadow-3xl text-center relative overflow-hidden group">
-                            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.05),transparent)]" />
-                            <Zap className="w-20 h-20 text-white/5 absolute -top-4 -right-4 rotate-12" />
-                            <div className="w-32 h-32 mx-auto mb-6 relative z-10 bg-white rounded-full p-6 shadow-[0_0_30px_rgba(255,255,255,0.4)] overflow-hidden flex items-center justify-center border-4 border-white/20">
-                                <Image
-                                    src="/images/servicios-basicos/eerssa.webp"
-                                    alt="EERSSA Logo"
-                                    width={120}
-                                    height={120}
-                                    className="object-contain"
-                                />
-                            </div>
-                            <h3 className="text-3xl font-black text-white mb-2 relative z-10 tracking-tighter uppercase">EERSSA</h3>
-                            <p className="text-white/60 font-bold tracking-[0.2em] relative z-10 text-[10px]">LA ENERGÍA SOMOS TODOS</p>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* ═══ SECCIÓN 4: Inmersive UMAPAL ═══ */}
-            <section id="umapal" className="relative py-32 bg-[#001A33] overflow-hidden border-b border-white/5">
-                <div className="absolute bottom-0 left-0 w-1/3 h-full bg-[#467BA6]/5 blur-[120px]" />
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col lg:flex-row-reverse items-center gap-16">
-                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="lg:w-1/2">
-                        <div className="w-16 h-1 bg-[#467BA6] mb-6" />
-                        <h2 className="text-4xl sm:text-5xl font-black mb-6">
-                            Agua Potable <span className="text-[#467BA6]">UMAPAL</span>
-                        </h2>
-                        <p className="text-lg text-white/60 mb-8 leading-relaxed">
-                            Gestión rápida para el pago de planillas de agua potable del Municipio de Loja. Olvídate de las largas filas en el ayuntamiento.
-                        </p>
-                        <ul className="grid sm:grid-cols-2 gap-4 mb-10">
-                            {["Saldo al Día", "Convenios Municipales", "Evita Cortes", "Pago Centralizado"].map((item, i) => (
-                                <li key={i} className="flex items-center gap-3 text-white/80 font-medium">
-                                    <div className="w-2 h-2 rounded-full bg-[#467BA6]" />
-                                    {item}
-                                </li>
-                            ))}
-                        </ul>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="lg:w-1/2">
-                        <div className="relative group">
-                            <div className="absolute -inset-1 bg-[#467BA6] rounded-[48px] blur opacity-25" />
-                            <div className="relative bg-[#467BA6] p-16 rounded-[40px] border border-white/20 flex flex-col items-center">
-                                <div className="w-32 h-32 mb-6 relative bg-white rounded-full p-6 shadow-[0_0_30px_rgba(255,255,255,0.3)] overflow-hidden flex items-center justify-center border-4 border-white/10">
-                                    <Image
-                                        src="/images/servicios-basicos/umapal.webp"
-                                        alt="UMAPAL Logo"
-                                        width={120}
-                                        height={120}
-                                        className="object-contain"
-                                    />
-                                </div>
-                                <p className="text-4xl font-black text-white tracking-tighter uppercase">UMAPAL</p>
-                                <div className="mt-4 px-6 py-2 bg-black/20 rounded-full">
-                                    <p className="text-white/80 font-black text-[10px] tracking-widest uppercase">Municipio de Loja</p>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* ═══ SECCIÓN 5: Telecom & Otros ═══ */}
-            <section className="py-24 bg-[#001A33] relative">
-                <div className="absolute inset-0 bg-blue-500/5 blur-[120px] pointer-events-none" />
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl font-black mb-4 text-white">Telecomunicaciones y Otros</h2>
-                        <p className="text-white/40">Más de 200 convenios disponibles para tu comodidad.</p>
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        {[
-                            { name: "TV Cable / Claro", desc: "Planes de cable y telefonía nacional.", image: "/images/servicios-basicos/telecom.webp" },
-                            { name: "Internet Local", desc: "Clippers, K-Net y otros proveedores.", image: "/images/servicios-basicos/internet.webp" }
-                        ].map((serv, i) => (
+                {/* ═══ MODAL DE FORMULARIO ═══ */}
+                <AnimatePresence>
+                    {selectedCategory && (
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
                             <motion.div
-                                key={i}
-                                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                                className="p-10 bg-white/5 border border-white/10 rounded-[32px] hover:bg-white/10 transition-all group text-center flex flex-col items-center"
-                            >
-                                <div className="w-20 h-20 bg-white/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#2C62A7] transition-all shadow-xl relative overflow-hidden border border-white/10">
-                                    <Image
-                                        src={serv.image}
-                                        alt={serv.name}
-                                        fill
-                                        className="object-contain p-2 group-hover:scale-110 transition-transform duration-500"
-                                    />
-                                </div>
-                                <h3 className="text-2xl font-black mb-3 text-white">{serv.name}</h3>
-                                <p className="text-sm text-white/40 font-medium leading-relaxed max-w-[250px]">{serv.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══ SECCIÓN 6: Impuestos Municipales ═══ */}
-            <section className="py-24 bg-slate-50 border-y border-slate-200">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-                            <h2 className="text-4xl font-black mb-6 text-black">Impuestos y Predios Municipales</h2>
-                            <p className="text-lg text-black/50 mb-8 leading-relaxed font-medium">
-                                Cumple con tus obligaciones tributarias de forma ágil. Recaudamos impuestos prediales urbanos y rurales del Municipio de Loja.
-                            </p>
-                            <div className="grid grid-cols-2 gap-6">
-                                <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-all">
-                                    <p className="text-[#002D54] font-black text-2xl mb-1">2026</p>
-                                    <p className="text-xs text-black/40 font-bold uppercase tracking-widest">Año Fiscal</p>
-                                </div>
-                                <div className="p-6 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-all">
-                                    <p className="text-[#002D54] font-black text-2xl mb-1">En segundos</p>
-                                    <p className="text-xs text-black/40 font-bold uppercase tracking-widest">Tiempo de Pago</p>
-                                </div>
-                            </div>
-                        </motion.div>
-                        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="grid grid-cols-1 gap-4">
-                            {["Predio Urbano", "Predio Rural", "Patente Municipal", "Multas de Tránsito"].map((tax, i) => (
-                                <div key={i} className="flex items-center justify-between p-6 bg-white border border-slate-200 rounded-2xl hover:border-[#002D54]/50 transition-all cursor-default group shadow-sm">
-                                    <span className="font-bold text-black group-hover:text-[#002D54] transition-colors">{tax}</span>
-                                    <ArrowRight className="w-5 h-5 text-[#4DB0DC]" />
-                                </div>
-                            ))}
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══ SECCIÓN 7: Infografía de Proceso ═══ */}
-            <section className="py-24 bg-[#001A33] border-y border-white/5">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-                    <h2 className="text-3xl font-black mb-16">Paga en <span className="text-[#2C62A7] font-normal italic underline decoration-[#2C62A7]/30 underline-offset-8">segundos</span></h2>
-
-                    <div className="grid lg:grid-cols-3 gap-12">
-                        {[
-                            { step: "01", title: "Dicta tu Código", t: "Indícanos tu número de cédula o código de cliente." },
-                            { step: "02", title: "Confirma el Valor", t: "Verificamos el monto exacto en el sistema oficial." },
-                            { step: "03", title: "Recibe tu Recibo", t: "Paga en efectivo y recibe tu comprobante oficial." }
-                        ].map((step, i) => (
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => setSelectedCategory(null)}
+                                className="absolute inset-0 bg-[#001A33]/80 backdrop-blur-md"
+                            />
                             <motion.div
-                                key={i}
-                                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                                className="relative p-12 bg-white/5 border border-white/10 rounded-[48px]"
+                                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                                className="relative w-full max-w-lg bg-white rounded-[40px] shadow-2xl overflow-hidden border border-white/20"
                             >
-                                <div className="absolute top-8 right-8 text-5xl font-black text-white/5 italic">{step.step}</div>
-                                <h3 className="text-xl font-bold mb-4">{step.title}</h3>
-                                <p className="text-sm text-white/40 leading-relaxed">{step.t}</p>
+                                <div className={`p-8 ${selectedCategory?.accent || "bg-[#002D54]"} text-white relative`}>
+                                    <button 
+                                        onClick={() => setSelectedCategory(null)}
+                                        className="absolute top-6 right-6 p-2 bg-black/10 hover:bg-black/20 rounded-full transition-colors"
+                                    >
+                                        <X className="w-5 h-5" />
+                                    </button>
+                                    <div className="flex items-center gap-4 mb-2">
+                                        <div className="p-3 bg-white/10 rounded-xl">
+                                            {selectedCategory?.icon && <selectedCategory.icon className="w-6 h-6 text-white" />}
+                                        </div>
+                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-60">Pago en línea</span>
+                                    </div>
+                                    <h3 className="text-3xl font-black italic uppercase tracking-tighter">
+                                        {selectedCategory?.title}
+                                    </h3>
+                                </div>
+
+                                <form onSubmit={handleWhatsApp} className="p-8 space-y-6">
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black/40 ml-1 mb-2 block">Ciudad del Servicio</label>
+                                            <input 
+                                                type="text"
+                                                required
+                                                list="ciudades-list"
+                                                placeholder="Escriba su ciudad..."
+                                                className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-black font-bold placeholder:text-black/20 focus:ring-2 focus:ring-[#002D54] focus:border-transparent outline-none transition-all"
+                                                onChange={(e) => setFormData({...formData, ciudad: e.target.value})}
+                                            />
+                                            <datalist id="ciudades-list">
+                                                <option value="Loja" />
+                                                <option value="Quito" />
+                                                <option value="Guayaquil" />
+                                                <option value="Cuenca" />
+                                                <option value="Zamora" />
+                                                <option value="Catamayo" />
+                                                <option value="Machala" />
+                                                <option value="Manta" />
+                                                <option value="Portoviejo" />
+                                                <option value="Ambato" />
+                                                <option value="Riobamba" />
+                                                <option value="Ibarra" />
+                                            </datalist>
+                                        </div>
+
+                                        {/* Campos Específicos por Categoría */}
+                                        {selectedCategory?.fields?.map((field: any) => (
+                                            <div key={field.id}>
+                                                <label className="text-[10px] font-black uppercase tracking-widest text-black/40 ml-1 mb-2 block">{field.label}</label>
+                                                <input 
+                                                    type="text"
+                                                    required
+                                                    placeholder={field.placeholder}
+                                                    className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-black font-bold placeholder:text-black/20 focus:ring-2 focus:ring-[#002D54] focus:border-transparent outline-none transition-all"
+                                                    onChange={(e) => setFormData({...formData, [field.id]: e.target.value})}
+                                                />
+                                            </div>
+                                        ))}
+
+                                        <div>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black/40 ml-1 mb-2 block">Cédula del Titular</label>
+                                            <input 
+                                                type="text"
+                                                required
+                                                placeholder="Ej: 1104567890"
+                                                className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-black font-bold placeholder:text-black/20 focus:ring-2 focus:ring-[#002D54] focus:border-transparent outline-none transition-all"
+                                                onChange={(e) => setFormData({...formData, cedula: e.target.value})}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="text-[10px] font-black uppercase tracking-widest text-black/40 ml-1 mb-2 block">
+                                                {selectedCategory?.placeholder || "Código de Contrato / Cuenta"}
+                                            </label>
+                                            <input 
+                                                type="text"
+                                                required
+                                                placeholder="Ingrese el código de su planilla"
+                                                className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-black font-bold placeholder:text-black/20 focus:ring-2 focus:ring-[#002D54] focus:border-transparent outline-none transition-all"
+                                                onChange={(e) => setFormData({...formData, codigo: e.target.value})}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <button 
+                                        type="submit"
+                                        className={`w-full py-5 ${selectedCategory?.accent || "bg-[#002D54]"} text-white font-black uppercase tracking-[0.2em] text-xs rounded-2xl shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3`}
+                                    >
+                                        <span>Enviar al WhatsApp</span>
+                                        <Send className="w-4 h-4" />
+                                    </button>
+
+                                    <p className="text-[10px] text-center text-black/30 font-medium leading-relaxed">
+                                        Al hacer clic, serás redirigido a nuestro canal oficial de atención para finalizar el pago. Acreditación en línea.
+                                    </p>
+                                </form>
                             </motion.div>
-                        ))}
-                    </div>
-                </div>
+                        </div>
+                    )}
+                </AnimatePresence>
             </section>
+
+
 
             {/* ═══ SECCIÓN 8: FAQ Ciudadano ═══ */}
             <section className="py-32 bg-white">

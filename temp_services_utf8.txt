@@ -1,0 +1,203 @@
+﻿SERVICIOS,REQUISITOS DE LOS SERVICIOS ejemplo(cedula-datos..etc)
+Impresion a Color,Enviar Documentos a imprimir
+Impresion Blanco y Negro,Enviar Documentos a imprimir
+Copias a Color,Enviar Documentos
+Copias Blanco y Negro,Enviar Documentos
+Grabacion Cd Dvd,Enviar Documentos
+Escaneo de documentos,Enviar Documentos
+Consejo de la Judicatura Pension Alimenticia SUPA,Código de Tarjeta-Número de Cuotas a pagar
+LUZ,numero de contrato o cedula
+AGUA,numero de identificacion - numero de servicio
+IESS AFILIADO VOLUNTARIO,Identificación
+IECE CREDITO ESTUDIANTIL SENECYT,Identificación
+SENECYT ORDEN DE PAGO,Identificación
+SENECYT PAGO DE CREDITOS,Identificación
+IESS EMPLEADOR,Identificación-Sucursal-6 Últimos digitos del comprobante
+IESS PRESTAMOS QUIROGRAFARIOS O HIPOTECARIOS,Identificación
+COOPMEGO DEPOSITOS,Número de Cuenta-Identificacion-Valor
+IESS VARIOS,Identificación-Imagen del Comprobante
+BANCO DEL PACIFICO DEPOSITOS,Número de Cuenta-Identificacion-Valor
+BANCO DEL PACIFICO RETIROS,Servicio Disponible en nuestros Locales Fisicos
+BANCO DEL PACIFICO PAGO DE  TARJETA DE CRÉDITO PACIFICARD,Número de Tarjeta-Identificación-Valor
+BANCO BOLIVARIANO DEPOSITOS,Número de Cuenta-Identificacion-Valor
+BANCO BOLIVARIANO RETIROS,Servicio Disponible en nuestros Locales Fisicos
+BANCO BOLIVARIANO PAGO DE  TARJETA DE CRÉDITO BANKARD,Número de Tarjeta-Identificación-Valor
+SECURITY DATA FIRMA ELECTRONICA,numero de identificación - correo electronico  - direccion  - Celular
+FACTURERO MOVIL - FACTURACION PREPAGO,numero de identificación - correo electronico  - direccion  - Celular
+BANCO INTERNACIONAL DEPOSITOS,Número de Cuenta-Identificacion-Valor
+BANCO INTERNACIONAL PAGO DE  TARJETA DE CRÉDITO,Número de Tarjeta-Identificación-Valor
+COOPERATIVA JULIAN LORENTE DEPOSITOS,Número de Cuenta-Identificacion-Valor
+JARDIN AZUAYO DEPOSITOS,Número de Cuenta-Identificacion-Valor
+JARDIN AZUAYO RETIROS,Servicio Disponible en nuestros Locales Fisicos
+BANCO DEL AUSTRO DEPOSITOS,Número de Cuenta-Identificacion-Valor
+BANCO DEL AUSTRO PAGO DE  TARJETA DE CRÉDITO,Número de Tarjeta-Identificación-Valor
+BANCO PICHINCHA DEPOSITOS,Número de Cuenta-Identificacion-Valor
+BANCO PICHINCHA RETIROS,Servicio Disponible en nuestros Locales Fisicos
+BANCO PICHINCHA PAGO DE  TARJETA DE CRÉDITO,Número de Tarjeta-Identificación-Valor
+BANCO PICHINCHA PAGO DE CRÉDITO,Número de Identificación
+BANCO PICHINCHA RECAUDACIONES,Institución o código de empresa-Identificación o Contrapartida
+BANCO PICHINCHA GIROS,Numero de Referencia - número de identificación-Codigo Dactilar de la Cédula-Fecha de Emsion de la Cédula
+BANCO DE GUAYAQUIL DEPOSITOS,Número de Cuenta-Identificacion-Valor
+BANCO DE GUAYAQUIL RETIROS,Clave Recibida 1-Clave Recibida 2-Númer Célular
+BANCO DE GUAYAQUIL PAGO DE  TARJETA DE CRÉDITO,Número de Tarjeta-Identificación-Valor
+BANCO DE GUAYAQUIL PAGO DE CRÉDITO,Número de Identificación 
+BANCO DE GUAYAQUIL RECAUDACIONES,Institución o código de empresa-Identificación o Contrapartida
+BANCO DE GUAYAQUIL ENVIO DE GIROS BANCO DEL BARRIO,Número de cédula de la persona que envía - Número de celular de la persona que envía - Número de cédula de la persona que recibe - Número de celular de la persona que recibe - Valor a enviar
+BANCO DE GUAYAQUIL COBRO DE GIROS BANCO DEL BARRIO,"codigo recibido- numero de identificación-Codigo Dactilar de la cedula, Fecha de Emision de la Cedula"
+EQUIFAX BURÓ CREDITICIO, numero de identificación - correo electronico 
+Monnet Pagos,Código
+Monnet Cobro de Ordenes de Pago,orden de pago - clave
+Payjoy, numero de identificación
+PAGO SEGURO - PAGO EFECTIVO,Código
+PAYVALIDA PAY VALIDA,Código
+MEER - EEQ EN LINEA,contrato
+PLAN MOVISTAR POSPAGO,numero celular
+PLAN  CLARO POSPAGO,numero celular
+COBRO DE GIRO WESTERN UNION,codigo MTCN - numero de identificación
+ENVIO DE GIRO WESTERN UNION,Pais de destino - numero de identificación - valor a enviar - Nombres Completos del Beneficiario
+ENVIO DE GIRO WESTERN UNION CON CODIGO GENERADO EN LA APP,codigo temporal (6 digitos)
+ENVIO DE GIRO MONEY GRAM,Pais de destino - numero de identificación - valor a enviar - Nombres Completos del Beneficiario
+COBRO DE GIRO MONEY GRAM,Numero de Referencia - numero de identificación
+RECARGA  CELULAR,nombre de operadora -  tipo de recarga normal o ilimitada - numero de celular- valor de la recarga
+ECUABET RECARGA,numero de identificación o codigo - valor a recargar
+NETFLIX,"correo electronico - numero de celular - valor a recargar : ($5, $10, 15.50)"
+ECUABET RETIRO,Numero de retiro - clave de retiro - numero de identificación del titular 
+BET 593 LOTERIA NACIONAL,numero de identificación- valor a recargar
+BETCRIS,numero de identificación o codigo - valor a recargar
+DORADOBET RECARGAS,codigo - identificacion
+DORADOBET RETIRO,Numero de retiro - clave de retiro - numero de identificación del titular 
+,
+RECAUDACION EPMAPS EN LINEA,codigo
+CNT O TELEFONO,numero de servicio
+REGISTRO CIVIL CEDULA,cedula
+REGISTRO CIVIL PASAPORTE,cedula-Renovación o Primera Vez
+MUNICIPIO METROPOLITANO DE QUITO,cedula-codigo
+BANCO DE LOJA DEPOSITO,Cuenta-Identificacion-Valor
+BANCO DE LOJA RETIRO,Cuenta-Valor
+BANCO DE LOJA PAGO DE CRÉDITOS,Identificacion
+BANCO DE LOJA PAGO TARJETA DE CRÉDITO,Número de Tarjeta-Identificación-Valor
+BANCO DE LOJA RECAUDACIONES ,Institución-Identificación o Codigo
+SRI O IMPUESTOS,numero CEP Comprobante Electronico de Pago
+MATRICULACION VEHICULAR,Número de placa
+MUNICIPIO DE DURAN,cedula-codigo
+PACIFICARD,cédula-Número Completo de la Tarjeta
+CREDITO,Entidad Bancaria a pagar -  numero de identificación o numero de operación - valor a pagar
+ANT ORDEN DE PAGO,numero de orden
+ANT CITACIONES,Número de Idenificación o placa
+LICENCIA,numero de orden
+NETLIFE,Idenificación 
+PAGO TARJETAS DE CRÉDITO,Entidad Bancaria a pagar-numero de tarjeta - numero de cedula del titular - valor a pagar
+GAD PICHINCHA FONDO MEJORAMIENTO VIAL,cedula-codigo
+TV CABLE XTRIM,identificación o contrato
+NETPLUS,Idenificación 
+PUNTONET Celerity,Idenificación 
+COOPERATIVA COOPROGRESO ,cedula-Número de Cuenta u Operación - Valor
+BANCO GENERAL RUMIÑAHUI BGR,Cuenta-Identificacion-Valor
+BGR TARJETA DE CRÉDITO VISA,Número de Tarjeta-Identificación-Valor
+CLARO FIJO ,numero de identificación 
+NESTLE ECUADOR S.A.,cedula-codigo
+PRODUCTOS YANBAL,cedula o codigo
+EMPRESA ELÉCTRICA AMBATO EEASA ,codigo
+BELCORP Lbel,cedula o codigo
+PUNTONET EN LINEA,Identificación
+DE PRATI LINEA,cedula o numero de tarjeta
+EPMAPA-SD STO DOMINGO ,cedula o codigo
+MUTUALISTA PICHINCHA DEPOSITOS,Cuenta-Identificación-Valor
+MUTUALISTA PICHINCHA RETIROS,Cuenta-Número de Libreta-Identificación-Valor
+TRANSFERENCIA DE DOMINIO VEHICULAR,Placa
+RECARGA DIRECTV ECUADOR C.LTDA PREPAGO,numero de smartcard - valor a recargar (Mayor de $5)
+TARJETA DE CRÉDITO PRODUBANCO,Número de Tarjeta-Identificación-Valor
+COOPERATIVA ALIANZA DEL VALLE,Cuenta-Identificacion-Valor
+MEER - CENTRO SUR ,contrato
+MEER - ELECTRICA LOJA,contrato
+FUNDACION FACES,Identificacion-Valor
+BANCO PROCREDIT S.A. ,Cuenta-Identificacion-Valor
+MUNICIPIO DE RUMIÑAHUI,cedula o codigo
+YIGA5,cedula o codigo
+ETAPA CUENCA,codigo
+COOPERATIVA ANDALUCIA ,Cuenta-Identificacion-Valor
+PYCCA LINEA,Identificación
+DEPOSITO ,Entidad Bancaria a depositar -número de cuenta -numero de cédula del depositante - valor a depositar
+CTE CITACIONES,cedula o placa
+SERVICIO MOVIL POSTPAGO CNT EP,numero celular
+HERBALIFE ,codigo
+MUNICIPIO DE GUAYAQUIL CEP,codigo
+COBRANZA ETAFASHION,Identificación
+TUNEL GUAYASAMIN POSTPAGO,cedula-placa
+LILE - LEONISA,cedula o codigo
+DIRECTV ECUADOR C.LTDA POSTPAGO,numero de identificacion o contrato
+BANCO D MIRO,Cuenta-Identificacion-Valor
+EMAPA AMBATO,codigo
+AZZORTI,Identificación
+MULTAS DE CHEQUES PROTESTOS,numero de identificacion
+COOPERATIVA TULCAN ,Cuenta-Identificacion-Valor
+EMPRESA PUBLICA-EMAPAD EP,codigo
+VELOCITY KLIX-LOJASYSTEM,Identificación
+COOPERATIVA OSCUS ,Cuenta-Identificacion-Valor
+COBRANZA R M,Identificación
+MULTAS  DE TRANSITO ,numero de identificacion o placa
+GESTIONA GTX,Identificación
+COBRANZA HEY IN PLANET SA,celular
+MEER - ELECTRICA RIOBAMBA,contrato
+COBRANZA HUGHESNET,cedula-codigo
+COBRA FACIL RECOVER,cedula-codigo
+MARCIMEX EN LINEA,Identificación
+COOPERATIVA ATUNTAQUI PAW,cedula-codigo
+MUNICIPIO DE GUAYAQUIL PREDIOS,cedula-codigo
+CABLE FAMILIA,cliente-contrato
+UNIVERSIDAD CENTRAL DEL ECUADOR,matricula-cedula
+TRANSVIAL DE BABAHOYO,cedula-codigo
+ARTEFACTA,Identificación
+OMNILIFE EN LINEA,Código
+BANCO SOLIDARIO DEPOSITO,Número de Cuenta-Identificacion-Valor
+BANCO SOLIDARIO TARJETA DE CRÉDITO ALIA,Número de Tarjeta-Identificación-Valor
+UNIVERSIDAD DE LOS ANDES (UNIANDES),Identificación
+INTERNET,provedor - numero de identificacion
+ARCSA,Orden de Pago
+UNIVERSIDAD TECNICA PARTICULAR DE LOJA UTPL,Identificación
+SUPERINTENDENCIA EC. POPULAR Y SOLIDARIA,Identificación
+UNIVERSIDAD TECNOLOGICA INDOAMERICA,matricula-cedula
+COBRANZA NOVACREDIT SA,Identificación-Valor a Pagar
+MUTUALISTA IMBABURA EN LINEA,cedula-codigo
+TODOHOGAR,Identificación
+MUNICIPIO DE CUENCA LINEA,Identificación
+ORIGINARSA S. A.,cedula-codigo
+CLARO MOVIL TV,Identificación
+EMPRESA ELECTRICA GALAPAGOS,cedula-codigo
+MUNICIPIO DE MANTA LINEA,Identificación
+REGISTRO MERCANTIL GUAYAQUIL,Identificación
+COBRANZA AFP GENESIS,cedula-codigo
+CONSORCIO DEL PICHINCHA ,Identificación-Valor a Pagar
+EPMAPAQ QUEVEDO,cedula-codigo
+MUNICIPIO DE IBARRA,cedula-codigo
+UASB SIN BDD,Identificación-Concepto
+SENAE-SERVICIO NACIONAL DE ADUANA DEL EC,Orden de Pago
+JARDINES DE GUAYAQUIL S.A.,cedula-codigo
+MUNICIPIO DE SUCRE,cedula-codigo
+EMAPA OTAVALO,cedula-codigo
+FIBER STORE,cedula-codigo
+COBRANZA COOP SAN FRANCISCO DE ASIS,cedula-codigo
+REGISTRO MERCANTIL QUITO,cedula-codigo
+MUNICIPIO DE CHONE,cedula-codigo
+PEPSICO ALIMENTOS ECUADOR CIA. LTDA,cedula-codigo
+EPMAPSE ESMERALDAS,cedula-codigo
+PAGO LIQUIDACIONES EFECTIVO SALUD,cedula-codigo
+COBRANZA CTT DE LOS ANDES,cedula-codigo
+COBRANZA QUITOFIBRANET,cedula-codigo
+UNIVERSIDAD METROPOLITANA UMET,matricula-cedula
+SPEEDYCOM,cedula-codigo
+MUNICIPIO DE MILAGRO,cedula-codigo
+UE VIGOTSKY RIOBAMBA,cedula-codigo
+BANCO AMIBANK PAW,Identificación
+COOPERATIVA SAN FRANCISCO LTDA PAW,cedula-codigo
+COBRANZA ECUANET,Identificación
+COBRANZA COAC MANANTIAL DE ORO LTDA,cedula-codigo
+ATM CENTRO GUAYAS,Identificación
+CONSORCIO MOBILITY DURAN,cedula-codigo
+MOVILIDAD DE CHONE,cedula-codigo
+CVIALCO PEAJE VIA A LA COSTA,cedula-codigo
+MOVILIDAD DE FLAVIO ALFARO,cedula-codigo
+ORIFLAME,Codigo
+REGISTRO PROPIEDAD DE MACHALA,Identificación
+NATURA & AVON,Identificación
+Micropagos Ya Ganaste Full Carga,"Valor a Pagar (Envie la Transferencia, se acredita inmediato)"
