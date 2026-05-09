@@ -277,53 +277,6 @@ export default function SecurityDataPage() {
                 </div>
             </section>
 
-            {/* ═══ Section 2: Planes y Precios (NUEVO) ═══ */}
-            <section id="precios" className="py-20 bg-white">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold text-[#002855] mb-4">Planes de Firma Electrónica</h2>
-                        <div className="w-16 h-1 bg-[#97C93E] mx-auto rounded-full mb-6"></div>
-                        <p className="text-slate-600 max-w-2xl mx-auto">
-                            Emisión inmediata en formato **Archivo (.p12)**. Ideal para facturación electrónica, SRI y gestiones legales.
-                        </p>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            { time: "7 Días", price: "5.00", desc: "Uso temporal / Emergencias", popular: false },
-                            { time: "90 Días", price: "10.00", desc: "Proyectos cortos", popular: false },
-                            { time: "1 Año", price: "20.00", desc: "El más solicitado por PYMES", popular: true },
-                            { time: "2 Años", price: "27.00", desc: "Mejor relación costo-beneficio", popular: false }
-                        ].map((plan, i) => (
-                            <motion.div
-                                key={i}
-                                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                                className={`relative p-8 rounded-2xl border ${plan.popular ? "border-[#97C93E] shadow-xl scale-105 z-10" : "border-slate-200 shadow-sm"} bg-white flex flex-col`}
-                            >
-                                {plan.popular && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#97C93E] text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">
-                                        Recomendado
-                                    </div>
-                                )}
-                                <div className="text-[#002855] font-bold text-sm mb-2 uppercase tracking-wide">Vigencia {plan.time}</div>
-                                <div className="flex items-baseline gap-1 mb-4">
-                                    <span className="text-4xl font-black text-[#002855]">${plan.price}</span>
-                                    <span className="text-slate-400 text-sm font-medium">/ total</span>
-                                </div>
-                                <p className="text-slate-500 text-xs mb-8 leading-relaxed">{plan.desc}</p>
-                                
-                                <button
-                                    onClick={() => openModal(plan)}
-                                    className={`w-full py-3 rounded-lg font-bold text-sm text-center transition-all ${plan.popular ? "bg-[#002855] text-white hover:bg-[#001A33]" : "bg-slate-100 text-[#002855] hover:bg-slate-200"}`}
-                                >
-                                    Solicitar Ahora
-                                </button>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                </div>
-            </section>
 
             {/* ═══ Section 2: Soluciones (Cards Corporativas) ═══ */}
             <section id="servicios" className="py-20 bg-[#F8F9FA]">
@@ -407,6 +360,54 @@ export default function SecurityDataPage() {
                             </AnimatePresence>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* ═══ Section 2: Planes y Precios (NUEVO) ═══ */}
+            <section id="precios" className="py-20 bg-white">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold text-[#002855] mb-4">Planes de Firma Electrónica</h2>
+                        <div className="w-16 h-1 bg-[#97C93E] mx-auto rounded-full mb-6"></div>
+                        <p className="text-slate-600 max-w-2xl mx-auto">
+                            Emisión inmediata en formato **Archivo (.p12)**. Ideal para facturación electrónica, SRI y gestiones legales.
+                        </p>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            { time: "7 Días", price: "5.00", desc: "Uso temporal / Emergencias", popular: false },
+                            { time: "90 Días", price: "10.00", desc: "Proyectos cortos", popular: false },
+                            { time: "1 Año", price: "20.00", desc: "El más solicitado por PYMES", popular: true },
+                            { time: "2 Años", price: "27.00", desc: "Mejor relación costo-beneficio", popular: false }
+                        ].map((plan, i) => (
+                            <motion.div
+                                key={i}
+                                initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+                                className={`relative p-8 rounded-2xl border ${plan.popular ? "border-[#97C93E] shadow-xl scale-105 z-10" : "border-slate-200 shadow-sm"} bg-white flex flex-col`}
+                            >
+                                {plan.popular && (
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#97C93E] text-white text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">
+                                        Recomendado
+                                    </div>
+                                )}
+                                <div className="text-[#002855] font-bold text-sm mb-2 uppercase tracking-wide">Vigencia {plan.time}</div>
+                                <div className="flex items-baseline gap-1 mb-4">
+                                    <span className="text-4xl font-black text-[#002855]">${plan.price}</span>
+                                    <span className="text-slate-400 text-sm font-medium">/ total</span>
+                                </div>
+                                <p className="text-slate-500 text-xs mb-8 leading-relaxed">{plan.desc}</p>
+                                
+                                <button
+                                    onClick={() => openModal(plan)}
+                                    className={`w-full py-3 rounded-lg font-bold text-sm text-center transition-all ${plan.popular ? "bg-[#002855] text-white hover:bg-[#001A33]" : "bg-slate-100 text-[#002855] hover:bg-slate-200"}`}
+                                >
+                                    Solicitar Ahora
+                                </button>
+                            </motion.div>
+                        ))}
+                    </div>
+
                 </div>
             </section>
 

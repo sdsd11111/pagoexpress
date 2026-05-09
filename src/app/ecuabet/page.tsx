@@ -117,7 +117,7 @@ export default function EcuabetPage() {
     return (
         <main className="min-h-screen bg-black text-white selection:bg-pe-yellow selection:text-black font-sans">
             {/* ═══ Section 1: Hero ═══ */}
-            <section className="relative overflow-hidden min-h-[90vh] flex items-center bg-black pt-28 pb-16 lg:pt-20 lg:pb-0">
+            <section className="relative overflow-hidden min-h-[70vh] flex items-center bg-black pt-28 pb-16 lg:pt-20 lg:pb-0">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-0 right-0 w-[800px] h-[600px] rounded-full blur-[140px] opacity-20 pointer-events-none" style={{ background: ECUABET_GOLD }} />
                     <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[100px] opacity-5 pointer-events-none" style={{ background: ECUABET_GOLD }} />

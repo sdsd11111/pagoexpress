@@ -50,12 +50,12 @@ export default function RecargasPage() {
     const [heroSlideIndex, setHeroSlideIndex] = useState(0);
  
     const brandConfig: Record<string, any> = {
-        "Claro": { divider: "bg-red-600", logoText: "Claro-", logoColor: "text-red-600 text-sm", defaultPill: "bg-[#E5E7EB] text-gray-800" },
-        "Movistar": { divider: "bg-[#019DF4]", logoText: "Movistar", logoColor: "text-[#019DF4] text-sm", defaultPill: "bg-[#8cc63f] text-white" },
-        "CNT": { divider: "bg-[#0ea5e9]", logoText: "Cnt", logoColor: "text-[#0ea5e9] font-[cursive] text-sm", defaultPill: "bg-[#cbd5e1] text-gray-800" },
-        "Tuenti": { divider: "bg-[#ff0066]", logoText: "tuenti", logoColor: "text-[#ff0066] font-bold text-sm", defaultPill: "bg-[#E5E7EB] text-gray-800" },
-        "Maxiplus": { divider: "bg-[#4a1d96]", logoText: "MAXI\nPLUS", logoColor: "text-[#4a1d96] font-bold whitespace-pre-line text-xs", defaultPill: "bg-[#cbd5e1] text-gray-800" },
-        "Akimovil": { divider: "bg-[#c1272d]", logoText: "AKÍ\nMOVIL", logoColor: "text-[#c1272d] font-black whitespace-pre-line text-xs", defaultPill: "bg-[#cbd5e1] text-gray-800" },
+        "Claro": { divider: "bg-red-600", logoText: <div className="relative w-16 h-6 mx-auto"><Image src="/images/recargas/claro.webp" alt="Claro" fill className="object-contain" /></div>, logoColor: "text-red-600", defaultPill: "bg-[#E5E7EB] text-gray-800" },
+        "Movistar": { divider: "bg-[#019DF4]", logoText: <div className="relative w-16 h-6 mx-auto"><Image src="/images/recargas/movistar%202.webp" alt="Movistar" fill className="object-contain" /></div>, logoColor: "text-[#019DF4]", defaultPill: "bg-[#8cc63f] text-white" },
+        "CNT": { divider: "bg-[#0ea5e9]", logoText: <div className="relative w-12 h-6 mx-auto"><Image src="/images/recargas/cnt.webp" alt="CNT" fill className="object-contain" /></div>, logoColor: "text-[#0ea5e9]", defaultPill: "bg-[#cbd5e1] text-gray-800" },
+        "Tuenti": { divider: "bg-[#ff0066]", logoText: <div className="relative w-14 h-6 mx-auto"><Image src="/images/recargas/tuenti%202.webp" alt="Tuenti" fill className="object-contain" /></div>, logoColor: "text-[#ff0066]", defaultPill: "bg-[#E5E7EB] text-gray-800" },
+        "Maxiplus": { divider: "bg-[#4a1d96]", logoText: <div className="relative w-16 h-6 mx-auto"><Image src="/images/recargas/maxiplus.webp" alt="Maxiplus" fill className="object-contain" /></div>, logoColor: "text-[#4a1d96]", defaultPill: "bg-[#cbd5e1] text-gray-800" },
+        "Akimovil": { divider: "bg-[#c1272d]", logoText: <div className="relative w-14 h-6 mx-auto"><Image src="/images/recargas/akimovil.webp" alt="Akimovil" fill className="object-contain" /></div>, logoColor: "text-[#c1272d]", defaultPill: "bg-[#cbd5e1] text-gray-800" },
         "Netflix": { 
             divider: "bg-red-600", 
             logoText: (
@@ -269,18 +269,18 @@ export default function RecargasPage() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setHeroSlideIndex(prev => (prev + 1) % 4);
+            setHeroSlideIndex(prev => (prev + 1) % heroImages.length);
         }, 3500);
         return () => clearInterval(interval);
     }, []);
 
     const heroImages = [
         "/images/recargas/claro.webp",
-        "/images/recargas/movistar.webp",
-        "/images/recargas/tuenti.webp",
+        "/images/recargas/movistar%202.webp",
+        "/images/recargas/tuenti%202.webp",
         "/images/recargas/cnt.webp",
-        "/images/recargas/maxiplus.jpeg", // Assuming these paths based on the earlier list_dir
-        "/images/recargas/akimovil.jpeg"
+        "/images/recargas/maxiplus.webp",
+        "/images/recargas/akimovil.webp"
     ];
 
     const categories = [
@@ -316,9 +316,9 @@ export default function RecargasPage() {
 
     const carriers = [
         { name: "Claro", logo: "/images/recargas/claro.webp", desc: "Saldo y Paquetes" },
-        { name: "Movistar", logo: "/images/recargas/movistar.webp", desc: "Recargas Prepago" },
+        { name: "Movistar", logo: "/images/recargas/movistar%202.webp", desc: "Recargas Prepago" },
         { name: "CNT", logo: "/images/recargas/cnt.webp", desc: "Planes y Saldo" },
-        { name: "Tuenti", logo: "/images/recargas/tuenti.webp", desc: "Combos Gigantes" }
+        { name: "Tuenti", logo: "/images/recargas/tuenti%202.webp", desc: "Combos Gigantes" }
     ];
 
     const faqs = [
@@ -330,14 +330,14 @@ export default function RecargasPage() {
     const dynamicProviders = {
         celulares: [
             { name: "Claro", type: "celulares", logo: "/images/recargas/claro.webp", color: "text-red-500" },
-            { name: "Movistar", type: "celulares", logo: "/images/recargas/movistar.webp", color: "text-green-500" },
-            { name: "Tuenti", type: "celulares", logo: "/images/recargas/tuenti.webp", color: "text-pink-500" },
+            { name: "Movistar", type: "celulares", logo: "/images/recargas/movistar%202.webp", color: "text-green-500" },
+            { name: "Tuenti", type: "celulares", logo: "/images/recargas/tuenti%202.webp", color: "text-pink-500" },
             { name: "CNT", type: "celulares", logo: "/images/recargas/cnt.webp", color: "text-blue-400" },
-            { name: "Maxiplus", type: "celulares", logo: "/images/recargas/maxiplus.jpeg", color: "text-purple-600" },
-            { name: "Akimovil", type: "celulares", logo: "/images/recargas/akimovil.jpeg", color: "text-red-700" }
+            { name: "Maxiplus", type: "celulares", logo: "/images/recargas/maxiplus.webp", color: "text-purple-600" },
+            { name: "Akimovil", type: "celulares", logo: "/images/recargas/akimovil.webp", color: "text-red-700" }
         ],
         juegos: [
-            { name: "Free Fire", type: "juegos", icon: Gamepad2, color: "text-orange-500" },
+            { name: "Free Fire", type: "juegos", logo: "/images/recargas/freefire.png", color: "text-orange-500" },
             { name: "Fortnite", type: "juegos", icon: Gamepad2, color: "text-purple-400" },
             { name: "Roblox", type: "juegos", icon: Gamepad2, color: "text-gray-300" },
             { name: "Mobile Legends", type: "juegos", icon: Gamepad2, color: "text-blue-400" },
@@ -766,7 +766,7 @@ export default function RecargasPage() {
                                                     className="bg-white text-black border border-gray-200 rounded-lg p-2 shadow-sm hover:shadow transition-all flex flex-col items-center relative overflow-hidden text-left w-full h-full min-h-[120px]"
                                                 >
                                                     <div className={`${brand.logoColor || 'text-black'} font-black mb-1 tracking-tighter w-full text-center uppercase`}>
-                                                        {typeof brand.logoText === 'string' ? brand.logoText : selectedProvider.name}
+                                                        {brand.logoText}
                                                     </div>
                                                     <div className={`w-[95%] h-[2px] ${brand.divider} mb-2`}></div>
                                                     

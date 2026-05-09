@@ -238,6 +238,51 @@ export default function EquifaxPage() {
                 </div>
             </section>
 
+
+            {/* ═══ Section 3: Proceso de Entrega Inmediata ═══ */}
+            <section className="py-24 bg-white">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl sm:text-4xl font-black text-[#006F8E] tracking-tight">
+                            Proceso de Entrega Inmediata
+                        </h2>
+                        <p className="text-slate-500 mt-4 font-medium">Obtén tu historial oficial en 3 simples pasos en Loja.</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 relative">
+                        {/* Connecting Line (Desktop) */}
+                        <div className="hidden md:block absolute top-[45px] left-[15%] right-[15%] h-0.5 bg-slate-100 -z-10" />
+
+                        <div className="text-center relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                            <div className="w-16 h-16 rounded-full bg-[#006F8E] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#006F8E]/20">1</div>
+                            <MapPin className="w-8 h-8 text-[#E31837] mx-auto mb-4" />
+                            <h3 className="text-xl font-bold text-[#006F8E] mb-3">Identificación</h3>
+                            <p className="text-slate-500 font-medium text-sm leading-relaxed">
+                                Acércate a nuestra Matriz o sucursal La Castellana con tu **cédula original**.
+                            </p>
+                        </div>
+
+                        <div className="text-center relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                            <div className="w-16 h-16 rounded-full bg-[#E31837] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#E31837]/20">2</div>
+                            <ShieldCheck className="w-8 h-8 text-[#006F8E] mx-auto mb-4" />
+                            <h3 className="text-xl font-bold text-[#006F8E] mb-3">Validación</h3>
+                            <p className="text-slate-500 font-medium text-sm leading-relaxed">
+                                Confirmamos tu identidad por seguridad y protección estricta de tus datos financieros.
+                            </p>
+                        </div>
+
+                        <div className="text-center relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                            <div className="w-16 h-16 rounded-full bg-[#006F8E] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#006F8E]/20">3</div>
+                            <MonitorSmartphone className="w-8 h-8 text-[#E31837] mx-auto mb-4" />
+                            <h3 className="text-xl font-bold text-[#006F8E] mb-3">Impresión/Envío</h3>
+                            <p className="text-slate-500 font-medium text-sm leading-relaxed">
+                                Recibe tu reporte oficial Equifax **impreso** o en tu **correo electrónico** al instante.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* ═══ Section 2: Productos Oficiales ═══ */}
             <section id="planes" className="py-24 bg-[#F5F7F8] relative">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -327,50 +372,6 @@ export default function EquifaxPage() {
                                 </div>
                             </motion.div>
                         ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ═══ Section 3: Proceso de Entrega Inmediata ═══ */}
-            <section className="py-24 bg-white">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl font-black text-[#006F8E] tracking-tight">
-                            Proceso de Entrega Inmediata
-                        </h2>
-                        <p className="text-slate-500 mt-4 font-medium">Obtén tu historial oficial en 3 simples pasos en Loja.</p>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-8 relative">
-                        {/* Connecting Line (Desktop) */}
-                        <div className="hidden md:block absolute top-[45px] left-[15%] right-[15%] h-0.5 bg-slate-100 -z-10" />
-
-                        <div className="text-center relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                            <div className="w-16 h-16 rounded-full bg-[#006F8E] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#006F8E]/20">1</div>
-                            <MapPin className="w-8 h-8 text-[#E31837] mx-auto mb-4" />
-                            <h3 className="text-xl font-bold text-[#006F8E] mb-3">Identificación</h3>
-                            <p className="text-slate-500 font-medium text-sm leading-relaxed">
-                                Acércate a nuestra Matriz o sucursal La Castellana con tu **cédula original**.
-                            </p>
-                        </div>
-
-                        <div className="text-center relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                            <div className="w-16 h-16 rounded-full bg-[#E31837] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#E31837]/20">2</div>
-                            <ShieldCheck className="w-8 h-8 text-[#006F8E] mx-auto mb-4" />
-                            <h3 className="text-xl font-bold text-[#006F8E] mb-3">Validación</h3>
-                            <p className="text-slate-500 font-medium text-sm leading-relaxed">
-                                Confirmamos tu identidad por seguridad y protección estricta de tus datos financieros.
-                            </p>
-                        </div>
-
-                        <div className="text-center relative bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                            <div className="w-16 h-16 rounded-full bg-[#006F8E] text-white flex items-center justify-center text-2xl font-black mx-auto mb-6 shadow-lg shadow-[#006F8E]/20">3</div>
-                            <MonitorSmartphone className="w-8 h-8 text-[#E31837] mx-auto mb-4" />
-                            <h3 className="text-xl font-bold text-[#006F8E] mb-3">Impresión/Envío</h3>
-                            <p className="text-slate-500 font-medium text-sm leading-relaxed">
-                                Recibe tu reporte oficial Equifax **impreso** o en tu **correo electrónico** al instante.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </section>

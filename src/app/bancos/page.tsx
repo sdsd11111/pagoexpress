@@ -377,11 +377,11 @@ export default function BancosPage() {
                         </motion.div>
 
                         {/* COLUMNA DERECHA: Slider Swipe */}
-                        <div className="relative h-[400px] sm:h-[500px] lg:h-[700px] order-1 lg:order-2">
+                        <div className="relative h-[350px] sm:h-[450px] lg:h-[550px] order-1 lg:order-2">
                             <div className="absolute inset-0 bg-pe-yellow/5 rounded-[4rem] -rotate-3 scale-95 opacity-50 border border-pe-yellow/10" />
                             <div className="absolute inset-0 bg-pe-black rounded-[4rem] rotate-2 scale-95 border border-white/5 shadow-2xl" />
                             
-                            <div className="relative w-full h-full rounded-[4rem] overflow-hidden border border-white/10 shadow-3xl group">
+                            <div className="relative w-full h-full rounded-[4rem] overflow-hidden border border-white/10 shadow-3xl group p-4 lg:p-6">
                                 <AnimatePresence initial={false} mode="wait">
                                     <motion.div
                                         key={currentHeroSlide}
@@ -389,7 +389,7 @@ export default function BancosPage() {
                                         animate={{ x: 0, opacity: 1 }}
                                         exit={{ x: -300, opacity: 0 }}
                                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                        className="absolute inset-0"
+                                        className="absolute inset-4 lg:inset-6 rounded-[2.5rem] overflow-hidden"
                                     >
                                         <Image 
                                             src={heroSlides[currentHeroSlide].image} 
@@ -400,9 +400,9 @@ export default function BancosPage() {
                                         />
                                         
                                         {/* Info Badge on Image */}
-                                        <div className="absolute bottom-10 left-10 right-10 p-8 bg-pe-black/40 backdrop-blur-xl border border-white/10 rounded-3xl text-left transform translate-y-0 group-hover:-translate-y-2 transition-transform duration-500">
-                                            <p className="text-[10px] font-black text-pe-yellow uppercase tracking-[0.3em] mb-2">Destacado</p>
-                                            <h3 className="text-2xl font-black text-white uppercase italic leading-none">{heroSlides[currentHeroSlide].label}</h3>
+                                        <div className="absolute bottom-6 left-6 right-6 p-6 bg-pe-black/40 backdrop-blur-xl border border-white/10 rounded-2xl text-left transform translate-y-0 group-hover:-translate-y-2 transition-transform duration-500">
+                                            <p className="text-[9px] font-black text-pe-yellow uppercase tracking-[0.3em] mb-1">Destacado</p>
+                                            <h3 className="text-xl font-black text-white uppercase italic leading-none">{heroSlides[currentHeroSlide].label}</h3>
                                         </div>
                                     </motion.div>
                                 </AnimatePresence>

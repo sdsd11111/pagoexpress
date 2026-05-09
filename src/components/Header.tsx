@@ -24,7 +24,7 @@ import {
 /* ─── All 8 Service Pages ─── */
 const services = [
   { key: "ecuabet", label: "Ecuabet", href: "/ecuabet", logo: "/images/header logo/ecuabet.webp", mobileLogo: "/images/header logo/ecuabet-sq.webp", accent: "#F3CF1D" },
-  { key: "recargas", label: "Recargas", href: "/recargas", logo: "/images/header logo/recargas.webp", mobileLogo: "/images/header logo/recargas-sq.webp", accent: "#6A0DAD" },
+  { key: "recargas", label: "Recargas", href: "/recargas", logo: "/images/header logo/recargas.webp", mobileLogo: "/images/header logo/recargas-sq.webp", accent: "#6A0DAD", Icon: Smartphone },
   { key: "security-data", label: "Security Data", href: "/security-data", logo: "/images/header logo/security-data.webp", mobileLogo: "/images/header logo/security-data-sq.webp", accent: "#E63946" },
   { key: "equifax", label: "Equifax", href: "/equifax", logo: "/images/header logo/equifax.webp", mobileLogo: "/images/header logo/equifax-sq.webp", accent: "#C8102E" },
   { key: "supa", label: "SUPA", href: "/supa", logo: "/images/header logo/supa.webp", mobileLogo: "/images/header logo/supa-sq.webp", accent: "#2D6A4F", scale: 1.35 },
