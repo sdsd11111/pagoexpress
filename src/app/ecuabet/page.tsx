@@ -117,13 +117,24 @@ export default function EcuabetPage() {
     const handleWhatsAppSubmit = (e?: React.FormEvent) => {
         if (e) e.preventDefault();
         
-        const bankInfo = `\n\n🏦 *DATOS PARA EL PAGO:* \nBanco: ${bankName}\nCuenta: ${accountNumber}\nTipo: ${accountType}`;
+        // Emojis as Unicode Escapes for 100% compatibility
+        const eBank = "\u{1F3E6}";
+        const eUser = "\u{1F464}";
+        const eId = "\u{1F194}";
+        const eMoney = "\u{1F4B0}";
+        const eCheck = "\u{2705}";
+        const eWait = "\u{23F3}";
+        const eNote = "\u{1F4DD}";
+        const eKey = "\u{1F511}";
+        const eIdCard = "\u{1FAAA}";
+
+        const bankInfo = `\n\n${eBank} *DATOS PARA EL PAGO:* \n- Banco: ${bankName}\n- Cuenta: ${accountNumber}\n- Tipo: ${accountType}`;
         
         let message = "";
         if (formType === "recharge") {
-            message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n🆔 *ID o Cédula:* ${userId}\n💰 *Valor:* $${amount}\n📱 *WhatsApp:* ${leadPhone}\n\n${receiptUrl ? `✅ *Comprobante de pago:* ${receiptUrl}` : "⏳ _No se adjuntó comprobante._"}${bankInfo}\n\nQuedo a la espera de la acreditación.`;
+            message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n${eUser} *Cliente:* ${leadName}\n${eId} *ID o Cédula:* ${userId}\n${eMoney} *Valor:* $${amount}\n\n${receiptUrl ? `${eCheck} *Comprobante de pago:* ${receiptUrl}` : `${eWait} _No se adjuntó comprobante._`}\n\nQuedo a la espera de la acreditación.`;
         } else {
-            message = `Hola PagoExpress, deseo realizar un retiro de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n📝 *Nota de Retiro:* ${withdrawNote}\n🔑 *Clave:* ${withdrawClave}\n🪪 *Cédula:* ${withdrawId}\n📱 *WhatsApp:* ${leadPhone}\n\n${receiptUrl ? `✅ *Nota de Retiro (Imagen):* ${receiptUrl}` : "⏳ _No se adjuntó la imagen de la nota._"}${bankInfo}\n\nPor favor procedan con la validación.`;
+            message = `Hola PagoExpress, deseo realizar un retiro de Ecuabet.\n\n${eUser} *Cliente:* ${leadName}\n${eNote} *Nota de Retiro:* ${withdrawNote}\n${eKey} *Clave:* ${withdrawClave}\n${eIdCard} *Cédula:* ${withdrawId}\n\n${receiptUrl ? `${eCheck} *Nota de Retiro (Imagen):* ${receiptUrl}` : `${eWait} _No se adjuntó la imagen de la nota._`}${bankInfo}\n\nPor favor procedan con la validación.`;
         }
 
         const encodedMessage = encodeURIComponent(message);
