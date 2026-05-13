@@ -258,7 +258,7 @@ export default function EquifaxPage() {
                             <MapPin className="w-8 h-8 text-[#E31837] mx-auto mb-4" />
                             <h3 className="text-xl font-bold text-[#006F8E] mb-3">Identificación</h3>
                             <p className="text-slate-500 font-medium text-sm leading-relaxed">
-                                Acércate a nuestra Matriz o sucursal La Castellana con tu **cédula original**.
+                                Acércate a nuestra Matriz o sucursal Parque Bolívar con tu **cédula original**.
                             </p>
                         </div>
 

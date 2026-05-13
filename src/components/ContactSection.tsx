@@ -7,7 +7,7 @@ import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, MessageSquare } from "l
 const locations = [
     {
         name: "Agencia Matriz",
-        address: "Miguel Riofrío 160-62 y Olmedo",
+        address: "Miguel Riofrío 1203 y Olmedo",
         city: "Loja, Ecuador",
         phone: "07-2583120",
         hours: "L-V: 06:30 - 19:30 | Sáb: 08:00 - 16:00",
@@ -18,7 +18,7 @@ const locations = [
         address: "Colón 6838 y Av. Manuel Agustín Aguirre",
         city: "Loja, Ecuador",
         phone: "07-2583120",
-        hours: "L-V: 09:00 - 19:00 | Sáb: 09:00 - 14:00",
+        hours: "L-V: 09:00 - 18:00 | Sáb: 09:00 - 13:00",
         mapsUrl: "https://maps.app.goo.gl/zeNg6ZCSPHosJvZw6"
     },
     {

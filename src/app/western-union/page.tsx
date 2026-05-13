@@ -40,18 +40,18 @@ const WU_BLACK = "#000000";
 const locations = [
     {
         name: "Agencia Matriz",
-        address: "Miguel Riofrío y Olmedo (Esquina)",
+        address: "Miguel Riofrío 1203 y Olmedo",
         city: "Loja, Ecuador",
         phone: "07-2571234",
-        hours: "Lun - Sáb: 08h00 - 19h00 | Dom: 09h00 - 14h00",
+        hours: "Lun - Vie: 06h30 - 19h30 | Sáb: 08h00 - 16h00",
         mapsUrl: "https://maps.app.goo.gl/zeNg6ZCSPHosJvZw6"
     },
     {
-        name: "Sucursal La Castellana",
-        address: "Av. Salvador Bustamante Celi",
+        name: "Parque Bolívar",
+        address: "Colón 6838 y Av. Manuel Agustín Aguirre",
         city: "Loja, Ecuador",
         phone: "07-2581234",
-        hours: "Lun - Vie: 08h30 - 18h30 | Sáb: 09h00 - 16h00",
+        hours: "Lun - Vie: 09h00 - 18h00 | Sáb: 09h00 - 13h00",
         mapsUrl: "https://maps.app.goo.gl/zeNg6ZCSPHosJvZw6"
     }
 ];

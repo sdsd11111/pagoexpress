@@ -34,18 +34,18 @@ const ECUABET_GREEN = "#1CA51C"; // Official Action Green
 const locations = [
     {
         name: "Agencia Matriz",
-        address: "Miguel Riofrío y Olmedo (Esquina)",
+        address: "Miguel Riofrío 1203 y Olmedo",
         city: "Loja, Ecuador",
         phone: "07-2571234",
-        hours: "Lun - Sáb: 08h00 - 19h00 | Dom: 09h00 - 14h00",
+        hours: "Lun - Vie: 06h30 - 19h30 | Sáb: 08h00 - 16h00",
         mapsUrl: "https://maps.app.goo.gl/zeNg6ZCSPHosJvZw6"
     },
     {
-        name: "Sucursal La Castellana",
-        address: "Av. Salvador Bustamante Celi",
+        name: "Parque Bolívar",
+        address: "Colón 6838 y Av. Manuel Agustín Aguirre",
         city: "Loja, Ecuador",
         phone: "07-2581234",
-        hours: "Lun - Vie: 08h30 - 18h30 | Sáb: 09h00 - 16h00",
+        hours: "Lun - Vie: 09h00 - 18h00 | Sáb: 09h00 - 13h00",
         mapsUrl: "https://maps.app.goo.gl/zeNg6ZCSPHosJvZw6"
     }
 ];
@@ -54,8 +54,15 @@ const fadeUp: Variants = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1,
 const sweepRight: Variants = { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } } };
 
 export default function EcuabetPage() {
+    const [formType, setFormType] = useState<"recharge" | "withdraw">("recharge");
     const [userId, setUserId] = useState("");
     const [amount, setAmount] = useState("");
+    const [withdrawNote, setWithdrawNote] = useState("");
+    const [withdrawClave, setWithdrawClave] = useState("");
+    const [withdrawId, setWithdrawId] = useState("");
+    const [bankName, setBankName] = useState("");
+    const [accountNumber, setAccountNumber] = useState("");
+    const [accountType, setAccountType] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [step, setStep] = useState(1);
     const [leadName, setLeadName] = useState("");
@@ -96,11 +103,20 @@ export default function EcuabetPage() {
     const handleWhatsAppSubmit = (e?: React.FormEvent) => {
         if (e) e.preventDefault();
         
-        console.log("Lead Captured:", { name: leadName, phone: leadPhone, service: "Ecuabet", amount, userId, receiptUrl });
+        const bankInfo = `\n\n🏦 *DATOS PARA EL PAGO:* \nBanco: ${bankName}\nCuenta: ${accountNumber}\nTipo: ${accountType}`;
+        
+        let message = "";
+        if (formType === "recharge") {
+            message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n🆔 *ID o Cédula:* ${userId}\n💰 *Valor:* $${amount}\n📱 *WhatsApp:* ${leadPhone}\n\n${receiptUrl ? `✅ *Comprobante de pago:* ${receiptUrl}` : "⏳ *No se adjuntó comprobante.*"}${bankInfo}\n\nQuedo a la espera de la acreditación.`;
+        } else {
+            message = `Hola PagoExpress, deseo realizar un retiro de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n📝 *Nota de Retiro:* ${withdrawNote}\n🔑 *Clave:* ${withdrawClave}\n🪪 *Cédula:* ${withdrawId}\n📱 *WhatsApp:* ${leadPhone}\n\n${receiptUrl ? `✅ *Nota de Retiro (Imagen):* ${receiptUrl}` : "⏳ *No se adjuntó la imagen de la nota.*"}${bankInfo}\n\nPor favor procedan con la validación.`;
+        }
 
-        const message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n🆔 *ID o Cédula:* ${userId}\n💰 *Valor:* $${amount}\n📱 *WhatsApp:* ${leadPhone}\n\n${receiptUrl ? `✅ *Comprobante de pago:* ${receiptUrl}` : "⏳ *No se adjuntó comprobante.*"}\n\nQuedo a la espera de la acreditación.`;
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/593990227203?text=${encodedMessage}`, "_blank");
+        // We can either stay at summary or show a final success message. 
+        // For now, let's keep the user on a "Sent" state.
+        setStep(6); 
     };
 
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -148,14 +164,18 @@ export default function EcuabetPage() {
                             </h1>
 
                             <div className="flex flex-col sm:flex-row gap-4 lg:gap-5 justify-center lg:justify-start w-full px-0">
-                                <Link
-                                    href="#simulador"
+                                <button
+                                    onClick={() => {
+                                        setFormType("recharge");
+                                        setStep(1);
+                                        document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' });
+                                    }}
                                     className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 text-black font-black uppercase tracking-widest rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-pe-yellow/20"
                                     style={{ backgroundColor: ECUABET_GOLD }}
                                 >
                                     <Zap className="w-5 h-5 group-hover:scale-110 transition-transform" />
                                     Recargar Ahora
-                                </Link>
+                                </button>
                                 <Link
                                     href="#sucursales"
                                     className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-10 py-5 bg-transparent border-2 text-white font-black rounded-xl hover:bg-white/5 transition-all uppercase tracking-widest text-sm"
@@ -223,7 +243,14 @@ export default function EcuabetPage() {
 
                     <div className="grid md:grid-cols-2 gap-8">
                         {/* Tarjeta Izquierda: Recargas */}
-                        <Link href="#simulador" className="block group">
+                        <div 
+                            onClick={() => {
+                                setFormType("recharge");
+                                setStep(1);
+                                document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' });
+                            }} 
+                            className="block group cursor-pointer"
+                        >
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -252,10 +279,17 @@ export default function EcuabetPage() {
                                     </div>
                                 </div>
                             </motion.div>
-                        </Link>
+                        </div>
 
                         {/* Tarjeta Derecha: Seguridad */}
-                        <Link href="#simulador" className="block group">
+                        <div 
+                            onClick={() => {
+                                setFormType("withdraw");
+                                setStep(1);
+                                document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' });
+                            }} 
+                            className="block group cursor-pointer"
+                        >
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
@@ -284,7 +318,7 @@ export default function EcuabetPage() {
                                     </div>
                                 </div>
                             </motion.div>
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -299,28 +333,37 @@ export default function EcuabetPage() {
                         variants={fadeUp}
                         className="bg-white/[0.03] border border-white/10 rounded-[3rem] p-8 md:p-12 backdrop-blur-xl relative overflow-hidden"
                     >
-                        {/* Progress Bar */}
-                        <div className="absolute top-0 left-0 right-0 h-1.5 bg-white/5">
-                            <motion.div 
-                                className="h-full bg-pe-yellow shadow-[0_0_20px_rgba(243,207,29,0.5)]"
-                                initial={{ width: "33%" }}
-                                animate={{ width: `${(step / 3) * 100}%` }}
-                            />
+                        {/* Tabs Selector */}
+                        <div className="flex p-1 bg-white/5 rounded-2xl mb-8 border border-white/5">
+                            <button 
+                                onClick={() => { setFormType("recharge"); setStep(1); }}
+                                className={`flex-1 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all ${formType === "recharge" ? "bg-pe-yellow text-black shadow-lg" : "text-white/40 hover:text-white"}`}
+                                style={{ backgroundColor: formType === "recharge" ? ECUABET_GOLD : undefined }}
+                            >
+                                Solicitud Recarga
+                            </button>
+                            <button 
+                                onClick={() => { setFormType("withdraw"); setStep(1); }}
+                                className={`flex-1 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all ${formType === "withdraw" ? "bg-pe-yellow text-black shadow-lg" : "text-white/40 hover:text-white"}`}
+                                style={{ backgroundColor: formType === "withdraw" ? ECUABET_GOLD : undefined }}
+                            >
+                                Solicitud Retiro
+                            </button>
                         </div>
 
                         <div className="text-center mb-10 mt-4">
                             <h2 className="text-3xl font-black text-white mb-2 uppercase italic">
-                                SOLICITUD DE <span style={{ color: ECUABET_GOLD }}>RECARGA</span>
+                                SOLICITUD DE <span style={{ color: ECUABET_GOLD }}>{formType === "recharge" ? "RECARGA" : "RETIRO"}</span>
                             </h2>
-                            <p className="text-white/40 text-sm font-medium tracking-wide uppercase">Paso {step} de 4</p>
+                            <p className="text-white/40 text-sm font-medium tracking-wide uppercase">Paso {step} de 5</p>
                         </div>
 
                         <div className="bg-neutral-900 border border-white/5 rounded-[2.5rem] p-8 sm:p-12 shadow-2xl relative overflow-hidden">
                             <div className="flex justify-between items-center mb-10">
-                                {[1, 2, 3, 4].map((s) => (
+                                {[1, 2, 3, 4, 5].map((s) => (
                                     <div key={s} className="flex flex-col items-center gap-2">
                                         <div 
-                                            className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-500 ${
+                                            className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold transition-all duration-500 text-xs sm:text-base ${
                                                 step >= s ? "scale-110" : "opacity-30 scale-90"
                                             }`}
                                             style={{ 
@@ -331,8 +374,8 @@ export default function EcuabetPage() {
                                         >
                                             {step > s ? <CheckCircle className="w-5 h-5" /> : s}
                                         </div>
-                                        <span className="text-[10px] uppercase tracking-widest font-black opacity-30">
-                                            {s === 1 ? "Datos" : s === 2 ? "Monto" : s === 3 ? "Recibo" : "Final"}
+                                        <span className="text-[8px] sm:text-[10px] uppercase tracking-widest font-black opacity-30 text-center">
+                                            {s === 1 ? "Datos" : s === 2 ? (formType === "recharge" ? "Monto" : "Retiro") : s === 3 ? "Recibo" : s === 4 ? "Pago" : "Final"}
                                         </span>
                                     </div>
                                 ))}
@@ -376,75 +419,115 @@ export default function EcuabetPage() {
 
                             {step === 2 && (
                                 <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
-                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Monto e ID</h3>
+                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>
+                                        {formType === "recharge" ? "Monto e ID" : "Datos de Retiro"}
+                                    </h3>
                                     
-                                    <div className="bg-pe-yellow/5 border border-pe-yellow/20 rounded-2xl p-4 space-y-3">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <Banknote className="w-4 h-4 text-pe-yellow" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-pe-yellow">Cuentas para depósito/transferencia</span>
-                                        </div>
-                                        <div className="grid grid-cols-2 gap-2 text-[10px] font-medium text-white/70">
-                                            <div className="bg-white/5 p-2 rounded-lg">🏦 Produbanco: <span className="text-white">02125012701</span></div>
-                                            <div className="bg-white/5 p-2 rounded-lg">🏦 Pichincha: <span className="text-white">3472909404</span></div>
-                                            <div className="bg-white/5 p-2 rounded-lg">🏦 Guayaquil: <span className="text-white">21026425</span></div>
-                                            <div className="bg-white/5 p-2 rounded-lg">🏦 Banco Loja: <span className="text-white">2903772441</span></div>
-                                            <div className="bg-white/5 p-2 rounded-lg">🏦 CoopMego: <span className="text-white">401010139960</span></div>
-                                            <div className="bg-white/5 p-2 rounded-lg">🏦 JEP: <span className="text-white">406089279905</span></div>
-                                        </div>
-                                        <div className="pt-2 border-t border-pe-yellow/10">
-                                            <p className="text-[9px] text-white/50 leading-tight">
-                                                👤 Titular: <strong>César Augusto Amay Ríos</strong><br />
-                                                🪪 CI: <strong>1103677546</strong> | 📧 info@pagoexpressec.com
-                                            </p>
-                                        </div>
-                                    </div>
+                                    {formType === "recharge" ? (
+                                        <>
+                                            <div className="bg-pe-yellow/5 border border-pe-yellow/20 rounded-2xl p-4 space-y-3">
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <Banknote className="w-4 h-4 text-pe-yellow" />
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-pe-yellow">Cuentas para depósito/transferencia</span>
+                                                </div>
+                                                <div className="grid grid-cols-2 gap-2 text-[10px] font-medium text-white/70">
+                                                    <div className="bg-white/5 p-2 rounded-lg">🏦 Produbanco: <span className="text-white">02125012701</span></div>
+                                                    <div className="bg-white/5 p-2 rounded-lg">🏦 Pichincha: <span className="text-white">3472909404</span></div>
+                                                    <div className="bg-white/5 p-2 rounded-lg">🏦 Guayaquil: <span className="text-white">21026425</span></div>
+                                                    <div className="bg-white/5 p-2 rounded-lg">🏦 Banco Loja: <span className="text-white">2903772441</span></div>
+                                                    <div className="bg-white/5 p-2 rounded-lg">🏦 CoopMego: <span className="text-white">401010139960</span></div>
+                                                    <div className="bg-white/5 p-2 rounded-lg">🏦 JEP: <span className="text-white">406089279905</span></div>
+                                                </div>
+                                                <div className="pt-2 border-t border-pe-yellow/10">
+                                                    <p className="text-[9px] text-white/50 leading-tight">
+                                                        👤 Titular: <strong>César Augusto Amay Ríos</strong><br />
+                                                        🪪 CI: <strong>1103677546</strong> | 📧 info@pagoexpressec.com
+                                                    </p>
+                                                </div>
+                                            </div>
 
-                                    <div className="space-y-4">
-                                        <div className="relative group">
-                                            <Gamepad2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
-                                            <input 
-                                                type="text" 
-                                                placeholder="ID DE USUARIO O CÉDULA" 
-                                                value={userId}
-                                                onChange={(e) => setUserId(e.target.value)}
-                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
-                                            />
-                                        </div>
-                                        
-                                        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                                            {["5", "10", "20", "50", "100"].map((val) => (
-                                                <button 
-                                                    key={val} 
-                                                    onClick={() => setAmount(val)}
-                                                    className={`py-3 rounded-xl border font-bold transition-all ${
-                                                        amount === val ? "bg-pe-yellow/20 border-pe-yellow text-pe-yellow" : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10"
-                                                    }`}
-                                                >
-                                                    ${val}
-                                                </button>
-                                            ))}
-                                        </div>
+                                            <div className="space-y-4">
+                                                <div className="relative group">
+                                                    <Gamepad2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
+                                                    <input 
+                                                        type="text" 
+                                                        placeholder="ID DE USUARIO O CÉDULA" 
+                                                        value={userId}
+                                                        onChange={(e) => setUserId(e.target.value)}
+                                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                                    />
+                                                </div>
+                                                
+                                                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                                                    {["5", "10", "20", "50", "100"].map((val) => (
+                                                        <button 
+                                                            key={val} 
+                                                            onClick={() => setAmount(val)}
+                                                            className={`py-3 rounded-xl border font-bold transition-all ${
+                                                                amount === val ? "bg-pe-yellow/20 border-pe-yellow text-pe-yellow" : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10"
+                                                            }`}
+                                                        >
+                                                            ${val}
+                                                        </button>
+                                                    ))}
+                                                </div>
 
-                                        <div className="relative group">
-                                            <DollarSign className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
-                                            <input 
-                                                type="number" 
-                                                min="1"
-                                                placeholder="VALOR (MÍN $1)" 
-                                                value={amount}
-                                                onChange={(e) => setAmount(e.target.value)}
-                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
-                                            />
+                                                <div className="relative group">
+                                                    <DollarSign className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
+                                                    <input 
+                                                        type="number" 
+                                                        min="1"
+                                                        placeholder="VALOR (MÍN $1)" 
+                                                        value={amount}
+                                                        onChange={(e) => setAmount(e.target.value)}
+                                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <div className="space-y-4">
+                                            <div className="relative group">
+                                                <Banknote className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
+                                                <input 
+                                                    type="text" 
+                                                    placeholder="NOTA DE RETIRO NO." 
+                                                    value={withdrawNote}
+                                                    onChange={(e) => setWithdrawNote(e.target.value)}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                                />
+                                            </div>
+                                            <div className="relative group">
+                                                <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
+                                                <input 
+                                                    type="text" 
+                                                    placeholder="CLAVE" 
+                                                    value={withdrawClave}
+                                                    onChange={(e) => setWithdrawClave(e.target.value)}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                                />
+                                            </div>
+                                            <div className="relative group">
+                                                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
+                                                <input 
+                                                    type="text" 
+                                                    placeholder="NÚMERO DE CÉDULA" 
+                                                    value={withdrawId}
+                                                    onChange={(e) => setWithdrawId(e.target.value)}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
+
                                     <div className="flex gap-3">
                                         <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
                                         <button 
                                             onClick={nextStep}
-                                            disabled={!userId || !amount || Number(amount) < 1}
+                                            disabled={formType === "recharge" ? (!userId || !amount || Number(amount) < 1) : (!withdrawNote || !withdrawClave || !withdrawId)}
                                             className="flex-[2] py-5 bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
                                         >
-                                            Subir Comprobante <ArrowRight className="w-5 h-5" />
+                                            {formType === "recharge" ? "Subir Comprobante" : "Subir Nota"} <ArrowRight className="w-5 h-5" />
                                         </button>
                                     </div>
                                 </motion.div>
@@ -452,8 +535,8 @@ export default function EcuabetPage() {
 
                             {step === 3 && (
                                 <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
-                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Comprobante</h3>
-                                    <p className="text-white/40 text-sm">Sube una foto de tu pago para agilizar la recarga.</p>
+                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>{formType === "recharge" ? "Comprobante" : "Imagen de Nota"}</h3>
+                                    <p className="text-white/40 text-sm">Sube una foto de tu {formType === "recharge" ? "pago" : "nota de retiro"} para agilizar el proceso.</p>
                                     
                                     <div 
                                         className={`border-2 border-dashed rounded-[2rem] p-12 flex flex-col items-center justify-center gap-4 transition-all cursor-pointer ${
@@ -501,39 +584,141 @@ export default function EcuabetPage() {
 
                             {step === 4 && (
                                 <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
-                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Resumen Final</h3>
-                                    <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-4">
-                                        <div className="flex justify-between items-center pb-4 border-b border-white/5">
-                                            <span className="text-white/40 text-xs uppercase font-bold">Usuario</span>
-                                            <span className="font-black text-pe-yellow uppercase tracking-tight">{userId}</span>
+                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Datos de Pago</h3>
+                                    <p className="text-white/40 text-sm">¿Dónde deseas recibir tu acreditación apenas esté lista?</p>
+                                    
+                                    <div className="space-y-4">
+                                        <div className="relative group">
+                                            <input 
+                                                type="text" 
+                                                placeholder="🏦 NOMBRE DEL BANCO" 
+                                                value={bankName}
+                                                onChange={(e) => setBankName(e.target.value)}
+                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                            />
                                         </div>
-                                        <div className="flex justify-between items-center pb-4 border-b border-white/5">
-                                            <span className="text-white/40 text-xs uppercase font-bold">Monto</span>
-                                            <span className="text-2xl font-black text-white">${amount}</span>
+                                        <div className="relative group">
+                                            <input 
+                                                type="text" 
+                                                placeholder="🔢 NÚMERO DE CUENTA" 
+                                                value={accountNumber}
+                                                onChange={(e) => setAccountNumber(e.target.value)}
+                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                            />
                                         </div>
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-white/40 text-xs uppercase font-bold">Comprobante</span>
-                                            <span className={`text-[10px] font-black uppercase px-3 py-1 rounded-full ${receipt ? "bg-pe-yellow/20 text-pe-yellow" : "bg-white/10 text-white/30"}`}>
-                                                {receipt ? "Adjunto" : "No Subido"}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-3">
-                                        <button onClick={prevStep} disabled={isUploading} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all disabled:opacity-50">Atrás</button>
-                                        <button 
-                                            onClick={() => handleWhatsAppSubmit()}
-                                            disabled={isUploading}
-                                            className="flex-[2] py-5 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] shadow-2xl disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
-                                            style={{ backgroundColor: "#25D366" }}
+                                        <select 
+                                            value={accountType}
+                                            onChange={(e) => setAccountType(e.target.value)}
+                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase"
                                         >
-                                            {isUploading ? (
-                                                <RefreshCcw className="w-6 h-6 animate-spin" />
-                                            ) : (
-                                                <MessageCircle className="w-6 h-6" />
-                                            )}
-                                            {isUploading ? "Subiendo..." : "Finalizar en WhatsApp"}
+                                            <option value="" className="bg-neutral-900">👤 TIPO DE CUENTA</option>
+                                            <option value="AHORROS" className="bg-neutral-900">AHORROS</option>
+                                            <option value="CORRIENTE" className="bg-neutral-900">CORRIENTE</option>
+                                        </select>
+                                    </div>
+
+                                    <div className="flex gap-3">
+                                        <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
+                                        <button 
+                                            onClick={nextStep}
+                                            disabled={!bankName || !accountNumber || !accountType}
+                                            className="flex-[2] py-5 bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
+                                        >
+                                            Ver Resumen <ArrowRight className="w-5 h-5" />
                                         </button>
                                     </div>
+                                </motion.div>
+                            )}
+
+                            {step === 5 && (
+                                <motion.div key="step5" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
+                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Resumen de Solicitud</h3>
+                                    
+                                    <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-6">
+                                        {/* Transaction Details */}
+                                        <div className="space-y-3">
+                                            <p className="text-[10px] font-black text-pe-yellow uppercase tracking-widest">Información Ecuabet</p>
+                                            {formType === "recharge" ? (
+                                                <div className="grid grid-cols-2 gap-4">
+                                                    <div>
+                                                        <span className="text-white/40 text-[9px] uppercase font-bold block">ID Usuario</span>
+                                                        <span className="font-black text-white text-sm uppercase">{userId}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span className="text-white/40 text-[9px] uppercase font-bold block">Monto</span>
+                                                        <span className="font-black text-pe-yellow text-sm">${amount}</span>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="grid grid-cols-2 gap-4">
+                                                    <div>
+                                                        <span className="text-white/40 text-[9px] uppercase font-bold block">Nota No.</span>
+                                                        <span className="font-black text-white text-sm uppercase">{withdrawNote}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span className="text-white/40 text-[9px] uppercase font-bold block">Cédula</span>
+                                                        <span className="font-black text-white text-sm uppercase">{withdrawId}</span>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {/* Bank Details */}
+                                        <div className="pt-4 border-t border-white/5 space-y-3">
+                                            <p className="text-[10px] font-black text-pe-yellow uppercase tracking-widest">Cuenta de Pago</p>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div>
+                                                    <span className="text-white/40 text-[9px] uppercase font-bold block">Banco</span>
+                                                    <span className="font-black text-white text-sm uppercase">{bankName}</span>
+                                                </div>
+                                                <div>
+                                                    <span className="text-white/40 text-[9px] uppercase font-bold block">Cuenta</span>
+                                                    <span className="font-black text-white text-sm uppercase">{accountNumber}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="pt-4 border-t border-white/5 flex justify-between items-center">
+                                            <span className="text-white/40 text-xs uppercase font-bold">Comprobante</span>
+                                            <span className="text-[10px] font-black uppercase text-pe-yellow bg-pe-yellow/10 px-3 py-1 rounded-full">Listo</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-3">
+                                        <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
+                                        <button 
+                                            onClick={() => handleWhatsAppSubmit()}
+                                            className="flex-[2] py-5 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] shadow-2xl"
+                                            style={{ backgroundColor: "#25D366" }}
+                                        >
+                                            <MessageCircle className="w-6 h-6" />
+                                            Enviar a WhatsApp
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {step === 6 && (
+                                <motion.div key="step6" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center space-y-8 py-8">
+                                    <div className="w-20 h-20 bg-pe-yellow rounded-full flex items-center justify-center mx-auto shadow-2xl shadow-pe-yellow/20">
+                                        <CheckCircle2 className="w-10 h-10 text-black" />
+                                    </div>
+                                    
+                                    <div className="space-y-4">
+                                        <h3 className="text-2xl font-black text-white uppercase italic leading-tight">
+                                            ¡Solicitud <span style={{ color: ECUABET_GOLD }}>Enviada!</span>
+                                        </h3>
+                                        <p className="text-white/60 text-sm font-medium max-w-xs mx-auto">
+                                            Hemos recibido tus datos correctamente. El tiempo de acreditación es de aproximadamente <span className="text-white font-bold">1 hora ⏳</span>.
+                                        </p>
+                                    </div>
+
+                                    <button 
+                                        onClick={() => { setStep(1); setReceipt(null); setReceiptUrl(""); setBankName(""); setAccountNumber(""); setAccountType(""); }}
+                                        className="py-4 px-10 border border-white/10 hover:border-white/30 text-white/50 hover:text-white text-[10px] font-black uppercase tracking-widest transition-all rounded-2xl flex items-center justify-center gap-2 mx-auto"
+                                    >
+                                        <RefreshCcw className="w-3 h-3" /> Realizar otra solicitud
+                                    </button>
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -605,23 +790,38 @@ export default function EcuabetPage() {
                 </div>
             </section>
 
-            {/* ═══ Section 5: Guía Paso a Paso (Infografía) ═══ */}
+            {/* ═══ Section 5: Guía Paso a Paso (Infografía Digital) ═══ */}
             <section className="py-24 bg-pe-gray-50">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl sm:text-5xl font-black text-pe-black uppercase italic tracking-tighter">
-                            CÓMO OPERAR EN <span className="text-pe-yellow-dark">LOJA</span>
+                            RECARGAS 100% <span className="text-pe-yellow-dark">DIGITALES</span>
                         </h2>
-                        <p className="text-pe-gray-500 mt-4 text-lg font-medium">Sigue estos tres sencillos pasos en nuestros puntos autorizados.</p>
+                        <p className="text-pe-gray-500 mt-4 text-lg font-medium">Activa tu saldo desde cualquier lugar en tres sencillos pasos.</p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-12 relative">
                         <div className="hidden md:block absolute top-[2.5rem] left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-pe-gray-200 z-0" />
 
                         {[
-                            { step: "01", text: "Acércate a nuestra Matriz o sucursal La Castellana.", icon: MapPin },
-                            { step: "02", text: "Indica tu ID de usuario de Ecuabet y el monto.", icon: CreditCard },
-                            { step: "03", text: "¡Listo! Saldo acreditado a tu cuenta de forma inmediata.", icon: CheckCircle2 },
+                            { 
+                                step: "01", 
+                                title: "1. Transfiere", 
+                                text: "Realiza tu transferencia bancaria desde cualquier banco por el monto que desees.", 
+                                icon: Send 
+                            },
+                            { 
+                                step: "02", 
+                                title: "2. Envía", 
+                                text: "Envía el comprobante con tu ID o Cédula a nuestro canal digital.", 
+                                icon: Smartphone 
+                            },
+                            { 
+                                step: "03", 
+                                title: "3. ¡Juega!", 
+                                text: "¡Listo en minutos! Activamos tu saldo al instante para que no dejes de ganar.", 
+                                icon: Zap 
+                            },
                         ].map((item, i) => (
                             <motion.div
                                 key={i}
@@ -635,35 +835,39 @@ export default function EcuabetPage() {
                                     <item.icon className="w-8 h-8 text-pe-black group-hover:scale-110 transition-transform" />
                                     <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-pe-yellow text-pe-black font-black flex items-center justify-center text-xs shadow-lg font-sans">{item.step}</div>
                                 </div>
-                                <p className="text-pe-black font-black text-lg max-w-[250px] leading-tight uppercase tracking-tight">{item.text}</p>
+                                <h4 className="text-pe-black font-black text-xl mb-3 uppercase italic tracking-tight">{item.title}</h4>
+                                <p className="text-pe-gray-600 font-medium text-base max-w-[250px] leading-snug">{item.text}</p>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ═══ Section 5: Sucursales y Mapa (Rediseño 3 Columnas) ═══ */}
+            {/* ═══ Section 5: Sucursales y Seguridad (Rediseño 3 Columnas) ═══ */}
             <section id="sucursales" className="py-24 bg-white overflow-hidden">
                 <div className="max-w-[1600px] mx-auto px-4">
                     <div className="bg-white rounded-[4rem] overflow-hidden shadow-3xl flex flex-col lg:flex-row border border-pe-gray-100 min-h-[750px]">
 
-                        {/* COUMNA 1: Valor (Black) */}
+                        {/* COLUMNA 1: Seguridad Total (Black) */}
                         <div className="lg:w-1/3 bg-pe-black p-10 lg:p-16 flex flex-col justify-center text-white border-r border-white/5">
                             <div className="inline-flex items-center gap-2 text-pe-yellow mb-8">
-                                <Zap className="w-5 h-5" />
-                                <span className="font-black uppercase tracking-[0.2em] text-[10px]" style={{ color: ECUABET_GOLD }}>Punto Autorizado Loja</span>
+                                <ShieldCheck className="w-5 h-5" style={{ color: ECUABET_GOLD }} />
+                                <span className="font-black uppercase tracking-[0.2em] text-[10px]" style={{ color: ECUABET_GOLD }}>Seguridad Total</span>
                             </div>
                             <h3 className="text-4xl lg:text-5xl font-black mb-10 leading-[1.1] uppercase italic" style={{ color: ECUABET_GOLD }}>
-                                Gestiona tus <br /><span className="text-white">Pronósticos</span>
+                                SEGURIDAD REAL <br /><span className="text-white">Y RESPALDADA</span>
                             </h3>
+                            <p className="text-white/50 text-sm mb-10 font-medium italic">
+                                "Tu dinero está protegido. Contamos con locales físicos y atención digital inmediata para tu total tranquilidad".
+                            </p>
                             <div className="space-y-4">
                                 <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                                     <p className="font-black text-[9px] uppercase tracking-widest mb-2" style={{ color: ECUABET_GOLD }}>Punto Matriz</p>
-                                    <p className="text-sm font-medium text-white/90 leading-relaxed italic pr-4">Miguel Riofrío y Olmedo. Atención hasta las 19:00.</p>
+                                    <p className="text-sm font-medium text-white/90 leading-relaxed italic pr-4">Miguel Riofrío 1203 y Olmedo. Atención profesional y garantizada.</p>
                                 </div>
                                 <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                                    <p className="font-black text-[9px] uppercase tracking-widest mb-2" style={{ color: ECUABET_GOLD }}>Punto La Castellana</p>
-                                    <p className="text-sm font-medium text-white/90 leading-relaxed italic pr-4">Av. Salvador Bustamante Celi. Abierto Fines de Semana.</p>
+                                    <p className="font-black text-[9px] uppercase tracking-widest mb-2" style={{ color: ECUABET_GOLD }}>Punto Bolívar</p>
+                                    <p className="text-sm font-medium text-white/90 leading-relaxed italic pr-4">Colón y Av. Manuel Agustín Aguirre (Junto al cajero Pichincha). Ubicación estratégica para tu confianza.</p>
                                 </div>
                             </div>
                         </div>
@@ -679,17 +883,20 @@ export default function EcuabetPage() {
                             </div>
                         </div>
 
-                        {/* COLUMNA 3: Agencias (White) */}
+                        {/* COLUMNA 3: Visítanos o Escríbenos (White) */}
                         <div className="lg:w-1/3 bg-white p-10 lg:p-16 flex flex-col justify-center">
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-pe-black/40 mb-2">Ubicados en Loja</span>
-                            <h3 className="text-3xl font-black mb-10 text-pe-black uppercase leading-none italic" style={{ color: ECUABET_GOLD }}>
-                                <span className="text-pe-black">Visítanos</span> <br /> en <span className="text-pe-black/30">nuestras agencias</span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-pe-black/40 mb-2">PRESENCIA FÍSICA EN LOJA</span>
+                            <h3 className="text-3xl font-black mb-6 text-pe-black uppercase leading-none italic" style={{ color: ECUABET_GOLD }}>
+                                <span className="text-pe-black">Visítanos</span> <br /> o <span className="text-pe-black/30">Escríbenos</span>
                             </h3>
+                            <p className="text-pe-gray-500 text-sm mb-10 font-medium leading-relaxed italic">
+                                "No arriesgues tu dinero. Operamos con transparencia en agencias físicas y canales oficiales".
+                            </p>
 
                             <div className="space-y-4 mb-8">
                                 {[
-                                    { name: "Agencia Matriz", dir: "Miguel Riofrío y Olmedo", h1: "Lun - Sáb: 08:00 - 19:00", h2: "Dom: 09:00 - 14:00" },
-                                    { name: "Sucursal La Castellana", dir: "Av. Salvador Bustamante Celi", h1: "Lun - Vie: 08:30 - 18:30", h2: "Sáb: 09:00 - 16:00" }
+                                    { name: "Agencia Matriz", dir: "Miguel Riofrío 1203 y Olmedo", h1: "Lun - Vie: 06:30 - 19:30", h2: "Sáb: 08:00 - 16:00" },
+                                    { name: "Parque Bolívar", dir: "Colón 6838 y Av. Manuel Agustín Aguirre", h1: "Lun - Vie: 09:00 - 18:00", h2: "Sáb: 09:00 - 13:00" }
                                 ].map((agency, i) => (
                                     <div key={i} className="p-5 rounded-3xl bg-pe-gray-50 border border-pe-gray-100 group hover:border-pe-yellow transition-all">
                                         <div className="flex items-center gap-4">
@@ -707,6 +914,19 @@ export default function EcuabetPage() {
                                         </div>
                                     </div>
                                 ))}
+                                
+                                <div className="p-5 rounded-3xl bg-pe-yellow/5 border border-pe-yellow/20">
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-10 h-10 rounded-xl bg-pe-black flex items-center justify-center shrink-0">
+                                            <MessageCircle className="w-5 h-5" style={{ color: ECUABET_GOLD }} />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-black text-pe-black uppercase text-xs">Canal Directo</h4>
+                                            <p className="text-[10px] text-pe-gray-500 italic">WhatsApp: 0983084842</p>
+                                            <p className="text-[8px] font-bold text-pe-yellow-dark uppercase tracking-widest">Soporte real al instante</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <Link

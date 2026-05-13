@@ -12,7 +12,7 @@ interface FAQItem {
 const faqs: FAQItem[] = [
     {
         question: "¿Dónde puedo pagar mi planilla de luz (EERSSA) y agua en Loja?",
-        answer: "Puedes pagarlas en nuestra Matriz (Miguel Riofrío 160-62 y Olmedo) o cualquiera de nuestras agencias en Loja y el país. Aceptamos pagos de EERSSA, Agua Potable, CNT y Municipio de Loja con acreditación inmediata."
+        answer: "Puedes pagarlas en nuestra Matriz (Miguel Riofrío 1203 y Olmedo) o cualquiera de nuestras agencias en Loja y el país. Aceptamos pagos de EERSSA, Agua Potable, CNT y Municipio de Loja con acreditación inmediata."
     },
     {
         question: "¿Qué documentos necesito para cobrar un giro de Western Union o MoneyGram?",

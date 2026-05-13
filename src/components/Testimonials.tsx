@@ -34,7 +34,7 @@ const testimonials: Testimonial[] = [
         id: 3,
         name: "Carmen Elena R.",
         role: "Corresponsal Bancaria",
-        text: "Como corresponsal de varios bancos, me queda cerca de casa en La Castellana. Excelente atención y siempre dispuestos a ayudar.",
+        text: "Como corresponsal de varios bancos, me queda cerca de casa en el Parque Bolívar. Excelente atención y siempre dispuestos a ayudar.",
         rating: 5,
         image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Carmen",
     },

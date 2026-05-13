@@ -133,7 +133,7 @@ export default function Footer() {
                                 <MapPin className="w-3.5 h-3.5 text-pe-yellow" />
                                 Agencia Matriz
                             </p>
-                            <p className="text-sm text-pe-gray-400">Miguel Riofrío 160-62 y Olmedo</p>
+                            <p className="text-sm text-pe-gray-400">Miguel Riofrío 1203 y Olmedo</p>
                             <p className="text-sm text-pe-gray-400">Ecuador</p>
                         </div>
                         {/* Sucursal Parque Bolívar */}

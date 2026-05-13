@@ -638,11 +638,11 @@ export default function BancosPage() {
                             <div className="space-y-4">
                                 <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
                                     <p className="text-pe-yellow font-black text-[9px] uppercase tracking-widest mb-2">Fines de Semana</p>
-                                    <p className="text-sm font-medium text-white/90">Atención especial Sábados y Domingos en La Castellana.</p>
+                                    <p className="text-sm font-medium text-white/90">Atención en Parque Bolívar los días Sábados.</p>
                                 </div>
                                 <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
                                     <p className="text-pe-yellow font-black text-[9px] uppercase tracking-widest mb-2">Horarios Extendidos</p>
-                                    <p className="text-sm font-medium text-white/90">Atención hasta las 18h00 en Matriz Miguel Riofrío.</p>
+                                    <p className="text-sm font-medium text-white/90">Atención profesional en Matriz hasta las 19h30.</p>
                                 </div>
                             </div>
                         </div>
@@ -667,8 +667,8 @@ export default function BancosPage() {
 
                             <div className="space-y-4 mb-8">
                                 {[
-                                    { name: "Agencia Matriz", dir: "Miguel Riofrío y Olmedo", h1: "Lun - Sáb: 08:00 - 19:00", h2: "Dom: 09:00 - 14:00" },
-                                    { name: "Sucursal La Castellana", dir: "Av. Salvador Bustamante Celi", h1: "Lun - Vie: 08:30 - 18:30", h2: "Sáb: 09:00 - 16:00" }
+                                    { name: "Agencia Matriz", dir: "Miguel Riofrío 1203 y Olmedo", h1: "Lun - Vie: 06:30 - 19:30", h2: "Sáb: 08:00 - 16:00" },
+                                    { name: "Agencia Parque Bolívar", dir: "Colón 6838 y Av. Manuel Agustín Aguirre", h1: "Lun - Vie: 09:00 - 18:00", h2: "Sáb: 09:00 - 13:00" }
                                 ].map((agency, i) => (
                                     <div key={i} className="p-5 rounded-3xl bg-pe-gray-50 border border-pe-gray-100 group hover:border-pe-yellow transition-all">
                                         <div className="flex items-center gap-4">

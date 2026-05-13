@@ -50,7 +50,7 @@ const timelineEvents = [
     {
         year: "2020",
         title: "Diversificación Digital",
-        description: "Apertura de la sucursal La Castellana y expansión a servicios digitales y corresponsalía bancaria.",
+        description: "Apertura de la sucursal Parque Bolívar y expansión a servicios digitales y corresponsalía bancaria.",
         icon: Zap
     },
     {
