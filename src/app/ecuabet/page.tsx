@@ -139,7 +139,7 @@ export default function EcuabetPage() {
                             <h1 className="text-4xl sm:text-6xl lg:text-[5.5rem] font-black leading-[1.1] tracking-tighter mb-10 uppercase italic px-0">
                                 Recargas de{" "}
                                 <span style={{ color: ECUABET_GOLD }}>Ecuabet</span>
-                                <br />en Ecuador
+                                <br />desde 1$ USD
                             </h1>
 
                             <div className="flex flex-col sm:flex-row gap-4 lg:gap-5 justify-start px-0">
@@ -212,7 +212,7 @@ export default function EcuabetPage() {
                 <div className="max-w-6xl mx-auto px-4 sm:px-6">
                     <div className="mb-16 text-center">
                         <h2 className="text-3xl sm:text-5xl font-black text-white uppercase italic tracking-tighter">
-                            SERVICIOS <span style={{ color: ECUABET_GOLD }}>AUTORIZADOS</span>
+                            Agencia oficial <span style={{ color: ECUABET_GOLD }}>ECUABET</span>
                         </h2>
                     </div>
 
