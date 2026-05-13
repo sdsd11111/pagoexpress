@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
 import { pool } from '@/lib/db';
 import crypto from 'crypto';
+import sharp from 'sharp';
 
 export async function POST(req: NextRequest) {
     try {
@@ -18,50 +17,49 @@ export async function POST(req: NextRequest) {
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
 
-        // Make sure uploads directory exists
-        const uploadDir = join(process.cwd(), 'public', 'uploads');
-        try {
-            await mkdir(uploadDir, { recursive: true });
-        } catch (e) {
-            // Directory might already exist, ignore
+        // Convert to WebP and compress
+        let finalBuffer: any = buffer;
+        let mimeType = file.type;
+        const uniqueSuffix = crypto.randomBytes(8).toString('hex');
+
+        if (file.type.startsWith('image/')) {
+            finalBuffer = await sharp(buffer)
+                .webp({ quality: 80 })
+                .toBuffer();
+            mimeType = 'image/webp';
         }
 
-        // Generate unique filename
-        const uniqueSuffix = crypto.randomBytes(8).toString('hex');
-        const extension = file.name.split('.').pop() || 'png';
-        const filename = `receipt-${uniqueSuffix}.${extension}`;
-        
-        const filePath = join(uploadDir, filename);
-        await writeFile(filePath, buffer);
+        const filename = `receipt-${uniqueSuffix}.${mimeType.split('/')[1]}`;
 
-        const publicUrl = `/uploads/${filename}`;
-        
-        // Full URL for WhatsApp
-        const protocol = req.headers.get('x-forwarded-proto') || 'https';
-        const host = req.headers.get('host');
-        const fullUrl = `${protocol}://${host}${publicUrl}`;
-
-        // Create table if it doesn't exist
+        // Create table with BLOB support if it doesn't exist
         const createTableQuery = `
             CREATE TABLE IF NOT EXISTS receipts (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 user_id VARCHAR(100),
                 amount DECIMAL(10,2),
                 filename VARCHAR(255),
-                url VARCHAR(255),
+                mime_type VARCHAR(100),
+                content LONGBLOB,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         `;
         await pool.query(createTableQuery);
 
-        // Save to Database
-        const insertQuery = `INSERT INTO receipts (user_id, amount, filename, url) VALUES (?, ?, ?, ?)`;
-        await pool.query(insertQuery, [userId, amount, filename, publicUrl]);
+        // Save DIRECTLY to Database (BLOB)
+        const insertQuery = `INSERT INTO receipts (user_id, amount, filename, mime_type, content) VALUES (?, ?, ?, ?, ?)`;
+        const [result]: any = await pool.query(insertQuery, [userId, amount, filename, mimeType, finalBuffer]);
+        
+        const insertId = result.insertId;
+
+        // Generate the link that points to our database viewer
+        const protocol = req.headers.get('x-forwarded-proto') || 'https';
+        const host = req.headers.get('host');
+        const fullUrl = `${protocol}://${host}/api/receipts/${insertId}`;
 
         return NextResponse.json({ success: true, url: fullUrl });
 
     } catch (error) {
-        console.error('Error uploading file:', error);
-        return NextResponse.json({ error: 'Error uploading file' }, { status: 500 });
+        console.error('Error uploading to database:', error);
+        return NextResponse.json({ error: 'Error uploading to database' }, { status: 500 });
     }
 }

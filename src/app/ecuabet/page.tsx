@@ -61,39 +61,44 @@ export default function EcuabetPage() {
     const [leadName, setLeadName] = useState("");
     const [leadPhone, setLeadPhone] = useState("");
     const [receipt, setReceipt] = useState<File | null>(null);
+    const [receiptUrl, setReceiptUrl] = useState("");
     const [isUploading, setIsUploading] = useState(false);
 
-    const handleWhatsAppSubmit = async (e?: React.FormEvent) => {
+    const uploadReceipt = async (file: File) => {
+        try {
+            setIsUploading(true);
+            const formData = new FormData();
+            formData.append("receipt", file);
+            formData.append("userId", userId);
+            formData.append("amount", amount);
+
+            const response = await fetch("/api/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setReceiptUrl(data.url);
+                return data.url;
+            } else {
+                console.error("Upload failed");
+                return "";
+            }
+        } catch (error) {
+            console.error("Error uploading receipt:", error);
+            return "";
+        } finally {
+            setIsUploading(false);
+        }
+    };
+
+    const handleWhatsAppSubmit = (e?: React.FormEvent) => {
         if (e) e.preventDefault();
         
-        let receiptUrl = "";
-        if (receipt) {
-            try {
-                setIsUploading(true);
-                const formData = new FormData();
-                formData.append("receipt", receipt);
-                formData.append("userId", userId);
-                formData.append("amount", amount);
-
-                const response = await fetch("/api/upload", {
-                    method: "POST",
-                    body: formData,
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    receiptUrl = data.url;
-                }
-            } catch (error) {
-                console.error("Error uploading receipt:", error);
-            } finally {
-                setIsUploading(false);
-            }
-        }
-
         console.log("Lead Captured:", { name: leadName, phone: leadPhone, service: "Ecuabet", amount, userId, receiptUrl });
 
-        const message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n🆔 *ID de Usuario:* ${userId}\n💰 *Monto:* $${amount}\n📱 *Teléfono:* ${leadPhone}\n\n${receiptUrl ? `✅ *Comprobante de pago:* ${receiptUrl}` : "⏳ *Adjuntaré el comprobante en un momento.*"}\n\nQuedo a la espera de la acreditación.`;
+        const message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n🆔 *ID o Cédula:* ${userId}\n💰 *Valor:* $${amount}\n📱 *WhatsApp:* ${leadPhone}\n\n${receiptUrl ? `✅ *Comprobante de pago:* ${receiptUrl}` : "⏳ *No se adjuntó comprobante.*"}\n\nQuedo a la espera de la acreditación.`;
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/593990227203?text=${encodedMessage}`, "_blank");
     };
@@ -117,7 +122,7 @@ export default function EcuabetPage() {
     return (
         <main className="min-h-screen bg-black text-white selection:bg-pe-yellow selection:text-black font-sans">
             {/* ═══ Section 1: Hero ═══ */}
-            <section className="relative overflow-hidden min-h-[70vh] flex items-center bg-black pt-28 pb-16 lg:pt-20 lg:pb-0">
+            <section className="relative overflow-hidden min-h-[100svh] lg:min-h-[70vh] flex items-center bg-black pt-28 pb-16 lg:pt-20 lg:pb-0">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute top-0 right-0 w-[800px] h-[600px] rounded-full blur-[140px] opacity-20 pointer-events-none" style={{ background: ECUABET_GOLD }} />
                     <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[100px] opacity-5 pointer-events-none" style={{ background: ECUABET_GOLD }} />
@@ -127,7 +132,7 @@ export default function EcuabetPage() {
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-left">
+                        <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center lg:text-left flex flex-col items-center lg:items-start">
                             <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border mb-8 bg-white/5 border-white/10">
                                 <div className="flex items-center gap-2 border-r border-white/20 pr-3">
                                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: ECUABET_GOLD }} />
@@ -142,7 +147,7 @@ export default function EcuabetPage() {
                                 <br />desde 1$ USD
                             </h1>
 
-                            <div className="flex flex-col sm:flex-row gap-4 lg:gap-5 justify-start px-0">
+                            <div className="flex flex-col sm:flex-row gap-4 lg:gap-5 justify-center lg:justify-start w-full px-0">
                                 <Link
                                     href="#simulador"
                                     className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 text-black font-black uppercase tracking-widest rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-pe-yellow/20"
@@ -164,10 +169,10 @@ export default function EcuabetPage() {
 
                         {/* Hero Slider */}
                         <motion.div 
-                            initial={{ opacity: 0, x: 100 }}
-                            animate={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
                             transition={{ duration: 1, ease: "easeOut" }}
-                            className="relative aspect-square lg:aspect-video w-full rounded-[3rem] overflow-hidden border-4 border-white/5 shadow-3xl bg-neutral-900"
+                            className="relative aspect-[4/3] lg:aspect-video w-full rounded-[2rem] lg:rounded-[3rem] overflow-hidden border-4 border-white/5 shadow-3xl bg-neutral-900 mt-4 lg:mt-0"
                         >
                             <AnimatePresence mode="wait">
                                 <motion.div
@@ -232,17 +237,17 @@ export default function EcuabetPage() {
                                     <Zap className="w-8 h-8" style={{ color: ECUABET_GOLD }} />
                                 </div>
 
-                                <h3 className="text-4xl font-black text-white mb-6 uppercase italic tracking-tight">Recargas al <br /><span style={{ color: ECUABET_GOLD }}>Instante</span></h3>
+                                <h3 className="text-4xl font-black text-white mb-6 uppercase italic tracking-tight">Recargas al <br /><span style={{ color: ECUABET_GOLD }}>Instante (Desde $1.00)</span></h3>
 
                                 <div className="space-y-6">
                                     <p className="text-white/60 text-lg leading-relaxed">
-                                        Acredita saldo a tu cuenta con pago en efectivo. Sin necesidad de tarjetas ni bancos. Dicta tu ID de usuario en ventanilla y empieza a jugar al instante.
+                                        ¡Activa tu saldo en minutos! Solo envía el comprobante de tu transferencia junto con tu ID de usuario o número de cédula. Nosotros nos encargamos del resto para que tu cuenta esté lista al instante.
                                     </p>
-                                    <div className="flex items-center gap-3 p-4 bg-white/5 rounded-2xl border border-white/5">
-                                        <Smartphone className="w-6 h-6 text-white/40" />
+                                    <div className="flex items-center gap-3 p-4 bg-white/5 rounded-2xl border border-white/5 group-hover:bg-white/10 transition-all">
+                                        <Zap className="w-6 h-6" style={{ color: ECUABET_GOLD }} />
                                         <div>
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-white/20">Política vigente</div>
-                                            <div className="text-sm font-bold text-white/80">Monto mínimo: $1.00</div>
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-white/20">Disponible ya</div>
+                                            <div className="text-sm font-bold text-white/80">Recargar Ahora</div>
                                         </div>
                                     </div>
                                 </div>
@@ -250,36 +255,36 @@ export default function EcuabetPage() {
                         </Link>
 
                         {/* Tarjeta Derecha: Seguridad */}
-                        <div className="block group">
+                        <Link href="#simulador" className="block group">
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
                                 viewport={{ once: true }}
                                 variants={sweepRight}
-                                className="relative bg-[#0D131A] p-10 rounded-[2.5rem] border border-white/5 group-hover:border-pe-yellow/30 transition-all overflow-hidden h-full"
+                                className="relative bg-[#0D131A] p-10 rounded-[2.5rem] border border-white/5 group-hover:border-pe-yellow/30 transition-all overflow-hidden h-full cursor-pointer active:scale-[0.98]"
                             >
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-pe-yellow/5 rounded-full blur-[100px]" />
 
-                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 bg-pe-yellow/10">
-                                    <ShieldCheck className="w-8 h-8" style={{ color: ECUABET_GOLD }} />
+                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 bg-pe-yellow/10 group-hover:scale-110 transition-transform">
+                                    <Banknote className="w-8 h-8" style={{ color: ECUABET_GOLD }} />
                                 </div>
 
-                                <h3 className="text-4xl font-black text-white mb-6 uppercase italic tracking-tight">Seguridad y <br /><span style={{ color: ECUABET_GOLD }}>Respaldo</span></h3>
+                                <h3 className="text-4xl font-black text-white mb-6 uppercase italic tracking-tight">Retiros <br /><span style={{ color: ECUABET_GOLD }}>Seguros y Directos</span></h3>
 
                                 <div className="space-y-6">
                                     <p className="text-white/60 text-lg leading-relaxed">
-                                        Operaciones respaldadas por Ecuabet Ecuador. Transacciones 100% seguras con comprobante físico y digital inmediato para tu tranquilidad.
+                                        Convierte tus ganancias en efectivo sin complicaciones. Cobra tus notas de retiro de manera ágil y recibe el dinero directamente en tu cuenta bancaria, con la seguridad y rapidez que necesitas.
                                     </p>
-                                    <div className="flex items-center gap-3 p-4 bg-pe-yellow/10 rounded-2xl border border-pe-yellow/20">
+                                    <div className="flex items-center gap-3 p-4 bg-pe-yellow/10 rounded-2xl border border-pe-yellow/20 group-hover:bg-pe-yellow/20 transition-all">
                                         <CheckCircle2 className="w-6 h-6" style={{ color: ECUABET_GOLD }} />
                                         <div>
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-pe-yellow/50">Garantía PagoExpress</div>
-                                            <div className="text-sm font-bold text-white/80">Punto Oficial Autorizado</div>
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-pe-yellow/50">Cobros</div>
+                                            <div className="text-sm font-bold text-white/80">Retirar mis Ganancias</div>
                                         </div>
                                     </div>
                                 </div>
                             </motion.div>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -372,12 +377,34 @@ export default function EcuabetPage() {
                             {step === 2 && (
                                 <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
                                     <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Monto e ID</h3>
+                                    
+                                    <div className="bg-pe-yellow/5 border border-pe-yellow/20 rounded-2xl p-4 space-y-3">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <Banknote className="w-4 h-4 text-pe-yellow" />
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-pe-yellow">Cuentas para depósito/transferencia</span>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-2 text-[10px] font-medium text-white/70">
+                                            <div className="bg-white/5 p-2 rounded-lg">🏦 Produbanco: <span className="text-white">02125012701</span></div>
+                                            <div className="bg-white/5 p-2 rounded-lg">🏦 Pichincha: <span className="text-white">3472909404</span></div>
+                                            <div className="bg-white/5 p-2 rounded-lg">🏦 Guayaquil: <span className="text-white">21026425</span></div>
+                                            <div className="bg-white/5 p-2 rounded-lg">🏦 Banco Loja: <span className="text-white">2903772441</span></div>
+                                            <div className="bg-white/5 p-2 rounded-lg">🏦 CoopMego: <span className="text-white">401010139960</span></div>
+                                            <div className="bg-white/5 p-2 rounded-lg">🏦 JEP: <span className="text-white">406089279905</span></div>
+                                        </div>
+                                        <div className="pt-2 border-t border-pe-yellow/10">
+                                            <p className="text-[9px] text-white/50 leading-tight">
+                                                👤 Titular: <strong>César Augusto Amay Ríos</strong><br />
+                                                🪪 CI: <strong>1103677546</strong> | 📧 info@pagoexpressec.com
+                                            </p>
+                                        </div>
+                                    </div>
+
                                     <div className="space-y-4">
                                         <div className="relative group">
                                             <Gamepad2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
                                             <input 
                                                 type="text" 
-                                                placeholder="TU ID DE USUARIO (ECUABET)" 
+                                                placeholder="ID DE USUARIO O CÉDULA" 
                                                 value={userId}
                                                 onChange={(e) => setUserId(e.target.value)}
                                                 className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
@@ -403,7 +430,7 @@ export default function EcuabetPage() {
                                             <input 
                                                 type="number" 
                                                 min="1"
-                                                placeholder="OTRO VALOR (MÍN $1)" 
+                                                placeholder="VALOR (MÍN $1)" 
                                                 value={amount}
                                                 onChange={(e) => setAmount(e.target.value)}
                                                 className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
@@ -417,7 +444,7 @@ export default function EcuabetPage() {
                                             disabled={!userId || !amount || Number(amount) < 1}
                                             className="flex-[2] py-5 bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
                                         >
-                                            Ver Comprobante <ArrowRight className="w-5 h-5" />
+                                            Subir Comprobante <ArrowRight className="w-5 h-5" />
                                         </button>
                                     </div>
                                 </motion.div>
@@ -452,12 +479,21 @@ export default function EcuabetPage() {
                                     </div>
 
                                     <div className="flex gap-3">
-                                        <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
+                                        <button onClick={prevStep} disabled={isUploading} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all disabled:opacity-50">Atrás</button>
                                         <button 
-                                            onClick={nextStep}
-                                            className="flex-[2] py-5 bg-white/10 hover:bg-white/20 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
+                                            onClick={async () => {
+                                                if (receipt && !receiptUrl) {
+                                                    const url = await uploadReceipt(receipt);
+                                                    if (url) nextStep();
+                                                    else alert("Error al subir el comprobante. Por favor intenta de nuevo.");
+                                                } else {
+                                                    nextStep();
+                                                }
+                                            }}
+                                            disabled={isUploading}
+                                            className="flex-[2] py-5 bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
                                         >
-                                            Ver Resumen <ArrowRight className="w-5 h-5" />
+                                            {isUploading ? "Subiendo..." : "Ver Resumen"} <ArrowRight className="w-5 h-5" />
                                         </button>
                                     </div>
                                 </motion.div>
@@ -519,13 +555,13 @@ export default function EcuabetPage() {
                             className="lg:col-span-5"
                         >
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 font-sans">
-                                <span className="text-[10px] font-black uppercase tracking-[0.2em]" style={{ color: ECUABET_GOLD }}>Watch Experience</span>
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em]" style={{ color: ECUABET_GOLD }}>PROCESO 100% DIGITAL</span>
                             </div>
                             <h2 className="text-4xl sm:text-6xl font-black text-white leading-none mb-6 uppercase italic tracking-tighter">
-                                VIVE LA <br /> EXPERIENCIA <span style={{ color: ECUABET_GOLD }}>ECUABET</span>
+                                TU DINERO, <br /> A TU <span style={{ color: ECUABET_GOLD }}>MANERA</span>
                             </h2>
                             <p className="text-white/50 text-lg mb-8 leading-relaxed font-medium">
-                                Mira cómo es de fácil y seguro gestionar tus pronósticos deportivos en nuestras agencias físicas. Sin complicaciones, con atención humana y pagos inmediatos.
+                                Gestiona tus recargas y cobros con la rapidez que mereces. Sin procesos lentos ni esperas innecesarias: atención ágil, depósitos inmediatos y la seguridad de un servicio diseñado para tu comodidad.
                             </p>
                         </motion.div>
 
