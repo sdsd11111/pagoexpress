@@ -71,6 +71,20 @@ export default function EcuabetPage() {
     const [receiptUrl, setReceiptUrl] = useState("");
     const [isUploading, setIsUploading] = useState(false);
 
+    const resetForm = (type: "recharge" | "withdraw") => {
+        setFormType(type);
+        setStep(1);
+        setUserId("");
+        setAmount("");
+        setWithdrawNote("");
+        setWithdrawClave("");
+        setWithdrawId("");
+        setReceipt(null);
+        setReceiptUrl("");
+        // We don't necessarily reset bank info as user might want to reuse it, 
+        // but let's keep it for now unless requested otherwise.
+    };
+
     const uploadReceipt = async (file: File) => {
         try {
             setIsUploading(true);
@@ -107,15 +121,13 @@ export default function EcuabetPage() {
         
         let message = "";
         if (formType === "recharge") {
-            message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n🆔 *ID o Cédula:* ${userId}\n💰 *Valor:* $${amount}\n📱 *WhatsApp:* ${leadPhone}\n\n${receiptUrl ? `✅ *Comprobante de pago:* ${receiptUrl}` : "⏳ *No se adjuntó comprobante.*"}${bankInfo}\n\nQuedo a la espera de la acreditación.`;
+            message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n🆔 *ID o Cédula:* ${userId}\n💰 *Valor:* $${amount}\n📱 *WhatsApp:* ${leadPhone}\n\n${receiptUrl ? `✅ *Comprobante de pago:* ${receiptUrl}` : "⏳ _No se adjuntó comprobante._"}${bankInfo}\n\nQuedo a la espera de la acreditación.`;
         } else {
-            message = `Hola PagoExpress, deseo realizar un retiro de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n📝 *Nota de Retiro:* ${withdrawNote}\n🔑 *Clave:* ${withdrawClave}\n🪪 *Cédula:* ${withdrawId}\n📱 *WhatsApp:* ${leadPhone}\n\n${receiptUrl ? `✅ *Nota de Retiro (Imagen):* ${receiptUrl}` : "⏳ *No se adjuntó la imagen de la nota.*"}${bankInfo}\n\nPor favor procedan con la validación.`;
+            message = `Hola PagoExpress, deseo realizar un retiro de Ecuabet.\n\n👤 *Cliente:* ${leadName}\n📝 *Nota de Retiro:* ${withdrawNote}\n🔑 *Clave:* ${withdrawClave}\n🪪 *Cédula:* ${withdrawId}\n📱 *WhatsApp:* ${leadPhone}\n\n${receiptUrl ? `✅ *Nota de Retiro (Imagen):* ${receiptUrl}` : "⏳ _No se adjuntó la imagen de la nota._"}${bankInfo}\n\nPor favor procedan con la validación.`;
         }
 
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/593990227203?text=${encodedMessage}`, "_blank");
-        // We can either stay at summary or show a final success message. 
-        // For now, let's keep the user on a "Sent" state.
         setStep(6); 
     };
 
@@ -166,8 +178,7 @@ export default function EcuabetPage() {
                             <div className="flex flex-col sm:flex-row gap-4 lg:gap-5 justify-center lg:justify-start w-full px-0">
                                 <button
                                     onClick={() => {
-                                        setFormType("recharge");
-                                        setStep(1);
+                                        resetForm("recharge");
                                         document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' });
                                     }}
                                     className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-5 text-black font-black uppercase tracking-widest rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-pe-yellow/20"
@@ -245,8 +256,7 @@ export default function EcuabetPage() {
                         {/* Tarjeta Izquierda: Recargas */}
                         <div 
                             onClick={() => {
-                                setFormType("recharge");
-                                setStep(1);
+                                resetForm("recharge");
                                 document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' });
                             }} 
                             className="block group cursor-pointer"
@@ -284,8 +294,7 @@ export default function EcuabetPage() {
                         {/* Tarjeta Derecha: Seguridad */}
                         <div 
                             onClick={() => {
-                                setFormType("withdraw");
-                                setStep(1);
+                                resetForm("withdraw");
                                 document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' });
                             }} 
                             className="block group cursor-pointer"
@@ -336,14 +345,14 @@ export default function EcuabetPage() {
                         {/* Tabs Selector */}
                         <div className="flex p-1 bg-white/5 rounded-2xl mb-8 border border-white/5">
                             <button 
-                                onClick={() => { setFormType("recharge"); setStep(1); }}
+                                onClick={() => resetForm("recharge")}
                                 className={`flex-1 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all ${formType === "recharge" ? "bg-pe-yellow text-black shadow-lg" : "text-white/40 hover:text-white"}`}
                                 style={{ backgroundColor: formType === "recharge" ? ECUABET_GOLD : undefined }}
                             >
                                 Solicitud Recarga
                             </button>
                             <button 
-                                onClick={() => { setFormType("withdraw"); setStep(1); }}
+                                onClick={() => resetForm("withdraw")}
                                 className={`flex-1 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all ${formType === "withdraw" ? "bg-pe-yellow text-black shadow-lg" : "text-white/40 hover:text-white"}`}
                                 style={{ backgroundColor: formType === "withdraw" ? ECUABET_GOLD : undefined }}
                             >
