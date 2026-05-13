@@ -66,7 +66,6 @@ export default function EcuabetPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [step, setStep] = useState(1);
     const [leadName, setLeadName] = useState("");
-    const [leadPhone, setLeadPhone] = useState("");
     const [receipt, setReceipt] = useState<File | null>(null);
     const [receiptUrl, setReceiptUrl] = useState("");
     const [isUploading, setIsUploading] = useState(false);
@@ -117,29 +116,24 @@ export default function EcuabetPage() {
     const handleWhatsAppSubmit = (e?: React.FormEvent) => {
         if (e) e.preventDefault();
         
-        // Emojis as Unicode Escapes for 100% compatibility
-        const eBank = "\u{1F3E6}";
-        const eUser = "\u{1F464}";
-        const eId = "\u{1F194}";
-        const eMoney = "\u{1F4B0}";
-        const eCheck = "\u{2705}";
-        const eWait = "\u{23F3}";
-        const eNote = "\u{1F4DD}";
-        const eKey = "\u{1F511}";
-        const eIdCard = "\u{1FAAA}";
 
-        const bankInfo = `\n\n${eBank} *DATOS PARA EL PAGO:* \n- Banco: ${bankName}\n- Cuenta: ${accountNumber}\n- Tipo: ${accountType}`;
+        const bankInfo = `\n\n🏦 *DATOS PARA EL PAGO:* \n- Banco: ${bankName}\n- Cuenta: ${accountNumber}\n- Tipo: ${accountType}`;
         
-        let message = "";
-        if (formType === "recharge") {
-            message = `Hola PagoExpress, deseo realizar una recarga de Ecuabet.\n\n${eUser} *Cliente:* ${leadName}\n${eId} *ID o Cédula:* ${userId}\n${eMoney} *Valor:* $${amount}\n\n${receiptUrl ? `${eCheck} *Comprobante de pago:* ${receiptUrl}` : `${eWait} _No se adjuntó comprobante._`}\n\nQuedo a la espera de la acreditación.`;
-        } else {
-            message = `Hola PagoExpress, deseo realizar un retiro de Ecuabet.\n\n${eUser} *Cliente:* ${leadName}\n${eNote} *Nota de Retiro:* ${withdrawNote}\n${eKey} *Clave:* ${withdrawClave}\n${eIdCard} *Cédula:* ${withdrawId}\n\n${receiptUrl ? `${eCheck} *Nota de Retiro (Imagen):* ${receiptUrl}` : `${eWait} _No se adjuntó la imagen de la nota._`}${bankInfo}\n\nPor favor procedan con la validación.`;
-        }
+        // Final attempt with official API URL and explicit string building
+        const text = `Hola PagoExpress, deseo realizar una ${formType === "recharge" ? "recarga" : "retiro"} de Ecuabet.\n\n` +
+                     `👤 *Cliente:* ${leadName}\n` +
+                     (formType === "recharge" ? `🆔 *ID o Cédula:* ${userId}\n` : `📝 *Nota de Retiro:* ${withdrawNote}\n`) +
+                     (formType === "recharge" ? `💰 *Valor:* $${amount}\n` : `🔑 *Clave:* ${withdrawClave}\n`) +
+                     (formType === "withdraw" ? `🪪 *Cédula:* ${withdrawId}\n` : "") +
+                     "\n" +
+                     (receiptUrl ? `✅ *${formType === "recharge" ? "Comprobante de pago" : "Nota de Retiro (Imagen)"}:* ${receiptUrl}\n` : `⏳ _No se adjuntó comprobante._\n`) +
+                     (formType === "withdraw" ? bankInfo : "") +
+                     "\nQuedo a la espera de la acreditación.";
 
-        const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/593990227203?text=${encodedMessage}`, "_blank");
-        setStep(6); 
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=593990227203&text=${encodeURIComponent(text)}`;
+        
+        window.open(whatsappUrl, "_blank");
+        setStep(formType === "recharge" ? 5 : 6); 
     };
 
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -416,20 +410,10 @@ export default function EcuabetPage() {
                                                 className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
                                             />
                                         </div>
-                                        <div className="relative group">
-                                            <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within:text-pe-yellow transition-colors" />
-                                            <input 
-                                                type="tel" 
-                                                placeholder="WHATSAPP (OBLIGATORIO)" 
-                                                value={leadPhone}
-                                                onChange={(e) => setLeadPhone(e.target.value)}
-                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
-                                            />
-                                        </div>
                                     </div>
                                     <button 
                                         onClick={nextStep}
-                                        disabled={!leadName || !leadPhone}
+                                        disabled={!leadName}
                                         className="w-full py-5 bg-white/10 hover:bg-white/20 disabled:opacity-30 disabled:hover:bg-white/10 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
                                     >
                                         Siguiente Paso <ArrowRight className="w-5 h-5" />
@@ -482,7 +466,7 @@ export default function EcuabetPage() {
                                                     {["5", "10", "20", "50", "100"].map((val) => (
                                                         <button 
                                                             key={val} 
-                                                            onClick={() => setAmount(val)}
+                                                            onClick={() => { setAmount(val); setStep(formType === "recharge" ? 3 : 4); }}
                                                             className={`py-3 rounded-xl border font-bold transition-all ${
                                                                 amount === val ? "bg-pe-yellow/20 border-pe-yellow text-pe-yellow" : "bg-white/5 border-white/10 text-white/40 hover:bg-white/10"
                                                             }`}
@@ -587,10 +571,11 @@ export default function EcuabetPage() {
                                             onClick={async () => {
                                                 if (receipt && !receiptUrl) {
                                                     const url = await uploadReceipt(receipt);
-                                                    if (url) nextStep();
-                                                    else alert("Error al subir el comprobante. Por favor intenta de nuevo.");
+                                                    if (url) {
+                                                        setStep(4);
+                                                    } else alert("Error al subir el comprobante. Por favor intenta de nuevo.");
                                                 } else {
-                                                    nextStep();
+                                                    setStep(4);
                                                 }
                                             }}
                                             disabled={isUploading}
@@ -604,121 +589,179 @@ export default function EcuabetPage() {
 
                             {step === 4 && (
                                 <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
-                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Datos de Pago</h3>
-                                    <p className="text-white/40 text-sm">¿Dónde deseas recibir tu acreditación apenas esté lista?</p>
-                                    
-                                    <div className="space-y-4">
-                                        <div className="relative group">
-                                            <input 
-                                                type="text" 
-                                                placeholder="🏦 NOMBRE DEL BANCO" 
-                                                value={bankName}
-                                                onChange={(e) => setBankName(e.target.value)}
-                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
-                                            />
-                                        </div>
-                                        <div className="relative group">
-                                            <input 
-                                                type="text" 
-                                                placeholder="🔢 NÚMERO DE CUENTA" 
-                                                value={accountNumber}
-                                                onChange={(e) => setAccountNumber(e.target.value)}
-                                                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
-                                            />
-                                        </div>
-                                        <select 
-                                            value={accountType}
-                                            onChange={(e) => setAccountType(e.target.value)}
-                                            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase"
-                                        >
-                                            <option value="" className="bg-neutral-900">👤 TIPO DE CUENTA</option>
-                                            <option value="AHORROS" className="bg-neutral-900">AHORROS</option>
-                                            <option value="CORRIENTE" className="bg-neutral-900">CORRIENTE</option>
-                                        </select>
-                                    </div>
+                                    {formType === "withdraw" ? (
+                                        <>
+                                            <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Datos de Pago</h3>
+                                            <p className="text-white/40 text-sm">¿Dónde deseas recibir tu acreditación apenas esté lista?</p>
+                                            
+                                            <div className="space-y-4">
+                                                <div className="relative group">
+                                                    <input 
+                                                        type="text" 
+                                                        placeholder="🏦 NOMBRE DEL BANCO" 
+                                                        value={bankName}
+                                                        onChange={(e) => setBankName(e.target.value)}
+                                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                                    />
+                                                </div>
+                                                <div className="relative group">
+                                                    <input 
+                                                        type="text" 
+                                                        placeholder="🔢 NÚMERO DE CUENTA" 
+                                                        value={accountNumber}
+                                                        onChange={(e) => setAccountNumber(e.target.value)}
+                                                        className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase placeholder:text-white/20"
+                                                    />
+                                                </div>
+                                                <select 
+                                                    value={accountType}
+                                                    onChange={(e) => setAccountType(e.target.value)}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white focus:outline-none focus:border-pe-yellow/50 transition-all font-bold uppercase"
+                                                >
+                                                    <option value="" className="bg-neutral-900">👤 TIPO DE CUENTA</option>
+                                                    <option value="AHORROS" className="bg-neutral-900">AHORROS</option>
+                                                    <option value="CORRIENTE" className="bg-neutral-900">CORRIENTE</option>
+                                                </select>
+                                            </div>
 
-                                    <div className="flex gap-3">
-                                        <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
-                                        <button 
-                                            onClick={nextStep}
-                                            disabled={!bankName || !accountNumber || !accountType}
-                                            className="flex-[2] py-5 bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
-                                        >
-                                            Ver Resumen <ArrowRight className="w-5 h-5" />
-                                        </button>
-                                    </div>
+                                            <div className="flex gap-3">
+                                                <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
+                                                <button 
+                                                    onClick={() => setStep(5)}
+                                                    disabled={!bankName || !accountNumber || !accountType}
+                                                    className="flex-[2] py-5 bg-white/10 hover:bg-white/20 disabled:opacity-30 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3"
+                                                >
+                                                    Ver Resumen <ArrowRight className="w-5 h-5" />
+                                                </button>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        /* For Recharge, Step 4 IS the Summary */
+                                        <div className="space-y-6">
+                                            <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Resumen de Solicitud</h3>
+                                            
+                                            <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-6">
+                                                <div className="space-y-3">
+                                                    <p className="text-[10px] font-black text-pe-yellow uppercase tracking-widest">Información Ecuabet</p>
+                                                    <div className="grid grid-cols-2 gap-4">
+                                                        <div>
+                                                            <span className="text-white/40 text-[9px] uppercase font-bold block">ID Usuario</span>
+                                                            <span className="font-black text-white text-sm uppercase">{userId}</span>
+                                                        </div>
+                                                        <div>
+                                                            <span className="text-white/40 text-[9px] uppercase font-bold block">Monto</span>
+                                                            <span className="font-black text-pe-yellow text-sm">${amount}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="pt-4 border-t border-white/5 flex justify-between items-center">
+                                                    <span className="text-white/40 text-xs uppercase font-bold">Comprobante</span>
+                                                    <span className="text-[10px] font-black uppercase text-pe-yellow bg-pe-yellow/10 px-3 py-1 rounded-full">Listo</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex gap-3">
+                                                <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
+                                                <button 
+                                                    onClick={() => handleWhatsAppSubmit()}
+                                                    className="flex-[2] py-5 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] shadow-2xl"
+                                                    style={{ backgroundColor: "#25D366" }}
+                                                >
+                                                    <MessageCircle className="w-6 h-6" />
+                                                    Enviar a WhatsApp
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
                                 </motion.div>
                             )}
 
                             {step === 5 && (
                                 <motion.div key="step5" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
-                                    <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Resumen de Solicitud</h3>
-                                    
-                                    <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-6">
-                                        {/* Transaction Details */}
-                                        <div className="space-y-3">
-                                            <p className="text-[10px] font-black text-pe-yellow uppercase tracking-widest">Información Ecuabet</p>
-                                            {formType === "recharge" ? (
-                                                <div className="grid grid-cols-2 gap-4">
-                                                    <div>
-                                                        <span className="text-white/40 text-[9px] uppercase font-bold block">ID Usuario</span>
-                                                        <span className="font-black text-white text-sm uppercase">{userId}</span>
-                                                    </div>
-                                                    <div>
-                                                        <span className="text-white/40 text-[9px] uppercase font-bold block">Monto</span>
-                                                        <span className="font-black text-pe-yellow text-sm">${amount}</span>
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <div className="grid grid-cols-2 gap-4">
-                                                    <div>
-                                                        <span className="text-white/40 text-[9px] uppercase font-bold block">Nota No.</span>
-                                                        <span className="font-black text-white text-sm uppercase">{withdrawNote}</span>
-                                                    </div>
-                                                    <div>
-                                                        <span className="text-white/40 text-[9px] uppercase font-bold block">Cédula</span>
-                                                        <span className="font-black text-white text-sm uppercase">{withdrawId}</span>
+                                    {formType === "withdraw" ? (
+                                        <div className="space-y-6">
+                                            <h3 className="text-2xl font-black uppercase italic" style={{ color: ECUABET_GOLD }}>Resumen de Solicitud</h3>
+                                            
+                                            <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-6">
+                                                <div className="space-y-3">
+                                                    <p className="text-[10px] font-black text-pe-yellow uppercase tracking-widest">Información Ecuabet</p>
+                                                    <div className="grid grid-cols-2 gap-4">
+                                                        <div>
+                                                            <span className="text-white/40 text-[9px] uppercase font-bold block">Nota No.</span>
+                                                            <span className="font-black text-white text-sm uppercase">{withdrawNote}</span>
+                                                        </div>
+                                                        <div>
+                                                            <span className="text-white/40 text-[9px] uppercase font-bold block">Cédula</span>
+                                                            <span className="font-black text-white text-sm uppercase">{withdrawId}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            )}
-                                        </div>
 
-                                        {/* Bank Details */}
-                                        <div className="pt-4 border-t border-white/5 space-y-3">
-                                            <p className="text-[10px] font-black text-pe-yellow uppercase tracking-widest">Cuenta de Pago</p>
-                                            <div className="grid grid-cols-2 gap-4">
-                                                <div>
-                                                    <span className="text-white/40 text-[9px] uppercase font-bold block">Banco</span>
-                                                    <span className="font-black text-white text-sm uppercase">{bankName}</span>
+                                                <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                                                    <h4 className="text-white/40 text-[10px] uppercase tracking-widest font-black mb-4">Datos de Pago (Destino)</h4>
+                                                    <div className="space-y-4">
+                                                        <div className="flex justify-between">
+                                                            <span className="text-white/40 text-sm">Banco</span>
+                                                            <span className="text-white font-medium">{bankName}</span>
+                                                        </div>
+                                                        <div className="flex justify-between">
+                                                            <span className="text-white/40 text-sm">Cuenta</span>
+                                                            <span className="text-white font-medium">{accountNumber}</span>
+                                                        </div>
+                                                        <div className="flex justify-between">
+                                                            <span className="text-white/40 text-sm">Tipo</span>
+                                                            <span className="text-white font-medium">{accountType}</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <span className="text-white/40 text-[9px] uppercase font-bold block">Cuenta</span>
-                                                    <span className="font-black text-white text-sm uppercase">{accountNumber}</span>
+
+                                                <div className="pt-4 border-t border-white/5 flex justify-between items-center">
+                                                    <span className="text-white/40 text-xs uppercase font-bold">Nota de Retiro</span>
+                                                    <span className="text-[10px] font-black uppercase text-pe-yellow bg-pe-yellow/10 px-3 py-1 rounded-full">Lista</span>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div className="pt-4 border-t border-white/5 flex justify-between items-center">
-                                            <span className="text-white/40 text-xs uppercase font-bold">Comprobante</span>
-                                            <span className="text-[10px] font-black uppercase text-pe-yellow bg-pe-yellow/10 px-3 py-1 rounded-full">Listo</span>
+                                            <div className="flex gap-3">
+                                                <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
+                                                <button 
+                                                    onClick={() => handleWhatsAppSubmit()}
+                                                    className="flex-[2] py-5 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] shadow-2xl"
+                                                    style={{ backgroundColor: "#25D366" }}
+                                                >
+                                                    <MessageCircle className="w-6 h-6" />
+                                                    Enviar a WhatsApp
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    ) : (
+                                        /* For Recharge, Step 5 is the Success screen */
+                                        <div className="text-center space-y-8 py-8">
+                                            <div className="w-20 h-20 bg-pe-yellow rounded-full flex items-center justify-center mx-auto shadow-2xl shadow-pe-yellow/20">
+                                                <CheckCircle2 className="w-10 h-10 text-black" />
+                                            </div>
+                                            
+                                            <div className="space-y-4">
+                                                <h3 className="text-2xl font-black text-white uppercase italic leading-tight">
+                                                    ¡Solicitud <span style={{ color: ECUABET_GOLD }}>Enviada!</span>
+                                                </h3>
+                                                <p className="text-white/60 text-sm font-medium max-w-xs mx-auto">
+                                                    Hemos recibido tus datos correctamente. El tiempo de acreditación es de aproximadamente <span className="text-white font-bold">1 hora ⏳</span>.
+                                                </p>
+                                            </div>
 
-                                    <div className="flex gap-3">
-                                        <button onClick={prevStep} className="flex-1 py-5 bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest rounded-2xl transition-all">Atrás</button>
-                                        <button 
-                                            onClick={() => handleWhatsAppSubmit()}
-                                            className="flex-[2] py-5 text-white font-black uppercase tracking-widest rounded-2xl transition-all flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] shadow-2xl"
-                                            style={{ backgroundColor: "#25D366" }}
-                                        >
-                                            <MessageCircle className="w-6 h-6" />
-                                            Enviar a WhatsApp
-                                        </button>
-                                    </div>
+                                            <button 
+                                                onClick={() => { setStep(1); setReceipt(null); setReceiptUrl(""); }}
+                                                className="py-4 px-10 border border-white/10 hover:border-white/30 text-white/50 hover:text-white text-[10px] font-black uppercase tracking-widest transition-all rounded-2xl flex items-center justify-center gap-2 mx-auto"
+                                            >
+                                                <RefreshCcw className="w-3 h-3" /> Realizar otra solicitud
+                                            </button>
+                                        </div>
+                                    )}
                                 </motion.div>
                             )}
 
-                            {step === 6 && (
+                            {step === 6 && formType === "withdraw" && (
                                 <motion.div key="step6" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center space-y-8 py-8">
                                     <div className="w-20 h-20 bg-pe-yellow rounded-full flex items-center justify-center mx-auto shadow-2xl shadow-pe-yellow/20">
                                         <CheckCircle2 className="w-10 h-10 text-black" />
@@ -729,7 +772,7 @@ export default function EcuabetPage() {
                                             ¡Solicitud <span style={{ color: ECUABET_GOLD }}>Enviada!</span>
                                         </h3>
                                         <p className="text-white/60 text-sm font-medium max-w-xs mx-auto">
-                                            Hemos recibido tus datos correctamente. El tiempo de acreditación es de aproximadamente <span className="text-white font-bold">1 hora ⏳</span>.
+                                            Hemos recibido tus datos correctamente. El tiempo de validación es de aproximadamente <span className="text-white font-bold">1 hora ⏳</span>.
                                         </p>
                                     </div>
 
