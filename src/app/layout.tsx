@@ -55,6 +55,9 @@ export const metadata: Metadata = {
       "Toda la banca de Ecuador y remesas mundiales en un solo lugar. Más de 19 años de confianza.",
     images: ["/logo.jpg?v=2"],
   },
+  verification: {
+    google: "SA3TFyfObCzmoE6XbTurxzJnapOM-xFWWbLaSOUwuNw",
+  },
 };
 
 export default function RootLayout({
