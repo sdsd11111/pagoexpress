@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pagoexpress.vercel.app"),
+  metadataBase: new URL("https://www.pagoexpressec.com"),
   title: "PagoExpress | Servicios Financieros en Ecuador",
   description:
     "Más de 19 años ofreciendo remesas internacionales, depósitos bancarios, pagos de servicios, recargas y courier en todo el Ecuador. Aliado de Western Union y MoneyGram.",

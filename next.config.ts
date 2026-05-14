@@ -11,6 +11,40 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/recargas-ecuabet-desde-1usd',
+        destination: '/ecuabet',
+        permanent: true,
+      },
+      {
+        source: '/informe-de-credito-360',
+        destination: '/equifax',
+        permanent: true,
+      },
+      {
+        source: '/about',
+        destination: '/nosotros',
+        permanent: true,
+      },
+      {
+        source: '/facturero-movil',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/contacts',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/page',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

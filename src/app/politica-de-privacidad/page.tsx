@@ -1,68 +1,58 @@
-"use client";
+import { Metadata } from 'next';
+import PoliticaPrivacidadClient from './PoliticaPrivacidadClient';
 
-import { motion } from "framer-motion";
-import { Shield, Lock, Eye, FileText } from "lucide-react";
+export const metadata: Metadata = {
+  title: 'Política de Privacidad | PagoExpress Ecuador',
+  description: 'Conoce cómo PagoExpress protege tus datos personales y financieros en cumplimiento con la Ley Orgánica de Protección de Datos de Ecuador.',
+  keywords: ['Privacidad', 'Protección de datos', 'Seguridad financiera', 'Términos legales', 'PagoExpress'],
+};
 
 export default function PoliticaPrivacidadPage() {
-    return (
-        <main className="min-h-screen bg-white text-pe-black selection:bg-pe-yellow/30 font-inter">
-            {/* Simple Header */}
-            <section className="pt-32 pb-16 bg-pe-black text-white relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-pe-yellow rounded-full blur-[120px]" />
-                </div>
-                <div className="max-w-4xl mx-auto px-4 relative z-10 text-center">
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-                        <Shield className="w-12 h-12 text-pe-yellow mx-auto mb-6" />
-                        <h1 className="text-4xl md:text-5xl font-black mb-4">Política de Privacidad</h1>
-                        <p className="text-pe-gray-400 font-medium">Última actualización: Marzo 2026</p>
-                    </motion.div>
-                </div>
-            </section>
+  return (
+    <>
+      <PoliticaPrivacidadClient />
+      <div style={{ 
+        position: 'absolute',
+        left: '-10000px',
+        top: 'auto',
+        width: '1px',
+        height: '1px',
+        overflow: 'hidden'
+      }} 
+      aria-hidden="true">
+        <h1>Política de Privacidad y Tratamiento de Datos - PagoExpress</h1>
+        <p>
+            En <strong>PagoExpress</strong>, valoramos la confianza que deposita en nosotros al utilizar nuestros servicios financieros en Loja y a nivel nacional. Esta política describe cómo manejamos su información personal y financiera de acuerdo con las leyes de la República del Ecuador.
+        </p>
 
-            {/* Content */}
-            <section className="py-20">
-                <div className="max-w-3xl mx-auto px-4 prose prose-slate">
-                    <div className="space-y-12">
-                        <div>
-                            <h2 className="text-2xl font-black mb-4 flex items-center gap-3">
-                                <Lock className="w-6 h-6 text-pe-yellow-dark" /> 1. Protección de Datos
-                            </h2>
-                            <p className="text-pe-gray-600 leading-relaxed">
-                                En PagoExpress, la seguridad de su información es nuestra prioridad. Cumplimos con la Ley Orgánica de Protección de Datos Personales de Ecuador para garantizar que su información financiera y personal sea tratada con la máxima confidencialidad.
-                            </p>
-                        </div>
+        <h2>Cumplimiento con la LOPDP</h2>
+        <p>
+            Nuestra empresa cumple estrictamente con la <strong>Ley Orgánica de Protección de Datos Personales (LOPDP)</strong>. Implementamos medidas técnicas y organizativas para prevenir el acceso no autorizado, la pérdida o la alteración de su información sensible.
+        </p>
 
-                        <div>
-                            <h2 className="text-2xl font-black mb-4 flex items-center gap-3">
-                                <Eye className="w-6 h-6 text-pe-yellow-dark" /> 2. Información que Recolectamos
-                            </h2>
-                            <p className="text-pe-gray-600 leading-relaxed">
-                                Recolectamos información necesaria para procesar sus transacciones financieras, incluyendo nombres, números de cédula, y detalles de contacto. Esta información es requerida por las instituciones financieras y agentes autorizados con los que operamos (Red Activa Western Union, Bancos, etc.).
-                            </p>
-                        </div>
+        <h2>Finalidad de la Recolección de Datos</h2>
+        <p>Sus datos personales (como nombres, cédula y números de contacto) son recolectados con las siguientes finalidades:</p>
+        <ul>
+            <li>Validación de identidad para prevención de lavado de activos (SARLAFT).</li>
+            <li>Ejecución de contratos de servicios con terceros (Western Union, Red Activa, etc.).</li>
+            <li>Generación de facturación electrónica autorizada por el SRI.</li>
+            <li>Notificación de estado de trámites como emisión de firmas electrónicas.</li>
+        </ul>
 
-                        <div>
-                            <h2 className="text-2xl font-black mb-4 flex items-center gap-3">
-                                <FileText className="w-6 h-6 text-pe-yellow-dark" /> 3. Uso de la Información
-                            </h2>
-                            <p className="text-pe-gray-600 leading-relaxed mb-4">
-                                Sus datos se utilizan exclusivamente para:
-                            </p>
-                            <ul className="list-disc pl-6 space-y-2 text-pe-gray-600">
-                                <li>Procesar depósitos, retiros y transferencias internacionales.</li>
-                                <li>Emitir comprobantes de pago legales.</li>
-                                <li>Verificar su identidad para prevenir fraude financiero.</li>
-                                <li>Cumplir con regulaciones de la Superintendencia de Bancos y la SEPS.</li>
-                            </ul>
-                        </div>
+        <h2>Derechos del Titular de los Datos</h2>
+        <p>Usted, como usuario de PagoExpress, tiene derecho a:</p>
+        <ul>
+            <li>Acceder a la información personal que mantenemos sobre usted.</li>
+            <li>Solicitar la rectificación de datos inexactos.</li>
+            <li>Oponerse al tratamiento de sus datos para fines que no sean estrictamente legales o contractuales.</li>
+            <li>Solicitar la eliminación de sus datos una vez cumplidos los plazos legales de conservación de registros financieros.</li>
+        </ul>
 
-                        <div className="p-8 bg-pe-gray-50 rounded-[2rem] border border-pe-gray-100 italic text-pe-gray-500 text-sm">
-                            Información importante: PagoExpress no almacena sus claves bancarias ni datos de acceso a servicios externos. Todas nuestras transacciones se realizan a través de canales oficiales y encriptados proporcionados por nuestras entidades aliadas.
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-    );
+        <h2>Seguridad en Transacciones</h2>
+        <p>
+            Utilizamos protocolos de <strong>encriptación de grado bancario</strong> para todas las comunicaciones de datos. Nuestras agencias físicas cuentan con supervisión constante y personal capacitado en ética y manejo confidencial de información. No compartimos su información con terceros para fines comerciales o de marketing sin su consentimiento expreso.
+        </p>
+      </div>
+    </>
+  );
 }
